@@ -1,0 +1,3 @@
+1. The system shall provide a list of music events hosted in locations in a radius specified by the user.
+2. The system shall allow the user to add other users to the friend list.
+3. The system shall provide the list of attended music concerts by the user.
