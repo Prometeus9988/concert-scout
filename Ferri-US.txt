@@ -1,0 +1,8 @@
+1-As a busy user, I want a section for the concert I go to, so I can stay updated on date and place.
+
+2-As a social user, I want a messaging system, so I can stay in touch with my friends.
+
+3-As a traveler, I want a map of the area where the concert takes place, so I can
+  find bus stops or train stations.
+
+ 
