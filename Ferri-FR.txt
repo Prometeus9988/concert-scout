@@ -1,6 +1,0 @@
-1-The system shall provide artists the insertion of a new event, selecting the date and the location of the concert.
-
-2-The system shall provide all users the view on-screen of all user’s friends that take part in an event, selected by the user.
-
-3-The system shall allow the user to remove his participation in an event, selected by the user.
-
