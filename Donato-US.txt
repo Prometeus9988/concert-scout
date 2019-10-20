@@ -1,0 +1,5 @@
+1-As a user, I want a home section, so I can find a recommended event. 
+
+2-As a user, I want to search for music events.
+
+3-As a user, I want to visit a specific artist’s profile, so that I can find his news and events.
