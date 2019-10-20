@@ -1,0 +1,5 @@
+1-The system shall allow the user to add an artist to the list of followed artists.
+
+2-The system shall show to the user the concerts of my favorite artists and the concerts I might like.
+
+3-The system shall allow the user to add his participation in an event, selected by the user.
