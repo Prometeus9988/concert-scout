@@ -1,3 +1,0 @@
-1. As an artist, I want to create an artist’s profile, so that I can post news about me.
-2. As an artist, I want to add music events to the service, so that I can advertise hosted events.
-3. As a user, I want to see which of my friends are going to attend a music event, so I can join them.
