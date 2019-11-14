@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.14)  13 NOV 2019 17:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.14)  14 NOV 2019 09:13
 entering extended mode
 **./relazioneProgetto.tex
 (relazioneProgetto.tex
@@ -204,18 +204,18 @@ File: pppdftex.def 2019/09/21 v0.5n Pdfpages driver for pdfTeX (AM)
 ) (relazioneProgetto.aux)
 \openout1 = `relazioneProgetto.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
 \AtBeginShipoutBox=\box31
 
 ("C:\Users\danie\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
@@ -292,70 +292,266 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 ))
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 18.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 19.
 
 ("C:\Users\danie\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 18.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 19.
 
 [1
 
 {C:/Users/danie/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-<UseCaseFinal.pdf, id=12, 598.15468pt x 845.07718pt>
-File: UseCaseFinal.pdf Graphic file (type pdf)
-<use UseCaseFinal.pdf>
-Package pdftex.def Info: UseCaseFinal.pdf  used on input line 64.
+<Diagrams/UseCaseFinal.pdf, id=12, 598.15468pt x 845.07718pt>
+File: Diagrams/UseCaseFinal.pdf Graphic file (type pdf)
+<use Diagrams/UseCaseFinal.pdf>
+Package pdftex.def Info: Diagrams/UseCaseFinal.pdf  used on input line 65.
 (pdftex.def)             Requested size: 598.15321pt x 845.07512pt.
-File: UseCaseFinal.pdf Graphic file (type pdf)
-<use UseCaseFinal.pdf>
-Package pdftex.def Info: UseCaseFinal.pdf  used on input line 64.
+File: Diagrams/UseCaseFinal.pdf Graphic file (type pdf)
+<use Diagrams/UseCaseFinal.pdf>
+Package pdftex.def Info: Diagrams/UseCaseFinal.pdf  used on input line 65.
 (pdftex.def)             Requested size: 598.15321pt x 845.07512pt.
-<UseCaseFinal.pdf, id=15, page=1, 598.15468pt x 845.07718pt>
-File: UseCaseFinal.pdf Graphic file (type pdf)
-<use UseCaseFinal.pdf, page 1>
-Package pdftex.def Info: UseCaseFinal.pdf , page1 used on input line 64.
+<Diagrams/UseCaseFinal.pdf, id=15, page=1, 598.15468pt x 845.07718pt>
+File: Diagrams/UseCaseFinal.pdf Graphic file (type pdf)
+<use Diagrams/UseCaseFinal.pdf, page 1>
+Package pdftex.def Info: Diagrams/UseCaseFinal.pdf , page1 used on input line 6
+5.
 (pdftex.def)             Requested size: 598.15321pt x 845.07512pt.
-File: UseCaseFinal.pdf Graphic file (type pdf)
-<use UseCaseFinal.pdf, page 1>
-Package pdftex.def Info: UseCaseFinal.pdf , page1 used on input line 64.
+File: Diagrams/UseCaseFinal.pdf Graphic file (type pdf)
+<use Diagrams/UseCaseFinal.pdf, page 1>
+Package pdftex.def Info: Diagrams/UseCaseFinal.pdf , page1 used on input line 6
+5.
 (pdftex.def)             Requested size: 597.66034pt x 844.37878pt.
 
 [3]
-File: UseCaseFinal.pdf Graphic file (type pdf)
-<use UseCaseFinal.pdf, page 1>
-Package pdftex.def Info: UseCaseFinal.pdf , page1 used on input line 64.
+File: Diagrams/UseCaseFinal.pdf Graphic file (type pdf)
+<use Diagrams/UseCaseFinal.pdf, page 1>
+Package pdftex.def Info: Diagrams/UseCaseFinal.pdf , page1 used on input line 6
+5.
 (pdftex.def)             Requested size: 597.66034pt x 844.37878pt.
-File: UseCaseFinal.pdf Graphic file (type pdf)
-<use UseCaseFinal.pdf, page 1>
-Package pdftex.def Info: UseCaseFinal.pdf , page1 used on input line 64.
+File: Diagrams/UseCaseFinal.pdf Graphic file (type pdf)
+<use Diagrams/UseCaseFinal.pdf, page 1>
+Package pdftex.def Info: Diagrams/UseCaseFinal.pdf , page1 used on input line 6
+5.
 (pdftex.def)             Requested size: 597.66034pt x 844.37878pt.
-File: UseCaseFinal.pdf Graphic file (type pdf)
-<use UseCaseFinal.pdf, page 1>
-Package pdftex.def Info: UseCaseFinal.pdf , page1 used on input line 64.
+File: Diagrams/UseCaseFinal.pdf Graphic file (type pdf)
+<use Diagrams/UseCaseFinal.pdf, page 1>
+Package pdftex.def Info: Diagrams/UseCaseFinal.pdf , page1 used on input line 6
+5.
 (pdftex.def)             Requested size: 597.66034pt x 844.37878pt.
- [4 <./UseCaseFinal.pdf
+ [4 <./Diagrams/UseCaseFinal.pdf
 
-pdfTeX warning: pdflatex (file ./UseCaseFinal.pdf): PDF inclusion: invalid othe
-r resource which is no dict (key 'ProcSets', type <array>); ignored.
->] (relazioneProgetto.aux) ) 
+pdfTeX warning: pdflatex (file ./Diagrams/UseCaseFinal.pdf): PDF inclusion: inv
+alid other resource which is no dict (key 'ProcSets', type <array>); ignored.
+>]
+<./Storyboards/Home.jpg, id=36, 1453.5906pt x 1035.87pt>
+File: ./Storyboards/Home.jpg Graphic file (type jpg)
+<use ./Storyboards/Home.jpg>
+Package pdftex.def Info: ./Storyboards/Home.jpg  used on input line 67.
+(pdftex.def)             Requested size: 363.39676pt x 258.96686pt.
+<./Storyboards/Concert.jpg, id=37, 1453.5906pt x 1035.87pt>
+File: ./Storyboards/Concert.jpg Graphic file (type jpg)
+<use ./Storyboards/Concert.jpg>
+Package pdftex.def Info: ./Storyboards/Concert.jpg  used on input line 68.
+(pdftex.def)             Requested size: 363.39676pt x 258.96686pt.
+<./Storyboards/News.jpg, id=38, 1453.5906pt x 1035.87pt>
+File: ./Storyboards/News.jpg Graphic file (type jpg)
+<use ./Storyboards/News.jpg>
+Package pdftex.def Info: ./Storyboards/News.jpg  used on input line 69.
+(pdftex.def)             Requested size: 363.39676pt x 258.96686pt.
+<./Storyboards/AroundYou.jpg, id=39, 1453.5906pt x 1035.87pt>
+File: ./Storyboards/AroundYou.jpg Graphic file (type jpg)
+<use ./Storyboards/AroundYou.jpg>
+Package pdftex.def Info: ./Storyboards/AroundYou.jpg  used on input line 70.
+(pdftex.def)             Requested size: 363.39676pt x 258.96686pt.
+<./Storyboards/MyEvents.jpg, id=40, 1453.5906pt x 1035.87pt>
+File: ./Storyboards/MyEvents.jpg Graphic file (type jpg)
+<use ./Storyboards/MyEvents.jpg>
+Package pdftex.def Info: ./Storyboards/MyEvents.jpg  used on input line 71.
+(pdftex.def)             Requested size: 363.39676pt x 258.96686pt.
+<./Storyboards/Favorites.jpg, id=41, 1453.5906pt x 1035.87pt>
+File: ./Storyboards/Favorites.jpg Graphic file (type jpg)
+<use ./Storyboards/Favorites.jpg>
+Package pdftex.def Info: ./Storyboards/Favorites.jpg  used on input line 72.
+(pdftex.def)             Requested size: 363.39676pt x 258.96686pt.
+<./Storyboards/Login.jpg, id=42, 1445.4pt x 1028.1612pt>
+File: ./Storyboards/Login.jpg Graphic file (type jpg)
+<use ./Storyboards/Login.jpg>
+Package pdftex.def Info: ./Storyboards/Login.jpg  used on input line 73.
+(pdftex.def)             Requested size: 361.34912pt x 257.03967pt.
+<./Storyboards/AddEvent.jpg, id=43, 1453.5906pt x 1035.87pt>
+File: ./Storyboards/AddEvent.jpg Graphic file (type jpg)
+<use ./Storyboards/AddEvent.jpg>
+Package pdftex.def Info: ./Storyboards/AddEvent.jpg  used on input line 74.
+(pdftex.def)             Requested size: 363.39676pt x 258.96686pt.
+
+Overfull \hbox (30.77182pt too wide) in paragraph at lines 67--75
+[]
+ []
+
+
+Overfull \hbox (30.77182pt too wide) in paragraph at lines 67--75
+[]
+ []
+
+
+Overfull \hbox (30.77182pt too wide) in paragraph at lines 67--75
+[]
+ []
+
+
+Overfull \hbox (30.77182pt too wide) in paragraph at lines 67--75
+[]
+ []
+
+
+Overfull \hbox (30.77182pt too wide) in paragraph at lines 67--75
+[]
+ []
+
+
+Overfull \hbox (30.77182pt too wide) in paragraph at lines 67--75
+[]
+ []
+
+
+Overfull \hbox (28.72418pt too wide) in paragraph at lines 67--75
+[]
+ []
+
+
+Overfull \hbox (30.77182pt too wide) in paragraph at lines 67--75
+[] 
+ []
+
+[5 <./Storyboards/Home.jpg> <./Storyboards/Concert.jpg>] [6 <./Storyboards/News
+.jpg> <./Storyboards/AroundYou.jpg>] [7 <./Storyboards/MyEvents.jpg> <./Storybo
+ards/Favorites.jpg>]
+
+pdfTeX warning: pdflatex (file ./Diagrams/hmwActivityDiagram.pdf): PDF inclusio
+n: found PDF version <1.7>, but at most version <1.5> allowed
+<Diagrams/hmwActivityDiagram.pdf, id=54, 844.15375pt x 1165.35374pt>
+File: Diagrams/hmwActivityDiagram.pdf Graphic file (type pdf)
+<use Diagrams/hmwActivityDiagram.pdf>
+Package pdftex.def Info: Diagrams/hmwActivityDiagram.pdf  used on input line 76
+.
+(pdftex.def)             Requested size: 844.15169pt x 1165.3509pt.
+
+
+pdfTeX warning: pdflatex (file ./Diagrams/hmwActivityDiagram.pdf): PDF inclusio
+n: found PDF version <1.7>, but at most version <1.5> allowed
+File: Diagrams/hmwActivityDiagram.pdf Graphic file (type pdf)
+<use Diagrams/hmwActivityDiagram.pdf>
+Package pdftex.def Info: Diagrams/hmwActivityDiagram.pdf  used on input line 76
+.
+(pdftex.def)             Requested size: 844.15169pt x 1165.3509pt.
+
+
+pdfTeX warning: pdflatex (file ./Diagrams/hmwActivityDiagram.pdf): PDF inclusio
+n: found PDF version <1.7>, but at most version <1.5> allowed
+
+
+pdfTeX warning: pdflatex (file ./Diagrams/hmwActivityDiagram.pdf): PDF inclusio
+n: found PDF version <1.7>, but at most version <1.5> allowed
+<Diagrams/hmwActivityDiagram.pdf, id=57, page=1, 844.15375pt x 1165.35374pt>
+File: Diagrams/hmwActivityDiagram.pdf Graphic file (type pdf)
+<use Diagrams/hmwActivityDiagram.pdf, page 1>
+Package pdftex.def Info: Diagrams/hmwActivityDiagram.pdf , page1 used on input 
+line 76.
+(pdftex.def)             Requested size: 844.15169pt x 1165.3509pt.
+File: Diagrams/hmwActivityDiagram.pdf Graphic file (type pdf)
+<use Diagrams/hmwActivityDiagram.pdf, page 1>
+Package pdftex.def Info: Diagrams/hmwActivityDiagram.pdf , page1 used on input 
+line 76.
+(pdftex.def)             Requested size: 597.61446pt x 825.00641pt.
+[8 <./Storyboards/Login.jpg> <./Storyboards/AddEvent.jpg>]
+File: Diagrams/hmwActivityDiagram.pdf Graphic file (type pdf)
+<use Diagrams/hmwActivityDiagram.pdf, page 1>
+Package pdftex.def Info: Diagrams/hmwActivityDiagram.pdf , page1 used on input 
+line 76.
+(pdftex.def)             Requested size: 597.61446pt x 825.00641pt.
+File: Diagrams/hmwActivityDiagram.pdf Graphic file (type pdf)
+<use Diagrams/hmwActivityDiagram.pdf, page 1>
+Package pdftex.def Info: Diagrams/hmwActivityDiagram.pdf , page1 used on input 
+line 76.
+(pdftex.def)             Requested size: 597.61446pt x 825.00641pt.
+File: Diagrams/hmwActivityDiagram.pdf Graphic file (type pdf)
+<use Diagrams/hmwActivityDiagram.pdf, page 1>
+Package pdftex.def Info: Diagrams/hmwActivityDiagram.pdf , page1 used on input 
+line 76.
+(pdftex.def)             Requested size: 597.61446pt x 825.00641pt.
+ [9 <./Diagrams/hmwActivityDiagram.pdf>]
+
+pdfTeX warning: pdflatex (file ./Diagrams/logActivityDiagram.pdf): PDF inclusio
+n: found PDF version <1.7>, but at most version <1.5> allowed
+<Diagrams/logActivityDiagram.pdf, id=70, 844.15375pt x 1165.35374pt>
+File: Diagrams/logActivityDiagram.pdf Graphic file (type pdf)
+<use Diagrams/logActivityDiagram.pdf>
+Package pdftex.def Info: Diagrams/logActivityDiagram.pdf  used on input line 77
+.
+(pdftex.def)             Requested size: 844.15169pt x 1165.3509pt.
+
+
+pdfTeX warning: pdflatex (file ./Diagrams/logActivityDiagram.pdf): PDF inclusio
+n: found PDF version <1.7>, but at most version <1.5> allowed
+File: Diagrams/logActivityDiagram.pdf Graphic file (type pdf)
+<use Diagrams/logActivityDiagram.pdf>
+Package pdftex.def Info: Diagrams/logActivityDiagram.pdf  used on input line 77
+.
+(pdftex.def)             Requested size: 844.15169pt x 1165.3509pt.
+
+
+pdfTeX warning: pdflatex (file ./Diagrams/logActivityDiagram.pdf): PDF inclusio
+n: found PDF version <1.7>, but at most version <1.5> allowed
+
+
+pdfTeX warning: pdflatex (file ./Diagrams/logActivityDiagram.pdf): PDF inclusio
+n: found PDF version <1.7>, but at most version <1.5> allowed
+<Diagrams/logActivityDiagram.pdf, id=73, page=1, 844.15375pt x 1165.35374pt>
+File: Diagrams/logActivityDiagram.pdf Graphic file (type pdf)
+<use Diagrams/logActivityDiagram.pdf, page 1>
+Package pdftex.def Info: Diagrams/logActivityDiagram.pdf , page1 used on input 
+line 77.
+(pdftex.def)             Requested size: 844.15169pt x 1165.3509pt.
+File: Diagrams/logActivityDiagram.pdf Graphic file (type pdf)
+<use Diagrams/logActivityDiagram.pdf, page 1>
+Package pdftex.def Info: Diagrams/logActivityDiagram.pdf , page1 used on input 
+line 77.
+(pdftex.def)             Requested size: 597.61446pt x 825.00641pt.
+File: Diagrams/logActivityDiagram.pdf Graphic file (type pdf)
+<use Diagrams/logActivityDiagram.pdf, page 1>
+Package pdftex.def Info: Diagrams/logActivityDiagram.pdf , page1 used on input 
+line 77.
+(pdftex.def)             Requested size: 597.61446pt x 825.00641pt.
+File: Diagrams/logActivityDiagram.pdf Graphic file (type pdf)
+<use Diagrams/logActivityDiagram.pdf, page 1>
+Package pdftex.def Info: Diagrams/logActivityDiagram.pdf , page1 used on input 
+line 77.
+(pdftex.def)             Requested size: 597.61446pt x 825.00641pt.
+File: Diagrams/logActivityDiagram.pdf Graphic file (type pdf)
+<use Diagrams/logActivityDiagram.pdf, page 1>
+Package pdftex.def Info: Diagrams/logActivityDiagram.pdf , page1 used on input 
+line 77.
+(pdftex.def)             Requested size: 597.61446pt x 825.00641pt.
+[10 <./Diagrams/logActivityDiagram.pdf>] (relazioneProgetto.aux) ) 
 Here is how much of TeX's memory you used:
- 3641 strings out of 492895
- 51752 string characters out of 3123735
- 124132 words of memory out of 3000000
- 7507 multiletter control sequences out of 15000+200000
+ 3702 strings out of 492895
+ 53584 string characters out of 3123735
+ 124150 words of memory out of 3000000
+ 7553 multiletter control sequences out of 15000+200000
  5110 words of font info for 19 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,18n,43p,535b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/danie/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/danie/AppData/Local/Programs
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/danie/AppData/L
-ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/dan
-ie/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on relazioneProgetto.pdf (4 pages, 108916 bytes).
+ 41i,18n,43p,535b,510s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/dan
+ie/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
+<C:/Users/danie/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmbx12.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmr10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on relazioneProgetto.pdf (10 pages, 7134390 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
+ 98 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
