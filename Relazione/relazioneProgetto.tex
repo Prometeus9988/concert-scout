@@ -5,14 +5,22 @@
 \usepackage{amssymb}
 \usepackage{pdfpages}
 \usepackage{graphicx}
-\graphicspath{{./Storyboards/}}
+\graphicspath{{./Img/}}
 \begin{document}
+
 \section{Introduction}
 \paragraph{Aim of the document}
+The aim of this document is to present a description of “LIVE the MUSIC”. It will present the purpose and features of the system and what the system will do.
 \paragraph{Overview of the defined system}
-This system allows the user to remain updated about music events in the area according to the user’s musical taste. It will present detailed information about the location and transportation methods. The service allows the user to discover new artists that he/she may like. The system has some functionalities of a social network allowing a user to create connections with other users. The user will be able to get in touch with his friends so that he/she can go to music events together.
+This system allows the user to remain updated about music events in the area according to the user’s musical taste. It will present detailed information about the location and transportation methods. The service allows the user to discover new artists that s/he may like. The system has some functionalities of a social network allowing a user to create connections with other users. The user will be able to know which of users’ friends will participate in a music event.
 \paragraph{Operational settings}
+“LIVE the MUSIC” should run on any Operating System and browser that supports the Java Environment. 
 \paragraph{Related systems}
+Similar services are provided by TicketOne website and Virgin Radio application.
+TicketOne: 
+The advantage of our system is that it suggests events based on friends’ participation and on specific filters applied by the user. Although does not provide an On-site method to buy the ticket and needs to redirect the user to TicketOne. 
+Virgin Radio:
+Our system provides social features and the selection of musical events is not limited to rock events. One disadvantage of our system is that relies on artists to add music events to the service.
 \section{User Stories}
 \paragraph{Donato}
 \begin{itemize}
@@ -62,7 +70,7 @@ find bus stops or train stations.
 \item The system shall allow the artist to label an event as canceled or postponed.
 \item The system shall provide a list of events in a radius and/or time period specified by the user.
 \section{Use Case Diagram}
-\includepdf{Diagrams/UseCaseFinal.pdf}
+\includegraphics[scale=0.7]{UseCaseFinal.jpg}
 \section{Storyboard}
 \includegraphics[scale=0.25]{Home.jpg}
 \includegraphics[scale=0.25]{Concert.jpg}
@@ -73,7 +81,13 @@ find bus stops or train stations.
 \includegraphics[scale=0.25]{Login.jpg}
 \includegraphics[scale=0.25]{AddEvent.jpg}
 \section{Activity Diagram}
-\includepdf{Diagrams/hmwActivityDiagram.pdf}
-\includepdf{Diagrams/logActivityDiagram.pdf}
+\subsection{Donato}
+\includegraphics[scale=0.5]{addconcertdiagram.jpg}
+\subsection{Ferrarelli}
+\includegraphics[scale=0.5]{hmwActivityDiagram.jpg}
+\includegraphics[scale=0.5]{logActivityDiagram.jpg}
+\subsection{Ferri}
+\section{SonarCloud}
+\paragraph{SonarCloud link} https://sonarcloud.io/organizations/ferra-rally/projects
 \end{itemize}
 \end{document}
