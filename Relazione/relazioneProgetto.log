@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.14)  14 NOV 2019 20:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.14)  15 NOV 2019 16:17
 entering extended mode
 **./relazioneProgetto.tex
 (relazioneProgetto.tex
@@ -303,110 +303,107 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 42.
 
 [1] [2]
-<./Img/UseCaseFinal.jpg, id=15, 598.3956pt x 845.0772pt>
+<./Img/UseCaseFinal.jpg, id=15, 775.89874pt x 673.51625pt>
 File: ./Img/UseCaseFinal.jpg Graphic file (type jpg)
 <use ./Img/UseCaseFinal.jpg>
-Package pdftex.def Info: ./Img/UseCaseFinal.jpg  used on input line 88.
-(pdftex.def)             Requested size: 418.87405pt x 591.55pt.
+Package pdftex.def Info: ./Img/UseCaseFinal.jpg  used on input line 89.
+(pdftex.def)             Requested size: 543.12543pt x 471.45816pt.
 
-Overfull \hbox (86.24911pt too wide) in paragraph at lines 88--89
-[] 
+Overfull \hbox (99.1228pt too wide) in paragraph at lines 88--90
+|  [] 
  []
 
 [3]
-Overfull \vbox (24.89325pt too high) has occurred while \output is active []
-
-
-[4 <./Img/UseCaseFinal.jpg>]
-<./Img/Home.jpg, id=22, 1453.5906pt x 1035.87pt>
+<./Img/Home.jpg, id=19, 1453.5906pt x 1035.87pt>
 File: ./Img/Home.jpg Graphic file (type jpg)
 <use ./Img/Home.jpg>
-Package pdftex.def Info: ./Img/Home.jpg  used on input line 90.
+Package pdftex.def Info: ./Img/Home.jpg  used on input line 91.
 (pdftex.def)             Requested size: 363.39676pt x 258.96686pt.
-<./Img/Concert.jpg, id=23, 1453.5906pt x 1035.87pt>
+<./Img/Concert.jpg, id=20, 1453.5906pt x 1035.87pt>
 File: ./Img/Concert.jpg Graphic file (type jpg)
 <use ./Img/Concert.jpg>
-Package pdftex.def Info: ./Img/Concert.jpg  used on input line 91.
+Package pdftex.def Info: ./Img/Concert.jpg  used on input line 92.
 (pdftex.def)             Requested size: 363.39676pt x 258.96686pt.
-<./Img/News.jpg, id=24, 1453.5906pt x 1035.87pt>
+<./Img/News.jpg, id=21, 1453.5906pt x 1035.87pt>
 File: ./Img/News.jpg Graphic file (type jpg)
 <use ./Img/News.jpg>
-Package pdftex.def Info: ./Img/News.jpg  used on input line 92.
+Package pdftex.def Info: ./Img/News.jpg  used on input line 93.
 (pdftex.def)             Requested size: 363.39676pt x 258.96686pt.
-<./Img/AroundYou.jpg, id=25, 1453.5906pt x 1035.87pt>
+<./Img/AroundYou.jpg, id=22, 1453.5906pt x 1035.87pt>
 File: ./Img/AroundYou.jpg Graphic file (type jpg)
 <use ./Img/AroundYou.jpg>
-Package pdftex.def Info: ./Img/AroundYou.jpg  used on input line 93.
+Package pdftex.def Info: ./Img/AroundYou.jpg  used on input line 94.
 (pdftex.def)             Requested size: 363.39676pt x 258.96686pt.
-<./Img/MyEvents.jpg, id=26, 1453.5906pt x 1035.87pt>
+<./Img/MyEvents.jpg, id=23, 1453.5906pt x 1035.87pt>
 File: ./Img/MyEvents.jpg Graphic file (type jpg)
 <use ./Img/MyEvents.jpg>
-Package pdftex.def Info: ./Img/MyEvents.jpg  used on input line 94.
+Package pdftex.def Info: ./Img/MyEvents.jpg  used on input line 95.
 (pdftex.def)             Requested size: 363.39676pt x 258.96686pt.
-<./Img/Favorites.jpg, id=27, 1453.5906pt x 1035.87pt>
+<./Img/Favorites.jpg, id=24, 1453.5906pt x 1035.87pt>
 File: ./Img/Favorites.jpg Graphic file (type jpg)
 <use ./Img/Favorites.jpg>
-Package pdftex.def Info: ./Img/Favorites.jpg  used on input line 95.
+Package pdftex.def Info: ./Img/Favorites.jpg  used on input line 96.
 (pdftex.def)             Requested size: 363.39676pt x 258.96686pt.
-<./Img/Login.jpg, id=28, 1445.4pt x 1028.1612pt>
+<./Img/Login.jpg, id=25, 1445.4pt x 1028.1612pt>
 File: ./Img/Login.jpg Graphic file (type jpg)
 <use ./Img/Login.jpg>
-Package pdftex.def Info: ./Img/Login.jpg  used on input line 96.
+Package pdftex.def Info: ./Img/Login.jpg  used on input line 97.
 (pdftex.def)             Requested size: 361.34912pt x 257.03967pt.
-<./Img/AddEvent.jpg, id=29, 1453.5906pt x 1035.87pt>
+<./Img/AddEvent.jpg, id=26, 1453.5906pt x 1035.87pt>
 File: ./Img/AddEvent.jpg Graphic file (type jpg)
 <use ./Img/AddEvent.jpg>
-Package pdftex.def Info: ./Img/AddEvent.jpg  used on input line 97.
+Package pdftex.def Info: ./Img/AddEvent.jpg  used on input line 98.
 (pdftex.def)             Requested size: 363.39676pt x 258.96686pt.
 
-Overfull \hbox (30.77182pt too wide) in paragraph at lines 90--98
+Overfull \hbox (30.77182pt too wide) in paragraph at lines 91--99
 []
  []
 
 
-Overfull \hbox (30.77182pt too wide) in paragraph at lines 90--98
+Overfull \hbox (30.77182pt too wide) in paragraph at lines 91--99
 []
  []
 
 
-Overfull \hbox (30.77182pt too wide) in paragraph at lines 90--98
+Overfull \hbox (30.77182pt too wide) in paragraph at lines 91--99
 []
  []
 
 
-Overfull \hbox (30.77182pt too wide) in paragraph at lines 90--98
+Overfull \hbox (30.77182pt too wide) in paragraph at lines 91--99
 []
  []
 
 
-Overfull \hbox (30.77182pt too wide) in paragraph at lines 90--98
+Overfull \hbox (30.77182pt too wide) in paragraph at lines 91--99
 []
  []
 
 
-Overfull \hbox (30.77182pt too wide) in paragraph at lines 90--98
+Overfull \hbox (30.77182pt too wide) in paragraph at lines 91--99
 []
  []
 
 
-Overfull \hbox (28.72418pt too wide) in paragraph at lines 90--98
+Overfull \hbox (28.72418pt too wide) in paragraph at lines 91--99
 []
  []
 
 
-Overfull \hbox (30.77182pt too wide) in paragraph at lines 90--98
+Overfull \hbox (30.77182pt too wide) in paragraph at lines 91--99
 [] 
  []
 
-[5 <./Img/Home.jpg> <./Img/Concert.jpg>] [6 <./Img/News.jpg> <./Img/AroundYou.j
-pg>] [7 <./Img/MyEvents.jpg> <./Img/Favorites.jpg>]
+[4 <./Img/UseCaseFinal.jpg>] [5 <./Img/Home.jpg> <./Img/Concert.jpg>] [6 <./Img
+/News.jpg> <./Img/AroundYou.jpg>] [7 <./Img/MyEvents.jpg> <./Img/Favorites.jpg>
+]
 <./Img/addconcertdiagram.jpg, id=40, 844.5954pt x 1165.4742pt>
 File: ./Img/addconcertdiagram.jpg Graphic file (type jpg)
 <use ./Img/addconcertdiagram.jpg>
-Package pdftex.def Info: ./Img/addconcertdiagram.jpg  used on input line 100.
+Package pdftex.def Info: ./Img/addconcertdiagram.jpg  used on input line 101.
 (pdftex.def)             Requested size: 422.29666pt x 582.73567pt.
 
-Overfull \hbox (89.67172pt too wide) in paragraph at lines 100--101
+Overfull \hbox (89.67172pt too wide) in paragraph at lines 101--102
 [] 
  []
 
@@ -418,10 +415,10 @@ Overfull \vbox (37.85078pt too high) has occurred while \output is active []
 <./Img/hmwActivityDiagram.jpg, id=47, 844.5954pt x 1165.4742pt>
 File: ./Img/hmwActivityDiagram.jpg Graphic file (type jpg)
 <use ./Img/hmwActivityDiagram.jpg>
-Package pdftex.def Info: ./Img/hmwActivityDiagram.jpg  used on input line 102.
+Package pdftex.def Info: ./Img/hmwActivityDiagram.jpg  used on input line 103.
 (pdftex.def)             Requested size: 422.29666pt x 582.73567pt.
 
-Overfull \hbox (89.67172pt too wide) in paragraph at lines 102--103
+Overfull \hbox (89.67172pt too wide) in paragraph at lines 103--104
 [] 
  []
 
@@ -433,30 +430,30 @@ Overfull \vbox (9.50726pt too high) has occurred while \output is active []
 <./Img/logActivityDiagram.jpg, id=51, 844.5954pt x 1165.4742pt>
 File: ./Img/logActivityDiagram.jpg Graphic file (type jpg)
 <use ./Img/logActivityDiagram.jpg>
-Package pdftex.def Info: ./Img/logActivityDiagram.jpg  used on input line 104.
+Package pdftex.def Info: ./Img/logActivityDiagram.jpg  used on input line 105.
 (pdftex.def)             Requested size: 422.29666pt x 582.73567pt.
 
-Overfull \hbox (89.67172pt too wide) in paragraph at lines 104--105
+Overfull \hbox (89.67172pt too wide) in paragraph at lines 105--106
 [][] 
  []
 
 <./Img/addnews1.jpeg, id=52, 370.83543pt x 850.97925pt>
 File: ./Img/addnews1.jpeg Graphic file (type jpg)
 <use ./Img/addnews1.jpeg>
-Package pdftex.def Info: ./Img/addnews1.jpeg  used on input line 106.
+Package pdftex.def Info: ./Img/addnews1.jpeg  used on input line 107.
 (pdftex.def)             Requested size: 185.41725pt x 425.48859pt.
 <./Img/addnews2.jpeg, id=53, 354.57469pt x 491.436pt>
 File: ./Img/addnews2.jpeg Graphic file (type jpg)
 <use ./Img/addnews2.jpeg>
-Package pdftex.def Info: ./Img/addnews2.jpeg  used on input line 107.
+Package pdftex.def Info: ./Img/addnews2.jpeg  used on input line 108.
 (pdftex.def)             Requested size: 177.28691pt x 245.71739pt.
 
-Overfull \hbox (32.51256pt too wide) in paragraph at lines 106--108
+Overfull \hbox (32.51256pt too wide) in paragraph at lines 107--109
 [] [] 
  []
 
 [11 <./Img/logActivityDiagram.jpg>]
-Overfull \hbox (33.11246pt too wide) in paragraph at lines 109--110
+Overfull \hbox (33.11246pt too wide) in paragraph at lines 110--111
  \OT1/cmr/bx/n/10.95 Sonar-Cloud link[] \OT1/cmr/m/n/10.95 https://sonarcloud.i
 o/organizations/ferra-rally/projects 
  []
@@ -469,14 +466,14 @@ Here is how much of TeX's memory you used:
  7558 multiletter control sequences out of 15000+200000
  5715 words of font info for 21 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,6n,39p,409b,205s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,6n,39p,397b,205s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/U
 sers/danie/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmb
 x10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
 sfonts/cm/cmbx12.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
 pe1/public/amsfonts/cm/cmr10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX 
 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on relazioneProgetto.pdf (13 pages, 7961673 bytes).
+Output written on relazioneProgetto.pdf (13 pages, 7798672 bytes).
 PDF statistics:
  75 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
