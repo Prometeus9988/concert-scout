@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.14)  15 NOV 2019 16:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.14)  22 NOV 2019 15:30
 entering extended mode
 **./relazioneProgetto.tex
 (relazioneProgetto.tex
@@ -397,85 +397,78 @@ Overfull \hbox (30.77182pt too wide) in paragraph at lines 91--99
 [4 <./Img/UseCaseFinal.jpg>] [5 <./Img/Home.jpg> <./Img/Concert.jpg>] [6 <./Img
 /News.jpg> <./Img/AroundYou.jpg>] [7 <./Img/MyEvents.jpg> <./Img/Favorites.jpg>
 ]
-<./Img/addconcertdiagram.jpg, id=40, 844.5954pt x 1165.4742pt>
-File: ./Img/addconcertdiagram.jpg Graphic file (type jpg)
-<use ./Img/addconcertdiagram.jpg>
-Package pdftex.def Info: ./Img/addconcertdiagram.jpg  used on input line 101.
-(pdftex.def)             Requested size: 422.29666pt x 582.73567pt.
+<./Img/ManageMusicEvent.png, id=40, 835.17018pt x 545.6385pt>
+File: ./Img/ManageMusicEvent.png Graphic file (type png)
+<use ./Img/ManageMusicEvent.png>
+Package pdftex.def Info: ./Img/ManageMusicEvent.png  used on input line 101.
+(pdftex.def)             Requested size: 417.58408pt x 272.81857pt.
 
-Overfull \hbox (89.67172pt too wide) in paragraph at lines 101--102
+Overfull \hbox (84.95914pt too wide) in paragraph at lines 101--102
 [] 
  []
 
 [8 <./Img/Login.jpg> <./Img/AddEvent.jpg>]
-Overfull \vbox (37.85078pt too high) has occurred while \output is active []
+<./Img/hmwActivityDiagram.jpeg, id=44, 582.67688pt x 513.5687pt>
+File: ./Img/hmwActivityDiagram.jpeg Graphic file (type jpg)
+<use ./Img/hmwActivityDiagram.jpeg>
+Package pdftex.def Info: ./Img/hmwActivityDiagram.jpeg  used on input line 103.
 
-
-[9 <./Img/addconcertdiagram.jpg>]
-<./Img/hmwActivityDiagram.jpg, id=47, 844.5954pt x 1165.4742pt>
-File: ./Img/hmwActivityDiagram.jpg Graphic file (type jpg)
-<use ./Img/hmwActivityDiagram.jpg>
-Package pdftex.def Info: ./Img/hmwActivityDiagram.jpg  used on input line 103.
-(pdftex.def)             Requested size: 422.29666pt x 582.73567pt.
-
-Overfull \hbox (89.67172pt too wide) in paragraph at lines 103--104
-[] 
- []
-
-
-Overfull \vbox (9.50726pt too high) has occurred while \output is active []
-
-
-[10 <./Img/hmwActivityDiagram.jpg>]
-<./Img/logActivityDiagram.jpg, id=51, 844.5954pt x 1165.4742pt>
-File: ./Img/logActivityDiagram.jpg Graphic file (type jpg)
-<use ./Img/logActivityDiagram.jpg>
-Package pdftex.def Info: ./Img/logActivityDiagram.jpg  used on input line 105.
-(pdftex.def)             Requested size: 422.29666pt x 582.73567pt.
-
-Overfull \hbox (89.67172pt too wide) in paragraph at lines 105--106
-[][] 
- []
-
-<./Img/addnews1.jpeg, id=52, 370.83543pt x 850.97925pt>
+(pdftex.def)             Requested size: 291.33772pt x 256.7837pt.
+ [9 <./Img/ManageMusicEvent.png>]
+<./Img/addnews1.jpeg, id=48, 370.83543pt x 850.97925pt>
 File: ./Img/addnews1.jpeg Graphic file (type jpg)
 <use ./Img/addnews1.jpeg>
-Package pdftex.def Info: ./Img/addnews1.jpeg  used on input line 107.
+Package pdftex.def Info: ./Img/addnews1.jpeg  used on input line 105.
 (pdftex.def)             Requested size: 185.41725pt x 425.48859pt.
-<./Img/addnews2.jpeg, id=53, 354.57469pt x 491.436pt>
+<./Img/addnews2.jpeg, id=49, 354.57469pt x 491.436pt>
 File: ./Img/addnews2.jpeg Graphic file (type jpg)
 <use ./Img/addnews2.jpeg>
-Package pdftex.def Info: ./Img/addnews2.jpeg  used on input line 108.
+Package pdftex.def Info: ./Img/addnews2.jpeg  used on input line 106.
 (pdftex.def)             Requested size: 177.28691pt x 245.71739pt.
 
-Overfull \hbox (32.51256pt too wide) in paragraph at lines 107--109
+Overfull \hbox (32.51256pt too wide) in paragraph at lines 105--107
 [] [] 
  []
 
-[11 <./Img/logActivityDiagram.jpg>]
+[10 <./Img/hmwActivityDiagram.jpeg>]
+<./Img/logActivityDiagram.jpg, id=53, 844.5954pt x 1165.4742pt>
+File: ./Img/logActivityDiagram.jpg Graphic file (type jpg)
+<use ./Img/logActivityDiagram.jpg>
+Package pdftex.def Info: ./Img/logActivityDiagram.jpg  used on input line 108.
+(pdftex.def)             Requested size: 422.29666pt x 582.73567pt.
+
+Overfull \hbox (89.67172pt too wide) in paragraph at lines 108--109
+[] 
+ []
+
+[11 <./Img/addnews1.jpeg> <./Img/addnews2.jpeg>]
+Overfull \vbox (9.50726pt too high) has occurred while \output is active []
+
+
+[12 <./Img/logActivityDiagram.jpg>]
 Overfull \hbox (33.11246pt too wide) in paragraph at lines 110--111
  \OT1/cmr/bx/n/10.95 Sonar-Cloud link[] \OT1/cmr/m/n/10.95 https://sonarcloud.i
 o/organizations/ferra-rally/projects 
  []
 
-[12 <./Img/addnews1.jpeg> <./Img/addnews2.jpeg>] (relazioneProgetto.aux) ) 
+[13] (relazioneProgetto.aux) ) 
 Here is how much of TeX's memory you used:
- 3707 strings out of 492895
- 53122 string characters out of 3123735
+ 3708 strings out of 492895
+ 53125 string characters out of 3123735
  124142 words of memory out of 3000000
  7558 multiletter control sequences out of 15000+200000
  5715 words of font info for 21 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,6n,39p,397b,205s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/U
-sers/danie/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmb
-x10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmbx12.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on relazioneProgetto.pdf (13 pages, 7798702 bytes).
+<C:/Users/danie/AppData/Local/Programs/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/danie/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/danie/AppData
+/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/d
+anie/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b>
+Output written on relazioneProgetto.pdf (14 pages, 7558347 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
+ 78 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  71 words of extra memory for PDF output out of 10000 (max. 10000000)
 
