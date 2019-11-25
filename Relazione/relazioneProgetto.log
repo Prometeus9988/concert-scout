@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.14)  22 NOV 2019 15:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.14)  25 NOV 2019 16:16
 entering extended mode
 **./relazioneProgetto.tex
 (relazioneProgetto.tex
@@ -303,13 +303,13 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 42.
 
 [1] [2]
-<./Img/UseCaseFinal.jpg, id=15, 775.89874pt x 673.51625pt>
+<./Img/UseCaseFinal.jpg, id=15, 776.9025pt x 683.55376pt>
 File: ./Img/UseCaseFinal.jpg Graphic file (type jpg)
 <use ./Img/UseCaseFinal.jpg>
 Package pdftex.def Info: ./Img/UseCaseFinal.jpg  used on input line 89.
-(pdftex.def)             Requested size: 543.12543pt x 471.45816pt.
+(pdftex.def)             Requested size: 543.82803pt x 478.48438pt.
 
-Overfull \hbox (99.1228pt too wide) in paragraph at lines 88--90
+Overfull \hbox (99.82541pt too wide) in paragraph at lines 88--90
 |  [] 
  []
 
@@ -466,7 +466,7 @@ ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/danie/AppData
 /Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/d
 anie/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pf
 b>
-Output written on relazioneProgetto.pdf (14 pages, 7558347 bytes).
+Output written on relazioneProgetto.pdf (14 pages, 7546682 bytes).
 PDF statistics:
  78 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
