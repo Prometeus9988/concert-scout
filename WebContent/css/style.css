@@ -3,7 +3,14 @@
 }
 
 .sideBanner{
-	height: 1024px;
+	position: absolute;
+	top: 0px;
+  	left: 0px;
+	height: 605px;
  	width: 384px;
  	background-color: #202A25;
+}
+
+.loginText{
+	color: white;
 }
