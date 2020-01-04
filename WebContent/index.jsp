@@ -53,27 +53,23 @@
     <form action="index.jsp" name="myform" method="POST">
 
         <div class="row">
-            <div class="col-lg-4 form-group">
+            <div class="col-lg-4 form-group" style = "position: absolute; bottom : 100px;">
                 <label for="username" class = "loginText">Username</label>
                 <input id="username" name="username" type="text">
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 form-group">
+            <div class="col-lg-4 form-group" style = "position: absolute; bottom : 70px;">
                 <label for="password" class = "loginText">Password</label>
                 <input id="password" name="password" type="password">
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4 text-center">
+            <div class="col-lg-4 text-center" style = "position: absolute; bottom : 20px;">
                 <input name="login" type="submit"
-                       id="login" value="login" class="btn btn-info">
-                <input name="reset" type="reset"
-                       id="reset" class="btn btn-warning">
+                       id="login" value="login" class="btn btn-info buttonColor" >
                 <input name="tipoLogin" type="hidden" value="user"
                        id="tipoLogin" class="btn btn-warning">
             </div>
-        </div>
     </form>
 </div>
 </body>

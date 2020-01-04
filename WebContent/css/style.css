@@ -13,4 +13,13 @@
 
 .loginText{
 	color: white;
+	position: relative;
+	right: 20px;
+}
+
+
+.buttonColor{
+	background-color: #F5CB5C;
+	border-color: #F5CB5C; 
+	color: black;
 }

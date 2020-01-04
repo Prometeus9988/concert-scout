@@ -25,14 +25,13 @@ public class UserDao {
         try {
 
 
-            conn = DriverManager.getConnection(dbUrl, user, DBPasswordEncrypter.getPasswordDB());
-
+            conn = DBConnection.getConnection();
             
             stmt = conn.createStatement();
-            String sql = "SELECT name, surname, username, password FROM user where username = '"
-                    + username + "' AND password = '" + password + "';";
-            ResultSet rs = stmt.executeQuery(sql);
-            
+//            String sql = "SELECT name, surname, username, password FROM user where username = '"
+//                    + username + "' AND password = '" + password + "';";
+//            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = Queries.selectUserLogin(stmt, username, password);
 
             if (!rs.first()) // rs not empty
                 return null;
@@ -54,7 +53,8 @@ public class UserDao {
             // STEP 6: Clean-up dell'ambiente
             rs.close();
             stmt.close();
-            conn.close();
+            DBConnection.closeConnection();
+
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
         	logger.log(Level.WARNING, se.toString());
