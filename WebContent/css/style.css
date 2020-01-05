@@ -118,5 +118,13 @@ color: rgba(245, 203, 92, 1);
 
 }
 
+.sideList{
+	list-style: none;
+	display:inline;
+}
+
+.cardImg{
+	object-fit: cover;
+}
 
 
