@@ -33,10 +33,11 @@
 <div>
 <%
     if (request.getParameter("login") != null) {
-        if (userBean.validate(request.getParameter(("tipoLogin")))) {
+        if (userBean.validate()) {
             // Passa il controllo alla nuova pagina
-            session.setAttribute("username", userBean.getUsername()); %>
-            <jsp:forward page="hello.jsp"/>
+            session.setAttribute("username", userBean.getUsername());
+            %>
+            <jsp:forward page="home.jsp"/>
         <%
         } else {
             %>

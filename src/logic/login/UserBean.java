@@ -43,11 +43,11 @@ public class UserBean {
 		return this.surname;
 	}
 	
-	public boolean validate(String loginType) {
+	public boolean validate() {
 		if (this.username.equals("") || this.password.equals("")) {
 			return false;
 		}
-
+		
 		LoginController controller = LoginController.getInstance();
 		User found = controller.login(this.username, this.password);
 		return  (found != null);

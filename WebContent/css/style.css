@@ -23,3 +23,100 @@
 	border-color: #F5CB5C; 
 	color: black;
 }
+
+.splitBanner {
+  height: 100%;
+  width: 13.33%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.splitBackground {
+  height: 100%;
+  width: 86.67%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background-color: #202A25;
+}
+
+.right {
+  right: 0;
+  background-color: #F5EDF0;
+}
+
+.notSelected{
+	color: rgba(253, 255, 252, 0.5);
+	background-color: transparent;
+	background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden; 
+}
+
+.selected{
+	color: rgba(245, 203, 92, 1);
+	font-weight: bold;
+	background-color: transparent;
+	background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden; 
+}
+
+.logoPosition{
+/* Component 1 */
+
+position: relative; /*absolute */
+left: 9.9%;
+right: 11.98%;
+top: 4.59%;
+bottom: 82.43%;
+}
+
+
+.logoImg{
+
+position: relative; /*absolute */
+left: 12.56%; 
+right: 14.24%;
+top: -6.02%;
+bottom: 25.66%;
+
+background: url(img/concertIcon.png);
+border: 3px solid #6A4C93;
+border-radius: 360px;
+
+}
+/* LIVE the MUSIC */
+.logoText{
+position: relative; /*absolute */
+left: 0; /* */
+right: -16.67%;
+top: 69.22%;
+bottom: -1.6%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: 900;
+font-size: 22px;
+line-height: 28px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: rgba(245, 203, 92, 1);
+
+}
+
+
+

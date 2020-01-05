@@ -16,7 +16,7 @@ public class LoginController {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("Logged");
+		System.out.println("To Implement");
 	}
 	
 	public User login(String username, String password) {

@@ -7,9 +7,7 @@ import java.util.logging.Logger;
 
 public class UserDao {
 	
-    private static String pass = "password";
-    private static String user = "default";
-    private static String dbUrl = "jdbc:mysql://localhost/livethemusic";
+
     private static final Logger logger = Logger.getLogger(UserDao.class.getName());
 
     private UserDao() {
@@ -28,9 +26,6 @@ public class UserDao {
             conn = DBConnection.getConnection();
             
             stmt = conn.createStatement();
-//            String sql = "SELECT name, surname, username, password FROM user where username = '"
-//                    + username + "' AND password = '" + password + "';";
-//            ResultSet rs = stmt.executeQuery(sql);
             ResultSet rs = Queries.selectUserLogin(stmt, username, password);
 
             if (!rs.first()) // rs not empty
