@@ -7,6 +7,9 @@ public class MusicEventDao {
 		ArrayList<MusicEvent> musicEvents = new ArrayList<MusicEvent>();
 		musicEvents.add(new MusicEvent("3425", "Iron Maiden", "Black Tour", "coverPath", "Rome"));
 		musicEvents.add(new MusicEvent("6456", "Black Sabbath", "Perry Mason Tour", "coverPath", "Frosinone"));
+		musicEvents.add(new MusicEvent("6456", "Black Sabbath", "Perry Mason Tour", "coverPath", "Frosinone"));
+		musicEvents.add(new MusicEvent("6456", "Black Sabbath", "Perry Mason Tour", "coverPath", "Frosinone"));
+		musicEvents.add(new MusicEvent("6456", "Black Sabbath", "Perry Mason Tour", "coverPath", "Frosinone"));
 		return musicEvents;
 	}
 }

@@ -9,8 +9,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <!-- linked CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- 
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+     -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <!-- 
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+ -->
 
     <link href="css/style.css" rel="stylesheet" type="text/css">
 <title>Home</title>
@@ -45,27 +55,51 @@
   <% String username = session.getAttribute("username").toString(); %>
     <h2>Welcome <%=username%></h2>
     <% 
-    ArrayList<MusicEventBean> musicEvents = BuyTicketBoundary.getFollowed(username);
+    ArrayList<MusicEventBean> musicEvents = BuyTicketController.getInstance().getSuggestedEvents(username);
+    ArrayList<ArtistBean> artist = BuyTicketController.getInstance().getSuggestedArtist(username);
     %>
     <h3 class = "h3">Suggested Events</h3>
-    <ul>
+    <ul class = "hs">
     <%
     for(int i = 0; i < musicEvents.size(); i++){
-    	%><li class = "sideList">
+    	%><li class = "item">
+
     	<div class="card text-center" style="width: 18rem;">
-    	<!-- Mettere immagine che cambia a seconda del path fornito e che usa immagine di default se path di default -->
+    	
+    	
   	<img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155>
   	<div class="card-body">
     <h5 class="card-title"><%= musicEvents.get(i).getName() %></h5>
     <h6 class="card-title"><%= musicEvents.get(i).getArtistId() %></h6>
   </div>
+  
 </div>
+
+</li>
+    		<%
+    }
+    %>
+</ul>
+
+    <h3 class = "h3">Suggested Artists</h3>
+       <ul class = "hs">
+    <%
+    for(int i = 0; i < artist.size(); i++){
+    	%><li class = "item">
+
+    	<div class="card text-center" style="width: 18rem;">
+    	
+  	<img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155>
+  	<div class="card-body">
+    <h5 class="card-title"><%= artist.get(i).getName() %></h5>
+  </div>
+</div>
+
 </li>
     		<%
     }
     %>
     </ul>
-    <h3 class = "h3">Suggested Artists</h3>
   </div>
 </div> 
 

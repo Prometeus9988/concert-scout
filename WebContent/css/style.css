@@ -118,9 +118,21 @@ color: rgba(245, 203, 92, 1);
 
 }
 
-.sideList{
-	list-style: none;
-	display:inline;
+
+.hs {
+  display: inline;
+  overflow: auto;
+}
+
+.hs > li,
+.item {
+  display: inline-block;
+  zoom:1;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
 }
 
 .cardImg{
