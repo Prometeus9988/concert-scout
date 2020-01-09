@@ -32,25 +32,26 @@
 <div class = "splitBannerLogin left">
     <form action="index.jsp" name="myform" method="POST">
 
-        <div class="row">
-            <div class="col-lg-4 form-group" style = "position: absolute; bottom : 100px;">
-                <label for="username" class = "loginText">Username</label>
-                <input id="username" name="username" type="text">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 form-group" style = "position: absolute; bottom : 70px;">
-                <label for="password" class = "loginText">Password</label>
-                <input id="password" name="password" type="password">
-            </div>
-        </div>
-            <div class="col-lg-4 text-center" style = "position: absolute; bottom : 20px;">
+    <div class="form-group" style = "position: absolute; bottom: 10px; left: 15px;">
+    <div>
+                <label for="username" class = "loginText">Username</label><br>
+                <input id="username" name="username" type="text" class = "form-control">
+                </div>
+                <br>
+                <div>
+                <label for="password" class = "loginText">Password</label><br>
+                <input id="password" name="password" type="password" class = "form-control">
+  </div>
+  <br>
+              <div>
                 <input name="login" type="submit"
                        id="login" value="login" class="btn btn-info buttonColor" >
                 <input name="tipoLogin" type="hidden" value="user"
                        id="tipoLogin" class="btn btn-warning">
             </div>
+            </div>
     </form>
+    
 </div>
 <div class = "splitBackgroundLogin right">
 <%

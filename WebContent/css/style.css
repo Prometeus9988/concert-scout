@@ -2,19 +2,9 @@
     background: #F5EDF0;
 }
 
-.sideBanner{
-	position: absolute;
-	top: 0px;
-  	left: 0px;
-	height: 605px;
- 	width: 384px;
- 	background-color: #202A25;
-}
-
 .loginText{
 	color: white;
-	position: relative;
-	right: 20px;
+	text-align: center;
 }
 
 
