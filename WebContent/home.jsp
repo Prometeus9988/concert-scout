@@ -52,7 +52,7 @@
 
 <div class="splitBackground right">
   <div class="centered">
-  <% String username = session.getAttribute("username").toString(); %>
+  <% String username = session.getAttribute("username").toString(); //session.getAttribute("user").getUsername();%>
     <h2>Welcome <%=username%></h2>
     <% 
     List<MusicEventBean> musicEvents = BuyTicketController.getInstance().getSuggestedEvents(username);

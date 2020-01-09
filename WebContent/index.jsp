@@ -35,6 +35,7 @@
     if (request.getParameter("login") != null) {
         if (userBean.validate()) {
             // Passa il controllo alla nuova pagina
+            session.setAttribute("user", userBean);
             session.setAttribute("username", userBean.getUsername());
             %>
             <jsp:forward page="home.jsp"/>
