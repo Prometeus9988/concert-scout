@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.ArrayList,logic.buyticket.*" %>
+<%@ page import="java.util.ArrayList,logic.buyticket.*, java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,8 +55,8 @@
   <% String username = session.getAttribute("username").toString(); %>
     <h2>Welcome <%=username%></h2>
     <% 
-    ArrayList<MusicEventBean> musicEvents = BuyTicketController.getInstance().getSuggestedEvents(username);
-    ArrayList<ArtistBean> artist = BuyTicketController.getInstance().getSuggestedArtist(username);
+    List<MusicEventBean> musicEvents = BuyTicketController.getInstance().getSuggestedEvents(username);
+    List<ArtistBean> artist = BuyTicketController.getInstance().getSuggestedArtist(username);
     %>
     <h3 class = "h3">Suggested Events</h3>
     <ul class = "hs">

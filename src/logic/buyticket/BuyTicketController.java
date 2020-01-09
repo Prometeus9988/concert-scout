@@ -1,7 +1,7 @@
 package logic.buyticket;
 
 import java.util.ArrayList;
-import java.util.Vector;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,10 +24,10 @@ public class BuyTicketController {
 		logger.log(Level.INFO, "Hello World!");
 	}
 	
-	public ArrayList<MusicEventBean> getSuggestedEvents(String username) {
+	public List<MusicEventBean> getSuggestedEvents(String username) {
 		MusicEventDao med = new MusicEventDao();
-		ArrayList<MusicEvent> l = med.getSuggestedEventsStub(username);
-		ArrayList<MusicEventBean> lb = new ArrayList<>();
+		List<MusicEvent> l = med.getSuggestedEventsStub(username);
+		List<MusicEventBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {
 			lb.add(new MusicEventBean(l.get(i)));
 		}
