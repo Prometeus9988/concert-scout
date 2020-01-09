@@ -48,7 +48,6 @@ public class UserDao {
             // STEP 6: Clean-up dell'ambiente
             rs.close();
             stmt.close();
-            DBConnection.closeConnection();
 
         } catch (SQLException se) {
             // Errore durante l'apertura della connessione
@@ -62,12 +61,6 @@ public class UserDao {
                     stmt.close();
             } catch (SQLException se2) {
             	logger.log(Level.WARNING, se2.toString());
-            }
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-            	logger.log(Level.WARNING, se.toString());
             }
         }
         return u;

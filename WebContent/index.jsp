@@ -28,30 +28,8 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body class = "defaultBackgorund">
-
-
-<div>
-<%
-    if (request.getParameter("login") != null) {
-        if (userBean.validate()) {
-            // Passa il controllo alla nuova pagina
-            session.setAttribute("user", userBean);
-            session.setAttribute("username", userBean.getUsername());
-            %>
-            <jsp:forward page="home.jsp"/>
-        <%
-        } else {
-            %>
-            <h1 class="text-warning text-center" style="text-color:red;">Data not found</h1>
-    <%  }
-    } else {%>
-        <h1 class="text-info text-center">Login</h1>
-        <%
-    }
-%>
-</div>
 <div class="container">
-<div class = "sideBanner"></div>
+<div class = "splitBannerLogin left">
     <form action="index.jsp" name="myform" method="POST">
 
         <div class="row">
@@ -73,6 +51,26 @@
                        id="tipoLogin" class="btn btn-warning">
             </div>
     </form>
+</div>
+<div class = "splitBackgroundLogin right">
+<%
+    if (request.getParameter("login") != null) {
+        if (userBean.validate()) {
+            // Passa il controllo alla nuova pagina
+            session.setAttribute("username", userBean.getUsername());
+            %>
+            <jsp:forward page="home.jsp"/>
+        <%
+        } else {
+            %>
+            <h1 class="text-warning text-center" style="text-color:red;">Data not found</h1>
+    <%  }
+    } else {%>
+        <h1 class="text-info text-center">Login</h1>
+        <%
+    }
+%>
+</div>
 </div>
 </body>
 </html>
