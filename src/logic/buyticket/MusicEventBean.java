@@ -8,19 +8,19 @@ public class MusicEventBean {
 	private String location;
 	
 	public MusicEventBean(String id, String artistId, String name, String coverPath,  String location) {
-		this.id  = id;
-		this.artistId  = artistId;
-		this.name = name;
-		this.coverPath = coverPath;
-		this.location  = location;
+		this.setId(id);
+		this.setArtistId(artistId);
+		this.setName(name);
+		this.setCoverPath(coverPath);
+		this.setLocation(location);
 	}
 	
 	public MusicEventBean(MusicEvent me) {
-		this.id  = me.getId();
-		this.artistId  = me.getArtistId();
-		this.name = me.getName();
-		this.coverPath = me.getCoverPath();
-		this.location  = me.getLocation();
+		this.setId(me.getId());
+		this.setArtistId(me.getArtistId());
+		this.setName(me.getName());
+		this.setCoverPath(me.getCoverPath());
+		this.setLocation(me.getLocation());
 	}
 	
 	public void setId(String id) {
