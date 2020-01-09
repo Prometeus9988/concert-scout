@@ -35,10 +35,10 @@ public class BuyTicketController {
 		return lb;
 	}
 	
-	public ArrayList<ArtistBean> getSuggestedArtist(String username){
+	public List<ArtistBean> getSuggestedArtist(String username){
 		ArtistDao ad = new ArtistDao();
-		ArrayList<Artist> l = ad.getSuggestedArtistStub(username);
-		ArrayList<ArtistBean> lb = new ArrayList<>();
+		List<Artist> l = ad.getSuggestedArtistStub(username);
+		List<ArtistBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {
 			lb.add(new ArtistBean(l.get(i)));
 		}
