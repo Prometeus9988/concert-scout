@@ -1,11 +1,11 @@
 package logic.login;
 
-public class User {
+public class User extends GeneralUser{
 	private String username;
 	private String password;
 	private String name;
 	private String surname;
-	
+
 	public User(String username, String password, String name, String surname) {
 		this.username = username;
 		this.password = password;

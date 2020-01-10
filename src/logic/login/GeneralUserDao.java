@@ -5,23 +5,20 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class UserDao {
+public class GeneralUserDao {
 	
 
-    private static final Logger logger = Logger.getLogger(UserDao.class.getName());
+    private static final Logger logger = Logger.getLogger(GeneralUserDao.class.getName());
 
-    private UserDao() {
+    private GeneralUserDao() {
 
     }
     
-    public static User findUser(String username, String password) {
-    	// STEP 1: dichiarazioni
+    public static GeneralUser findUser(String username, String password) {
         Statement stmt = null;
         Connection conn = null;
-        User u = null;
+        GeneralUser u = null;
         try {
-
-
             conn = DBConnection.getConnection();
             
             stmt = conn.createStatement();
@@ -37,12 +34,11 @@ public class UserDao {
 
             rs.first();
 
-            String name = rs.getString("name");
-            String surname = rs.getString("surname");
+            String role = rs.getString("role");
             String usernameLoaded = rs.getString("username");
 
             if(usernameLoaded.equals(username)) {
-            	u = new User(usernameLoaded, "", name, surname);
+            	u = new GeneralUser(usernameLoaded, "", role);
             }
             // STEP 6: Clean-up dell'ambiente
             rs.close();
@@ -62,7 +58,7 @@ public class UserDao {
             	logger.log(Level.WARNING, se2.toString());
             }
         }
+        //System.out.println("Found " + u.getRole() + "with username" + u.getUsername());
         return u;
     }
-    
 }

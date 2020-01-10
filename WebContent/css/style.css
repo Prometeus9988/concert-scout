@@ -149,4 +149,9 @@ ul {
 	object-fit: cover;
 }
 
+.logTextBox{
+	background: #FFFCF9;
+	border-radius: 20px;
+	width: 200px;
+}
 

@@ -1,22 +1,22 @@
 package logic.buyticket;
 
 public class ArtistBean {
-	private String id;
+	private String username;
 	private String name;
 	private String profilePicture;
 	
 	public ArtistBean(Artist a) {
-		this.setId(a.getId());
+		this.setUsername(a.getUsername());
 		this.setName(a.getName());
 		this.setProfilePicture(a.getProfilePicture());
 	}
 	
-	public void setId(String id) {
-		this.id = id;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
-	public String getId() {
-		return id;
+	public String getUsername() {
+		return username;
 	}
 	
 	public void setName(String name) {

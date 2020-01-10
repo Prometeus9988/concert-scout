@@ -1,6 +1,7 @@
 package logic.buyticket;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,9 +9,8 @@ import java.util.logging.Logger;
 public class BuyTicketController {
 	private static final Logger logger = Logger.getLogger(BuyTicketController.class.getName());
 	private static BuyTicketController instance = null;
-	
 	private BuyTicketController() {
-		
+
 	}
 	
 	public  static BuyTicketController getInstance() {
@@ -19,11 +19,7 @@ public class BuyTicketController {
 		}
 		return instance;
 	}
-	
-	public static void main(String[] args) {
-		logger.log(Level.INFO, "Hello World!");
-	}
-	
+
 	public List<MusicEventBean> getSuggestedEvents(String username) {
 		MusicEventDao med = new MusicEventDao();
 		List<MusicEvent> l = med.getSuggestedEventsStub(username);

@@ -3,13 +3,13 @@
 
 
 <!-- Si dichiara la variabile loginBean e istanzia un oggetto LoginBean -->
-<jsp:useBean id="userBean" scope="request"
-             class="logic.login.UserBean"/>
+<jsp:useBean id="generalUserBean" scope="request"
+             class="logic.login.GeneralUserBean"/>
 
 <!-- Mappa automaticamente tutti gli attributi dell'oggetto loginBean e le proprietà JSP -->
-<jsp:setProperty name="userBean" property="*"/>
+<jsp:setProperty name="generalUserBean" property="*"/>
 
-
+<%@ page import="logic.login.*" %>
 
 <!-- HTML 5 -->
 <!DOCTYPE html>
@@ -35,12 +35,12 @@
     <div class="form-group" style = "position: absolute; bottom: 10px; left: 15px;">
     <div>
                 <label for="username" class = "loginText">Username</label><br>
-                <input id="username" name="username" type="text" class = "form-control">
+                <input id="username" name="username" type="text" class = "logTextBox">
                 </div>
                 <br>
                 <div>
                 <label for="password" class = "loginText">Password</label><br>
-                <input id="password" name="password" type="password" class = "form-control">
+                <input id="password" name="password" type="password" class = "logTextBox">
   </div>
   <br>
               <div>
@@ -55,17 +55,23 @@
 </div>
 <div class = "splitBackgroundLogin right">
 <%
+	LoginController controller = LoginController.getInstance();
     if (request.getParameter("login") != null) {
-        if (userBean.validate()) {
-            // Passa il controllo alla nuova pagina
-            session.setAttribute("username", userBean.getUsername());
+    	GeneralUserBean gu = controller.login(generalUserBean);
+        if (gu == null) {
+        	  %>
+              <h1 class="text-warning text-center" style="text-color:red;">Data not found</h1>
+      <% 
+        } else if(gu.getRole().equals("artist")){
+        	session.setAttribute("username", generalUserBean.getUsername());
+        	%>
+        	<jsp:forward page="artistHome.jsp"/>
+        	<%
+        } else if (gu.getRole().equals("user")) {
+            session.setAttribute("username", generalUserBean.getUsername());
             %>
             <jsp:forward page="home.jsp"/>
-        <%
-        } else {
-            %>
-            <h1 class="text-warning text-center" style="text-color:red;">Data not found</h1>
-    <%  }
+        <% }
     } else {%>
         <h1 class="text-info text-center">Login</h1>
         <%

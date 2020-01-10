@@ -11,6 +11,11 @@ public class UserBean {
 		this.password = "";
 	}
 	
+	public UserBean(User u) {
+		this.setUsername(u.getUsername());
+		this.setPassword(u.getPassword());
+	}
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}

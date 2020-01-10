@@ -22,4 +22,8 @@ public class LoginController {
 	public User login(String username, String password) {
         return UserDao.findUser(username, password);
     }
+	
+	public GeneralUserBean login(GeneralUserBean userBean) {
+		return new GeneralUserBean(GeneralUserDao.findUser(userBean.getUsername(), userBean.getPassword()));
+    }
 }

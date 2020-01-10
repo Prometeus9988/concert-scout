@@ -1,22 +1,23 @@
 package logic.buyticket;
 
-public class Artist {
-	private String id;
-	private String name;
+import logic.login.GeneralUser;
+
+public class Artist extends GeneralUser {
+	private String bandName;
 	private String profilePicture;
 	
-	public Artist(String id, String name, String profilePicture) {
-		this.id = id;
-		this.name = name;
+	public Artist(String username, String bandName, String profilePicture) {
+		this.bandName = bandName;
 		this.profilePicture = profilePicture;
+		this.username = username;
 	}
 	
-	public String getId() {
-		return id;
+	public String getUsername() {
+		return this.username;
 	}
 	
 	public String getName() {
-		return name;
+		return bandName;
 	}
 	
 	public String getProfilePicture() {
