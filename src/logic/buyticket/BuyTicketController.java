@@ -22,7 +22,9 @@ public class BuyTicketController {
 
 	public List<MusicEventBean> getSuggestedEvents(String username) {
 		MusicEventDao med = new MusicEventDao();
-		List<MusicEvent> l = med.getSuggestedEventsStub(username);
+		//List<MusicEventBean> lb = null;
+		//List<MusicEvent> l = med.getSuggestedEventsStub(username);
+		List<MusicEvent> l = med.getSuggestedEvents(username);
 		List<MusicEventBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {
 			lb.add(new MusicEventBean(l.get(i)));

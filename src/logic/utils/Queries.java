@@ -13,4 +13,9 @@ public class Queries {
                 + username + "' AND password = '" + password + "';";
 		return stm.executeQuery(sql);
 	}
+	
+	public static ResultSet selectSuggestedMusicEvents(Statement stm, String username) throws SQLException {
+        String sql = "call livethemusic.view_friend_partitipation('" + username + "');\r\n"; 
+		return stm.executeQuery(sql);
+	}
 }

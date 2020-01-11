@@ -24,6 +24,8 @@ public class LoginController {
     }
 	
 	public GeneralUserBean login(GeneralUserBean userBean) {
-		return new GeneralUserBean(GeneralUserDao.findUser(userBean.getUsername(), userBean.getPassword()));
-    }
+		GeneralUser result = GeneralUserDao.findUser(userBean.getUsername(), userBean.getPassword());
+		if(result == null)	return null;
+		else return new GeneralUserBean(result);
+	}
 }
