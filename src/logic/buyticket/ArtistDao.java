@@ -5,26 +5,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import logic.login.GeneralUserDao;
 import logic.utils.DBConnection;
 import logic.utils.Queries;
 
 public class ArtistDao {
 	
-	private static final Logger logger = Logger.getLogger(GeneralUserDao.class.getName());
-	
-	public List<Artist> getSuggestedArtistStub(String username){
-		List<Artist> artist = new ArrayList<>();
-		artist.add(new Artist("IronMaiden", "Iron Maiden", "Default_Path"));
-		artist.add(new Artist("OzzyOsbourne", "Ozzy Osbourne", "Default_Path"));
-		artist.add(new Artist("Locust", "Locust", "Default_Path"));
-		return artist;
-	}
-	
+	private static final Logger logger = Logger.getLogger(ArtistDao.class.getName());
+
 	public List<Artist> getSuggestedArtist(String username){
         Statement stmt = null;
         Connection conn = null;
@@ -36,7 +28,7 @@ public class ArtistDao {
             ResultSet rs = Queries.selectSuggestedArtist(stmt, username);
             
             if (!rs.first()) // rs not empty
-                return null;
+                return Collections.emptyList();
             
             do{
             	String usernameA = rs.getString("username");
@@ -47,10 +39,9 @@ public class ArtistDao {
             } while (rs.next());
 
         } catch (SQLException se) {
-        	// Errore durante l'apertura della connessione
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
-        	e.printStackTrace();
+        	logger.log(Level.WARNING, e.toString());
         } finally {
             try {
                 if (stmt != null)

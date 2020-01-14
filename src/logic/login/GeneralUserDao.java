@@ -28,10 +28,7 @@ public class GeneralUserDao {
                 return null;
 
             boolean moreThanOne = rs.first() && rs.next();
-            assert !moreThanOne; // per abilitare le asserzioni, avviare la JVM con il parametro -ea
-            // (Run Configurations -> <configurazione utilizzata per l'avvio del server> -> Arguments -> VM Arguments).
-            // N.B. Le asserzioni andrebbero usate solo per test e debug, non per codice in produzione
-
+            assert !moreThanOne;
             rs.first();
 
             String role = rs.getString("role");
@@ -45,10 +42,8 @@ public class GeneralUserDao {
             stmt.close();
 
         } catch (SQLException se) {
-            // Errore durante l'apertura della connessione
         	logger.log(Level.WARNING, se.toString());
-        } catch (Exception e) {
-            // Errore nel loading del driver
+        } catch (ClassNotFoundException e) {
             logger.log(Level.WARNING, e.toString());
         } finally {
             try {

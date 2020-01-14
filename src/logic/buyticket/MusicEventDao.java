@@ -5,28 +5,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import logic.login.GeneralUserDao;
 import logic.utils.DBConnection;
 import logic.utils.Queries;
 
 public class MusicEventDao {
 	
-	private static final Logger logger = Logger.getLogger(GeneralUserDao.class.getName());
-	
-	public List<MusicEvent> getSuggestedEventsStub(String username){
-		List<MusicEvent> musicEvents = new ArrayList<>();
-		musicEvents.add(new MusicEvent("3425", "Iron Maiden", "Black Tour", "coverPath", "Rome"));
-		musicEvents.add(new MusicEvent("6456", "Black Sabbath", "Perry Mason Tour", "coverPath", "Frosinone"));
-		musicEvents.add(new MusicEvent("6456", "Black Sabbath", "Perry Mason Tour", "coverPath", "Frosinone"));
-		musicEvents.add(new MusicEvent("6456", "Black Sabbath", "Perry Mason Tour", "coverPath", "Frosinone"));
-		musicEvents.add(new MusicEvent("6456", "Black Sabbath", "Perry Mason Tour", "coverPath", "Frosinone"));
-		return musicEvents;
-	}
-	
+	private static final Logger logger = Logger.getLogger(MusicEventDao.class.getName());
+
 	public List<MusicEvent> getSuggestedEvents(String username){
         Statement stmt = null;
         Connection conn = null;
@@ -38,10 +28,9 @@ public class MusicEventDao {
             ResultSet rs = Queries.selectSuggestedMusicEvents(stmt, username);
             
             if (!rs.first()) // rs not empty
-                return null;
+                return Collections.emptyList();
             
             do{
-            	String friend = rs.getString("friendusername");
             	String name = rs.getString("name");
             	String location = rs.getString("location");
             	String bandName = rs.getString("band_name");
@@ -52,7 +41,7 @@ public class MusicEventDao {
         	// Errore durante l'apertura della connessione
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
-        	e.printStackTrace();
+        	logger.log(Level.WARNING, e.toString());
         } finally {
             try {
                 if (stmt != null)

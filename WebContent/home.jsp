@@ -8,7 +8,7 @@
 	String username = session.getAttribute("username").toString();
 	List<MusicEventBean> musicEvents = BuyTicketController.getInstance().getSuggestedEvents(username);
 	List<ArtistBean> artist = BuyTicketController.getInstance().getSuggestedArtist(username);
-	for(i=0;i<musicEvents.size();i++){
+	for(i=0; i<musicEvents.size(); i++){
 		if(request.getParameter(""+i)!=null){
 			request.setAttribute("Mevent",musicEvents.get(i));
 			%>
