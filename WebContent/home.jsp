@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList,logic.buyticket.*, java.util.List" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,13 +67,17 @@
 
     	<div class="card text-center" style="width: 18rem;">
     	
-    	
-  	<img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155>
+    <form action="home.jsp" method="POST">
+  	<!-- <img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155> -->
+  	<input type="image" name = "musicEventSelected" src="img/concert.jpg" class="btTxt card-img-top cardImg submit" height = 215 width = 155 />
   	<div class="card-body">
-    <h5 class="card-title"><%= musicEvents.get(i).getName() %></h5>
-    <h6 class="card-title"><%= musicEvents.get(i).getArtistId() %></h6>
+	<input type="submit" name = "musicEventSelected" class = "btTxt astext" value = "<%= musicEvents.get(i).getName() %>">
+  	<br>
+  	<input type="submit" name = "musicEventSelected" class = "btTxt astext" value = "<%= musicEvents.get(i).getArtistId() %>">
+
+  	<input type="hidden" name="musicEvent" value="<%= musicEvents.get(i)%>">
   </div>
-  
+  </form>
 </div>
 
 </li>
@@ -102,7 +107,13 @@
     </ul>
   </div>
 </div> 
-
 </div>
+<%
+if (request.getParameter("musicEventSelected") != null) {
+	session.setAttribute("musicEvent", request.getParameter("musicEvent"));
+	%><jsp:forward page="musicEventDetail.jsp"/>
+	<%
+}
+%>
 </body>
 </html>

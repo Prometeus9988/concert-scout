@@ -46,8 +46,6 @@
               <div>
                 <input name="login" type="submit"
                        id="login" value="login" class="btn btn-info buttonColor" >
-                <input name="tipoLogin" type="hidden" value="user"
-                       id="tipoLogin" class="btn btn-warning">
             </div>
             </div>
     </form>
