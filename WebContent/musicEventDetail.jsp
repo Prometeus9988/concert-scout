@@ -10,7 +10,7 @@
 <body>
 
 <%
-MusicEventBean meb = (MusicEventBean) session.getAttribute("musicEvent");
+	MusicEventBean meb = (MusicEventBean) request.getAttribute("Mevent");
 %>
 
 <h1><%=meb.getName()%></h1>

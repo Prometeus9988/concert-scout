@@ -2,6 +2,24 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList,logic.buyticket.*, java.util.List" %>
 
+
+<% 
+    int i;
+	String username = session.getAttribute("username").toString();
+	List<MusicEventBean> musicEvents = BuyTicketController.getInstance().getSuggestedEvents(username);
+	List<ArtistBean> artist = BuyTicketController.getInstance().getSuggestedArtist(username);
+	for(i=0;i<musicEvents.size();i++){
+		if(request.getParameter(""+i)!=null){
+			request.setAttribute("Mevent",musicEvents.get(i));
+			%>
+			<jsp:forward page="musicEventDetail.jsp"/>
+			<%
+		}
+		
+		
+	}
+%> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,29 +71,24 @@
 
 <div class="splitBackground right">
   <div class="centered">
-  <% String username = session.getAttribute("username").toString();%>
+  
     <h2>Welcome <%=username%></h2>
-    <% 
-    List<MusicEventBean> musicEvents = BuyTicketController.getInstance().getSuggestedEvents(username);
-    List<ArtistBean> artist = BuyTicketController.getInstance().getSuggestedArtist(username);
-    %>
+    
     <h3 class = "h3">Suggested Events</h3>
     <ul class = "hs">
     <%
-    for(int i = 0; i < musicEvents.size(); i++){
+    for(i = 0; i < musicEvents.size(); i++){
     	%><li class = "item">
 
     	<div class="card text-center" style="width: 18rem;">
     	
     <form action="home.jsp" method="POST">
   	<!-- <img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155> -->
-  	<input type="image" name = "musicEventSelected" src="img/concert.jpg" class="btTxt card-img-top cardImg submit" height = 215 width = 155 />
+  	<input type="image" name = "<%=i%>" src="img/concert.jpg" class="btTxt card-img-top cardImg submit" height = 215 width = 155 />
   	<div class="card-body">
-	<input type="submit" name = "musicEventSelected" class = "btTxt astext" value = "<%= musicEvents.get(i).getName() %>">
+	<input type="submit" name = "<%=i%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getName() %>">
   	<br>
-  	<input type="submit" name = "musicEventSelected" class = "btTxt astext" value = "<%= musicEvents.get(i).getArtistId() %>">
-
-  	<input type="hidden" name="musicEvent" value="<%= musicEvents.get(i)%>">
+  	<input type="submit" name = "<%=i%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getArtistId() %>">
   </div>
   </form>
 </div>
@@ -89,7 +102,7 @@
     <h3 class = "h3">Suggested Artists</h3>
        <ul class = "hs">
     <%
-    for(int i = 0; i < artist.size(); i++){
+    for(i = 0; i < artist.size(); i++){
     	%><li class = "item">
 
     	<div class="card text-center" style="width: 18rem;">
@@ -108,12 +121,5 @@
   </div>
 </div> 
 </div>
-<%
-if (request.getParameter("musicEventSelected") != null) {
-	session.setAttribute("musicEvent", request.getParameter("musicEvent"));
-	%><jsp:forward page="musicEventDetail.jsp"/>
-	<%
-}
-%>
 </body>
 </html>
