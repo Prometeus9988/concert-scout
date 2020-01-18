@@ -7,7 +7,7 @@ public class MusicEventBean {
 	private String coverPath;
 	private String location;
 	
-	public MusicEventBean(String id, String artistId, String name, String coverPath,  String location) {
+	public MusicEventBean(int id, String artistId, String name, String coverPath,  String location) {
 		this.setId(id);
 		this.setArtistId(artistId);
 		this.setName(name);
@@ -23,8 +23,9 @@ public class MusicEventBean {
 		this.setLocation(me.getLocation());
 	}
 	
-	public void setId(String id) {
-		this.id = id;
+	public void setId(int id) {
+		
+		this.id = "" + id;
 	}
 	
 	public String getId() {

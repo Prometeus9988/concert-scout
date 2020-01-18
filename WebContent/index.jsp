@@ -61,12 +61,12 @@
               <h1 class="text-warning text-center" style="text-color:red;">Data not found</h1>
       <% 
         } else if(gu.getRole().equals("artist")){
-        	session.setAttribute("username", generalUserBean.getUsername());
+            session.setAttribute("user", generalUserBean);
         	%>
         	<jsp:forward page="artistHome.jsp"/>
         	<%
         } else if (gu.getRole().equals("user")) {
-            session.setAttribute("username", generalUserBean.getUsername());
+            session.setAttribute("user", generalUserBean);
             %>
             <jsp:forward page="home.jsp"/>
         <% }
