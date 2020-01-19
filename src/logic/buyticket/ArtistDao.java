@@ -37,6 +37,7 @@ public class ArtistDao {
  
             	l.add(new Artist(usernameA, bandName, profilePicture));
             } while (rs.next());
+            rs.close();
 
         } catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
@@ -74,6 +75,7 @@ public class ArtistDao {
  
             	l.add(new Artist("", bandName, ""));
             } while (rs.next());
+            rs.close();
 
         } catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());

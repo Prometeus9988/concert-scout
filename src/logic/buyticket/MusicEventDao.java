@@ -36,14 +36,15 @@ public class MusicEventDao {
             	String bandName = rs.getString("band_name");
             	l.add(new MusicEvent(id, bandName, name, "", location));
             } while (rs.next());
+            rs.close();
 
         } catch (SQLException se) {
         	// Errore durante l'apertura della connessione
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
         	logger.log(Level.WARNING, e.toString());
-        } finally {
-//            try {
+//        } finally {
+//           try {
 //                if (stmt != null)
 //                    stmt.close();
 //            } catch (SQLException se2) {
@@ -74,6 +75,7 @@ public class MusicEventDao {
             	String bandName = rs.getString("band_name");
             	l.add(new MusicEvent(id, bandName, name, "", location));
             } while (rs.next());
+            rs.close();
 
         } catch (SQLException se) {
         	// Errore durante l'apertura della connessione
@@ -122,9 +124,12 @@ public class MusicEventDao {
 			conn = DBConnection.getConnection();
 			ResultSet rs = Queries.isParticipating(conn, username, musicEventId);
             
-			if (!rs.first()) // rs empty no participation
-                return false;
+			if (!rs.first()) { // rs empty no participation
+				rs.close();
+				return false;
+			}
 			else {			//not empty username participate	
+				rs.close();
 				return true;
 			}
 			/*int part = rs.getInt("participation");
@@ -132,11 +137,12 @@ public class MusicEventDao {
 			if(part == 1) {
 				return true;
 			}*/
+			
 		} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
         	logger.log(Level.WARNING, e.toString());
-        }
+        }	
 		return false;
 	}
 }
