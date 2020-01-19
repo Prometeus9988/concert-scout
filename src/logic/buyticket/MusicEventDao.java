@@ -122,14 +122,16 @@ public class MusicEventDao {
 			conn = DBConnection.getConnection();
 			ResultSet rs = Queries.isParticipating(conn, username, musicEventId);
             
-			if (!rs.first()) // rs not empty
+			if (!rs.first()) // rs empty no participation
                 return false;
-			
-			int part = rs.getInt("participation");
+			else {			//not empty username participate	
+				return true;
+			}
+			/*int part = rs.getInt("participation");
 			
 			if(part == 1) {
 				return true;
-			}
+			}*/
 		} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {

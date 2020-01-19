@@ -19,11 +19,13 @@
 	if(request.getParameter("addPart") != null){
 		meb = (MusicEventBean) session.getAttribute("Mevent");
 		user = (GeneralUserBean) session.getAttribute("user");
-		
+				
 		if(isPart == false){
 			BuyTicketController.getInstance().addParticipation(user, meb);
+			part="Remove participation";
 		} else {
 			BuyTicketController.getInstance().removeParticipation(user, meb);
+			part="Add participation";
 		}
 	}
 	session.setAttribute("Mevent", meb);
