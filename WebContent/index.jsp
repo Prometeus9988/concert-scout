@@ -24,8 +24,6 @@ if (request.getParameter("register") != null){
 		LoginController.getInstance().createUser(u);
 	} else if(userType.equals("Artist")){
 		String bandName = request.getParameter("bandName");	
-	} else if(userType.equals("Admin")){
-		System.out.println("Admin registration to implement");
 	}
 }
 %>
@@ -112,8 +110,8 @@ if (request.getParameter("register") != null){
     <input type="text" class="form-control" name="createUsername" placeholder="Username"><br>
     <input type="password" class="form-control" name="createPassword" placeholder="Password"><br>
 	<input type="text" class="form-control" name="bandName" placeholder="Band Name"><br>
-	<input type="text" class="form-control" name="firstName" placeholder="First name"><br>
-	<input type="text" class="form-control" name="lastName" placeholder="Last name"><br>
+	<input type="text" class="form-control" name="firstName" placeholder="First Name"><br>
+	<input type="text" class="form-control" name="lastName" placeholder="Last Name"><br>
 </div>
   <!-- Select type of user -->
 	<div>
@@ -121,7 +119,6 @@ if (request.getParameter("register") != null){
     <select class="form-control" name="userType">
       <option>User</option>
       <option>Artist</option>
-      <option>Admin</option>
     </select>
   </div>
   <br>
