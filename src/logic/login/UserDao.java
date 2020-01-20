@@ -14,55 +14,22 @@ public class UserDao {
 
     }
     
-    public static User findUser(String username, String password) {
-    	// STEP 1: dichiarazioni
-        Statement stmt = null;
-        Connection conn = null;
-        User u = null;
-        try {
-
-
-            conn = DBConnection.getConnection();
-            
-            stmt = conn.createStatement();
-            ResultSet rs = Queries.selectGeneralUserLogin(stmt, username, password);
-
-            if (!rs.first()) // rs not empty
-                return null;
-
-            boolean moreThanOne = rs.first() && rs.next();
-            assert !moreThanOne; // per abilitare le asserzioni, avviare la JVM con il parametro -ea
-            // (Run Configurations -> <configurazione utilizzata per l'avvio del server> -> Arguments -> VM Arguments).
-            // N.B. Le asserzioni andrebbero usate solo per test e debug, non per codice in produzione
-
-            rs.first();
-
-            String name = rs.getString("name");
-            String surname = rs.getString("surname");
-            String usernameLoaded = rs.getString("username");
-
-            if(usernameLoaded.equals(username)) {
-            	u = new User(usernameLoaded, "", name, surname);
-            }
-            // STEP 6: Clean-up dell'ambiente
-            rs.close();
-            stmt.close();
-
-        } catch (SQLException se) {
-            // Errore durante l'apertura della connessione
+    public static boolean createUser(String username, String password, String firstName, String lastName, String email) {
+    	Connection con = null;
+    	try {
+    		con = DBConnection.getConnection();
+    		Queries.addUser(con, username, password, email, firstName, lastName);
+    		
+    	} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
-        } catch (Exception e) {
-            // Errore nel loading del driver
+        	return false;
+        } catch (ClassNotFoundException e) {
             logger.log(Level.WARNING, e.toString());
-        } finally {
-            try {
-                if (stmt != null)
-                    stmt.close();
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
+            return false;
         }
-        return u;
+    	
+    	//TODO check if the insert is successfull
+    	return true;
     }
     
 }

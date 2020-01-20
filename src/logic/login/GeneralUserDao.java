@@ -15,14 +15,12 @@ public class GeneralUserDao {
     }
     
     public static GeneralUser findUser(String username, String password) {
-        Statement stmt = null;
         Connection conn = null;
         GeneralUser u = null;
         try {
             conn = DBConnection.getConnection();
             
-            stmt = conn.createStatement();
-            ResultSet rs = Queries.selectGeneralUserLogin(stmt, username, password);
+            ResultSet rs = Queries.selectGeneralUserLogin(conn, username, password);
 
             if (!rs.first()) // rs not empty
                 return null;
@@ -33,25 +31,24 @@ public class GeneralUserDao {
 
             String role = rs.getString("role");
             String usernameLoaded = rs.getString("username");
-
+            
             if(usernameLoaded.equals(username)) {
             	u = new GeneralUser(usernameLoaded, "", role);
             }
-            // STEP 6: Clean-up dell'ambiente
+
             rs.close();
-            stmt.close();
 
         } catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
             logger.log(Level.WARNING, e.toString());
         } finally {
-            try {
-                if (stmt != null)
-                    stmt.close();
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
+//            try {
+//                if (stmt != null)
+//                    stmt.close();
+//            } catch (SQLException se2) {
+//            	logger.log(Level.WARNING, se2.toString());
+//            }
         }
         //System.out.println("Found " + u.getRole() + "with username" + u.getUsername());
         return u;

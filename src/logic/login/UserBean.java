@@ -1,14 +1,16 @@
 package logic.login;
 
-public class UserBean {
-	private String username;
-	private String password;
+public class UserBean extends GeneralUserBean{
+	
 	private String name;
 	private String surname;
 	
-	public UserBean() {
-		this.username = "";
-		this.password = "";
+	public UserBean(String username, String password, String email, String firstName, String lastName) {
+		this.setUsername(username);
+		this.setPassword(password);
+		this.setName(firstName);
+		this.setSurname(lastName);
+		this.setEmail(email);
 	}
 	
 	public UserBean(User u) {
@@ -46,15 +48,5 @@ public class UserBean {
 
 	public String getSurname() {
 		return this.surname;
-	}
-	
-	public boolean validate() {
-		if (this.username.equals("") || this.password.equals("")) {
-			return false;
-		}
-		
-		LoginController controller = LoginController.getInstance();
-		User found = controller.login(this.username, this.password);
-		return  (found != null);
 	}
 }

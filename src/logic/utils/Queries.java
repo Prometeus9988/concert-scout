@@ -8,10 +8,12 @@ public class Queries {
 		
 	}
 	
-	public static ResultSet selectGeneralUserLogin(Statement stm, String username, String password) throws SQLException{
-        String sql = "SELECT username, role FROM general_user where username = '"
-                + username + "' AND password = '" + password + "';";
-		ResultSet rs=stm.executeQuery(sql);
+	public static ResultSet selectGeneralUserLogin(Connection con, String username, String password) throws SQLException{
+        String sql = "call LIVetheMUSIC.login(?, ?);\r\n";
+        PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, username);
+        stm.setString(2, password);
+		ResultSet rs = stm.executeQuery();
         stm.closeOnCompletion();
 		return rs;
 	}
@@ -55,6 +57,18 @@ public class Queries {
 		PreparedStatement stm = con.prepareStatement(sql);
         stm.setString(1, username);
         stm.setInt(2,  Integer.parseInt(musicEventId));
+        stm.executeUpdate();
+       	stm.closeOnCompletion(); 
+	}
+	
+	public static void addUser(Connection con, String username, String password, String email, String firstName, String lastName ) throws SQLException {
+		String sql = "call LIVEtheMUSIC.add_user(?, ?, ?, ?,?);\r\n"; 
+		PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, username);
+        stm.setString(2, firstName);
+        stm.setString(3, lastName);
+        stm.setString(4, email);
+        stm.setString(5, password);
         stm.executeUpdate();
        	stm.closeOnCompletion(); 
 	}

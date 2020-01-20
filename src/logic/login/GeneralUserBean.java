@@ -1,9 +1,10 @@
 package logic.login;
 
 public class GeneralUserBean {
-	private String username;
-	private String password;
-	private String role;
+	protected String username;
+	protected String password;
+	protected String email;
+	protected String role;
 	
 	public GeneralUserBean() {
 		this.username = "";
@@ -31,6 +32,14 @@ public class GeneralUserBean {
 	
 	public String getPassword() {
 		return this.password;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getEmail() {
+		return this.email;
 	}
 	
 	public void setRole(String name) {
