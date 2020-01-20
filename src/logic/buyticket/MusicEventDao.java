@@ -9,8 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import logic.utils.DBConnection;
-import logic.utils.Queries;
+import logic.utils.*;
 
 public class MusicEventDao {
 	
@@ -21,7 +20,7 @@ public class MusicEventDao {
         Connection conn = null;
         List<MusicEvent> l = new ArrayList<>();
         try {
-            conn = DBConnection.getConnection();
+            conn = DBUserConnection.getUserConnection();
             
             //prepStmt = conn.prepareStatement();
             ResultSet rs = Queries.selectSuggestedMusicEvents(conn, username);
@@ -60,7 +59,7 @@ public class MusicEventDao {
         Connection conn = null;
         List<MusicEvent> l = new ArrayList<>();
         try {
-            conn = DBConnection.getConnection();
+            conn = DBUserConnection.getUserConnection();
             
             //prepStmt = conn.prepareStatement();
             ResultSet rs = Queries.selectSearchMusicEvent(conn, searchString);
@@ -97,7 +96,7 @@ public class MusicEventDao {
 	public void addParticipation(String username, String musicEventId) {
 		Connection conn = null;
 		try {
-			conn = DBConnection.getConnection();
+			conn = DBUserConnection.getUserConnection();
 			Queries.addParticipation(conn, username, musicEventId);
 		} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
@@ -109,7 +108,7 @@ public class MusicEventDao {
 	public void removeParticipation(String username, String musicEventId) {
 		Connection conn = null;
 		try {
-			conn = DBConnection.getConnection();
+			conn = DBUserConnection.getUserConnection();
 			Queries.removeParticipation(conn, username, musicEventId);
 		} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
@@ -121,7 +120,7 @@ public class MusicEventDao {
 	public boolean isParticipating(String username, String musicEventId) {
 		Connection conn = null;
 		try {
-			conn = DBConnection.getConnection();
+			conn = DBUserConnection.getUserConnection();
 			ResultSet rs = Queries.isParticipating(conn, username, musicEventId);
             
 			if (!rs.first()) { // rs empty no participation

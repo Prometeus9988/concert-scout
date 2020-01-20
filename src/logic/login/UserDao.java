@@ -17,7 +17,7 @@ public class UserDao {
     public static boolean createUser(String username, String password, String firstName, String lastName, String email) {
     	Connection con = null;
     	try {
-    		con = DBConnection.getConnection();
+    		con = DBLoginConnection.getLoginConnection();
     		Queries.addUser(con, username, password, email, firstName, lastName);
     		
     	} catch (SQLException se) {

@@ -18,7 +18,7 @@ public class GeneralUserDao {
         Connection conn = null;
         GeneralUser u = null;
         try {
-            conn = DBConnection.getConnection();
+            conn = DBLoginConnection.getLoginConnection();
             
             ResultSet rs = Queries.selectGeneralUserLogin(conn, username, password);
 

@@ -10,8 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import logic.utils.DBConnection;
-import logic.utils.Queries;
+import logic.utils.*;
 
 public class ArtistDao {
 	
@@ -22,7 +21,7 @@ public class ArtistDao {
         Connection conn = null;
         List<Artist> l = new ArrayList<>();
         try {
-            conn = DBConnection.getConnection();
+            conn = DBUserConnection.getUserConnection();
             
             stmt = conn.createStatement();
             ResultSet rs = Queries.selectSuggestedArtist(stmt, username);
@@ -60,7 +59,7 @@ public class ArtistDao {
         Connection conn = null;
         List<Artist> l = new ArrayList<>();
         try {
-            conn = DBConnection.getConnection();
+            conn = DBUserConnection.getUserConnection();
             
             stmt = conn.createStatement();
             ResultSet rs = Queries.selectSearchArtist(stmt, searchString);
