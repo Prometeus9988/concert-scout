@@ -1,4 +1,4 @@
-package logic.loginView;
+package logic.loginview;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -49,7 +49,7 @@ public class LoginViewController {
     		this.titleLabel.setText("DATA NOT FOUND");
     	}
     	else {
-    		HomepageViewController hvc=new HomepageViewController();
+    		//HomepageViewController hvc=new HomepageViewController();
     		/*FXMLLoader loader=new FXMLLoader(getClass().getResource("HomepageDump.fxml"));
     		loader.setController(hvc);
     		Scene main=titleLabel.getScene();

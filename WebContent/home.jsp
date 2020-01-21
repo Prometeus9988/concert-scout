@@ -137,7 +137,7 @@
     <form action="home.jsp" method="POST">
   	<img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155 alt="Submit">
   	<div class="card-body">
-    <input type="submit" name = "<%="a" + i%>" class = "btTxt astext" value = "<%= artists.get(i).getName() %>">
+    <input type="submit" name = "<%="a" + i%>" class = "btTxt astext" value = "<%= artists.get(i).getBandName() %>">
   </div>
   </form>
 </div>
