@@ -27,8 +27,6 @@ public class UserDao {
             logger.log(Level.WARNING, e.toString());
             return false;
         }
-    	
-    	//TODO check if the insert is successfull
     	return true;
     }
     

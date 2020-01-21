@@ -91,4 +91,20 @@ public class ArtistDao {
         
         return l;
 	}
+	
+	public static boolean createArtist(String username, String password, String bandName, String profilePicture, String email) {
+    	Connection con = null;
+    	try {
+    		con = DBLoginConnection.getLoginConnection();
+    		Queries.addArtist(con, username, password, bandName, profilePicture, email);
+    		
+    	} catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        	return false;
+        } catch (ClassNotFoundException e) {
+            logger.log(Level.WARNING, e.toString());
+            return false;
+        }
+    	return true;
+	}
 }

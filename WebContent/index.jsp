@@ -9,21 +9,29 @@
 <!-- Mappa automaticamente tutti gli attributi dell'oggetto loginBean e le proprietà JSP -->
 <jsp:setProperty name="generalUserBean" property="*"/>
 
-<%@ page import="logic.login.*" %>
+<%@ page import="logic.login.*, logic.buyticket.ArtistBean" %>
 <%
+String regMessage = "Register";
 if (request.getParameter("register") != null){
+	Boolean regResult = false;
 	String email = request.getParameter("createEmail");
 	String username = request.getParameter("createUsername");
 	String password = request.getParameter("createPassword");
-	
 	String userType = request.getParameter("userType");
 	if(userType.equals("User")){
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		UserBean u = new UserBean(username, password, firstName, lastName, email);
-		LoginController.getInstance().createUser(u);
+		regResult = LoginController.getInstance().createUser(u);
 	} else if(userType.equals("Artist")){
 		String bandName = request.getParameter("bandName");	
+		ArtistBean a = new ArtistBean(username, password, bandName, "", email);
+		regResult = LoginController.getInstance().createArtist(a);
+	}
+	if(regResult == true){
+		regMessage = "Registration Successfull";
+	} else {
+		regMessage = "Username already taken";
 	}
 }
 %>
@@ -42,7 +50,23 @@ if (request.getParameter("register") != null){
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
+	<script>
+	function select(){
+		
+		var mySelect = document.getElementById('userType');
+		var selected = mySelect.options[mySelect.selectedIndex].text;
+		if(selected == "User"){
+			document.getElementById("bandName").disabled = true;
+			document.getElementById("firstName").disabled = false;
+			document.getElementById("lastName").disabled = false;
+		} else {
+			document.getElementById("bandName").disabled = false;
+			document.getElementById("firstName").disabled = true;
+			document.getElementById("lastName").disabled = true;
+		}
+		
+	}
+	</script>
     <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body class = "defaultBackgorund">
@@ -55,6 +79,28 @@ if (request.getParameter("register") != null){
   <p class = "logoText">LIVE<mark style = "background-color: rgba(0,0,0,0); color: #6A4C93">the</mark>MUSIC</p>
   </div>
   </div>
+  <div class ="col-sm-5" style = "padding-top:170px;">
+  <%
+	LoginController controller = LoginController.getInstance();
+    if (request.getParameter("login") != null) {
+    	GeneralUserBean gu = controller.login(generalUserBean);
+        if (gu == null) {
+        	  %>
+              <h6 style="color:red;">Wrong username or password</h6>
+      <% 
+        } else if(gu.getRole().equals("artist")){
+            session.setAttribute("user", generalUserBean);
+        	%>
+        	<jsp:forward page="artistHome.jsp"/>
+        	<%
+        } else if (gu.getRole().equals("user")) {
+            session.setAttribute("user", generalUserBean);
+            %>
+            <jsp:forward page="home.jsp"/>
+        <% }
+    }
+%>
+</div>
   
   <!-- Login Form -->
     <form action="index.jsp" name="myform" method="POST">
@@ -78,45 +124,23 @@ if (request.getParameter("register") != null){
     </form>
 </div>
 <div class = "splitBackgroundLogin right">
-<%
-	LoginController controller = LoginController.getInstance();
-    if (request.getParameter("login") != null) {
-    	GeneralUserBean gu = controller.login(generalUserBean);
-        if (gu == null) {
-        	  %>
-              <h1 class="text-warning text-center" style="text-color:red;">Data not found</h1>
-      <% 
-        } else if(gu.getRole().equals("artist")){
-            session.setAttribute("user", generalUserBean);
-        	%>
-        	<jsp:forward page="artistHome.jsp"/>
-        	<%
-        } else if (gu.getRole().equals("user")) {
-            session.setAttribute("user", generalUserBean);
-            %>
-            <jsp:forward page="home.jsp"/>
-        <% }
-    } else {%>
-        <h1 class="text-info text-center">Login</h1>
-        <%
-    }
-%>
 
 <!-- Registration form -->
 <form action = "index.jsp" method = "POST">
   <div class="form-group col-md-3 col-md-offset-3" style = "width:500px; border-width:2px; border-style:solid; border-color:#b0b0b0; border-radius: 10px;">
     <div class = "form.group"><br>
+    <label><%=regMessage %></label><br>
     <input type="email" class="form-control" name="createEmail" placeholder="Email"><br>
     <input type="text" class="form-control" name="createUsername" placeholder="Username"><br>
     <input type="password" class="form-control" name="createPassword" placeholder="Password"><br>
-	<input type="text" class="form-control" name="bandName" placeholder="Band Name"><br>
-	<input type="text" class="form-control" name="firstName" placeholder="First Name"><br>
-	<input type="text" class="form-control" name="lastName" placeholder="Last Name"><br>
+	<input type="text" class="form-control" name="bandName" id = "bandName" placeholder="Band Name" disabled><br>
+	<input type="text" class="form-control" name="firstName" id = "firstName" placeholder="First Name"><br>
+	<input type="text" class="form-control" name="lastName" id = "lastName" placeholder="Last Name"><br>
 </div>
   <!-- Select type of user -->
 	<div>
     <label>Type of user</label>
-    <select class="form-control" name="userType">
+    <select class="form-control" name="userType" id="userType" onchange="select()">
       <option>User</option>
       <option>Artist</option>
     </select>

@@ -73,6 +73,18 @@ public class Queries {
        	stm.closeOnCompletion(); 
 	}
 	
+	public static void addArtist(Connection con, String username, String password, String bandName, String profilePicture, String email ) throws SQLException {
+		String sql = "call livethemusic.add_artist(?, ?, ?, ?,?);\r\n"; 
+		PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, username);
+        stm.setString(2, password);
+        stm.setString(3, bandName);
+        stm.setString(4, profilePicture);
+        stm.setString(5, email);
+        stm.executeUpdate();
+       	stm.closeOnCompletion(); 
+	}
+	
 	public static void removeParticipation(Connection con, String username, String musicEventId) throws SQLException {
 		String sql = "call livethemusic.remove_participation(?, ?);\r\n"; 
 		PreparedStatement stm = con.prepareStatement(sql);

@@ -1,14 +1,22 @@
 package logic.buyticket;
 
-public class ArtistBean {
-	private String username;
-	private String name;
+import logic.login.GeneralUserBean;
+
+public class ArtistBean extends GeneralUserBean{
+	private String bandName;
 	private String profilePicture;
 	
 	public ArtistBean(Artist a) {
-		this.setUsername(a.getUsername());
-		this.setName(a.getName());
+		this.setBandName(a.getName());
 		this.setProfilePicture(a.getProfilePicture());
+	}
+	
+	public ArtistBean(String username, String password, String bandName, String profilePicture, String email) {
+		this.setUsername(username);
+		this.setPassword(password);
+		this.setBandName(bandName);
+		this.setProfilePicture(profilePicture);
+		this.setEmail(email);
 	}
 	
 	public void setUsername(String username) {
@@ -19,12 +27,12 @@ public class ArtistBean {
 		return username;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setBandName(String name) {
+		this.bandName = name;
 	}
 	
-	public String getName() {
-		return name;
+	public String getBandName() {
+		return bandName;
 	}
 	
 	public void setProfilePicture(String profilePicture) {

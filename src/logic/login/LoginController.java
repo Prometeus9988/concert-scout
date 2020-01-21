@@ -1,5 +1,7 @@
 package logic.login;
 
+import logic.buyticket.ArtistBean;
+import logic.buyticket.ArtistDao;
 import logic.utils.Queries;
 
 public class LoginController {
@@ -29,5 +31,9 @@ public class LoginController {
 	
 	public boolean createUser(UserBean ub) {
 		return UserDao.createUser(ub.getUsername(), ub.getPassword(), ub.getName(), ub.getSurname(), ub.getEmail()); 
+	}
+	
+	public boolean createArtist(ArtistBean ab) {
+		return ArtistDao.createArtist(ab.getUsername(), ab.getPassword(), ab.getBandName(), ab.getProfilePicture(), ab.getEmail());
 	}
 }
