@@ -8,7 +8,6 @@ services:
 before_install:
   - sudo apt update
   - sudo apt install openjfx
-  - sudo apt sonar-scanner
 
 install: true
 
@@ -17,8 +16,8 @@ addons:
       packages:
         ant
     sonarcloud:
-    organization: ferra-rally
-    token:
+      organization: ferra-rally
+      token:
         secure: 7c76f8ff222da584e74f9209d5a955ffb959c5a2
 script:
     - ant build
