@@ -1,4 +1,4 @@
-package logic.loginview;
+package logic.loginView;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;

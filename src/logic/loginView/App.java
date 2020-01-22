@@ -1,4 +1,4 @@
-package logic.loginview;
+package logic.loginView;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

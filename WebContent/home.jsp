@@ -5,10 +5,11 @@
 
 <% 
     int i;
+	BuyTicketController btc=BuyTicketController.getInstance();
 	GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 	String username = gu.getUsername();
-	List<MusicEventBean> musicEvents = BuyTicketController.getInstance().getSuggestedEvents(username);
-	List<ArtistBean> artists = BuyTicketController.getInstance().getSuggestedArtist(username);
+	List<MusicEventBean> musicEvents = btc.getSuggestedEvents(username);
+	List<ArtistBean> artists = btc.getSuggestedArtist(username);
 	for(i = 0; i < musicEvents.size(); i++){
 		if(request.getParameter("m" + i)!=null){
 			session.setAttribute("Mevent",musicEvents.get(i));
@@ -16,11 +17,18 @@
 			<jsp:forward page="musicEventDetail.jsp"/>
 			<%
 		}
+		if(request.getParameter("ar" + i)!=null){
+			List<ArtistBean> sArt=btc.getSearchArtist(musicEvents.get(i).getArtistId());
+			request.setAttribute("artist",sArt.get(0));
+			%>
+			<jsp:forward page="artistDetail.jsp"/>
+			<%
+		}
 	}
 	
 	for(i = 0; i < artists.size(); i++){
 		if(request.getParameter("a" + i)!=null){
-			session.setAttribute("artist",artists.get(i));
+			request.setAttribute("artist",artists.get(i));
 			%>
 			<jsp:forward page="artistDetail.jsp"/>
 			<%
@@ -28,7 +36,7 @@
 	}
 	
 	if(request.getParameter("search") != null){
-		request.setAttribute("search", request.getParameter("search"));
+		session.setAttribute("search", request.getParameter("search"));
 		%>
 		<jsp:forward page="searchResult.jsp"/>
 		<%
@@ -115,7 +123,7 @@
   	<div class="card-body">
 	<input type="submit" name = "<%="m" + i%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getName() %>">
   	<br>
-  	<input type="submit" name = "<%="m" + i%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getArtistId() %>">
+  	<input type="submit" name = "<%="ar" + i%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getArtistId() %>">
   </div>
   </form>
 </div>
