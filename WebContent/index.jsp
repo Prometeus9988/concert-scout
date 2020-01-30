@@ -99,7 +99,14 @@ if (request.getParameter("register") != null){
             session.setAttribute("user", generalUserBean);
             %>
             <jsp:forward page="home.jsp"/>
-        <% }
+        <% 
+        } else if (gu.getRole().equals("admin")){
+        	session.setAttribute("user", generalUserBean);
+        	%>
+        	<jsp:forward page="adminMusicEvent.jsp"/>
+        	<%
+        	
+        }
     }
 %>
 </div>

@@ -4,17 +4,14 @@
 
 <%
 	if(request.getParameter("add") != null){
-		System.out.println(request.getParameter("name"));
-		System.out.println(request.getParameter("location"));
-		System.out.println(request.getParameter("date"));
-		System.out.println(request.getParameter("coverPicture"));
+		System.out.println(request.getParameter("text"));
 	}
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Home</title>
+<title>News</title>
     <!-- info about content, e.g.: content type, keywords, charset or description -->
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <!-- linked CSS -->
@@ -42,7 +39,10 @@
 
  <div class="splitBanner left">
   <div class="centered">
-  
+    
+<%
+GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
+%>
   <!-- Logo -->
   <div class = "logoPosition">
   <img class = "logoImg" src="img/concertIcon.png" height = 106.8 width = 106.8>
@@ -52,30 +52,29 @@
   </div>
   
     <ul>
-    <li><form action="artistHome.jsp" method="POST"><input type="submit" class = "selected" value="Add Music Event"></form></li>
-    <li><form action="addNews.jsp" method="POST"><input type="submit" class = "notSelected" value="Add News"></form></li>
+    <li><form action="artistHome.jsp" method="POST"><input type="submit" class = "notSelected" value="Add Music Event"></form></li>
+    <li><form action="addNews.jsp" method="POST"><input type="submit" class = "selected" value="Add News"></form></li>
     <li><form action="logout.jsp" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
     </ul>
   </div>
 </div>
 <div class="splitBackground right">
   <div class="centered">
-  
-<%
-GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
-%>
-<h1>Welcome <%= gu.getUsername() %></h1>
-<form action = "artistHome.jsp" method = "POST">
+ <h1>Welcome <%= gu.getUsername() %></h1>
+<form action = "addNews.jsp" method = "POST">
   <div class="form-group col-md-3 col-md-offset-3" style = "width:500px; border-width:2px; border-style:solid; border-color:#b0b0b0; border-radius: 10px;">
     <div class = "form.group"><br>
-    <label>Add Music Event</label><br>
-    <input type="text" class="form-control" name="name" placeholder="Name"><br>
-    <input type="text" class="form-control" name="location" placeholder="Location"><br>
-    <input type="date" class="form-control" name="date" placeholder="Date"><br>
-    <label for="avatar">Choose a cover picture:</label>
+    <label>Add News</label><br>
+
+    <!-- News text area -->
+    <div class="input-group">
+  		<textarea class="form-control" aria-label="With textarea" name="text" style="width:450px;"></textarea>
+	</div>
+	
+	<label for="avatar">Choose a picture(optional):</label>
 	<input type="file" id="coverPicture" name="coverPicture" accept="image/png, image/jpeg"><br>
+    <input name="add" type="submit" value="Post News" class="btn btn-info buttonColor"><br>
     
-    <input name="add" type="submit" value="Create Music Event" class="btn btn-info buttonColor"><br>
 </div>
 </div>
 </form>
@@ -84,3 +83,4 @@ GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 </div>
 </body>
 </html>
+  
