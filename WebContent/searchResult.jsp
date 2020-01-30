@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.ArrayList,logic.buyticket.*, java.util.List, logic.login.GeneralUserBean" %>
+<%@ page import="java.util.ArrayList, logic.bean.*, logic.buyticket.*, java.util.List,logic.bean.GeneralUserBean" %>
 <!DOCTYPE html>
 <% 
     int i;

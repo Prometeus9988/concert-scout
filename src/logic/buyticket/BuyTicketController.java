@@ -6,9 +6,15 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import logic.login.GeneralUserBean;
-import logic.login.User;
-import logic.login.UserBean;
+import logic.bean.ArtistBean;
+import logic.bean.GeneralUserBean;
+import logic.bean.MusicEventBean;
+import logic.bean.UserBean;
+import logic.dao.ArtistDao;
+import logic.dao.MusicEventDao;
+import logic.entity.Artist;
+import logic.entity.MusicEvent;
+import logic.entity.User;
 
 public class BuyTicketController {
 	private static final Logger logger = Logger.getLogger(BuyTicketController.class.getName());

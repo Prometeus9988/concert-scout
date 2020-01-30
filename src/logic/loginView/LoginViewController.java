@@ -8,6 +8,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import java.io.IOException;
+
+import logic.bean.GeneralUserBean;
 import logic.login.*;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;

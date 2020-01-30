@@ -1,7 +1,12 @@
 package logic.login;
 
-import logic.buyticket.ArtistBean;
-import logic.buyticket.ArtistDao;
+import logic.bean.ArtistBean;
+import logic.bean.GeneralUserBean;
+import logic.bean.UserBean;
+import logic.dao.ArtistDao;
+import logic.dao.GeneralUserDao;
+import logic.dao.UserDao;
+import logic.entity.GeneralUser;
 import logic.utils.Queries;
 
 public class LoginController {

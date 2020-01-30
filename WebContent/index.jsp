@@ -4,12 +4,12 @@
 
 <!-- Si dichiara la variabile loginBean e istanzia un oggetto LoginBean -->
 <jsp:useBean id="generalUserBean" scope="request"
-             class="logic.login.GeneralUserBean"/>
+             class="logic.bean.GeneralUserBean"/>
 
 <!-- Mappa automaticamente tutti gli attributi dell'oggetto loginBean e le proprietà JSP -->
 <jsp:setProperty name="generalUserBean" property="*"/>
 
-<%@ page import="logic.login.*, logic.buyticket.ArtistBean" %>
+<%@ page import="logic.bean.*, logic.bean.ArtistBean, logic.login.*" %>
 <%
 String regMessage = "Register";
 if (request.getParameter("register") != null){
