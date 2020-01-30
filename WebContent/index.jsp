@@ -9,9 +9,10 @@
 <!-- Mappa automaticamente tutti gli attributi dell'oggetto loginBean e le proprietà JSP -->
 <jsp:setProperty name="generalUserBean" property="*"/>
 
-<%@ page import="logic.bean.*, logic.bean.ArtistBean, logic.login.*" %>
+<%@ page import="logic.bean.*, logic.bean.ArtistBean, logic.login.*, logic.utils.*" %>
 <%
 String regMessage = "Register";
+LoginController controller = ControllerCreator.getInstance().getLoginController();
 if (request.getParameter("register") != null){
 	Boolean regResult = false;
 	String email = request.getParameter("createEmail");
@@ -23,11 +24,11 @@ if (request.getParameter("register") != null){
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		UserBean u = new UserBean(username, password, firstName, lastName, email);
-		regResult = LoginController.getInstance().createUser(u);
+		regResult = controller.createUser(u);
 	} else if(userType.equals("Artist")){
 		String bandName = request.getParameter("bandName");	
 		ArtistBean a = new ArtistBean(username, password, bandName, "", email);
-		regResult = LoginController.getInstance().createArtist(a);
+		regResult = controller.createArtist(a);
 	}
 	if(regResult == true){
 		regMessage = "Registration Successfull";
@@ -83,7 +84,6 @@ if (request.getParameter("register") != null){
   <div class ="col-sm-5" style = "padding-top:170px;">
   <%
 
-    LoginController controller = new LoginController();
   	if (request.getParameter("login") != null) {
     	GeneralUserBean gu = controller.login(generalUserBean);
         if (gu == null) {

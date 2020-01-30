@@ -18,18 +18,6 @@ import logic.entity.User;
 
 public class BuyTicketController {
 	private static final Logger logger = Logger.getLogger(BuyTicketController.class.getName());
-	private static BuyTicketController instance = null;
-	
-	public BuyTicketController() {
-
-	}
-	
-	public  static BuyTicketController getInstance() {
-		if(instance == null) {
-			instance = new BuyTicketController();
-		}
-		return instance;
-	}
 
 	public List<MusicEventBean> getSuggestedEvents(String username) {
 		MusicEventDao med = new MusicEventDao();

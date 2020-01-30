@@ -10,20 +10,7 @@ import logic.entity.GeneralUser;
 import logic.utils.Queries;
 
 public class LoginController {
-	
-	private static LoginController instance = null;
-	
-	public LoginController() {
-	
-	}
-	
-	public static LoginController getInstance() {
-		if(instance == null) {
-			instance = new LoginController();
-		}
-		return instance;
-	}
-	
+
 	public static void main(String[] args) {
 		System.out.println("To Implement");
 	}

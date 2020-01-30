@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.ArrayList, logic.buyticket.*, java.util.List, logic.bean.*" %>
+<%@ page import="java.util.ArrayList, logic.buyticket.*, java.util.List, logic.utils.*, logic.bean.*" %>
 
 
 <% 
     int i;
-	BuyTicketController btc=BuyTicketController.getInstance();
+	//BuyTicketController btc=BuyTicketController.getInstance();
+	BuyTicketController btc = ControllerCreator.getInstance().getBuyTicketController();
 	GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 	String username = gu.getUsername();
 	List<MusicEventBean> musicEvents = btc.getSuggestedEvents(username);

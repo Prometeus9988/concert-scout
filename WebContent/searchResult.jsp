@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.ArrayList, logic.bean.*, logic.buyticket.*, java.util.List,logic.bean.GeneralUserBean" %>
+<%@ page import="java.util.ArrayList, logic.bean.*, logic.utils.*, logic.buyticket.*, java.util.List,logic.bean.GeneralUserBean" %>
 <!DOCTYPE html>
 <% 
     int i;
@@ -8,7 +8,7 @@
 	String username = gu.getUsername();	
 	
 	String searchString = (String) session.getAttribute("search");	
-	BuyTicketController btc=BuyTicketController.getInstance();
+	BuyTicketController btc = ControllerCreator.getInstance().getBuyTicketController();
     List<MusicEventBean> musicEvents = btc.getSearchMusicEvent(searchString);
     List<ArtistBean> artists = btc.getSearchArtist(searchString);
 	

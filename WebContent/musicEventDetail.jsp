@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ page import="logic.buyticket.*,logic.bean.*" %>
+    <%@ page import="logic.buyticket.*,logic.bean.*, logic.utils.*" %>
 <%
 	String part;
 
 	MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
 	GeneralUserBean user = (GeneralUserBean) session.getAttribute("user");
-	
+	BuyTicketController controller = ControllerCreator.getInstance().getBuyTicketController();
 	//Check if a user is participating to a concert
-	boolean isPart = BuyTicketController.getInstance().isParticipating(user, meb);
+	boolean isPart = controller.isParticipating(user, meb);
 
 	if(isPart == false){
 		part = "Add Participation";
@@ -21,10 +21,10 @@
 		user = (GeneralUserBean) session.getAttribute("user");
 				
 		if(isPart == false){
-			BuyTicketController.getInstance().addParticipation(user, meb);
+			controller.addParticipation(user, meb);
 			part="Remove participation";
 		} else {
-			BuyTicketController.getInstance().removeParticipation(user, meb);
+			controller.removeParticipation(user, meb);
 			part="Add participation";
 		}
 	}
