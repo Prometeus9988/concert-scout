@@ -97,7 +97,7 @@
 </div>
 
 <div class="splitBackground right">
-  <div class="centered">
+  <div class="centered" style="margin-left:30px;">
   
   <!-- Search Bar -->
   <form action="home.jsp" method="POST">
@@ -106,7 +106,7 @@
 </div>
 </form>
 
-    <h2>Welcome <%=username%></h2>
+    <h2><i>Welcome <%=username%></i></h2>
     
     <!-- List of suggested events -->
     <h3 class = "h3">Suggested Events</h3>

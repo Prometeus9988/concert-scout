@@ -18,6 +18,7 @@ if (request.getParameter("register") != null){
 	String username = request.getParameter("createUsername");
 	String password = request.getParameter("createPassword");
 	String userType = request.getParameter("userType");
+	
 	if(userType.equals("User")){
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
@@ -81,8 +82,9 @@ if (request.getParameter("register") != null){
   </div>
   <div class ="col-sm-5" style = "padding-top:170px;">
   <%
-	LoginController controller = LoginController.getInstance();
-    if (request.getParameter("login") != null) {
+
+    LoginController controller = new LoginController();
+  	if (request.getParameter("login") != null) {
     	GeneralUserBean gu = controller.login(generalUserBean);
         if (gu == null) {
         	  %>

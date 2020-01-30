@@ -40,7 +40,7 @@
 </div>
 
 <div class="splitBackground right">
-  <div class="centered">
+  <div class="centered" style="margin-left:30px;">
     <h2>News</h2>
   </div>
 </div> 

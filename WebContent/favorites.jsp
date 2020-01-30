@@ -40,7 +40,7 @@
 </div>
 
 <div class="splitBackground right">
-  <div class="centered">
+  <div class="centered" style="margin-left:30px;">
     <h2>Favorites</h2>
   </div>
 </div> 

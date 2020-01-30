@@ -82,10 +82,11 @@
 </div>
 
 <div class="splitBackground right">
-  <div class="centered">
-  
   <!-- Concert Cover -->
   <img src = "img/concert.jpg" height = 334  width = 1252 style = "object-fit: cover;" >
+
+  <div class="centered" style="margin-left:30px;">
+  
 
 <form action = "home.jsp" method = "POST">
 <input type="submit" class = "submit" value = "back">

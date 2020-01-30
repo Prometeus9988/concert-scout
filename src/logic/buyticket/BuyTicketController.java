@@ -13,7 +13,8 @@ import logic.login.UserBean;
 public class BuyTicketController {
 	private static final Logger logger = Logger.getLogger(BuyTicketController.class.getName());
 	private static BuyTicketController instance = null;
-	private BuyTicketController() {
+	
+	public BuyTicketController() {
 
 	}
 	

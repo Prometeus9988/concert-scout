@@ -13,7 +13,7 @@ public class App extends Application {
 		
 		main.setTitle("LIVEtheMUSIC");
 		LoginViewController lvc=new LoginViewController();
-		FXMLLoader loader=new FXMLLoader(getClass().getResource("FXML/Login.fxml"));
+		FXMLLoader loader=new FXMLLoader(getClass().getResource("Login.fxml"));
 		loader.setController(lvc);
 		Scene scene=new Scene(loader.load());
 		lvc.init();

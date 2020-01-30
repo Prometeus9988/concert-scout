@@ -91,7 +91,7 @@
 </div>
 
 <div class="splitBackground right">
-  <div class="centered">
+  <div class="centered" style="margin-left:30px;">
 
 <h1>Search results for "<%=searchString %>"</h1>
 <h1>Music Events</h1>

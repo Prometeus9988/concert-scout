@@ -8,7 +8,7 @@ public class LoginController {
 	
 	private static LoginController instance = null;
 	
-	private LoginController() {
+	public LoginController() {
 	
 	}
 	
