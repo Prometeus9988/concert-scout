@@ -26,14 +26,8 @@ public class LoginServlet extends HttpServlet{
 	public LoginServlet() {
 		super();
 	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-//		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-//		rd.forward(request, response);
-	}
 	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();

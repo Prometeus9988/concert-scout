@@ -13,11 +13,11 @@
    <children>
       <SplitPane layoutX="8.0" layoutY="-6.0" prefHeight="800.0" prefWidth="407.0" AnchorPane.leftAnchor="0.0">
          <items>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color:#202A25;">
                <children>
-                  <Label layoutX="51.0" layoutY="535.0" text="Username" />
+                  <Label layoutX="51.0" layoutY="535.0" text="Username" style="-fx-text-fill: white;"/>
                   <TextField fx:id="usernameTextField" layoutX="51.0" layoutY="562.0" />
-                  <Label layoutX="51.0" layoutY="604.0" text="Password" />
+                  <Label layoutX="51.0" layoutY="604.0" text="Password" style="-fx-text-fill: white;"/>
                   <PasswordField fx:id="passwordBox" layoutX="51.0" layoutY="629.0" />
                   <Button fx:id="loginButton" layoutX="53.0" layoutY="676.0" mnemonicParsing="false" onAction="#loginButtonAction" text="Login" />
                </children>
@@ -25,10 +25,10 @@
          </items></SplitPane>
       <SplitPane layoutX="407.0" layoutY="-6.0" prefHeight="809.0" prefWidth="1027.0">
          <items>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color:#F5EDF0;">
                <children>
                   <Label fx:id="titleLabel" alignment="CENTER" layoutX="418.0" layoutY="39.0" prefHeight="52.0" prefWidth="190.0" text="Login" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="428.0" layoutX="271.0" layoutY="143.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="20.0" strokeType="INSIDE" width="484.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" style="-fx-fill:#F5EDF0;" height="428.0" layoutX="271.0" layoutY="143.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="20.0" strokeType="INSIDE" width="484.0" />
                   <TextField fx:id="emailField" layoutX="294.0" layoutY="167.0" prefHeight="26.0" prefWidth="448.0" promptText="Email" />
                   <TextField fx:id="usernameRegField" layoutX="294.0" layoutY="213.0" prefHeight="26.0" prefWidth="448.0" promptText="Username" />
                   <PasswordField fx:id="passwordRegField" layoutX="294.0" layoutY="260.0" prefHeight="26.0" prefWidth="448.0" promptText="Password" />
@@ -37,7 +37,7 @@
                   <TextField fx:id="lastNameField" layoutX="294.0" layoutY="412.0" prefHeight="26.0" prefWidth="448.0" promptText="Last Name" />
                   <Label layoutX="294.0" layoutY="455.0" prefHeight="32.0" prefWidth="144.0" text="Type of user" />
                   <ComboBox fx:id="typeOfUserField" layoutX="291.0" layoutY="487.0" prefHeight="28.0" prefWidth="448.0" />
-                  <Button layoutX="294.0" layoutY="531.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" />
+                  <Button style = "-fx-background-color: #F5CB5C; -fx-text-fill: black;" layoutX="294.0" layoutY="531.0" mnemonicParsing="false" onAction="#registerButtonAction" text="Register" />
                </children>
             </AnchorPane>
          </items>

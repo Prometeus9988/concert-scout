@@ -15,7 +15,19 @@ import logic.utils.*;
 public class MusicEventDao {
 	
 	private static final Logger logger = Logger.getLogger(MusicEventDao.class.getName());
-
+	private static MusicEventDao instance = null;
+	
+	public MusicEventDao() {
+		//TODO da mettere private e impostare tutto a singleton
+	}
+	
+	public MusicEventDao getInstance() {
+		if(instance == null) {
+			instance = new MusicEventDao();
+		}
+		return instance;
+	}
+	
 	public List<MusicEvent> getSuggestedEvents(String username){
         //PreparedStatement prepStmt = null;
         Connection conn = null;

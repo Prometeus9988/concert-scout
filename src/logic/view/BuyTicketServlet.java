@@ -24,6 +24,7 @@ public class BuyTicketServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 102831973239L;
 	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -59,7 +60,7 @@ public class BuyTicketServlet extends HttpServlet{
 		} else {
 			for(i = 0; i < musicEvents.size(); i++){
 				if(request.getParameter("m" + i)!=null){
-					session.setAttribute("Mevent",musicEvents.get(i));
+					session.setAttribute("Mevent", musicEvents.get(i));
 					boolean isPart = btc.isParticipating(gu, musicEvents.get(i));
 					request.setAttribute("isPart", isPart);
 					rd = request.getRequestDispatcher("musicEventDetail.jsp");
@@ -81,4 +82,5 @@ public class BuyTicketServlet extends HttpServlet{
 		
 		rd.forward(request, response);
 	}
+	
 }
