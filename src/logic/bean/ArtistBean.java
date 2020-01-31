@@ -1,8 +1,12 @@
 package logic.bean;
 
+import java.io.Serializable;
+
 import logic.entity.Artist;
 
-public class ArtistBean extends GeneralUserBean{
+public class ArtistBean extends GeneralUserBean implements Serializable{
+	static final long serialVersionUID = 42L;
+	
 	private String bandName;
 	private String profilePicture;
 	

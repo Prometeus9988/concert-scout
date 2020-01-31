@@ -1,7 +1,8 @@
 package logic.view;
 
 import java.io.IOException;
-import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,6 +22,7 @@ import logic.utils.*;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet{
 	
+	private static final Logger logger = Logger.getLogger(LoginServlet.class.getName());
 	private static final long serialVersionUID = 102831973239L;
 	
 	public LoginServlet() {
@@ -30,8 +32,9 @@ public class LoginServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String index = "index.jsp";
 		HttpSession session = request.getSession();
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher(index);
 
 		LoginController controller = ControllerCreator.getInstance().getLoginController();
 		
@@ -68,9 +71,7 @@ public class LoginServlet extends HttpServlet{
 				username = request.getParameter("createUsername");
 				password = request.getParameter("createPassword");
 				userType = request.getParameter("userType");
-				
-				System.out.println("aaaaaa " + username + userType);
-				
+
 				if(userType.equals("User")){
 					String firstName = request.getParameter("firstName");
 					String lastName = request.getParameter("lastName");
@@ -82,7 +83,7 @@ public class LoginServlet extends HttpServlet{
 					regResult = controller.createArtist(a);
 				}
 				
-				if(regResult){
+				if(Boolean.TRUE.equals(regResult)){
 					rd = request.getRequestDispatcher("index.jsp");
 					request.setAttribute("reg", "registered");
 				} else {
@@ -93,8 +94,11 @@ public class LoginServlet extends HttpServlet{
 		}
 
 
-		rd.forward(request, response);
-
+		try {
+			rd.forward(request, response);
+		} catch (Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
 	}
 	
 }

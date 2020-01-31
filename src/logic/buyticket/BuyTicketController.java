@@ -21,8 +21,7 @@ public class BuyTicketController {
 
 	public List<MusicEventBean> getSuggestedEvents(String username) {
 		MusicEventDao med = new MusicEventDao();
-		//List<MusicEventBean> lb = null;
-		//List<MusicEvent> l = med.getSuggestedEventsStub(username);
+
 		List<MusicEvent> l = med.getSuggestedEvents(username);
 		List<MusicEventBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {
@@ -34,8 +33,7 @@ public class BuyTicketController {
 	
 	public List<MusicEventBean> getSearchMusicEvent(String searchString) {
 		MusicEventDao med = new MusicEventDao();
-		//List<MusicEventBean> lb = null;
-		//List<MusicEvent> l = med.getSuggestedEventsStub(username);
+
 		List<MusicEvent> l = med.getSearchMusicEvent(searchString);
 		List<MusicEventBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {
@@ -47,8 +45,7 @@ public class BuyTicketController {
 	
 	public List<ArtistBean> getSearchArtist(String searchString) {
 		ArtistDao ad = new ArtistDao();
-		//List<MusicEventBean> lb = null;
-		//List<MusicEvent> l = med.getSuggestedEventsStub(username);
+
 		List<Artist> l = ad.getSearchArtist(searchString);
 		List<ArtistBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {

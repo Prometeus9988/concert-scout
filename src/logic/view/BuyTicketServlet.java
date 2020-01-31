@@ -3,6 +3,8 @@ package logic.view;
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,6 +24,7 @@ import logic.utils.*;
 @WebServlet("/BuyTicketServlet")
 public class BuyTicketServlet extends HttpServlet{
 	
+	private static final Logger logger = Logger.getLogger(BuyTicketServlet.class.getName());
 	private static final long serialVersionUID = 102831973239L;
 	
 	@Override
@@ -74,13 +77,17 @@ public class BuyTicketServlet extends HttpServlet{
 			
 			for(i = 0; i < artists.size(); i++){
 				if(request.getParameter("a" + i)!=null){
-					request.setAttribute("artist",artists.get(i));
+					request.setAttribute("artist", artists.get(i));
 					rd = request.getRequestDispatcher("artistDetail.jsp");
 				}
 			}
 		}
 		
-		rd.forward(request, response);
+		try {
+			rd.forward(request, response);
+		} catch(Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
 	}
 	
 }

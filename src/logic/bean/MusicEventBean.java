@@ -1,8 +1,11 @@
 package logic.bean;
 
+import java.io.Serializable;
+
 import logic.entity.MusicEvent;
 
-public class MusicEventBean {
+public class MusicEventBean implements Serializable {
+	static final long serialVersionUID = 42L;
 	private String id;
 	private String artistId;
 	private String name;
