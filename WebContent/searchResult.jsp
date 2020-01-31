@@ -7,35 +7,11 @@
 	GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 	String username = gu.getUsername();	
 	
-	String searchString = (String) session.getAttribute("search");	
+	String searchString = (String) request.getAttribute("searchString");	
 	BuyTicketController btc = ControllerCreator.getInstance().getBuyTicketController();
-    List<MusicEventBean> musicEvents = btc.getSearchMusicEvent(searchString);
-    List<ArtistBean> artists = btc.getSearchArtist(searchString);
-	
-    for(i = 0; i < musicEvents.size(); i++){
-		if(request.getParameter("m" + i)!=null){
-			session.setAttribute("Mevent",musicEvents.get(i));
-			%>
-			<jsp:forward page="musicEventDetail.jsp"/>
-			<%
-		}
-		if(request.getParameter("ar" + i)!=null){
-			List<ArtistBean> sArt=btc.getSearchArtist(musicEvents.get(i).getArtistId());
-			request.setAttribute("artist",sArt.get(0));
-			%>
-			<jsp:forward page="artistDetail.jsp"/>
-			<%
-		}
-	}
-	
-	for(i = 0; i < artists.size(); i++){
-		if(request.getParameter("a" + i)!=null){
-			request.setAttribute("artist",artists.get(i));
-			%>
-			<jsp:forward page="artistDetail.jsp"/>
-			<%
-		}
-	}
+	List<MusicEventBean> musicEvents = (List<MusicEventBean>) request.getAttribute("musicEventList");
+	List<ArtistBean> artists = (List<ArtistBean>) request.getAttribute("artistList");
+
 %> 
 <html>
 <head>
@@ -79,13 +55,13 @@
   </div>
   
     <ul>
-    <li><form action="home.jsp" method="GET"><input type="submit" class = "notSelected" value="Home"></form></li>
-    <li><form action="news.jsp" method="GET"><input type="submit" class = "notSelected" value="News"></form></li>
-    <li><form action="favorites.jsp" method="GET"><input type="submit" class = "notSelected" value="Favorites"></form></li>
-    <li><form action="friends.jsp" method="GET"><input type="submit" class = "notSelected" value="Friends"></form></li>
-    <li><form action="aroundyou.jsp" method="GET"><input type="submit" class = "notSelected" value="Around you"></form></li>
-    <li><form action="myevents.jsp" method="GET"><input type="submit" class = "notSelected" value="My Events"></form></li>
-    <li><form action="index.jsp" method="GET"><input type="submit" class = "notSelected" value="Logout"></form></li>
+    <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
+    <li><form action="news.jsp" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
+    <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
+    <li><form action="friends.jsp" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
+    <li><form action="aroundyou.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
+    <li><form action="myevents.jsp" method="POST"><input type="submit" class = "notSelected" value="My Events"></form></li>
+    <li><form action="index.jsp" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
     </ul>
   </div>
 </div>
@@ -103,7 +79,7 @@
 
     	<div class="card text-center" style="width: 18rem;">
     	
-    <form action="searchResult.jsp" method="POST">
+    <form action="BuyTicketServlet" method="POST">
   	<!-- <img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155> -->
   	<input type="image" name = "<%="m" + i%>" src="img/concert.jpg" class="btTxt card-img-top cardImg submit" height = 215 width = 155 alt="Submit Form"/>
   	<div class="card-body">
@@ -126,7 +102,7 @@
     	%><li class = "item">
 
     	<div class="card text-center" style="width: 18rem;">
-    <form action="searchResult.jsp" method="POST">
+    <form action="BuyTicketServlet" method="POST">
   	<img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155 alt="Submit">
   	<div class="card-body">
     <input type="submit" name = "<%="a" + i%>" class = "btTxt astext" value = "<%= artists.get(i).getBandName() %>">

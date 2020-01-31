@@ -11,31 +11,17 @@
 
 <%@ page import="logic.bean.*, logic.bean.ArtistBean, logic.login.*, logic.utils.*" %>
 <%
-String regMessage = "Register";
-LoginController controller = ControllerCreator.getInstance().getLoginController();
-if (request.getParameter("register") != null){
-	Boolean regResult = false;
-	String email = request.getParameter("createEmail");
-	String username = request.getParameter("createUsername");
-	String password = request.getParameter("createPassword");
-	String userType = request.getParameter("userType");
-	
-	if(userType.equals("User")){
-		String firstName = request.getParameter("firstName");
-		String lastName = request.getParameter("lastName");
-		UserBean u = new UserBean(username, password, firstName, lastName, email);
-		regResult = controller.createUser(u);
-	} else if(userType.equals("Artist")){
-		String bandName = request.getParameter("bandName");	
-		ArtistBean a = new ArtistBean(username, password, bandName, "", email);
-		regResult = controller.createArtist(a);
+	String regMessage = "Register";;
+
+	String res = (String) request.getAttribute("reg");
+
+	if (res != null) {
+		if (res.equals("registered")) {
+			regMessage = "Registration successfull";
+		} else if (res.equals("notRegistered")) {
+			regMessage = "Registration unsuccessfull";
+		}
 	}
-	if(regResult == true){
-		regMessage = "Registration Successfull";
-	} else {
-		regMessage = "Username already taken";
-	}
-}
 %>
 <!-- HTML 5 -->
 <!DOCTYPE html>
@@ -82,38 +68,21 @@ if (request.getParameter("register") != null){
   </div>
   </div>
   <div class ="col-sm-5" style = "padding-top:170px;">
-  <%
-
-  	if (request.getParameter("login") != null) {
-    	GeneralUserBean gu = controller.login(generalUserBean);
-        if (gu == null) {
-        	  %>
-              <h6 style="color:red;">Wrong username or password</h6>
-      <% 
-        } else if(gu.getRole().equals("artist")){
-            session.setAttribute("user", generalUserBean);
-        	%>
-        	<jsp:forward page="artistHome.jsp"/>
-        	<%
-        } else if (gu.getRole().equals("user")) {
-            session.setAttribute("user", generalUserBean);
-            %>
-            <jsp:forward page="home.jsp"/>
-        <% 
-        } else if (gu.getRole().equals("admin")){
-        	session.setAttribute("user", generalUserBean);
-        	%>
-        	<jsp:forward page="adminMusicEvent.jsp"/>
-        	<%
-        	
-        }
-    }
+				<%
+					String log = (String) request.getAttribute("login");
+					if (log != null) {
+						if (log.equals("notSuccessfull")) {
+				%>
+				<h6 style="color: red;">Wrong username or password</h6>
+				<%
+					}
+					}		
 %>
 </div>
   
   <!-- Login Form -->
-    <form action="index.jsp" name="myform" method="POST">
-
+    <form action="LoginServlet" name="loginForm" method="POST">
+<!-- senza servlet mettetre nell'action del form index.jsp -->
     <div class="form-group" style = "position: absolute; bottom: 10px; left: 15px;">
     <div>
                 <label for="username" class = "loginText">Username</label><br>
@@ -135,7 +104,7 @@ if (request.getParameter("register") != null){
 <div class = "splitBackgroundLogin right">
 
 <!-- Registration form -->
-<form action = "index.jsp" method = "POST">
+<form action = "LoginServlet" method = "POST">
   <div class="form-group col-md-3 col-md-offset-3" style = "width:500px; border-width:2px; border-style:solid; border-color:#b0b0b0; border-radius: 10px;">
     <div class = "form.group"><br>
     <label><%=regMessage %></label><br>

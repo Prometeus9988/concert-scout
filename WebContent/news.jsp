@@ -29,12 +29,12 @@
   </div>
   
     <ul>
-<li><form action="home.jsp" method="GET"><input type="submit" class = "notSelected" value="Home"></form></li>
-    <li><form action="news.jsp" method="GET"><input type="submit" class = "selected" value="News"></form></li>
-    <li><form action="favorites.jsp" method="GET"><input type="submit" class = "notSelected" value="Favorites"></form></li>
-    <li><form action="friends.jsp" method="GET"><input type="submit" class = "notSelected" value="Friends"></form></li>
-    <li><form action="aroundyou.jsp" method="GET"><input type="submit" class = "notSelected" value="Around you"></form></li>
-    <li><form action="myevents.jsp" method="GET"><input type="submit" class = "notSelected" value="My Events"></form></li>
+<li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
+    <li><form action="news.jsp" method="POST"><input type="submit" class = "selected" value="News"></form></li>
+    <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
+    <li><form action="friends.jsp" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
+    <li><form action="aroundyou.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
+    <li><form action="myevents.jsp" method="POST"><input type="submit" class = "notSelected" value="My Events"></form></li>
     </ul>
   </div>
 </div>

@@ -6,28 +6,15 @@
 
 	MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
 	GeneralUserBean user = (GeneralUserBean) session.getAttribute("user");
-	BuyTicketController controller = ControllerCreator.getInstance().getBuyTicketController();
-	//Check if a user is participating to a concert
-	boolean isPart = controller.isParticipating(user, meb);
+
+	boolean isPart = (boolean) request.getAttribute("isPart");
 
 	if(isPart == false){
 		part = "Add Participation";
 	} else {
 		part = "Remove Participation";
 	}
-	
-	if(request.getParameter("addPart") != null){
-		meb = (MusicEventBean) session.getAttribute("Mevent");
-		user = (GeneralUserBean) session.getAttribute("user");
-				
-		if(isPart == false){
-			controller.addParticipation(user, meb);
-			part="Remove participation";
-		} else {
-			controller.removeParticipation(user, meb);
-			part="Add participation";
-		}
-	}
+
 	session.setAttribute("Mevent", meb);
 %>
 
@@ -70,13 +57,13 @@
   </div>
   
     <ul>
-    <li><form action="home.jsp" method="GET"><input type="submit" class = "selected" value="Home"></form></li>
-    <li><form action="news.jsp" method="GET"><input type="submit" class = "notSelected" value="News"></form></li>
-    <li><form action="favorites.jsp" method="GET"><input type="submit" class = "notSelected" value="Favorites"></form></li>
-    <li><form action="friends.jsp" method="GET"><input type="submit" class = "notSelected" value="Friends"></form></li>
-    <li><form action="aroundyou.jsp" method="GET"><input type="submit" class = "notSelected" value="Around you"></form></li>
-    <li><form action="myevents.jsp" method="GET"><input type="submit" class = "notSelected" value="My Events"></form></li>
-    <li><form action="index.jsp" method="GET"><input type="submit" class = "notSelected" value="Logout"></form></li>
+    <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
+    <li><form action="news.jsp" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
+    <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
+    <li><form action="friends.jsp" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
+    <li><form action="aroundyou.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
+    <li><form action="myevents.jsp" method="POST"><input type="submit" class = "notSelected" value="My Events"></form></li>
+    <li><form action="index.jsp" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
     </ul>
   </div>
 </div>
@@ -88,7 +75,7 @@
   <div class="centered" style="margin-left:30px;">
   
 
-<form action = "home.jsp" method = "POST">
+<form action = "BuyTicketServlet" method = "POST">
 <input type="submit" class = "submit" value = "back">
 </form>
 
@@ -96,7 +83,7 @@
 <h2><%=meb.getLocation()%></h2>
 <h3><%=meb.getArtistId() %></h3>
 <!-- Add participation -->
-<form action = "musicEventDetail.jsp" method = "POST">
+<form action = "BuyTicketServlet" method = "POST">
 <input type="submit" name = "addPart" class = "" value = "<%=part%>">
 </form>
 </div>
