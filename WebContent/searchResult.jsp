@@ -108,6 +108,7 @@
   	<img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155 alt="Submit">
   	<div class="card-body">
     <input type="submit" name = "<%="a" + i%>" class = "btTxt astext" value = "<%= artists.get(i).getBandName() %>">
+  	<input type = "hidden" name = "searchString" value = "<%=searchString%>">
   </div>
   </form>
 </div>

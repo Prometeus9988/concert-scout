@@ -46,12 +46,12 @@ public class BuyTicketServlet extends HttpServlet{
 		if(request.getParameter("addPart") != null) {
 			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
 			boolean isPart = btc.isParticipating(gu, meb);
-			request.setAttribute("isPart", isPart);
 			if(isPart){
 				btc.removeParticipation(gu, meb);
 			} else {
 				btc.addParticipation(gu, meb);
 			}
+			request.setAttribute("isPart", !isPart);
 			rd = request.getRequestDispatcher("musicEventDetail.jsp");
 			
 		} else {
