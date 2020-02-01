@@ -24,6 +24,7 @@ public class LoginServlet extends HttpServlet{
 	
 	private static final Logger logger = Logger.getLogger(LoginServlet.class.getName());
 	private static final long serialVersionUID = 102831973239L;
+	private static final String INDEX = "index.jsp";
 	
 	public LoginServlet() {
 		super();
@@ -32,9 +33,8 @@ public class LoginServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String index = "index.jsp";
 		HttpSession session = request.getSession();
-		RequestDispatcher rd = request.getRequestDispatcher(index);
+		RequestDispatcher rd = request.getRequestDispatcher(INDEX);
 
 		LoginController controller = ControllerCreator.getInstance().getLoginController();
 		
@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet{
 			gu = controller.login(gu);
 			
 			if(gu == null) {
-				rd = request.getRequestDispatcher("index.jsp");
+				rd = request.getRequestDispatcher(INDEX);
 				request.setAttribute("login", "notSuccessfull");
 			} else if(gu.getRole().equals("user")){
 				rd = request.getRequestDispatcher("BuyTicketServlet");
@@ -84,15 +84,14 @@ public class LoginServlet extends HttpServlet{
 				}
 				
 				if(Boolean.TRUE.equals(regResult)){
-					rd = request.getRequestDispatcher("index.jsp");
+					rd = request.getRequestDispatcher(INDEX);
 					request.setAttribute("reg", "registered");
 				} else {
-					rd = request.getRequestDispatcher("index.jsp");
+					rd = request.getRequestDispatcher(INDEX);
 					request.setAttribute("reg", "notRegistered");
 				}
 			
 		}
-
 
 		try {
 			rd.forward(request, response);

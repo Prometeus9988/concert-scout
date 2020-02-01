@@ -34,8 +34,7 @@ public class MusicEventDao {
         List<MusicEvent> l = new ArrayList<>();
         try {
             conn = DBUserConnection.getUserConnection();
-            
-            //prepStmt = conn.prepareStatement();
+
             ResultSet rs = Queries.selectSuggestedMusicEvents(conn, username);
             
             if (!rs.first()) // rs not empty
@@ -51,24 +50,15 @@ public class MusicEventDao {
             rs.close();
 
         } catch (SQLException se) {
-        	// Errore durante l'apertura della connessione
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
         	logger.log(Level.WARNING, e.toString());
-//        } finally {
-//           try {
-//                if (stmt != null)
-//                    stmt.close();
-//            } catch (SQLException se2) {
-//            	logger.log(Level.WARNING, se2.toString());
-//            }
         }
         
         return l;
 	}
 	
 	public List<MusicEvent> getSearchMusicEvent(String searchString){
-        //PreparedStatement prepStmt = null;
         Connection conn = null;
         List<MusicEvent> l = new ArrayList<>();
         try {

@@ -19,4 +19,22 @@
     <servlet-name>home</servlet-name>
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
+  
+      <servlet>
+    <servlet-name>searchResult</servlet-name>
+    <servlet-class>logic.view.SearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>searchResult</servlet-name>
+    <url-pattern>/searchResult</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>musicEventDetail</servlet-name>
+    <servlet-class>logic.view.AddParticipationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>musicEventDetail</servlet-name>
+    <url-pattern>/musicEventDetail</url-pattern>
+  </servlet-mapping>
 </web-app>

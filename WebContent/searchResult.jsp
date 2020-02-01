@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.ArrayList, logic.bean.*, logic.utils.*, logic.buyticket.*, java.util.List,logic.bean.GeneralUserBean" %>
+<%@ page import="java.util.ArrayList, logic.bean.ArtistBean, logic.bean.MusicEventBean, logic.utils.*, java.util.List,logic.bean.GeneralUserBean" %>
 <!DOCTYPE html>
 <% 
     int i;
@@ -8,7 +8,8 @@
 	String username = gu.getUsername();	
 	
 	String searchString = (String) request.getAttribute("searchString");	
-	BuyTicketController btc = ControllerCreator.getInstance().getBuyTicketController();
+	request.setAttribute("searchString", searchString);
+	
 	List<MusicEventBean> musicEvents = (List<MusicEventBean>) request.getAttribute("musicEventList");
 	List<ArtistBean> artists = (List<ArtistBean>) request.getAttribute("artistList");
 
@@ -79,13 +80,14 @@
 
     	<div class="card text-center" style="width: 18rem;">
     	
-    <form action="BuyTicketServlet" method="POST">
+    <form action="SearchServlet" method="POST">
   	<!-- <img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155> -->
   	<input type="image" name = "<%="m" + i%>" src="img/concert.jpg" class="btTxt card-img-top cardImg submit" height = 215 width = 155 alt="Submit Form"/>
   	<div class="card-body">
 	<input type="submit" name = "<%="m" + i%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getName() %>">
   	<br>
   	<input type="submit" name = "<%="ar" + i%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getArtistId() %>">
+  	<input type = "hidden" name = "searchString" value = "<%=searchString%>"> 
   </div>
   </form>
 </div>
@@ -102,7 +104,7 @@
     	%><li class = "item">
 
     	<div class="card text-center" style="width: 18rem;">
-    <form action="BuyTicketServlet" method="POST">
+    <form action="SearchServlet" method="POST">
   	<img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155 alt="Submit">
   	<div class="card-body">
     <input type="submit" name = "<%="a" + i%>" class = "btTxt astext" value = "<%= artists.get(i).getBandName() %>">

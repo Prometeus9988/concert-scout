@@ -1,21 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ page import="logic.buyticket.*,logic.bean.*, logic.utils.*" %>
+    <%@ page import="logic.bean.MusicEventBean, logic.bean.GeneralUserBean, logic.utils.*" %>
 <%
 	String part;
-
+	String servlet = (String) session.getAttribute("servlet");
 	MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
 	GeneralUserBean user = (GeneralUserBean) session.getAttribute("user");
 
 	boolean isPart = (boolean) request.getAttribute("isPart");
-
-	if(isPart == false){
+	System.out.println(isPart);
+	if (isPart == false) {
 		part = "Add Participation";
 	} else {
 		part = "Remove Participation";
 	}
-
-	session.setAttribute("Mevent", meb);
+	//session.setAttribute("Mevent", meb);
 %>
 
 <!DOCTYPE html>
@@ -75,16 +74,17 @@
   <div class="centered" style="margin-left:30px;">
   
 
-<form action = "BuyTicketServlet" method = "POST">
-<input type="submit" class = "submit" value = "back">
-</form>
+
+<input type="submit" class = "submit" value = "back" onclick="history.back()">
+
 
 <h1><%=meb.getName()%></h1>
 <h2><%=meb.getLocation()%></h2>
 <h3><%=meb.getArtistId() %></h3>
 <!-- Add participation -->
-<form action = "BuyTicketServlet" method = "POST">
-<input type="submit" name = "addPart" class = "" value = "<%=part%>">
+<form action = <%=servlet %> method = "POST">
+<input type="submit" name = "addPart" value = "<%=part%>">
+<input type = "hidden" name = "isPart" value = "<%=isPart %>">
 </form>
 </div>
 </div>

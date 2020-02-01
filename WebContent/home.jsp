@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.ArrayList, logic.buyticket.*, java.util.List, logic.utils.*, logic.bean.*" %>
+<%@ page import="java.util.ArrayList, java.util.List, logic.utils.*, logic.bean.GeneralUserBean, logic.bean.MusicEventBean, logic.bean.ArtistBean" %>
 
 
 <% 
     int i;
 
-	BuyTicketController btc = ControllerCreator.getInstance().getBuyTicketController();
 	GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 	String username = gu.getUsername();
 	List<MusicEventBean> musicEvents = (List<MusicEventBean>) request.getAttribute("musicEventList");
@@ -72,9 +71,9 @@
   
   <!-- Search Bar -->
   <!-- home.jsp -->
-  <form action="BuyTicketServlet" method="POST">
+  <form action="SearchServlet" method="POST">
   <div class="md-form mt-0">
-  <input name = "search" class="form-control search" type="text" placeholder="Search..." aria-label="Search">
+  <input name = "searchString" class="form-control search" type="text" placeholder="Search..." aria-label="Search">
 </div>
 </form>
 
