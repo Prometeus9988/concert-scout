@@ -38,9 +38,11 @@ public class SearchServlet extends HttpServlet{
 		session.setAttribute("origin", "SearchServlet");
 		
 		String searchString = request.getParameter("searchString");
+		
 		if(searchString == null) {
 			searchString = (String) request.getAttribute("searchString");
 		}
+		
 		request.setAttribute("searchString", searchString);
 		
 		musicEvents = btc.getSearchMusicEvent(searchString);

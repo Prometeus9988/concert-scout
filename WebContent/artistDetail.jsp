@@ -60,9 +60,16 @@
 
 <div class="splitBackground right">
 <img src = "<%="img/profilePictures/" + ab.getProfilePicture() %>" height = 334  width = 1252 style = "object-fit: cover;" >
+  <form action = "ButtonHandler" method = "POST">
+<input type="submit" class = "submit" name = "back" value = "back">
+</form>
   <div class="centered" style="margin-left:30px;">
 	<h1><%=ab.getBandName()%></h1>
   </div>
+  <form action = "ButtonHandler" method = "POST">
+  <input type = "submit" name = "follow" value = "Follow">
+  <input type = "hidden" name = "artist" value = "<%=ab.getUsername() %>">
+  </form>
   </div>
   </div>
 

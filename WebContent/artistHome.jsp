@@ -54,7 +54,7 @@
     <ul>
     <li><form action="artistHome.jsp" method="POST"><input type="submit" class = "selected" value="Add Music Event"></form></li>
     <li><form action="addNews.jsp" method="POST"><input type="submit" class = "notSelected" value="Add News"></form></li>
-    <li><form action="logout.jsp" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
+    <li><form action="index.jsp" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
     </ul>
   </div>
 </div>
@@ -71,6 +71,7 @@ GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
     <label>Add Music Event</label><br>
     <input type="text" class="form-control" name="name" placeholder="Name"><br>
     <input type="text" class="form-control" name="location" placeholder="Location"><br>
+    <input type="text" class="form-control" name="ticketone" placeholder="TicketOne Link"><br>
     <input type="date" class="form-control" name="date" placeholder="Date"><br>
     <label for="avatar">Choose a cover picture:</label>
 	<input type="file" id="coverPicture" name="coverPicture" accept="image/png, image/jpeg"><br>

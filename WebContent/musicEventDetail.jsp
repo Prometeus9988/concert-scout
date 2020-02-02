@@ -84,7 +84,7 @@
 <!-- Add participation -->
 <form action = "ButtonHandler" method = "POST">
 <input type="submit" name = "addPart" value = "<%=part%>">
-<input type = "hidden" name = "isPart" value = "<%=isPart %>">
+<input type = "hidden" name = "isPart" value = "<%=isPart%>">
 </form>
 </div>
 </div>

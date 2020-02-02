@@ -58,6 +58,10 @@ public class ButtonHandler  extends HttpServlet{
 			String searchString = (String) session.getAttribute("searchString");
 			request.setAttribute("searchString", searchString);
 			rd = request.getRequestDispatcher(origin);
+		} else if(request.getParameter("follow") != null) {
+			String target = request.getParameter("artist");
+			
+			rd = request.getRequestDispatcher("artistDetail.jsp");
 		}
 		
 		try {
