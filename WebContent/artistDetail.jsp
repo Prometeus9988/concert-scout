@@ -3,7 +3,15 @@
     <%@ page import="logic.buyticket.*, logic.bean.ArtistBean" %>
 
 <%
-	ArtistBean ab = (ArtistBean) request.getAttribute("artist");
+	String foll;
+	ArtistBean ab = (ArtistBean) session.getAttribute("artist");
+	boolean isFoll = (boolean) request.getAttribute("isFoll");
+	
+	if (isFoll == false) {
+		foll = "Follow";
+	} else {
+		foll = "Unfollow";
+	}
 %>
 
 <!DOCTYPE html>
@@ -67,7 +75,7 @@
 	<h1><%=ab.getBandName()%></h1>
   </div>
   <form action = "ButtonHandler" method = "POST">
-  <input type = "submit" name = "follow" value = "Follow">
+  <input type = "submit" name = "follow" value = "<%=foll%>">
   <input type = "hidden" name = "artist" value = "<%=ab.getUsername() %>">
   </form>
   </div>

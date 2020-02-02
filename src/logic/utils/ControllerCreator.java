@@ -4,6 +4,7 @@ import logic.login.LoginController;
 import logic.addmusicevent.AddMusicEventController;
 import logic.addnews.AddNewsController;
 import logic.buyticket.BuyTicketController;
+import logic.followartist.FollowArtistController;
 
 public class ControllerCreator {
 	private static ControllerCreator instance = null;
@@ -33,5 +34,9 @@ public class ControllerCreator {
 	
 	public AddNewsController getAddNewsController() {
 		return new AddNewsController();
+	}
+	
+	public FollowArtistController getFollowArtistController() {
+		return new FollowArtistController();
 	}
 }

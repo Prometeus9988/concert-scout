@@ -166,11 +166,6 @@ public class MusicEventDao {
 				rs.close();
 				return true;
 			}
-			/*int part = rs.getInt("participation");
-			
-			if(part == 1) {
-				return true;
-			}*/
 			
 		} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());

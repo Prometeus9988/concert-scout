@@ -15,6 +15,7 @@ import logic.bean.ArtistBean;
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
 import logic.buyticket.BuyTicketController;
+import logic.followartist.FollowArtistController;
 import logic.utils.ControllerCreator;
 
 public class ButtonHandler  extends HttpServlet{
@@ -26,10 +27,11 @@ public class ButtonHandler  extends HttpServlet{
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		RequestDispatcher rd = null;
+		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");;
 		BuyTicketController btc = ControllerCreator.getInstance().getBuyTicketController();
 		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
-
+		FollowArtistController fac = ControllerCreator.getInstance().getFollowArtistController();
+		
 		if(request.getParameter("m") != null) {
 			String id = request.getParameter("Mevent");
 			MusicEventBean meb = btc.getMusicEvent(id, gu.getUsername());
@@ -41,7 +43,9 @@ public class ButtonHandler  extends HttpServlet{
 			String username = request.getParameter("artist");
 			System.out.println(username);
 			ArtistBean ab = btc.getArtist(username);
-			request.setAttribute("artist", ab);
+			session.setAttribute("artist", ab);
+			boolean isFoll = fac.isFollowing(gu, ab);
+			request.setAttribute("isFoll", !isFoll);
 			rd = request.getRequestDispatcher("artistDetail.jsp");
 		} else if(request.getParameter("addPart") != null) {
 			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
@@ -59,8 +63,15 @@ public class ButtonHandler  extends HttpServlet{
 			request.setAttribute("searchString", searchString);
 			rd = request.getRequestDispatcher(origin);
 		} else if(request.getParameter("follow") != null) {
-			String target = request.getParameter("artist");
-			
+			ArtistBean ab = (ArtistBean) session.getAttribute("artist");
+			boolean isFoll = fac.isFollowing(gu, ab);
+			System.out.println(isFoll);
+			request.setAttribute("isFoll", !isFoll);
+			if(isFoll){
+				fac.unfollow(gu, ab);
+			} else {
+				fac.follow(gu, ab);
+			}
 			rd = request.getRequestDispatcher("artistDetail.jsp");
 		}
 		

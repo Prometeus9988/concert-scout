@@ -123,4 +123,34 @@ public class Queries {
        	stm.closeOnCompletion();
        	return rs;
 	}
+	
+	public static ResultSet isFollowing(Connection con, String username, String artist) throws SQLException {
+        
+		String sql = "call livethemusic.is_following(?, ?);\r\n"; 
+		PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, username);
+        stm.setString(2,  artist);
+        stm.executeQuery();
+       	ResultSet rs = stm.executeQuery();
+       	stm.closeOnCompletion();
+       	return rs;
+	}
+	
+	public static void follow(Connection con, String username, String artist) throws SQLException{
+		String sql = "call livethemusic.follow_artist(?, ?);\r\n"; 
+		PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, username);
+        stm.setString(2, artist);
+        stm.executeUpdate();
+       	stm.closeOnCompletion(); 
+	}
+	
+	public static void unfollow(Connection con, String username, String artist) throws SQLException{
+		String sql = "call livethemusic.unfollow_artist(?, ?);\r\n"; 
+		PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, username);
+        stm.setString(2, artist);
+        stm.executeUpdate();
+       	stm.closeOnCompletion(); 
+	}
 }

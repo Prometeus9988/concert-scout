@@ -8,7 +8,6 @@
 	GeneralUserBean user = (GeneralUserBean) session.getAttribute("user");
 
 	boolean isPart = (boolean) request.getAttribute("isPart");
-	System.out.println(isPart);
 	if (isPart == false) {
 		part = "Add Participation";
 	} else {
