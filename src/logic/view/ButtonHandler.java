@@ -41,11 +41,10 @@ public class ButtonHandler  extends HttpServlet{
 			rd = request.getRequestDispatcher("musicEventDetail.jsp");
 		} else if(request.getParameter("a") != null) {
 			String username = request.getParameter("artist");
-			System.out.println(username);
 			ArtistBean ab = btc.getArtist(username);
 			session.setAttribute("artist", ab);
 			boolean isFoll = fac.isFollowing(gu, ab);
-			request.setAttribute("isFoll", !isFoll);
+			request.setAttribute("isFoll", isFoll);
 			rd = request.getRequestDispatcher("artistDetail.jsp");
 		} else if(request.getParameter("addPart") != null) {
 			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
@@ -65,13 +64,12 @@ public class ButtonHandler  extends HttpServlet{
 		} else if(request.getParameter("follow") != null) {
 			ArtistBean ab = (ArtistBean) session.getAttribute("artist");
 			boolean isFoll = fac.isFollowing(gu, ab);
-			System.out.println(isFoll);
-			request.setAttribute("isFoll", !isFoll);
 			if(isFoll){
 				fac.unfollow(gu, ab);
 			} else {
 				fac.follow(gu, ab);
 			}
+			request.setAttribute("isFoll", !isFoll);
 			rd = request.getRequestDispatcher("artistDetail.jsp");
 		}
 		
