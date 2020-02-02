@@ -1,16 +1,22 @@
 package logic.view;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import logic.bean.ArtistBean;
 import logic.bean.GeneralUserBean;
@@ -20,6 +26,7 @@ import logic.utils.*;
 
 
 @WebServlet("/LoginServlet")
+@MultipartConfig
 public class LoginServlet extends HttpServlet{
 	
 	private static final Logger logger = Logger.getLogger(LoginServlet.class.getName());
@@ -71,21 +78,44 @@ public class LoginServlet extends HttpServlet{
 				username = request.getParameter("createUsername");
 				password = request.getParameter("createPassword");
 				userType = request.getParameter("userType");
-
+				String fileName = null;
+				Part filePart = null;
+				
+				//For profile picture
+				if(request.getParameter("file") != null) {
+					filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
+					fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+				}
+				
 				if(userType.equals("User")){
 					String firstName = request.getParameter("firstName");
 					String lastName = request.getParameter("lastName");
+					//TODO set userbean to support profile picture
 					UserBean u = new UserBean(username, password, firstName, lastName, email);
+					u.setProfilePicture(fileName);
 					regResult = controller.createUser(u);
 				} else if(userType.equals("Artist")){
 					String bandName = request.getParameter("bandName");	
-					ArtistBean a = new ArtistBean(username, password, bandName, "", email);
+					ArtistBean a = new ArtistBean(username, password, bandName, fileName, email);
 					regResult = controller.createArtist(a);
 				}
 				
-				if(Boolean.TRUE.equals(regResult)){
+
+			    //
+			    if(Boolean.TRUE.equals(regResult)){
 					rd = request.getRequestDispatcher(INDEX);
 					request.setAttribute("reg", "registered");
+					
+					//File upload- if registration successfull loads the file in profilePictures
+
+				    if(fileName != null) {
+
+				    	File file = new File("./concert-scout.git/trunk/WebContent/img/profilePictures", fileName);
+
+				    	try (InputStream input = filePart.getInputStream()) {
+				    		Files.copy(input, file.toPath());
+				    	}
+				    }
 				} else {
 					rd = request.getRequestDispatcher(INDEX);
 					request.setAttribute("reg", "notRegistered");

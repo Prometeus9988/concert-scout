@@ -66,6 +66,17 @@ public class BuyTicketController {
 		return lb;
 	}
 	
+	public MusicEventBean getMusicEvent(String id, String username) {
+		MusicEventDao med = new MusicEventDao();
+
+		return new MusicEventBean(med.getMusicEvent(id, username));
+	}
+	
+	public ArtistBean getArtist(String username) {
+		ArtistDao ad = new ArtistDao();
+		return new ArtistBean(ad.getArtist(username));
+	}
+	
 	public void addParticipation(GeneralUserBean user, MusicEventBean meb) {
 		MusicEventDao med = new MusicEventDao();
 		med.addParticipation(user.getUsername(), meb.getId());

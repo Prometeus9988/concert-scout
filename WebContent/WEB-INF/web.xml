@@ -28,13 +28,13 @@
     <servlet-name>searchResult</servlet-name>
     <url-pattern>/searchResult</url-pattern>
   </servlet-mapping>
-  
+
    <servlet>
-    <servlet-name>musicEventDetail</servlet-name>
-    <servlet-class>logic.view.AddParticipationServlet</servlet-class>
+    <servlet-name>ButtonHandler</servlet-name>
+    <servlet-class>logic.view.ButtonHandler</servlet-class>
   </servlet>
-  <servlet-mapping>
-    <servlet-name>musicEventDetail</servlet-name>
-    <url-pattern>/musicEventDetail</url-pattern>
+    <servlet-mapping>
+    <servlet-name>ButtonHandler</servlet-name>
+    <url-pattern>/ButtonHandler</url-pattern>
   </servlet-mapping>
 </web-app>

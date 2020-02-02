@@ -8,9 +8,9 @@ public class ArtistBean extends GeneralUserBean implements Serializable{
 	static final long serialVersionUID = 42L;
 	
 	private String bandName;
-	private String profilePicture;
 	
 	public ArtistBean(Artist a) {
+		this.setUsername(a.getUsername());
 		this.setBandName(a.getName());
 		this.setProfilePicture(a.getProfilePicture());
 	}
@@ -21,14 +21,6 @@ public class ArtistBean extends GeneralUserBean implements Serializable{
 		this.setBandName(bandName);
 		this.setProfilePicture(profilePicture);
 		this.setEmail(email);
-	}
-	
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
-	public String getUsername() {
-		return username;
 	}
 	
 	public void setBandName(String name) {

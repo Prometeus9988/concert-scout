@@ -12,6 +12,7 @@ public class GeneralUserBean implements Serializable{
 	protected String password;
 	protected String email;
 	protected String role;
+	protected String profilePicture;
 	
 	public GeneralUserBean() {
 		this.username = "";
@@ -55,5 +56,13 @@ public class GeneralUserBean implements Serializable{
 
 	public String getRole() {
 		return this.role;
+	}
+	
+	public void setProfilePicture(String name) {
+		this.profilePicture = name;
+	}
+
+	public String getProfilePicture() {
+		return this.profilePicture;
 	}
 }

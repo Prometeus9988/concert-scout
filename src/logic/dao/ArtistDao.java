@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import logic.entity.Artist;
+import logic.entity.MusicEvent;
 import logic.utils.*;
 
 public class ArtistDao {
@@ -34,7 +35,12 @@ public class ArtistDao {
             	String usernameA = rs.getString("username");
             	String bandName = rs.getString("band_name");
             	String profilePicture = rs.getString("profile_picture_path");
- 
+            	
+            	//TODO sistemare questo pezzo
+            	if(profilePicture.equals("")) {
+            		profilePicture = "concert.jpg";
+            	}
+            	
             	l.add(new Artist(usernameA, bandName, profilePicture));
             } while (rs.next());
             rs.close();
@@ -69,11 +75,15 @@ public class ArtistDao {
                 return Collections.emptyList();
             
             do{
-            	//String usernameA = rs.getString("username");
-            	String bandName = rs.getString("name");
-            	//String profilePicture = rs.getString("profile_picture_path");
- 
-            	l.add(new Artist("", bandName, ""));
+            	String usernameA = rs.getString("username");
+            	String bandName = rs.getString("band_name");
+            	String profilePicture = rs.getString("profile_picture_path");
+            	
+            	if(profilePicture.equals("")) {
+            		profilePicture = "concert.jpg";
+            	}
+            	
+            	l.add(new Artist(usernameA, bandName, profilePicture));
             } while (rs.next());
             rs.close();
 
@@ -91,6 +101,35 @@ public class ArtistDao {
         }
         
         return l;
+	}
+	
+	public Artist getArtist(String username) {
+		Connection conn = null;
+		Artist a = null;
+		try {
+            conn = DBUserConnection.getUserConnection();
+
+            ResultSet rs = Queries.selectArtist(conn, username);
+
+            rs.next();
+            String usernamed = rs.getString("username");
+            String profilePicture = rs.getString("profile_picture_path");
+            String bandName = rs.getString("band_name");
+            
+        	if(profilePicture.equals("")) {
+        		profilePicture = "concert.jpg";
+        	}
+        	
+            a = new Artist(usernamed, bandName, profilePicture);
+            rs.close();
+
+        } catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        }
+        
+        return a;
 	}
 	
 	public static boolean createArtist(String username, String password, String bandName, String profilePicture, String email) {

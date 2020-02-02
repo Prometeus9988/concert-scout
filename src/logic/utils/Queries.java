@@ -18,6 +18,24 @@ public class Queries {
 		return rs;
 	}
 	
+	public static ResultSet selectMusicEvent(Connection con, String id) throws SQLException{
+        String sql = "call livethemusic.get_musicevent(?);\r\n";
+        PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, id);
+		ResultSet rs = stm.executeQuery();
+        stm.closeOnCompletion();
+		return rs;
+	}
+	
+	public static ResultSet selectArtist(Connection con, String artist) throws SQLException{
+        String sql = "call livethemusic.get_artist(?);\r\n";
+        PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, artist);
+		ResultSet rs = stm.executeQuery();
+        stm.closeOnCompletion();
+		return rs;
+	}
+	
 	public static ResultSet selectSuggestedMusicEvents(Connection con, String username) throws SQLException {
         
 		String sql = "call livethemusic.view_friend_partitipation(?);\r\n"; 

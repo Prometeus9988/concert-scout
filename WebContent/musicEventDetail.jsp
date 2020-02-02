@@ -74,15 +74,15 @@
   <div class="centered" style="margin-left:30px;">
   
 
-
-<input type="submit" class = "submit" value = "back" onclick="history.back()">
-
+<form action = "ButtonHandler" method = "POST">
+<input type="submit" class = "submit" name = "back" value = "back">
+</form>
 
 <h1><%=meb.getName()%></h1>
 <h2><%=meb.getLocation()%></h2>
 <h3><%=meb.getArtistId() %></h3>
 <!-- Add participation -->
-<form action = <%=servlet %> method = "POST">
+<form action = "ButtonHandler" method = "POST">
 <input type="submit" name = "addPart" value = "<%=part%>">
 <input type = "hidden" name = "isPart" value = "<%=isPart %>">
 </form>

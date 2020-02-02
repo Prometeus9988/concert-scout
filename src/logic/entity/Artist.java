@@ -9,10 +9,7 @@ public class Artist extends GeneralUser {
 		this.profilePicture = profilePicture;
 		this.username = username;
 	}
-	
-	public String getUsername() {
-		return this.username;
-	}
+
 	
 	public String getName() {
 		return bandName;

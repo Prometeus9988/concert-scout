@@ -104,7 +104,7 @@
 <div class = "splitBackgroundLogin right">
 
 <!-- Registration form -->
-<form action = "LoginServlet" method = "POST">
+<form action = "LoginServlet" method = "POST" enctype='multipart/form-data'>
   <div class="form-group col-md-3 col-md-offset-3" style = "width:500px; border-width:2px; border-style:solid; border-color:#b0b0b0; border-radius: 10px;">
     <div class = "form.group"><br>
     <label><%=regMessage %></label><br>
@@ -114,6 +114,8 @@
 	<input type="text" class="form-control" name="bandName" id = "bandName" placeholder="Band Name" disabled><br>
 	<input type="text" class="form-control" name="firstName" id = "firstName" placeholder="First Name"><br>
 	<input type="text" class="form-control" name="lastName" id = "lastName" placeholder="Last Name"><br>
+	<label for="avatar">Choose a profile picture:</label>
+	<input type="file" id="file" name="file" accept="image/png, image/jpeg"><br>
 </div>
   <!-- Select type of user -->
 	<div>

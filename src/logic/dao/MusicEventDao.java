@@ -28,6 +28,36 @@ public class MusicEventDao {
 		return instance;
 	}
 	
+	public MusicEvent getMusicEvent(String id, String username) {
+		Connection conn = null;
+		MusicEvent me = null;
+		try {
+            conn = DBUserConnection.getUserConnection();
+
+            ResultSet rs = Queries.selectMusicEvent(conn, id);
+            
+            if (!rs.first()) // rs not empty
+                System.out.println("Empty");
+
+            int idb = rs.getInt("id");
+            String name = rs.getString("name");
+            String location = rs.getString("location");
+            String bandName = rs.getString("band_name");
+            String artistUsername = rs.getString("artist_username");
+            me = new MusicEvent(idb, artistUsername, name, "", location, bandName);
+            
+
+            rs.close();
+
+        } catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        }
+        
+        return me;
+	}
+	
 	public List<MusicEvent> getSuggestedEvents(String username){
         //PreparedStatement prepStmt = null;
         Connection conn = null;
@@ -45,7 +75,8 @@ public class MusicEventDao {
             	String name = rs.getString("name");
             	String location = rs.getString("location");
             	String bandName = rs.getString("band_name");
-            	l.add(new MusicEvent(id, bandName, name, "", location));
+            	String artistUsername = rs.getString("artist_username");
+            	l.add(new MusicEvent(id, artistUsername, name, "", location, bandName));
             } while (rs.next());
             rs.close();
 
@@ -75,7 +106,8 @@ public class MusicEventDao {
             	String name = rs.getString("name");
             	String location = rs.getString("location");
             	String bandName = rs.getString("band_name");
-            	l.add(new MusicEvent(id, bandName, name, "", location));
+            	String artistUsername = rs.getString("artist_username");
+            	l.add(new MusicEvent(id, artistUsername, name, "", location, bandName));
             } while (rs.next());
             rs.close();
 

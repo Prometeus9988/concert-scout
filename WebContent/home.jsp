@@ -87,19 +87,25 @@
     	%><li class = "item">
 
     	<div class="card text-center" style="width: 18rem;">
-    	
-    <form action="BuyTicketServlet" method="POST">
+    
+    <!-- BuyTicketServlet -->
+    <form action="ButtonHandler" method="POST">
   	<!-- <img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155> -->
-  	<input type="image" name = "<%="m" + i%>" src="img/concert.jpg" class="btTxt card-img-top cardImg submit" height = 215 width = 155 alt="Submit Form"/>
+  	<input type="image" name = "<%="m"%>" src="img/concert.jpg" class="btTxt card-img-top cardImg submit" height = 215 width = 155 alt="Submit Form"/>
   	<div class="card-body">
-	<input type="submit" name = "<%="m" + i%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getName() %>">
-  	<br>
-  	<input type="submit" name = "<%="ar" + i%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getArtistId() %>">
-  </div>
-  </form>
+	<input type="submit" name = "<%="m"%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getName() %>">
+  	</div>
+  	<input type = "hidden" name = "Mevent" value = "<%= musicEvents.get(i).getId() %>">
+  	</form>
+  	<form action="ButtonHandler" method="POST">
+  	<input type="submit" name = "<%="a"%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getBandName() %>">
+  	<input type = "hidden" name = "artist" value = "<%= musicEvents.get(i).getArtistId() %>">
+  	</form>
+  	
 </div>
 
 </li>
+
     		<%
     }
     %>
@@ -113,10 +119,11 @@
     	%><li class = "item">
 
     	<div class="card text-center" style="width: 18rem;">
-    <form action="BuyTicketServlet" method="POST">
-  	<img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155 alt="Submit">
+    <form action="ButtonHandler" method="POST">
+  	<img class="card-img-top cardImg" src="<%="img/profilePictures/" + artists.get(i).getProfilePicture() %>" height = 215 width = 155 alt="Submit">
   	<div class="card-body">
-    <input type="submit" name = "<%="a" + i%>" class = "btTxt astext" value = "<%= artists.get(i).getBandName() %>">
+    <input type="submit" name = "<%="a"%>" class = "btTxt astext" value = "<%= artists.get(i).getBandName() %>">
+    <input type = "hidden" name = "artist" value = "<%= artists.get(i).getUsername()%>">
   </div>
   </form>
 </div>
@@ -128,6 +135,5 @@
     </ul>
   </div>
 </div> 
-</div>
 </body>
 </html>
