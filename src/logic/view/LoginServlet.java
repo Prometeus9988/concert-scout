@@ -97,7 +97,7 @@ public class LoginServlet extends HttpServlet{
 					String lastName = request.getParameter("lastName");
 					
 					//TODO set userbean to support profile picture
-					UserBean u = new UserBean(username, password, firstName, lastName, email, "");
+					UserBean u = new UserBean(username, password, email, firstName, lastName, "");
 					u.setProfilePicture(fileName);
 					regResult = controller.createUser(u);
 				} else if(userType.equals("Artist")){

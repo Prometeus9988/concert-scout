@@ -124,7 +124,8 @@ public class LoginViewController {
 			String lastName=this.lastNameField.getText();
 			System.out.println("lastname "+lastName);
 			
-			UserBean u = new UserBean(username, password, firstName, lastName, email);
+			// TODO implement profile picture
+			UserBean u = new UserBean(username, password, email, firstName, lastName, "");
 			u.setProfilePicture(fileName);
 			regResult = controller.createUser(u);	
 		}else if(userType.contentEquals("Artist")) {
