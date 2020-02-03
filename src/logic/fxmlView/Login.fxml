@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane layoutX="8.0" layoutY="-6.0" prefHeight="809.0" prefWidth="204.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-6.0">
+         <items>
+            <AnchorPane prefHeight="811.0" prefWidth="222.0" style="-fx-background-color:#202A25;">
+               <children>
+                  <Label layoutX="20.0" layoutY="533.0" style="-fx-text-fill: white;" text="Username" AnchorPane.bottomAnchor="258.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="533.0" />
+                  <TextField fx:id="usernameTextField" layoutX="22.0" layoutY="561.0" prefHeight="26.0" prefWidth="154.0" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="561.0" />
+                  <Label layoutX="23.0" layoutY="603.0" style="-fx-text-fill: white;" text="Password" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="117.0" AnchorPane.topAnchor="603.0" />
+                  <PasswordField fx:id="passwordBox" layoutX="20.0" layoutY="630.0" prefHeight="26.0" prefWidth="154.0" AnchorPane.bottomAnchor="151.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="630.0" />
+                  <Button layoutX="20.0" layoutY="677.0" mnemonicParsing="false" onAction="#loginButtonAction" style="-fx-background-color: #F5CB5C;" text="Login" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="677.0" />
+                  <ImageView fitHeight="115.0" fitWidth="115.0" layoutX="45.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="22.0">
+                     <image>
+                        <Image url="@../../../WebContent/img/concertIcon.png" />
+                     </image>
+                  </ImageView>
+                  <HBox layoutY="165.0" prefHeight="71.0" prefWidth="239.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="144.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="37.0" prefWidth="70.0" style="-fx-font-weight: bold;" text="LIVE" textFill="#f5cb5c">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="38.0" prefWidth="45.0" style="-fx-font-weight: bold;" text="the" textFill="#6a4c93">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="39.0" prefWidth="95.0" style="-fx-font-weight: bold;" text="MUSIC" textFill="#f5cb5c">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <VBox layoutX="20.0" layoutY="462.0" prefHeight="52.0" prefWidth="182.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="462.0">
+                     <children>
+                        <Label fx:id="errorLabel1" prefHeight="25.0" prefWidth="182.0" style="-fx-text-fill: red; -fx-font-size: 15;" />
+                        <Label fx:id="errorLabel2" prefHeight="16.0" prefWidth="182.0" style="-fx-text-fill: red; -fx-font-size: 15;" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </items></SplitPane>
+      <SplitPane layoutX="203.0" layoutY="-6.0" prefHeight="809.0" prefWidth="1231.0" AnchorPane.leftAnchor="203.0" AnchorPane.rightAnchor="-154.0" AnchorPane.topAnchor="-6.0">
+         <items>
+            <AnchorPane prefHeight="807.0" prefWidth="1209.0" style="-fx-background-color:#F5EDF0;">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="447.0" layoutX="271.0" layoutY="124.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="20.0" strokeType="INSIDE" style="-fx-fill:#F5EDF0;" width="484.0" AnchorPane.bottomAnchor="236.0" AnchorPane.leftAnchor="271.0" AnchorPane.topAnchor="124.0" />
+                  <Label fx:id="registerLabel" alignment="BOTTOM_LEFT" layoutX="294.0" layoutY="105.0" prefHeight="52.0" prefWidth="448.0" style="-fx-font-weight: bold;" text="Register" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" AnchorPane.leftAnchor="294.0" AnchorPane.topAnchor="105.0">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Label>
+                  <Label layoutX="294.0" layoutY="455.0" prefHeight="32.0" prefWidth="144.0" style="-fx-font-weight: bold; -fx-font-size: 13;" text="Type of user" AnchorPane.leftAnchor="294.0" AnchorPane.topAnchor="455.0" />
+                  <ComboBox fx:id="typeOfUserField" layoutX="291.0" layoutY="487.0" prefHeight="28.0" prefWidth="448.0" AnchorPane.leftAnchor="291.0" AnchorPane.topAnchor="487.0" />
+                  <Button layoutX="294.0" layoutY="531.0" mnemonicParsing="false" onAction="#registerButtonAction" style="-fx-background-color: #F5CB5C; -fx-text-fill: black;" text="Register" AnchorPane.leftAnchor="294.0" AnchorPane.topAnchor="531.0" />
+                  <VBox layoutX="293.0" layoutY="180.0" prefHeight="250.0" prefWidth="448.0" spacing="20.0" AnchorPane.leftAnchor="293.0" AnchorPane.topAnchor="180.0">
+                     <children>
+                        <TextField fx:id="emailField" prefHeight="26.0" prefWidth="448.0" promptText="Email" />
+                        <TextField fx:id="usernameRegField" prefHeight="26.0" prefWidth="448.0" promptText="Username" />
+                        <PasswordField fx:id="passwordRegField" prefHeight="26.0" prefWidth="448.0" promptText="Password" />
+                        <TextField fx:id="bandNameField" prefHeight="26.0" prefWidth="448.0" promptText="Band Name" />
+                        <TextField fx:id="firstNameField" prefHeight="26.0" prefWidth="448.0" promptText="First Name" />
+                        <TextField fx:id="lastNameField" prefHeight="26.0" prefWidth="448.0" promptText="Last Name" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
