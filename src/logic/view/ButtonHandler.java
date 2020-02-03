@@ -45,7 +45,7 @@ public class ButtonHandler  extends HttpServlet{
 			ArtistBean ab = btc.getArtist(username);
 			session.setAttribute("artist", ab);
 			boolean isFoll = fac.isFollowing(gu, ab);
-			request.setAttribute("isFoll", !isFoll);
+			request.setAttribute("isFoll", isFoll);
 			rd = request.getRequestDispatcher("artistDetail.jsp");
 		} else if(request.getParameter("addPart") != null) {
 			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
