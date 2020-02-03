@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,6 +43,7 @@ public class AddMusicEventServlet   extends HttpServlet{
 		String fileName = null;
 		Part filePart = null;
 		boolean result = false;
+		
 		
 		//filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 		if(filePart != null) {
