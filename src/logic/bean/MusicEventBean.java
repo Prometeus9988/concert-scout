@@ -12,6 +12,8 @@ public class MusicEventBean implements Serializable {
 	private String coverPath;
 	private String location;
 	private String bandName;
+	private String ticketone;
+	private String date;
 	
 	public MusicEventBean(int id, String artistId, String name, String coverPath,  String location, String bandName) {
 		this.setId(id);
@@ -29,6 +31,7 @@ public class MusicEventBean implements Serializable {
 		this.setCoverPath(me.getCoverPath());
 		this.setLocation(me.getLocation());
 		this.setBandName(me.getBandName());
+		this.setTicketone(me.getTicketone());
 	}
 	
 	public void setId(int id) {
@@ -79,4 +82,21 @@ public class MusicEventBean implements Serializable {
 	public String getBandName() {
 		return this.bandName;
 	}
+	
+	public void setTicketone(String ticketone) {
+		this.ticketone = ticketone;
+	}
+	
+	public String getTicketone() {
+		return this.ticketone;
+	}
+	
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
+	public String getDate() {
+		return this.date;
+	}
+	
 }

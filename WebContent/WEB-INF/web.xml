@@ -10,16 +10,7 @@
     <servlet-name>index</servlet-name>
     <url-pattern>/index</url-pattern>
   </servlet-mapping>
-
-  <servlet>
-    <servlet-name>logout</servlet-name>
-    <servlet-class>logic.view.LogoutServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>logout</servlet-name>
-    <url-pattern>/logout</url-pattern>
-  </servlet-mapping>
-
+  
     <servlet>
     <servlet-name>home</servlet-name>
     <servlet-class>logic.view.BuyTicketServlet</servlet-class>
@@ -45,5 +36,32 @@
     <servlet-mapping>
     <servlet-name>ButtonHandler</servlet-name>
     <url-pattern>/ButtonHandler</url-pattern>
+  </servlet-mapping>
+  
+     <servlet>
+    <servlet-name>AddMusicEventServlet</servlet-name>
+    <servlet-class>logic.view.AddMusicEventServlet</servlet-class>
+  </servlet>
+    <servlet-mapping>
+    <servlet-name>AddMusicEventServlet</servlet-name>
+    <url-pattern>/AddMusicEventServlet</url-pattern>
+  </servlet-mapping>
+  
+       <servlet>
+    <servlet-name>AdminMusicEventServlet</servlet-name>
+    <servlet-class>logic.view.AdminMusicEventServlet</servlet-class>
+  </servlet>
+    <servlet-mapping>
+    <servlet-name>AdminMusicEventServlet</servlet-name>
+    <url-pattern>/AdminMusicEventServlet</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>logout</servlet-name>
+    <servlet-class>logic.view.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>logout</servlet-name>
+    <url-pattern>/logout</url-pattern>
   </servlet-mapping>
 </web-app>

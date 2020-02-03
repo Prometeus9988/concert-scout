@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet{
 		String username = "";
 		String password = "";
 		String userType = "";
-
+		
 		if(request.getParameter("login") != null) {
 			username = request.getParameter("username");
 			password = request.getParameter("password");
@@ -68,7 +68,7 @@ public class LoginServlet extends HttpServlet{
 				rd = request.getRequestDispatcher("artistHome.jsp");
 				session.setAttribute("user", gu);
 			} else if(gu.getRole().equals("admin")) {
-				rd = request.getRequestDispatcher("adminMusicEvent.jsp");
+				rd = request.getRequestDispatcher("AdminMusicEventServlet");
 				session.setAttribute("user", gu);
 			}
 		} else if(request.getParameter("register") != null) {
@@ -80,22 +80,28 @@ public class LoginServlet extends HttpServlet{
 				userType = request.getParameter("userType");
 				String fileName = null;
 				Part filePart = null;
-				
+
 				//For profile picture
-				if(request.getParameter("file") != null) {
-					filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
-					fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+
+
+				filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
+				fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+
+				if(fileName == null) {
+					fileName = "";
 				}
+
 				
 				if(userType.equals("User")){
 					String firstName = request.getParameter("firstName");
 					String lastName = request.getParameter("lastName");
+					
 					//TODO set userbean to support profile picture
 					UserBean u = new UserBean(username, password, firstName, lastName, email);
 					u.setProfilePicture(fileName);
 					regResult = controller.createUser(u);
 				} else if(userType.equals("Artist")){
-					String bandName = request.getParameter("bandName");	
+					String bandName = request.getParameter("bandName");
 					ArtistBean a = new ArtistBean(username, password, bandName, fileName, email);
 					regResult = controller.createArtist(a);
 				}
@@ -108,7 +114,7 @@ public class LoginServlet extends HttpServlet{
 					
 					//File upload- if registration successfull loads the file in profilePictures
 
-				    if(fileName != null) {
+				    if(!fileName.equals("")) {
 
 				    	File file = new File("./concert-scout.git/trunk/WebContent/img/profilePictures", fileName);
 

@@ -3,7 +3,7 @@
     <%@ page import="logic.bean.MusicEventBean, logic.bean.GeneralUserBean, logic.utils.*" %>
 <%
 	String part;
-	String servlet = (String) session.getAttribute("servlet");
+	String origin = (String) session.getAttribute("origin");
 	MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
 	GeneralUserBean user = (GeneralUserBean) session.getAttribute("user");
 
@@ -55,13 +55,23 @@
   </div>
   
     <ul>
+    <%
+    if(origin.equals("AdminMusicEventServlet")){
+    	%>
+    	<li><form action="AdminMusicEventServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
+    	<li><form action="adminNews.jsp" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
+    	<%
+    } else {
+    	%>
+    
     <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
     <li><form action="news.jsp" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
     <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
     <li><form action="friends.jsp" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
     <li><form action="aroundyou.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
     <li><form action="myevents.jsp" method="POST"><input type="submit" class = "notSelected" value="My Events"></form></li>
-    <li><form action="LogoutServlet" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
+    <%} %>
+    <li><form action="index.jsp" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
     </ul>
   </div>
 </div>
@@ -79,12 +89,23 @@
 
 <h1><%=meb.getName()%></h1>
 <h2><%=meb.getLocation()%></h2>
-<h3><%=meb.getArtistId() %></h3>
+<h3><%=meb.getArtistId()%></h3>
 <!-- Add participation -->
 <form action = "ButtonHandler" method = "POST">
-<input type="submit" name = "addPart" value = "<%=part%>">
+
 <input type = "hidden" name = "isPart" value = "<%=isPart%>">
+<%
+	if(origin.equals("AdminMusicEventServlet")){
+		%>
+		<input type="submit" name = "accept" value = "Accept Event">		
+		<%
+	} else {
+		%><input type="submit" name = "addPart" value = "<%=part%>"><%
+	}
+%>
+<input type="submit" name = "goToTicketone" value = "TicketOne">
 </form>
+<!-- TicketOne Link -->
 </div>
 </div>
 </div>

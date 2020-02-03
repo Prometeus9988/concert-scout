@@ -62,7 +62,7 @@
     <li><form action="friends.jsp" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
     <li><form action="aroundyou.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
     <li><form action="myevents.jsp" method="POST"><input type="submit" class = "notSelected" value="My Events"></form></li>
-    <li><form action="LogoutServlet" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
+    <li><form action="index.jsp" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
     </ul>
   </div>
 </div>
@@ -108,7 +108,7 @@
 
     	<div class="card text-center" style="width: 18rem;">
     <form action="ButtonHandler" method="POST">
-  	<img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155 alt="Submit">
+  	<img class="card-img-top cardImg" src="<%="img/profilePictures/" + artists.get(i).getProfilePicture() %>" height = 215 width = 155 alt="Submit">
   	<div class="card-body">
 <input type="submit" name = "<%="a"%>" class = "btTxt astext" value = "<%= artists.get(i).getBandName() %>">
     <input type = "hidden" name = "artist" value = "<%= artists.get(i).getUsername()%>">

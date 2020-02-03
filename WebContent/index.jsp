@@ -115,7 +115,7 @@
 	<input type="text" class="form-control" name="firstName" id = "firstName" placeholder="First Name"><br>
 	<input type="text" class="form-control" name="lastName" id = "lastName" placeholder="Last Name"><br>
 	<label for="avatar">Choose a profile picture:</label>
-	<input type="file" id="file" name="file" accept="image/png, image/jpeg"><br>
+	<input type="file" name="file" accept="image/png, image/jpeg"><br>
 </div>
   <!-- Select type of user -->
 	<div>

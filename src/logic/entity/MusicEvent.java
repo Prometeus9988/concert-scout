@@ -7,14 +7,16 @@ public class MusicEvent {
 	private String name;
 	private String coverPath;
 	private String location;
+	private String ticketone;
 	
-	public MusicEvent(int id, String artistId, String name, String coverPath, String location, String bandName) {
+	public MusicEvent(int id, String artistId, String name, String coverPath, String location, String bandName, String ticketone) {
 		this.id = id;
 		this.artistUsername = artistId;
 		this.name = name;
 		this.coverPath = coverPath;
 		this.location = location;
 		this.bandName = bandName;
+		this.ticketone = ticketone;
 	}
 	
 	public int getId() {
@@ -39,5 +41,9 @@ public class MusicEvent {
 	
 	public String getBandName() {
 		return this.bandName;
+	}
+	
+	public String getTicketone() {
+		return this.ticketone;
 	}
 }

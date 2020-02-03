@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,34 +18,39 @@ public class MusicEventDao {
 	private static final Logger logger = Logger.getLogger(MusicEventDao.class.getName());
 	private static MusicEventDao instance = null;
 	
-	public MusicEventDao() {
-		//TODO da mettere private e impostare tutto a singleton
-	}
-	
-	public MusicEventDao getInstance() {
+	public static MusicEventDao getInstance() {
 		if(instance == null) {
 			instance = new MusicEventDao();
 		}
 		return instance;
 	}
 	
-	public MusicEvent getMusicEvent(String id, String username) {
+	public MusicEvent getMusicEvent(String id, String role) {
 		Connection conn = null;
 		MusicEvent me = null;
+		ResultSet rs = null;
+		
 		try {
-            conn = DBUserConnection.getUserConnection();
+			if(role.equals("user")) {
+				conn = DBUserConnection.getUserConnection();
 
-            ResultSet rs = Queries.selectMusicEvent(conn, id);
-            
+				rs = Queries.selectMusicEvent(conn, id);
+			} else if(role.equals("admin")) {
+				conn = DBAdminConnection.getAdminConnection();
+
+				rs = Queries.selectMusicEventPending(conn, id);
+			}
             if (!rs.first()) // rs not empty
                 System.out.println("Empty");
 
             int idb = rs.getInt("id");
+            System.out.println(idb);
             String name = rs.getString("name");
             String location = rs.getString("location");
             String bandName = rs.getString("band_name");
             String artistUsername = rs.getString("artist_username");
-            me = new MusicEvent(idb, artistUsername, name, "", location, bandName);
+            String ticketone = rs.getString("ticketone");
+            me = new MusicEvent(idb, artistUsername, name, "", location, bandName, ticketone);
             
 
             rs.close();
@@ -76,7 +82,38 @@ public class MusicEventDao {
             	String location = rs.getString("location");
             	String bandName = rs.getString("band_name");
             	String artistUsername = rs.getString("artist_username");
-            	l.add(new MusicEvent(id, artistUsername, name, "", location, bandName));
+            	l.add(new MusicEvent(id, artistUsername, name, "", location, bandName, ""));
+            } while (rs.next());
+            rs.close();
+
+        } catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        }
+        
+        return l;
+	}
+	
+	public List<MusicEvent> getPendingMusicEvent(){
+        Connection conn = null;
+        List<MusicEvent> l = new ArrayList<>();
+        try {
+			conn = DBAdminConnection.getAdminConnection();
+
+            ResultSet rs = Queries.selectPendingMusicEvents(conn);
+            
+            if (!rs.first()) // rs not empty
+                return Collections.emptyList();
+            
+            do{
+            	int id = rs.getInt("id");
+            	String name = rs.getString("name");
+            	String location = rs.getString("location");
+            	String bandName = rs.getString("band_name");
+            	String artistUsername = rs.getString("artist_username");
+            	String ticketone = rs.getString("ticketone");
+            	l.add(new MusicEvent(id, artistUsername, name, "", location, bandName, ticketone));
             } while (rs.next());
             rs.close();
 
@@ -107,7 +144,7 @@ public class MusicEventDao {
             	String location = rs.getString("location");
             	String bandName = rs.getString("band_name");
             	String artistUsername = rs.getString("artist_username");
-            	l.add(new MusicEvent(id, artistUsername, name, "", location, bandName));
+            	l.add(new MusicEvent(id, artistUsername, name, "", location, bandName, ""));
             } while (rs.next());
             rs.close();
 
@@ -174,4 +211,34 @@ public class MusicEventDao {
         }	
 		return false;
 	}
+	
+	public boolean addMusicEvent(String name, String coverPath, String location, String artistUsername, Date date, String ticketone) {
+    	Connection con = null;
+    	try {
+    		con = DBArtistConnection.getArtistConnection();
+    		Queries.addMusicEvent(con, name, coverPath, location, artistUsername,  date, ticketone);
+    		
+    	} catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        	return false;
+        } catch (ClassNotFoundException e) {
+            logger.log(Level.WARNING, e.toString());
+            return false;
+        }
+    	return true;
+	}
+
+	public void acceptMusicEvent(String id) {
+    	Connection con = null;
+    	try {
+    		con = DBAdminConnection.getAdminConnection();
+    		Queries.acceptMusicEvent(con, id);
+    		
+    	} catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+            logger.log(Level.WARNING, e.toString());
+        }
+	}
+	
 }

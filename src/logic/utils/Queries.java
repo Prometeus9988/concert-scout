@@ -1,6 +1,7 @@
 package logic.utils;
 
 import java.sql.*;
+import java.util.Date;
 
 public class Queries {
 	
@@ -27,6 +28,15 @@ public class Queries {
 		return rs;
 	}
 	
+	public static ResultSet selectMusicEventPending(Connection con, String id) throws SQLException{
+        String sql = "call livethemusic.get_pending_musicevent(?);\r\n";
+        PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, id);
+		ResultSet rs = stm.executeQuery();
+        stm.closeOnCompletion();
+		return rs;
+	}
+	
 	public static ResultSet selectArtist(Connection con, String artist) throws SQLException{
         String sql = "call livethemusic.get_artist(?);\r\n";
         PreparedStatement stm = con.prepareStatement(sql);
@@ -41,6 +51,15 @@ public class Queries {
 		String sql = "call livethemusic.view_friend_partitipation(?);\r\n"; 
 		PreparedStatement stm = con.prepareStatement(sql);
         stm.setString(1, username);
+       	ResultSet rs = stm.executeQuery();
+       	stm.closeOnCompletion();
+       	return rs;
+	}
+	
+	public static ResultSet selectPendingMusicEvents(Connection con) throws SQLException {
+        
+		String sql = "call livethemusic.view_pendingmusicevent();\r\n"; 
+		PreparedStatement stm = con.prepareStatement(sql);
        	ResultSet rs = stm.executeQuery();
        	stm.closeOnCompletion();
        	return rs;
@@ -103,6 +122,21 @@ public class Queries {
        	stm.closeOnCompletion(); 
 	}
 	
+	public static void addMusicEvent(Connection con, String name, String coverPath, String location, String artistUsername, Date date, String ticketone) throws SQLException {
+		String sql = "call livethemusic.add_music_event(?, ?, ?, ?, ?, ?);\r\n"; 
+		PreparedStatement stm = con.prepareStatement(sql);
+		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+		
+        stm.setString(1, name);
+        stm.setString(2, coverPath);
+        stm.setString(3, location);
+        stm.setString(4, artistUsername);
+        stm.setDate(5, sqlDate);
+        stm.setString(6, ticketone);
+        stm.executeUpdate();
+       	stm.closeOnCompletion(); 
+	}
+	
 	public static void removeParticipation(Connection con, String username, String musicEventId) throws SQLException {
 		String sql = "call livethemusic.remove_participation(?, ?);\r\n"; 
 		PreparedStatement stm = con.prepareStatement(sql);
@@ -152,5 +186,14 @@ public class Queries {
         stm.setString(2, artist);
         stm.executeUpdate();
        	stm.closeOnCompletion(); 
+	}
+
+	public static void acceptMusicEvent(Connection con, String id) throws SQLException {
+		String sql = "call livethemusic.accept_musicevent(?);\r\n"; 
+		PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, id);
+        stm.executeUpdate();
+       	stm.closeOnCompletion();
+		
 	}
 }

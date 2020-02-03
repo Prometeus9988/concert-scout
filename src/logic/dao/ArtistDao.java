@@ -37,7 +37,7 @@ public class ArtistDao {
             	String profilePicture = rs.getString("profile_picture_path");
             	
             	//TODO sistemare questo pezzo
-            	if(profilePicture == null) {
+            	if(profilePicture == null || profilePicture.equals("")) {
             		profilePicture = "concert.jpg";
             	}
             	
@@ -79,7 +79,7 @@ public class ArtistDao {
             	String bandName = rs.getString("band_name");
             	String profilePicture = rs.getString("profile_picture_path");
             	
-            	if(profilePicture == null) {
+            	if(profilePicture == null || profilePicture.equals("")) {
             		profilePicture = "concert.jpg";
             	}
             	
@@ -116,7 +116,7 @@ public class ArtistDao {
             String profilePicture = rs.getString("profile_picture_path");
             String bandName = rs.getString("band_name");
             
-        	if(profilePicture == null) {
+        	if(profilePicture == null || profilePicture.equals("")) {
         		profilePicture = "concert.jpg";
         	}
         	

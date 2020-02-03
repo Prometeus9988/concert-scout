@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="java.util.ArrayList, java.util.List, logic.utils.*, logic.bean.GeneralUserBean, logic.bean.MusicEventBean, logic.bean.ArtistBean" %>
 <!DOCTYPE html>
+<%
+int i;
+List<MusicEventBean> musicEvents = (List<MusicEventBean>) request.getAttribute("musicEventList");
+%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -42,14 +47,43 @@
   </div>
   
     <ul>
-    <li><form action="adminMusicEvent.jsp" method="GET"><input type="submit" class = "selected" value="Home"></form></li>
-    <li><form action="adminNews.jsp" method="GET"><input type="submit" class = "notSelected" value="News"></form></li>
-    <li><form action="LogoutServlet" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
+    <li><form action="AdminMusicEventServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
+    <li><form action="adminNews.jsp" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
+    <li><form action="index.jsp" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
     </ul>
   </div>
 </div>
 <div class="splitBackground right">
   <div class="centered" style="margin-left:30px;">
+   <ul class = "hs">
+    <%
+    for(i = 0; i < musicEvents.size(); i++){
+    	%><li class = "item">
+
+    	<div class="card text-center" style="width: 18rem;">
+    
+    <!-- BuyTicketServlet -->
+    <form action="ButtonHandler" method="POST">
+  	<!-- <img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155> -->
+  	<input type="image" name = "<%="m"%>" src="img/concert.jpg" class="btTxt card-img-top cardImg submit" height = 215 width = 155 alt="Submit Form"/>
+  	<div class="card-body">
+	<input type="submit" name = "<%="m"%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getName() %>">
+  	</div>
+  	<input type = "hidden" name = "Mevent" value = "<%= musicEvents.get(i).getId() %>">
+  	</form>
+  	  	<form action="ButtonHandler" method="POST">
+  	<input type="submit" name = "<%="a"%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getBandName() %>">
+  	<input type = "hidden" name = "artist" value = "<%= musicEvents.get(i).getArtistId() %>">
+  	</form>
+  	
+</div>
+
+</li>
+
+    		<%
+    }
+    %>
+</ul>
 </div>
 </div>
 </div>

@@ -66,10 +66,11 @@ public class BuyTicketController {
 		return lb;
 	}
 	
-	public MusicEventBean getMusicEvent(String id, String username) {
+	public MusicEventBean getMusicEvent(String id, GeneralUserBean gu) {
+		//TODO dovrebbe essere relativo al musicevent e non al buyticketcontroller
 		MusicEventDao med = new MusicEventDao();
 
-		return new MusicEventBean(med.getMusicEvent(id, username));
+		return new MusicEventBean(med.getMusicEvent(id, gu.getRole()));
 	}
 	
 	public ArtistBean getArtist(String username) {

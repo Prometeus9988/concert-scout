@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import logic.addmusicevent.AddMusicEventController;
 import logic.bean.ArtistBean;
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
@@ -27,14 +28,14 @@ public class ButtonHandler  extends HttpServlet{
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");;
+		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		BuyTicketController btc = ControllerCreator.getInstance().getBuyTicketController();
 		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 		FollowArtistController fac = ControllerCreator.getInstance().getFollowArtistController();
-		
+		AddMusicEventController amec = ControllerCreator.getInstance().getAddMusicEventController();
 		if(request.getParameter("m") != null) {
 			String id = request.getParameter("Mevent");
-			MusicEventBean meb = btc.getMusicEvent(id, gu.getUsername());
+			MusicEventBean meb = btc.getMusicEvent(id, gu);
 			session.setAttribute("Mevent", meb);
 			boolean isPart = btc.isParticipating(gu, meb);
 			request.setAttribute("isPart", isPart);
@@ -44,7 +45,7 @@ public class ButtonHandler  extends HttpServlet{
 			ArtistBean ab = btc.getArtist(username);
 			session.setAttribute("artist", ab);
 			boolean isFoll = fac.isFollowing(gu, ab);
-			request.setAttribute("isFoll", isFoll);
+			request.setAttribute("isFoll", !isFoll);
 			rd = request.getRequestDispatcher("artistDetail.jsp");
 		} else if(request.getParameter("addPart") != null) {
 			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
@@ -64,20 +65,31 @@ public class ButtonHandler  extends HttpServlet{
 		} else if(request.getParameter("follow") != null) {
 			ArtistBean ab = (ArtistBean) session.getAttribute("artist");
 			boolean isFoll = fac.isFollowing(gu, ab);
+			request.setAttribute("isFoll", !isFoll);
 			if(isFoll){
 				fac.unfollow(gu, ab);
 			} else {
 				fac.follow(gu, ab);
 			}
-			request.setAttribute("isFoll", !isFoll);
 			rd = request.getRequestDispatcher("artistDetail.jsp");
+		} else if(request.getParameter("accept") != null) {
+			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
+			amec.acceptMusicEvent(meb);
+			rd = request.getRequestDispatcher("AdminMusicEventServlet");
+		} else if(request.getParameter("goToTicketone") != null) {
+			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
+			rd = request.getRequestDispatcher(meb.getTicketone());
+			System.out.println(meb.getTicketone());
+			response.sendRedirect(meb.getTicketone());
 		}
 		
 		try {
 			rd.forward(request, response);
+		}catch(IllegalStateException e) {
+			logger.log(Level.INFO, "redirected");
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
-		}
+		} 
 	}
 }
 
