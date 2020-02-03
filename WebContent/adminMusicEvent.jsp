@@ -44,7 +44,7 @@
     <ul>
     <li><form action="adminMusicEvent.jsp" method="GET"><input type="submit" class = "selected" value="Home"></form></li>
     <li><form action="adminNews.jsp" method="GET"><input type="submit" class = "notSelected" value="News"></form></li>
-    <li><form action="index.jsp" method="GET"><input type="submit" class = "notSelected" value="Logout"></form></li>
+    <li><form action="LogoutServlet" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
     </ul>
   </div>
 </div>

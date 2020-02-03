@@ -54,7 +54,7 @@
     <ul>
     <li><form action="artistHome.jsp" method="POST"><input type="submit" class = "selected" value="Add Music Event"></form></li>
     <li><form action="addNews.jsp" method="POST"><input type="submit" class = "notSelected" value="Add News"></form></li>
-    <li><form action="index.jsp" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
+    <li><form action="LogoutServlet" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
     </ul>
   </div>
 </div>
