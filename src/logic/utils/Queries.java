@@ -82,6 +82,13 @@ public class Queries {
 		return rs;
 	}
 	
+	public static ResultSet selectSearchUser(Statement stm, String searchString) throws SQLException {
+        String sql = "call livethemusic.search_user('" + searchString + "');\r\n"; 
+		ResultSet rs=stm.executeQuery(sql);
+        stm.closeOnCompletion();
+		return rs;
+	}
+	
 	public static ResultSet selectSuggestedArtist(Statement stm, String username) throws SQLException {
         String sql = "call livethemusic.followed_artists('" + username + "');\r\n"; 
         ResultSet rs=stm.executeQuery(sql);

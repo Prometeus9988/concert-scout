@@ -1,12 +1,15 @@
 package logic.dao;
 
+import logic.entity.User;
 import logic.utils.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class UserDao {
-	
 
     private static final Logger logger = Logger.getLogger(UserDao.class.getName());
     
@@ -71,6 +74,48 @@ public class UserDao {
         } catch (ClassNotFoundException e) {
         	logger.log(Level.WARNING, e.toString());
         }
+	}
+	
+	public List<User> getSearchUser(String searchString){
+        Statement stmt = null;
+        Connection conn = null;
+        List<User> l = new ArrayList<>();
+        try {
+            conn = DBUserConnection.getUserConnection();
+            
+            stmt = conn.createStatement();
+            ResultSet rs = Queries.selectSearchUser(stmt, searchString);
+            
+            if (!rs.first()) // rs not empty
+                return Collections.emptyList();
+            
+            do{
+            	String username = rs.getString("username");
+            	String name = rs.getString("name");
+            	String surname = rs.getString("surname");
+            	String profilePicture = rs.getString("profile_picture_path");
+            	
+            	if(profilePicture == null || profilePicture.equals("")) {
+            		profilePicture = "concert.jpg";
+            	}
+            	
+            	l.add(new User(username, name, surname, profilePicture));
+            } while (rs.next());
+            rs.close();
+
+        } catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        } finally {
+            try {
+                if (stmt != null)
+                    stmt.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
+        }
+        return l;
 	}
     
 }
