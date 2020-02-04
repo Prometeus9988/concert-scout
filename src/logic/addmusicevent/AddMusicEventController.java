@@ -48,4 +48,9 @@ public class AddMusicEventController {
 		MusicEventDao med = new MusicEventDao();
 		med.acceptMusicEvent(meb.getId());
 	}
+	
+	public void rejectMusicEvent(MusicEventBean meb) {
+		MusicEventDao med = new MusicEventDao();
+		med.rejectMusicEvent(meb.getId());
+	}
 }

@@ -76,7 +76,11 @@ public class ButtonHandler  extends HttpServlet{
 			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
 			amec.acceptMusicEvent(meb);
 			rd = request.getRequestDispatcher("AdminMusicEventServlet");
-		} else if(request.getParameter("goToTicketone") != null) {
+		} else if(request.getParameter("reject") != null) {
+			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
+			amec.rejectMusicEvent(meb);
+			rd = request.getRequestDispatcher("AdminMusicEventServlet");
+		}else if(request.getParameter("goToTicketone") != null) {
 			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
 			rd = request.getRequestDispatcher(meb.getTicketone());
 			System.out.println(meb.getTicketone());

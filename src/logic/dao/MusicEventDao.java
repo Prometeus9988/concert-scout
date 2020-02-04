@@ -257,5 +257,18 @@ public class MusicEventDao {
             logger.log(Level.WARNING, e.toString());
         }
 	}
+
+	public void rejectMusicEvent(String id) {
+    	Connection con = null;
+    	try {
+    		con = DBAdminConnection.getAdminConnection();
+    		Queries.rejectMusicEvent(con, id);
+    		
+    	} catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+            logger.log(Level.WARNING, e.toString());
+        }
+	}
 	
 }

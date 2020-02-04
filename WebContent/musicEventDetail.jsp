@@ -95,7 +95,8 @@
 <%
 	if(origin.equals("AdminMusicEventServlet")){
 		%>
-		<input type="submit" name = "accept" value = "Accept Event">		
+		<input type="submit" name = "accept" value = "Accept Event">	
+		<input type="submit" name = "reject" value = "Reject Event">		
 		<%
 	} else {
 		%><input type="submit" name = "addPart" value = "<%=part%>"><%

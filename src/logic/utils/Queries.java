@@ -203,4 +203,12 @@ public class Queries {
        	stm.closeOnCompletion();
 		
 	}
+
+	public static void rejectMusicEvent(Connection con, String id) throws SQLException {
+		String sql = "call livethemusic.reject_musicevent(?);\r\n"; 
+		PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, id);
+        stm.executeUpdate();
+       	stm.closeOnCompletion();
+	}
 }
