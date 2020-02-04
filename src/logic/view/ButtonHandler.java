@@ -22,11 +22,11 @@ import logic.utils.ControllerCreator;
 public class ButtonHandler  extends HttpServlet{
 	private static final Logger logger = Logger.getLogger(ButtonHandler.class.getName());
 	private static final long serialVersionUID = 102831973239L;
-	
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		BuyTicketController btc = ControllerCreator.getInstance().getBuyTicketController();
@@ -86,7 +86,7 @@ public class ButtonHandler  extends HttpServlet{
 			System.out.println(meb.getTicketone());
 			response.sendRedirect(meb.getTicketone());
 		}
-		
+
 		try {
 			rd.forward(request, response);
 		}catch(IllegalStateException e) {
