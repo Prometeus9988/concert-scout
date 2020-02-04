@@ -1,24 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.ArrayList, logic.bean.UserBean, logic.utils.*, java.util.List, logic.bean.GeneralUserBean" %>
-<!DOCTYPE html>
-<% 
-    int i;
-	GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
-	String username = gu.getUsername();	
-	
-	String searchString = (String) request.getAttribute("searchString");	
-	request.setAttribute("searchString", searchString);
-	
-	List<UserBean> users = (List<UserBean>) request.getAttribute("userList");
+    <%@ page import="logic.friends.*, logic.bean.UserBean" %>
 
-%> 
+<%
+	String fr;
+	UserBean ub = (UserBean) session.getAttribute("target");
+	boolean isFriend = (boolean) request.getAttribute("isFriend");
+	
+	if (isFriend == false) {
+		fr = "Add Friend";
+	} else {
+		fr = "Remove Friend";
+	}
+%>
+
+<!DOCTYPE html>
 <html>
-<head>
 <meta charset="ISO-8859-1">
-<title>Search Results</title>
-<link rel="icon" href="img/concertIcon.png">
- <!-- info about content, e.g.: content type, keywords, charset or description -->
+    <!-- info about content, e.g.: content type, keywords, charset or description -->
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <!-- linked CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,8 +38,9 @@
 
     <link href="./css/style.css" rel="stylesheet" type="text/css">
 
+<title>User Details</title>
 </head>
-<body class = "defaultBackgorund">
+<body>
 <div class="container">
 
  <div class="splitBanner left">
@@ -54,7 +54,7 @@
   </div>
   </div>
   
-    <ul>
+   <ul>    
     <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
     <li><form action="news.jsp" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
     <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
@@ -67,34 +67,19 @@
 </div>
 
 <div class="splitBackground right">
+<img src = "<%="img/profilePictures/" + ub.getProfilePicture() %>" height = 334  width = 1252 style = "object-fit: cover;" >
+  <form action = "ButtonHandler" method = "POST">
+<input type="submit" class = "submit" name = "back" value = "back">
+</form>
   <div class="centered" style="margin-left:30px;">
-
-<h1>Search results for "<%=searchString %>"</h1>
-   	<h1>Users</h1>
-       <ul class = "hs">
-    <%
-    for(i = 0; i < users.size(); i++){
-    	%><li class = "item">
-
-    	<div class="card text-center" style="width: 18rem;">
-    <form action="ButtonHandler" method="POST">
-  	<img class="card-img-top cardImg" src="<%="img/profilePictures/" + users.get(i).getProfilePicture() %>" height = 215 width = 155 alt="Submit">
-  	<div class="card-body">
-<input type="submit" name = "<%="f"%>" class = "btTxt astext" value = "<%= users.get(i).getUsername() %>">
-    <input type = "hidden" name = "name" value = "<%= users.get(i).getName()%>">
-    <input type = "hidden" name = "surname" value = "<%= users.get(i).getSurname()%>">
-    <input type = "hidden" name = "profileP" value = "<%= users.get(i).getProfilePicture()%>">
+	<h1><%=ub.getUsername()%></h1>
   </div>
+  <form action = "ButtonHandler" method = "POST">
+  <input type = "submit" name = "friend" value = "<%=fr%>">
+  <input type = "hidden" name = "target" value = "<%=ub.getUsername() %>">
   </form>
-</div>
+  </div>
+  </div>
 
-</li>
-    		<%
-    }
-    %>
-    </ul>
-    	</div>
-    	</div>
-    	</div>
 </body>
 </html>

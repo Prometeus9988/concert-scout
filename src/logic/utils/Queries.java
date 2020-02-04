@@ -82,9 +82,12 @@ public class Queries {
 		return rs;
 	}
 	
-	public static ResultSet selectSearchUser(Statement stm, String searchString) throws SQLException {
-        String sql = "call livethemusic.search_user('" + searchString + "');\r\n"; 
-		ResultSet rs=stm.executeQuery(sql);
+	public static ResultSet selectSearchUser(Connection con, String searchString, String caller) throws SQLException {
+        String sql = "call livethemusic.search_user(?, ?);\r\n";
+		PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, searchString);
+        stm.setString(2, caller);
+		ResultSet rs=stm.executeQuery();
         stm.closeOnCompletion();
 		return rs;
 	}
@@ -212,4 +215,17 @@ public class Queries {
         stm.executeUpdate();
        	stm.closeOnCompletion();
 	}
+	
+	public static ResultSet isFriend(Connection con, String user, String target) throws SQLException {
+        
+		String sql = "call livethemusic.is_friend(?, ?);\r\n"; 
+		PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, user);
+        stm.setString(2, target);
+        stm.executeQuery();
+       	ResultSet rs = stm.executeQuery();
+       	stm.closeOnCompletion();
+       	return rs;
+	}
+
 }

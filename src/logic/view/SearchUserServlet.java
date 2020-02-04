@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import logic.bean.GeneralUserBean;
 import logic.bean.UserBean;
 import logic.friends.FriendsController;
 
@@ -41,7 +42,9 @@ public class SearchUserServlet extends HttpServlet{
 		
 		request.setAttribute(ss, searchString);
 		
-		users = fc.getSearchUser(searchString);
+		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
+
+		users = fc.getSearchUser(searchString, gu.getUsername());
 		
 		session.setAttribute(ss, searchString);
 		request.setAttribute("userList", users);

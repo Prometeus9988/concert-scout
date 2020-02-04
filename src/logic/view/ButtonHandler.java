@@ -1,6 +1,7 @@
 package logic.view;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,8 +16,10 @@ import logic.addmusicevent.AddMusicEventController;
 import logic.bean.ArtistBean;
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
+import logic.bean.UserBean;
 import logic.buyticket.BuyTicketController;
 import logic.followartist.FollowArtistController;
+import logic.friends.FriendsController;
 import logic.utils.ControllerCreator;
 
 public class ButtonHandler  extends HttpServlet{
@@ -33,6 +36,8 @@ public class ButtonHandler  extends HttpServlet{
 		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 		FollowArtistController fac = ControllerCreator.getInstance().getFollowArtistController();
 		AddMusicEventController amec = ControllerCreator.getInstance().getAddMusicEventController();
+		// TODO rework ControllerCreator logic
+		FriendsController fc = new FriendsController();
 		if(request.getParameter("m") != null) {
 			String id = request.getParameter("Mevent");
 			MusicEventBean meb = btc.getMusicEvent(id, gu);
@@ -42,11 +47,21 @@ public class ButtonHandler  extends HttpServlet{
 			rd = request.getRequestDispatcher("musicEventDetail.jsp");
 		} else if(request.getParameter("a") != null) {
 			String username = request.getParameter("artist");
+			// TODO is it needed to access DAO again?
 			ArtistBean ab = btc.getArtist(username);
 			session.setAttribute("artist", ab);
 			boolean isFoll = fac.isFollowing(gu, ab);
 			request.setAttribute("isFoll", isFoll);
 			rd = request.getRequestDispatcher("artistDetail.jsp");
+		} else if(request.getParameter("f") != null) {
+			// TODO fix me
+			UserBean ub = new UserBean(request.getParameter("f"), "", "",
+					request.getParameter("name"),
+					request.getParameter("surname"), request.getParameter("profileP"));
+			session.setAttribute("target", ub);
+			boolean isFriend = fc.isFriend(gu, ub);
+			request.setAttribute("isFriend", isFriend);
+			rd = request.getRequestDispatcher("userDetail.jsp");
 		} else if(request.getParameter("addPart") != null) {
 			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
 			boolean isPart = btc.isParticipating(gu, meb);

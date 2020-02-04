@@ -77,15 +77,13 @@ public class UserDao {
         }
 	}
 	
-	public List<User> getSearchUser(String searchString){
-        Statement stmt = null;
+	public List<User> getSearchUser(String searchString, String caller){
         Connection conn = null;
         List<User> l = new ArrayList<>();
         try {
             conn = DBUserConnection.getUserConnection();
             
-            stmt = conn.createStatement();
-            ResultSet rs = Queries.selectSearchUser(stmt, searchString);
+            ResultSet rs = Queries.selectSearchUser(conn, searchString, caller);
             
             if (!rs.first()) // rs not empty
                 return Collections.emptyList();
@@ -108,15 +106,31 @@ public class UserDao {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
         	logger.log(Level.WARNING, e.toString());
-        } finally {
-            try {
-                if (stmt != null)
-                    stmt.close();
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
         }
         return l;
+	}
+	
+	public boolean isFriend(String user, String target) {
+		Connection conn = null;
+		try {
+			conn = DBUserConnection.getUserConnection();
+			ResultSet rs = Queries.isFriend(conn, user, target);
+            
+			if (!rs.first()) { // rs empty not friends
+				rs.close();
+				return false;
+			}
+			else {			// not empty user and target are friends	
+				rs.close();
+				return true;
+			}
+			
+		} catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        }	
+		return false;
 	}
     
 }
