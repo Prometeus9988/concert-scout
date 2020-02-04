@@ -8,6 +8,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+
 import javafx.scene.control.ComboBox;
 
 import logic.bean.ArtistBean;
@@ -15,7 +18,10 @@ import logic.bean.GeneralUserBean;
 import logic.bean.UserBean;
 import logic.login.*;
 import logic.utils.*;
-
+import javafx.stage.FileChooser;
+import java.io.File;
+import javafx.stage.Stage;
+import java.io.FileInputStream;
 
 public class LoginViewController {
 	
@@ -43,6 +49,21 @@ public class LoginViewController {
 	private Label errorLabel1;
 	@FXML
 	private Label errorLabel2;
+	@FXML
+	private Label imageLabel;
+	
+	private File imageFile=null;
+	
+	@FXML
+	public void selectImage(ActionEvent event) {
+		final FileChooser fc=new FileChooser();
+		fc.setTitle("Select image");
+		fc.setInitialDirectory(new File(System.getProperty("user.home")));
+		fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPG","*.jpg"),
+										new FileChooser.ExtensionFilter("PNG","*.png"));
+		this.imageFile=fc.showOpenDialog(new Stage());
+		if(this.imageFile!=null)this.imageLabel.setText(this.imageFile.getName());
+	}
 
 	
 	@FXML
@@ -61,7 +82,10 @@ public class LoginViewController {
     	else {
     		String role=gu.getRole();
     		FXMLLoader loader;
+    		
     		//SET SESSION GENERAL USER
+    		SessionUser su=SessionUser.getInstance();
+    		su.setSession(gu);
     		
     		switch(role) {
     		case "user":
@@ -101,43 +125,56 @@ public class LoginViewController {
 		String userType = "";
 		
 		email=emailField.getText();
-		System.out.println("email "+email);
 		
 		username=this.usernameRegField.getText();
-		System.out.println("username "+username);
 		
 		password=this.passwordRegField.getText();
-		System.out.println("password "+password);
 		
 		userType=this.typeOfUserField.getValue();
-		System.out.println("type "+userType);
 		
-		String fileName = null;
-		//FOR PROFILE PICTURE
-		//Part filePart = null;
+		String fileName;
+		String newFileName;
+		
+		if(this.imageFile==null) {
+			fileName="";
+			newFileName="";
+		}else {
+			fileName=this.imageFile.getName();
+			newFileName=username+fileName;
+		}
 		
 		
 		if(userType.equals("User")) {
 			String firstName=this.firstNameField.getText();
-			System.out.println("firstname "+firstName);
-			
 			String lastName=this.lastNameField.getText();
-			System.out.println("lastname "+lastName);
+		
 			
 			// TODO implement profile picture
-			UserBean u = new UserBean(username, password, email, firstName, lastName, "");
+			UserBean u = new UserBean(username, password, email, firstName, lastName, newFileName);
 			u.setProfilePicture(fileName);
 			regResult = controller.createUser(u);	
 		}else if(userType.contentEquals("Artist")) {
 			String bandName=this.bandNameField.getText();
-			System.out.println("band name "+bandName);
-			
-			ArtistBean a = new ArtistBean(username, password, bandName, fileName, email);
+			ArtistBean a = new ArtistBean(username, password, bandName, newFileName, email);
 			regResult = controller.createArtist(a);
 		}
 		
 		if(Boolean.TRUE.equals(regResult)) {
 			this.registerLabel.setText("Registration successfull");
+			if(this.imageFile!=null) {
+				String path = System.getProperty("user.home") + File.separator
+						+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
+						+ "trunk" + File.separator + "WebContent" + File.separator
+						+ "img" + File.separator + "profilePictures";
+			    File file = new File(path, fileName);
+			    File newFile = new File(path, newFileName);
+			    try (InputStream input = new FileInputStream(this.imageFile)) {
+			    		Files.copy(input, file.toPath());
+			    } catch (Exception e) {
+			    	e.printStackTrace();
+			    }
+			    file.renameTo(newFile);
+			}
 		}
 		else {
 			this.registerLabel.setText("Registration unsuccessfull");

@@ -62,15 +62,12 @@
          <items>
             <AnchorPane prefHeight="807.0" prefWidth="1209.0" style="-fx-background-color:#F5EDF0;">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="447.0" layoutX="271.0" layoutY="124.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="20.0" strokeType="INSIDE" style="-fx-fill:#F5EDF0;" width="484.0" AnchorPane.bottomAnchor="236.0" AnchorPane.leftAnchor="271.0" AnchorPane.topAnchor="124.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="522.0" layoutX="271.0" layoutY="124.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="20.0" strokeType="INSIDE" style="-fx-fill:#F5EDF0;" width="484.0" AnchorPane.bottomAnchor="161.0" AnchorPane.leftAnchor="271.0" AnchorPane.topAnchor="124.0" />
                   <Label fx:id="registerLabel" alignment="BOTTOM_LEFT" layoutX="294.0" layoutY="105.0" prefHeight="52.0" prefWidth="448.0" style="-fx-font-weight: bold;" text="Register" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" AnchorPane.leftAnchor="294.0" AnchorPane.topAnchor="105.0">
                      <font>
                         <Font size="17.0" />
                      </font></Label>
-                  <Label layoutX="294.0" layoutY="455.0" prefHeight="32.0" prefWidth="144.0" style="-fx-font-weight: bold; -fx-font-size: 13;" text="Type of user" AnchorPane.leftAnchor="294.0" AnchorPane.topAnchor="455.0" />
-                  <ComboBox fx:id="typeOfUserField" layoutX="291.0" layoutY="487.0" prefHeight="28.0" prefWidth="448.0" AnchorPane.leftAnchor="291.0" AnchorPane.topAnchor="487.0" />
-                  <Button layoutX="294.0" layoutY="531.0" mnemonicParsing="false" onAction="#registerButtonAction" style="-fx-background-color: #F5CB5C; -fx-text-fill: black;" text="Register" AnchorPane.leftAnchor="294.0" AnchorPane.topAnchor="531.0" />
-                  <VBox layoutX="293.0" layoutY="180.0" prefHeight="250.0" prefWidth="448.0" spacing="20.0" AnchorPane.leftAnchor="293.0" AnchorPane.topAnchor="180.0">
+                  <VBox layoutX="293.0" layoutY="180.0" prefHeight="502.0" prefWidth="448.0" spacing="20.0" AnchorPane.leftAnchor="293.0" AnchorPane.topAnchor="180.0">
                      <children>
                         <TextField fx:id="emailField" prefHeight="26.0" prefWidth="448.0" promptText="Email" />
                         <TextField fx:id="usernameRegField" prefHeight="26.0" prefWidth="448.0" promptText="Username" />
@@ -78,6 +75,24 @@
                         <TextField fx:id="bandNameField" prefHeight="26.0" prefWidth="448.0" promptText="Band Name" />
                         <TextField fx:id="firstNameField" prefHeight="26.0" prefWidth="448.0" promptText="First Name" />
                         <TextField fx:id="lastNameField" prefHeight="26.0" prefWidth="448.0" promptText="Last Name" />
+                        <VBox prefHeight="123.0" prefWidth="448.0">
+                           <children>
+                              <Label prefHeight="32.0" prefWidth="273.0" style="-fx-font-weight: bold; -fx-font-size: 13;" text="Choose a profile picture:" />
+                              <HBox prefHeight="53.0" prefWidth="448.0" spacing="10.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#selectImage" prefHeight="18.0" prefWidth="103.0" text="Select image" />
+                                    <Label fx:id="imageLabel" prefHeight="26.0" prefWidth="327.0" text="No image selected">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <Label prefHeight="32.0" prefWidth="144.0" style="-fx-font-weight: bold; -fx-font-size: 13;" text="Type of user" />
+                              <ComboBox fx:id="typeOfUserField" prefHeight="28.0" prefWidth="448.0" />
+                           </children>
+                        </VBox>
+                        <Button mnemonicParsing="false" onAction="#registerButtonAction" style="-fx-background-color: #F5CB5C; -fx-text-fill: black;" text="Register" />
                      </children>
                   </VBox>
                </children>
