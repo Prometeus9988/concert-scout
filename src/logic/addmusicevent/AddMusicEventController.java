@@ -16,12 +16,13 @@ public class AddMusicEventController {
 		Date date = null;
 		Date currentDate = new Date();
 		
-		try {
-			date = new SimpleDateFormat("yyyy-MM-dd").parse(meb.getDate());
-		} catch (ParseException e) {
-			return false;
-		} catch (NullPointerException e) {
-			e.printStackTrace();
+		if (meb.getDate() != null) {
+			try {
+				date = new SimpleDateFormat("yyyy-MM-dd").parse(meb.getDate());
+			} catch (ParseException e) {
+				return false;
+			}
+		} else {
 			return false;
 		}
 		
