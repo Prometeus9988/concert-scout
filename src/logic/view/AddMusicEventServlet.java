@@ -11,19 +11,30 @@ import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import org.apache.tomcat.util.http.fileupload.FileItemIterator;
+import org.apache.tomcat.util.http.fileupload.FileItemStream;
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.apache.tomcat.util.http.fileupload.util.Streams;
+
 import logic.addmusicevent.AddMusicEventController;
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
 import logic.utils.ControllerCreator;
 
-public class AddMusicEventServlet   extends HttpServlet{
-	private static final Logger logger = Logger.getLogger(ButtonHandler.class.getName());
+
+@MultipartConfig
+
+public class AddMusicEventServlet extends HttpServlet{
+	private static final Logger logger = Logger.getLogger(AddMusicEventServlet.class.getName());
 	private static final long serialVersionUID = 102831973239L;
 	
 	@Override
@@ -39,13 +50,11 @@ public class AddMusicEventServlet   extends HttpServlet{
 		String location = request.getParameter("location");
 		String date = request.getParameter("date");
 		String ticketone = request.getParameter("ticketone");
-		
 		String fileName = null;
 		Part filePart = null;
 		boolean result = false;
 		
-		
-		//filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
+		filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 		if(filePart != null) {
 			fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 		}
@@ -70,6 +79,8 @@ public class AddMusicEventServlet   extends HttpServlet{
 		    	File file = new File("./concert-scout.git/trunk/WebContent/img/concertPictures", fileName);
 		    	try (InputStream input = filePart.getInputStream()) {
 		    		Files.copy(input, file.toPath());
+		    } catch (Exception e) {
+		    	e.printStackTrace();
 		    }
 		}
 		request.setAttribute("result", res);
@@ -79,5 +90,5 @@ public class AddMusicEventServlet   extends HttpServlet{
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
+        }
 	}
-}

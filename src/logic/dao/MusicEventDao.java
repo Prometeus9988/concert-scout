@@ -50,7 +50,11 @@ public class MusicEventDao {
             String bandName = rs.getString("band_name");
             String artistUsername = rs.getString("artist_username");
             String ticketone = rs.getString("ticketone");
-            me = new MusicEvent(idb, artistUsername, name, "", location, bandName, ticketone);
+            String coverPath = rs.getString("cover_path");
+        	if(coverPath == null || coverPath.equals("")) {
+        		coverPath = "concert.jpg";
+        	}
+            me = new MusicEvent(idb, artistUsername, name, coverPath, location, bandName, ticketone);
             
 
             rs.close();
@@ -82,7 +86,11 @@ public class MusicEventDao {
             	String location = rs.getString("location");
             	String bandName = rs.getString("band_name");
             	String artistUsername = rs.getString("artist_username");
-            	l.add(new MusicEvent(id, artistUsername, name, "", location, bandName, ""));
+            	String coverPath = rs.getString("cover_path");
+            	if(coverPath == null || coverPath.equals("")) {
+            		coverPath = "concert.jpg";
+            	}
+            	l.add(new MusicEvent(id, artistUsername, name, coverPath, location, bandName, ""));
             } while (rs.next());
             rs.close();
 
@@ -113,7 +121,11 @@ public class MusicEventDao {
             	String bandName = rs.getString("band_name");
             	String artistUsername = rs.getString("artist_username");
             	String ticketone = rs.getString("ticketone");
-            	l.add(new MusicEvent(id, artistUsername, name, "", location, bandName, ticketone));
+            	String coverPath = rs.getString("cover_path");
+            	if(coverPath == null || coverPath.equals("")) {
+            		coverPath = "concert.jpg";
+            	}
+            	l.add(new MusicEvent(id, artistUsername, name, coverPath, location, bandName, ticketone));
             } while (rs.next());
             rs.close();
 
@@ -144,7 +156,12 @@ public class MusicEventDao {
             	String location = rs.getString("location");
             	String bandName = rs.getString("band_name");
             	String artistUsername = rs.getString("artist_username");
-            	l.add(new MusicEvent(id, artistUsername, name, "", location, bandName, ""));
+            	String coverPath = rs.getString("cover_path");
+            	
+            	if(coverPath == null || coverPath.equals("")) {
+            		coverPath = "concert.jpg";
+            	}
+            	l.add(new MusicEvent(id, artistUsername, name, coverPath, location, bandName, ""));
             } while (rs.next());
             rs.close();
 

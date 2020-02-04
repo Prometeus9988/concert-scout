@@ -6,7 +6,6 @@
 	String origin = (String) session.getAttribute("origin");
 	MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
 	GeneralUserBean user = (GeneralUserBean) session.getAttribute("user");
-
 	boolean isPart = (boolean) request.getAttribute("isPart");
 	if (isPart == false) {
 		part = "Add Participation";
@@ -78,8 +77,7 @@
 
 <div class="splitBackground right">
   <!-- Concert Cover -->
-  <img src = "img/concert.jpg" height = 334  width = 1252 style = "object-fit: cover;" >
-
+  <img src="<%="img/concertPictures/" + meb.getCoverPath()%>" height = 334  width = 1252 style = "object-fit: cover;" >
   <div class="centered" style="margin-left:30px;">
   
 
