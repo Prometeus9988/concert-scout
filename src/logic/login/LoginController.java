@@ -22,7 +22,7 @@ public class LoginController {
 	}
 	
 	public boolean createUser(UserBean ub) {
-		return UserDao.createUser(ub.getUsername(), ub.getPassword(), ub.getName(), ub.getSurname(), ub.getEmail()); 
+		return UserDao.createUser(ub.getUsername(), ub.getPassword(), ub.getName(), ub.getSurname(), ub.getProfilePicture(), ub.getEmail()); 
 	}
 	
 	public boolean createArtist(ArtistBean ab) {

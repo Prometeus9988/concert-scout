@@ -105,19 +105,20 @@ public class Queries {
        	stm.closeOnCompletion(); 
 	}
 	
-	public static void addUser(Connection con, String username, String password, String email, String firstName, String lastName ) throws SQLException {
-		String sql = "call livethemusic.add_user(?, ?, ?, ?,?);\r\n"; 
+	public static void addUser(Connection con, String username, String password, String email, String firstName, String lastName, String profilePicture) throws SQLException {
+		String sql = "call livethemusic.add_user(?, ?, ?, ?,?, ?);\r\n"; 
 		PreparedStatement stm = con.prepareStatement(sql);
         stm.setString(1, username);
         stm.setString(2, firstName);
         stm.setString(3, lastName);
         stm.setString(4, email);
         stm.setString(5, password);
+        stm.setString(6, profilePicture);
         stm.executeUpdate();
        	stm.closeOnCompletion(); 
 	}
 	
-	public static void addArtist(Connection con, String username, String password, String bandName, String profilePicture, String email ) throws SQLException {
+	public static void addArtist(Connection con, String username, String password, String bandName, String profilePicture, String email) throws SQLException {
 		String sql = "call livethemusic.add_artist(?, ?, ?, ?,?);\r\n"; 
 		PreparedStatement stm = con.prepareStatement(sql);
         stm.setString(1, username);

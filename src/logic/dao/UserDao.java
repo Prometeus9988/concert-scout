@@ -13,11 +13,12 @@ public class UserDao {
 
     private static final Logger logger = Logger.getLogger(UserDao.class.getName());
     
-    public static boolean createUser(String username, String password, String firstName, String lastName, String email) {
+    public static boolean createUser(String username, String password, String firstName,
+    		String lastName, String profilePicture, String email) {
     	Connection con = null;
     	try {
     		con = DBLoginConnection.getLoginConnection();
-    		Queries.addUser(con, username, password, email, firstName, lastName);
+    		Queries.addUser(con, username, password, email, firstName, lastName, profilePicture);
     		
     	} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
