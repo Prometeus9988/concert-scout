@@ -85,8 +85,8 @@ public class LoginServlet extends HttpServlet{
 				//For profile picture
 				filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 				fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-
-				if(fileName == null) {
+				
+				if(fileName.equals("")) {
 					fileName = "";
 					newFileName = "";
 				} else {

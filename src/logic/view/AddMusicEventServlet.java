@@ -60,7 +60,7 @@ public class AddMusicEventServlet extends HttpServlet{
 			fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 		}
 		
-		if(fileName == null) {
+		if(fileName.equals("")) {
 			fileName = "";
 			newFileName = "";
 		} else {
