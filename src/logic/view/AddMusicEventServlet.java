@@ -51,6 +51,7 @@ public class AddMusicEventServlet extends HttpServlet{
 		String date = request.getParameter("date");
 		String ticketone = request.getParameter("ticketone");
 		String fileName = null;
+		String newFileName = null;
 		Part filePart = null;
 		boolean result = false;
 		
@@ -61,9 +62,12 @@ public class AddMusicEventServlet extends HttpServlet{
 		
 		if(fileName == null) {
 			fileName = "";
+			newFileName = "";
+		} else {
+			newFileName = gu.getUsername() + name + fileName;
 		}
 		
-		MusicEventBean meb = new MusicEventBean(0, gu.getUsername(), name, fileName, location, "");
+		MusicEventBean meb = new MusicEventBean(0, gu.getUsername(), name, newFileName, location, "");
 		meb.setTicketone(ticketone);
 		meb.setDate(date);
 		
@@ -75,17 +79,19 @@ public class AddMusicEventServlet extends HttpServlet{
 				res = "notAdded";
 			}
 		
-		if(!fileName.equals("")){
+		if(!fileName.equals("") && result){
 			String path = System.getProperty("user.home") + File.separator
 					+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
 					+ "trunk" + File.separator + "WebContent" + File.separator
 					+ "img" + File.separator + "concertPictures";
 		    File file = new File(path, fileName);
+		    File newFile = new File(path, newFileName);
 		    try (InputStream input = filePart.getInputStream()) {
 		    		Files.copy(input, file.toPath());
 		    } catch (Exception e) {
 		    	e.printStackTrace();
 		    }
+		    file.renameTo(newFile);
 		}
 		request.setAttribute("result", res);
 		

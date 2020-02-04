@@ -78,6 +78,7 @@ public class LoginServlet extends HttpServlet{
 				username = request.getParameter("createUsername");
 				password = request.getParameter("createPassword");
 				userType = request.getParameter("userType");
+				String newFileName = null;
 				String fileName = null;
 				Part filePart = null;
 
@@ -87,8 +88,10 @@ public class LoginServlet extends HttpServlet{
 
 				if(fileName == null) {
 					fileName = "";
+					newFileName = "";
+				} else {
+					newFileName = username + fileName;
 				}
-
 				
 				if(userType.equals("User")){
 					String firstName = request.getParameter("firstName");
@@ -100,7 +103,7 @@ public class LoginServlet extends HttpServlet{
 					regResult = controller.createUser(u);
 				} else if(userType.equals("Artist")){
 					String bandName = request.getParameter("bandName");
-					ArtistBean a = new ArtistBean(username, password, bandName, fileName, email);
+					ArtistBean a = new ArtistBean(username, password, bandName, newFileName, email);
 					regResult = controller.createArtist(a);
 				}
 				
@@ -118,11 +121,13 @@ public class LoginServlet extends HttpServlet{
 								+ "trunk" + File.separator + "WebContent" + File.separator
 								+ "img" + File.separator + "profilePictures";
 					    File file = new File(path, fileName);
+					    File newFile = new File(path, newFileName);
 					    try (InputStream input = filePart.getInputStream()) {
 					    		Files.copy(input, file.toPath());
 					    } catch (Exception e) {
 					    	e.printStackTrace();
 					    }
+					    file.renameTo(newFile);
 				    }
 				} else {
 					rd = request.getRequestDispatcher(INDEX);
