@@ -76,8 +76,12 @@ public class AddMusicEventServlet extends HttpServlet{
 			}
 		
 		if(!fileName.equals("")){
-		    	File file = new File("./concert-scout.git/trunk/WebContent/img/concertPictures", fileName);
-		    	try (InputStream input = filePart.getInputStream()) {
+			String path = System.getProperty("user.home") + File.separator
+					+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
+					+ "trunk" + File.separator + "WebContent" + File.separator
+					+ "img" + File.separator + "concertPictures";
+		    File file = new File(path, fileName);
+		    try (InputStream input = filePart.getInputStream()) {
 		    		Files.copy(input, file.toPath());
 		    } catch (Exception e) {
 		    	e.printStackTrace();
@@ -90,5 +94,5 @@ public class AddMusicEventServlet extends HttpServlet{
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
-        }
 	}
+}

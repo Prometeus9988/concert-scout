@@ -4,6 +4,11 @@ import logic.bean.MusicEventBean;
 import logic.dao.MusicEventDao;
 import logic.entity.MusicEvent;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,7 +56,21 @@ public class AddMusicEventController {
 	}
 	
 	public void rejectMusicEvent(MusicEventBean meb) {
-		MusicEventDao med = new MusicEventDao();
-		med.rejectMusicEvent(meb.getId());
+		//TODO delete file on rejection of music event
+		Path path = Paths.get(System.getProperty("user.home") + File.separator
+				+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
+				+ "trunk" + File.separator + "WebContent" + File.separator
+				+ "img" + File.separator + "concertPictures" + File.separator + meb.getCoverPath());
+		try {
+			if(!meb.getCoverPath().equals("concert.jpg")) {
+				Files.delete(path);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			MusicEventDao med = new MusicEventDao();
+			med.rejectMusicEvent(meb.getId());
+		}
+		
 	}
 }

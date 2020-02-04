@@ -111,14 +111,18 @@ public class LoginServlet extends HttpServlet{
 					request.setAttribute("reg", "registered");
 					
 					//File upload- if registration successfull loads the file in profilePictures
-
+					
 				    if(!fileName.equals("")) {
-
-				    	File file = new File("./concert-scout.git/trunk/WebContent/img/profilePictures", fileName);
-
-				    	try (InputStream input = filePart.getInputStream()) {
-				    		Files.copy(input, file.toPath());
-				    	}
+				    	String path = System.getProperty("user.home") + File.separator
+								+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
+								+ "trunk" + File.separator + "WebContent" + File.separator
+								+ "img" + File.separator + "profilePictures";
+					    File file = new File(path, fileName);
+					    try (InputStream input = filePart.getInputStream()) {
+					    		Files.copy(input, file.toPath());
+					    } catch (Exception e) {
+					    	e.printStackTrace();
+					    }
 				    }
 				} else {
 					rd = request.getRequestDispatcher(INDEX);

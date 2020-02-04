@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="concert-scout">
+    <wb-module deploy-name="LIVEtheMUSIC">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="concert-scout"/>
-        <property name="java-output-path" value="/concert-scout/bin"/>
+        <property name="java-output-path" value="/LIVEtheMUSIC/bin"/>
+        <property name="context-root" value="LIVEtheMUSIC"/>
     </wb-module>
 </project-modules>
