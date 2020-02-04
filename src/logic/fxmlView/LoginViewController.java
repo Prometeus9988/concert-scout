@@ -147,11 +147,7 @@ public class LoginViewController {
 		if(userType.equals("User")) {
 			String firstName=this.firstNameField.getText();
 			String lastName=this.lastNameField.getText();
-		
-			
-			// TODO implement profile picture
 			UserBean u = new UserBean(username, password, email, firstName, lastName, newFileName);
-			u.setProfilePicture(fileName);
 			regResult = controller.createUser(u);	
 		}else if(userType.contentEquals("Artist")) {
 			String bandName=this.bandNameField.getText();
