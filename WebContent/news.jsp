@@ -49,9 +49,10 @@
             for(int i = 0; i < 30; i++){
             %>
                 <li>
-                <span><%= "Artist" + i%></span>
-                <img src = "img/concert.jpg" >
-                <span><%= "This is a news with text" + i%></span>
+                <span><%= "Artist" + i%></span><br>
+                <img src = "img/concert.jpg" height = 300 width = 300><br>
+                <span><%= "This is a news with text" + i%></span><br>
+                <hr style = "border-top: black;">
                 </li>
                 <%
             }

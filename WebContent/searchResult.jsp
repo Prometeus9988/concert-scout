@@ -83,7 +83,7 @@
 <form action="ButtonHandler" method="POST">
   	<!-- <img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155> -->
   	 <button type="submit" name = "<%="m"%>" style="color: transparent; background-color: transparent; border-color: transparent;">
-	<img src="img/concert.jpg" class="card-img-top cardImg" height = 215 width = 155 />
+	<img src="<%="img/concertPictures/" + musicEvents.get(i).getCoverPath()%>" class="card-img-top cardImg" height = 215 width = 155 />
 	</button>
   	<div class="card-body">
 	<input type="submit" name = "<%="m"%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getName() %>">
