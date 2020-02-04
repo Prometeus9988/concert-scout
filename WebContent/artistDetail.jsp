@@ -4,6 +4,7 @@
 
 <%
 	String foll;
+	String origin = (String) session.getAttribute("origin");
 	ArtistBean ab = (ArtistBean) session.getAttribute("artist");
 	boolean isFoll = (boolean) request.getAttribute("isFoll");
 	
@@ -54,13 +55,23 @@
   </div>
   </div>
   
-    <ul>
+   <ul>
+    <%
+    if(origin.equals("AdminMusicEventServlet")){
+    	%>
+    	<li><form action="AdminMusicEventServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
+    	<li><form action="adminNews.jsp" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
+    	<%
+    } else {
+    	%>
+    
     <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
     <li><form action="news.jsp" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
     <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
     <li><form action="friends.jsp" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
     <li><form action="aroundyou.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
     <li><form action="myevents.jsp" method="POST"><input type="submit" class = "notSelected" value="My Events"></form></li>
+    <%} %>
     <li><form action="LogoutServlet" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
     </ul>
   </div>

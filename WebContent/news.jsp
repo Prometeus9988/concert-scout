@@ -43,6 +43,21 @@
 <div class="splitBackground right">
   <div class="centered" style="margin-left:30px;">
     <h2>News</h2>
+            <nav>
+            <ul>
+            <% 
+            for(int i = 0; i < 30; i++){
+            %>
+                <li>
+                <span><%= "Artist" + i%></span>
+                <img src = "img/concert.jpg" >
+                <span><%= "This is a news with text" + i%></span>
+                </li>
+                <%
+            }
+                %>
+            </ul>
+        </nav>
   </div>
 </div> 
 
