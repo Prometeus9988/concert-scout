@@ -1,7 +1,6 @@
 package logic.view;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,10 +53,11 @@ public class ButtonHandler  extends HttpServlet{
 			request.setAttribute("isFoll", isFoll);
 			rd = request.getRequestDispatcher("artistDetail.jsp");
 		} else if(request.getParameter("f") != null) {
-			// TODO fix me
-			UserBean ub = new UserBean(request.getParameter("f"), "", "",
-					request.getParameter("name"),
-					request.getParameter("surname"), request.getParameter("profileP"));
+			UserBean ub = new UserBean();
+			ub.setUsername(request.getParameter("f"));
+			ub.setName(request.getParameter("name"));
+			ub.setSurname(request.getParameter("surname"));
+			ub.setProfilePicture(request.getParameter("profileP"));
 			session.setAttribute("target", ub);
 			boolean isFriend = fc.isFriend(gu, ub);
 			request.setAttribute("isFriend", isFriend);

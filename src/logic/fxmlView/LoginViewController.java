@@ -147,11 +147,22 @@ public class LoginViewController {
 		if(userType.equals("User")) {
 			String firstName=this.firstNameField.getText();
 			String lastName=this.lastNameField.getText();
-			UserBean u = new UserBean(username, password, email, firstName, lastName, newFileName);
+			UserBean u = new UserBean();
+			u.setUsername(username);
+			u.setPassword(password);
+			u.setEmail(email);
+			u.setName(firstName);
+			u.setSurname(lastName);
+			u.setProfilePicture(newFileName);
 			regResult = controller.createUser(u);	
 		}else if(userType.contentEquals("Artist")) {
 			String bandName=this.bandNameField.getText();
-			ArtistBean a = new ArtistBean(username, password, bandName, newFileName, email);
+			ArtistBean a = new ArtistBean();
+			a.setUsername(username);
+			a.setPassword(password);
+			a.setBandName(bandName);
+			a.setProfilePicture(newFileName);
+			a.setEmail(email);
 			regResult = controller.createArtist(a);
 		}
 		

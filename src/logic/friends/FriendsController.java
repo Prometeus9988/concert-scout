@@ -18,7 +18,13 @@ public class FriendsController {
 		List<User> l = ud.getSearchUser(searchString, caller);
 		List<UserBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {
-			lb.add(new UserBean(l.get(i)));
+			User u = l.get(i);
+			UserBean ub = new UserBean();
+			ub.setUsername(u.getUsername());
+			ub.setName(u.getName());
+			ub.setSurname(u.getSurname());
+			ub.setProfilePicture(u.getProfilePicture());
+			lb.add(ub);
 		}
 		
 		return lb;

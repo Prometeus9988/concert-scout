@@ -96,11 +96,22 @@ public class LoginServlet extends HttpServlet{
 				if(userType.equals("User")){
 					String firstName = request.getParameter("firstName");
 					String lastName = request.getParameter("lastName");
-					UserBean u = new UserBean(username, password, email, firstName, lastName, newFileName);
+					UserBean u = new UserBean();
+					u.setUsername(username);
+					u.setPassword(password);
+					u.setEmail(email);
+					u.setName(firstName);
+					u.setSurname(lastName);
+					u.setProfilePicture(newFileName);
 					regResult = controller.createUser(u);
 				} else if(userType.equals("Artist")){
 					String bandName = request.getParameter("bandName");
-					ArtistBean a = new ArtistBean(username, password, bandName, newFileName, email);
+					ArtistBean a = new ArtistBean();
+					a.setUsername(username);
+					a.setPassword(password);
+					a.setBandName(bandName);
+					a.setProfilePicture(newFileName);
+					a.setEmail(email);
 					regResult = controller.createArtist(a);
 				}
 				

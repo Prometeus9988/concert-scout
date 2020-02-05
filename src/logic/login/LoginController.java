@@ -17,8 +17,15 @@ public class LoginController {
 	
 	public GeneralUserBean login(GeneralUserBean userBean) {
 		GeneralUser result = GeneralUserDao.findUser(userBean.getUsername(), userBean.getPassword());
-		if(result == null)	return null;
-		else return new GeneralUserBean(result);
+		if (result == null)	{
+			return null;
+		} else {
+			GeneralUserBean gu = new GeneralUserBean();
+			gu.setUsername(result.getUsername());
+			gu.setPassword(result.getPassword());
+			gu.setRole(result.getRole());
+			return gu;
+		}
 	}
 	
 	public boolean createUser(UserBean ub) {

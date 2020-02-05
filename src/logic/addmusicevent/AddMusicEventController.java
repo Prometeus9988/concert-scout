@@ -43,7 +43,16 @@ public class AddMusicEventController {
 		List<MusicEvent> l = med.getPendingMusicEvent();
 		List<MusicEventBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {
-			lb.add(new MusicEventBean(l.get(i)));
+			MusicEvent me = l.get(i);
+			MusicEventBean meb = new MusicEventBean();
+			meb.setId(me.getId());
+			meb.setArtistId(me.getArtistId());
+			meb.setName(me.getName());
+			meb.setCoverPath(me.getCoverPath());
+			meb.setLocation(me.getLocation());
+			meb.setBandName(me.getBandName());
+			meb.setTicketone(me.getTicketone());
+			lb.add(meb);
 		}
 		
 		return lb;

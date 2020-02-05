@@ -2,8 +2,6 @@ package logic.bean;
 
 import java.io.Serializable;
 
-import logic.entity.GeneralUser;
-
 public class GeneralUserBean implements Serializable{
 	
 	static final long serialVersionUID = 42L;
@@ -13,18 +11,6 @@ public class GeneralUserBean implements Serializable{
 	protected String email;
 	protected String role;
 	protected String profilePicture;
-	
-	public GeneralUserBean() {
-		this.username = "";
-		this.password = "";
-		this.role = "";
-	}
-	
-	public GeneralUserBean(GeneralUser gu) {
-		this.setUsername(gu.getUsername());
-		this.setPassword(gu.getPassword());
-		this.setRole(gu.getRole());
-	}
 	
 	public void setUsername(String username) {
 		this.username = username;

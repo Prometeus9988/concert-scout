@@ -2,8 +2,6 @@ package logic.bean;
 
 import java.io.Serializable;
 
-import logic.entity.MusicEvent;
-
 public class MusicEventBean implements Serializable {
 	static final long serialVersionUID = 42L;
 	private String id;
@@ -14,25 +12,6 @@ public class MusicEventBean implements Serializable {
 	private String bandName;
 	private String ticketone;
 	private String date;
-	
-	public MusicEventBean(int id, String artistId, String name, String coverPath,  String location, String bandName) {
-		this.setId(id);
-		this.setArtistId(artistId);
-		this.setName(name);
-		this.setCoverPath(coverPath);
-		this.setLocation(location);
-		this.setBandName(bandName);
-	}
-	
-	public MusicEventBean(MusicEvent me) {
-		this.setId(me.getId());
-		this.setArtistId(me.getArtistId());
-		this.setName(me.getName());
-		this.setCoverPath(me.getCoverPath());
-		this.setLocation(me.getLocation());
-		this.setBandName(me.getBandName());
-		this.setTicketone(me.getTicketone());
-	}
 	
 	public void setId(int id) {
 		

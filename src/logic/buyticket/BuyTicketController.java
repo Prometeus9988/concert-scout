@@ -25,7 +25,16 @@ public class BuyTicketController {
 		List<MusicEvent> l = med.getSuggestedEvents(username);
 		List<MusicEventBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {
-			lb.add(new MusicEventBean(l.get(i)));
+			MusicEvent me = l.get(i);
+			MusicEventBean meb = new MusicEventBean();
+			meb.setId(me.getId());
+			meb.setArtistId(me.getArtistId());
+			meb.setName(me.getName());
+			meb.setCoverPath(me.getCoverPath());
+			meb.setLocation(me.getLocation());
+			meb.setBandName(me.getBandName());
+			meb.setTicketone(me.getTicketone());
+			lb.add(meb);
 		}
 		
 		return lb;
@@ -37,7 +46,16 @@ public class BuyTicketController {
 		List<MusicEvent> l = med.getSearchMusicEvent(searchString);
 		List<MusicEventBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {
-			lb.add(new MusicEventBean(l.get(i)));
+			MusicEvent me = l.get(i);
+			MusicEventBean meb = new MusicEventBean();
+			meb.setId(me.getId());
+			meb.setArtistId(me.getArtistId());
+			meb.setName(me.getName());
+			meb.setCoverPath(me.getCoverPath());
+			meb.setLocation(me.getLocation());
+			meb.setBandName(me.getBandName());
+			meb.setTicketone(me.getTicketone());
+			lb.add(meb);
 		}
 		
 		return lb;
@@ -49,7 +67,12 @@ public class BuyTicketController {
 		List<Artist> l = ad.getSearchArtist(searchString);
 		List<ArtistBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {
-			lb.add(new ArtistBean(l.get(i)));
+			Artist curr = l.get(i);
+			ArtistBean ab = new ArtistBean();
+			ab.setUsername(curr.getUsername());
+			ab.setBandName(curr.getName());
+			ab.setProfilePicture(curr.getProfilePicture());
+			lb.add(ab);
 		}
 		
 		return lb;
@@ -60,7 +83,12 @@ public class BuyTicketController {
 		List<Artist> l = ad.getSuggestedArtist(username);
 		List<ArtistBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {
-			lb.add(new ArtistBean(l.get(i)));
+			Artist curr = l.get(i);
+			ArtistBean ab = new ArtistBean();
+			ab.setUsername(curr.getUsername());
+			ab.setBandName(curr.getName());
+			ab.setProfilePicture(curr.getProfilePicture());
+			lb.add(ab);
 		}
 		
 		return lb;
@@ -69,13 +97,26 @@ public class BuyTicketController {
 	public MusicEventBean getMusicEvent(String id, GeneralUserBean gu) {
 		//TODO dovrebbe essere relativo al musicevent e non al buyticketcontroller
 		MusicEventDao med = new MusicEventDao();
-
-		return new MusicEventBean(med.getMusicEvent(id, gu.getRole()));
+		MusicEvent me = med.getMusicEvent(id, gu.getRole());
+		MusicEventBean meb = new MusicEventBean();
+		meb.setId(me.getId());
+		meb.setArtistId(me.getArtistId());
+		meb.setName(me.getName());
+		meb.setCoverPath(me.getCoverPath());
+		meb.setLocation(me.getLocation());
+		meb.setBandName(me.getBandName());
+		meb.setTicketone(me.getTicketone());
+		return meb;
 	}
 	
 	public ArtistBean getArtist(String username) {
 		ArtistDao ad = new ArtistDao();
-		return new ArtistBean(ad.getArtist(username));
+		Artist a = ad.getArtist(username);
+		ArtistBean ab = new ArtistBean();
+		ab.setUsername(a.getUsername());
+		ab.setBandName(a.getName());
+		ab.setProfilePicture(a.getProfilePicture());
+		return ab;
 	}
 	
 	public void addParticipation(GeneralUserBean user, MusicEventBean meb) {

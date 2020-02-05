@@ -67,7 +67,11 @@ public class AddMusicEventServlet extends HttpServlet{
 			newFileName = gu.getUsername() + name + fileName;
 		}
 		
-		MusicEventBean meb = new MusicEventBean(0, gu.getUsername(), name, newFileName, location, "");
+		MusicEventBean meb = new MusicEventBean();
+		meb.setArtistId(gu.getUsername());
+		meb.setName(name);
+		meb.setCoverPath(newFileName);
+		meb.setLocation(location);
 		meb.setTicketone(ticketone);
 		meb.setDate(date);
 		
