@@ -16,24 +16,28 @@
                </children></AnchorPane>
          </items>
       </SplitPane>
-      <SplitPane layoutX="204.0" prefHeight="800.0" prefWidth="1169.0" style="-fx-background-color: #F5EDF0;" AnchorPane.leftAnchor="204.0" AnchorPane.rightAnchor="-93.0" AnchorPane.topAnchor="0.0">
+      <SplitPane layoutX="204.0" prefHeight="800.0" prefWidth="1169.0" style="-fx-background-color: #F5EDF0;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="742.0" prefWidth="1167.0">
                <children>
-                  <AnchorPane fx:id="searchBar" layoutX="60.0" layoutY="28.0" prefHeight="39.0" prefWidth="613.0" AnchorPane.bottomAnchor="731.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="494.0" AnchorPane.topAnchor="28.0" />
-                  <VBox layoutX="60.0" layoutY="82.0" prefHeight="693.0" prefWidth="1048.0" spacing="10.0" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="82.0">
+                  <AnchorPane fx:id="searchBar" layoutX="52.0" layoutY="41.0" prefHeight="39.0" prefWidth="613.0" />
+                  <VBox fx:id="suggEvCol" layoutX="52.0" layoutY="94.0" prefHeight="300.0" prefWidth="1048.0" spacing="5.0">
                      <children>
-                        <HBox prefHeight="69.0" prefWidth="1086.0">
+                        <HBox prefHeight="48.0" prefWidth="1048.0">
                            <children>
                               <Label prefHeight="69.0" prefWidth="126.0" style="-fx-font-size: 26; -fx-font-style: italic;" text="Welcome" />
-                              <Label prefHeight="78.0" prefWidth="85.0" style="-fx-font-size: 26; -fx-font-style: italic;" text="nome" />
+                              <Label fx:id="nameLabel" prefHeight="69.0" prefWidth="922.0" style="-fx-font-size: 26; -fx-font-style: italic;" text="nome" />
                            </children>
                         </HBox>
                         <Label style="-fx-font-size: 21;" text="Suggested Events" />
-                        <HBox prefHeight="234.0" prefWidth="1062.0" style="-fx-background-color: black;" />
-                        <Label style="-fx-font-size: 21;" text="Suggested Artists" />
-                        <HBox prefHeight="234.0" prefWidth="1086.0" style="-fx-background-color: black;" />
+                        <HBox fx:id="suggEvRow" prefHeight="250.0" spacing="20.0" />
                      </children></VBox>
+                  <VBox fx:id="suggArtCol" layoutX="52.0" layoutY="411.0" prefHeight="300.0" prefWidth="1048.0" spacing="5.0">
+                     <children>
+                        <Label style="-fx-font-size: 21;" text="Suggested Artists" />
+                        <HBox fx:id="suggArtRow" prefHeight="240.0" spacing="20.0" />
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
          </items>
