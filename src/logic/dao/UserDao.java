@@ -132,5 +132,29 @@ public class UserDao {
         }	
 		return false;
 	}
-    
+
+	public void addFriend(String user, String target) {
+		Connection conn = null;
+		try {
+			conn = DBUserConnection.getUserConnection();
+			Queries.addFriend(conn, user, target);
+		} catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        }
+	}
+
+	public void removeFriend(String user, String target) {
+		Connection conn = null;
+		try {
+			conn = DBUserConnection.getUserConnection();
+			Queries.removeFriend(conn, user, target);
+		} catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        }
+	}
+
 }

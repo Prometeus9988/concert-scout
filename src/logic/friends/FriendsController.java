@@ -34,5 +34,15 @@ public class FriendsController {
 		UserDao ud = new UserDao();
 		return ud.isFriend(user.getUsername(), ub.getUsername());
 	}
+	
+	public void friend(GeneralUserBean user, UserBean ub) {
+		UserDao ud = new UserDao();
+		ud.addFriend(user.getUsername(), ub.getUsername());
+	}
+	
+	public void unfriend(GeneralUserBean user, UserBean ub) {
+		UserDao ud = new UserDao();
+		ud.removeFriend(user.getUsername(), ub.getUsername());
+	}
 
 }

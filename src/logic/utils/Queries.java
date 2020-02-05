@@ -227,5 +227,23 @@ public class Queries {
        	stm.closeOnCompletion();
        	return rs;
 	}
+	
+	public static void addFriend(Connection con, String user, String target) throws SQLException{
+		String sql = "call livethemusic.add_friend(?, ?);\r\n"; 
+		PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, user);
+        stm.setString(2, target);
+        stm.executeUpdate();
+       	stm.closeOnCompletion(); 
+	}
+	
+	public static void removeFriend(Connection con, String user, String target) throws SQLException{
+		String sql = "call livethemusic.remove_friend(?, ?);\r\n"; 
+		PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, user);
+        stm.setString(2, target);
+        stm.executeUpdate();
+       	stm.closeOnCompletion(); 
+	}
 
 }

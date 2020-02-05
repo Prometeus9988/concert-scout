@@ -62,6 +62,18 @@ public class ButtonHandler  extends HttpServlet{
 			boolean isFriend = fc.isFriend(gu, ub);
 			request.setAttribute("isFriend", isFriend);
 			rd = request.getRequestDispatcher("userDetail.jsp");
+		} else if(request.getParameter("friend") != null) {
+			String fr = request.getParameter("friend");
+			UserBean ub = new UserBean();
+			ub.setUsername(request.getParameter("target"));
+			if (fr.equals("Add Friend")) {
+				fc.friend(gu, ub);
+				request.setAttribute("isFriend", true);
+			} else {
+				fc.unfriend(gu, ub);
+				request.setAttribute("isFriend", false);
+			}
+			rd = request.getRequestDispatcher("userDetail.jsp");
 		} else if(request.getParameter("addPart") != null) {
 			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
 			boolean isPart = btc.isParticipating(gu, meb);
