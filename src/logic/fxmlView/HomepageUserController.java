@@ -10,14 +10,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import java.io.IOException;
 
-import logic.bean.GeneralUserBean;
 import logic.login.*;
 import logic.utils.*;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
-import logic.bean.*;
+import logic.bean.ArtistBean;
+import logic.bean.GeneralUserBean;
+import logic.bean.MusicEventBean;
 import logic.utils.*;
 import logic.buyticket.*;
 import java.util.List;

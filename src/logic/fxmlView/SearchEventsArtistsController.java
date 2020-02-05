@@ -14,10 +14,6 @@ import java.nio.file.Files;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.ComboBox;
-
-import logic.bean.ArtistBean;
-import logic.bean.GeneralUserBean;
-import logic.bean.UserBean;
 import logic.login.*;
 import logic.utils.*;
 import javafx.stage.FileChooser;
@@ -26,7 +22,8 @@ import javafx.stage.Stage;
 import java.io.FileInputStream;
 import logic.buyticket.*;
 import java.util.List;
-import logic.bean.*;
+import logic.bean.ArtistBean;
+import logic.bean.MusicEventBean;
 
 public class SearchEventsArtistsController {
 	
