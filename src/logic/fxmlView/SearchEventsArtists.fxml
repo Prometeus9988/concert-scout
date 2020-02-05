@@ -20,24 +20,23 @@
          <items>
             <AnchorPane prefHeight="742.0" prefWidth="1167.0">
                <children>
-                  <AnchorPane fx:id="searchBar" layoutX="52.0" layoutY="41.0" prefHeight="39.0" prefWidth="613.0" />
-                  <VBox fx:id="suggEvCol" layoutX="52.0" layoutY="94.0" prefHeight="300.0" prefWidth="1048.0" spacing="5.0">
+                  <VBox fx:id="evCol" layoutX="52.0" layoutY="94.0" prefHeight="300.0" prefWidth="1048.0" spacing="5.0">
                      <children>
-                        <HBox prefHeight="48.0" prefWidth="1048.0">
-                           <children>
-                              <Label prefHeight="69.0" prefWidth="126.0" style="-fx-font-size: 26; -fx-font-style: italic;" text="Welcome" />
-                              <Label fx:id="nameLabel" prefHeight="69.0" prefWidth="922.0" style="-fx-font-size: 26; -fx-font-style: italic;" text="nome" />
-                           </children>
-                        </HBox>
-                        <Label style="-fx-font-size: 21;" text="Suggested Events" />
-                        <HBox fx:id="suggEvRow" prefHeight="250.0" spacing="20.0" />
+                        <Label style="-fx-font-size: 21;" text="Music Events" />
+                        <HBox fx:id="evRow" prefHeight="250.0" spacing="20.0" />
                      </children></VBox>
-                  <VBox fx:id="suggArtCol" layoutX="52.0" layoutY="411.0" prefHeight="300.0" prefWidth="1048.0" spacing="5.0">
+                  <VBox fx:id="artCol" layoutX="52.0" layoutY="411.0" prefHeight="300.0" prefWidth="1048.0" spacing="5.0">
                      <children>
-                        <Label style="-fx-font-size: 21;" text="Suggested Artists" />
-                        <HBox fx:id="suggArtRow" prefHeight="240.0" spacing="20.0" />
+                        <Label style="-fx-font-size: 21;" text="Artists" />
+                        <HBox fx:id="artRow" prefHeight="240.0" spacing="20.0" />
                      </children>
                   </VBox>
+                  <HBox layoutX="52.0" layoutY="33.0" prefHeight="48.0" prefWidth="1048.0">
+                     <children>
+                        <Label prefHeight="48.0" prefWidth="345.0" style="-fx-font-size: 26; -fx-font-style: italic;" text="Search results for" />
+                        <Label fx:id="searchStringLabel" prefHeight="69.0" prefWidth="922.0" style="-fx-font-size: 26; -fx-font-style: italic;" text="nome" />
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
          </items>

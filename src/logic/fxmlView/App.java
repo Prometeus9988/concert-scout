@@ -45,6 +45,14 @@ import logic.fxmlView.*
 		Scene scene=new Scene(loader.load());
 		*/
 		
+		/*EventController ev=new EventController();
+		FXMLLoader loader=new FXMLLoader(getClass().getResource("Event.fxml"));
+		loader.setController(ev);
+		
+		Scene scene=new Scene(loader.load());
+		ev.init();*/
+		
+		
 		main.setScene(scene);
 		main.setMaximized(true);
 		main.show();

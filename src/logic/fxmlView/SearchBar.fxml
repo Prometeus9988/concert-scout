@@ -9,8 +9,8 @@
    <children>
       <HBox prefHeight="39.0" prefWidth="613.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField prefHeight="34.0" prefWidth="541.0" style="-fx-border-radius: 20,20,0,0; -fx-background-radius: 20 0 0 20;" />
-            <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="66.0" style="-fx-border-radius: 0 20 20 0; -fx-background-radius: 0 20 20 0; -fx-background-color: #F5CB5C;" text="Search" />
+            <TextField fx:id="searchField" prefHeight="34.0" prefWidth="541.0" style="-fx-border-radius: 20,20,0,0; -fx-background-radius: 20 0 0 20;" />
+            <Button mnemonicParsing="false" onAction="#searchAction" prefHeight="33.0" prefWidth="66.0" style="-fx-border-radius: 0 20 20 0; -fx-background-radius: 0 20 20 0; -fx-background-color: #F5CB5C;" text="Search" />
          </children>
       </HBox>
    </children>

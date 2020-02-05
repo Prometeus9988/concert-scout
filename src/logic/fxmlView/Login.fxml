@@ -62,7 +62,7 @@
          <items>
             <AnchorPane prefHeight="807.0" prefWidth="1209.0" style="-fx-background-color:#F5EDF0;">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="522.0" layoutX="271.0" layoutY="124.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="20.0" strokeType="INSIDE" style="-fx-fill:#F5EDF0;" width="484.0" AnchorPane.bottomAnchor="161.0" AnchorPane.leftAnchor="271.0" AnchorPane.topAnchor="124.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="516.0" layoutX="271.0" layoutY="124.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="20.0" strokeType="INSIDE" style="-fx-fill:#F5EDF0;" width="484.0" AnchorPane.bottomAnchor="167.0" AnchorPane.leftAnchor="271.0" AnchorPane.topAnchor="124.0" />
                   <Label fx:id="registerLabel" alignment="BOTTOM_LEFT" layoutX="294.0" layoutY="105.0" prefHeight="52.0" prefWidth="448.0" style="-fx-font-weight: bold;" text="Register" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" AnchorPane.leftAnchor="294.0" AnchorPane.topAnchor="105.0">
                      <font>
                         <Font size="17.0" />

@@ -11,6 +11,7 @@ import java.io.IOException;
 import javafx.scene.control.Button;
 import logic.bean.GeneralUserBean;
 import logic.login.*;
+import logic.utils.SessionUser;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 
@@ -64,8 +65,12 @@ public class MenuBarController {
 	
 	
 	@FXML
-	public void homeButtonAction(ActionEvent e) {
-		System.out.println("Go to home");
+	public void homeButtonAction(ActionEvent e) throws IOException{
+		HomepageUserController huc=new HomepageUserController();
+		FXMLLoader loader=new FXMLLoader(getClass().getResource("HomepageUser.fxml"));
+		loader.setController(huc);
+		this.homeButton.getScene().setRoot(loader.load());
+		huc.init();
 	}
 	
 	@FXML
@@ -93,7 +98,12 @@ public class MenuBarController {
 	}
 	
 	@FXML
-	public void logoutButtonAction(ActionEvent e) {
-		System.out.println("Logout");
+	public void logoutButtonAction(ActionEvent e) throws IOException {
+		LoginViewController lvc=new LoginViewController();
+		FXMLLoader loader=new FXMLLoader(getClass().getResource("Login.fxml"));
+		loader.setController(lvc);
+		this.homeButton.getScene().setRoot(loader.load());
+		lvc.init();
+		SessionUser.getInstance().closeSession();
 	}
 }
