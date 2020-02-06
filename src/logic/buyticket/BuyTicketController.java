@@ -15,6 +15,7 @@ import logic.dao.MusicEventDao;
 import logic.entity.Artist;
 import logic.entity.MusicEvent;
 import logic.entity.User;
+import logic.utils.ControllerCreator;
 
 public class BuyTicketController {
 	private static final Logger logger = Logger.getLogger(BuyTicketController.class.getName());
@@ -120,17 +121,17 @@ public class BuyTicketController {
 	}
 	
 	public void addParticipation(GeneralUserBean user, MusicEventBean meb) {
-		MusicEventDao med = new MusicEventDao();
-		med.addParticipation(user.getUsername(), meb.getId());
+		AddParticipationController apc = ControllerCreator.getInstance().getAddParticipationController();
+		apc.addParticipation(user, meb);
 	}
 	
 	public void removeParticipation(GeneralUserBean user, MusicEventBean meb) {
-		MusicEventDao med = new MusicEventDao();
-		med.removeParticipation(user.getUsername(), meb.getId());
+		AddParticipationController apc = ControllerCreator.getInstance().getAddParticipationController();
+		apc.removeParticipation(user, meb);
 	}
 	
 	public boolean isParticipating(GeneralUserBean user, MusicEventBean meb) {
-		MusicEventDao med = new MusicEventDao();
-		return med.isParticipating(user.getUsername(), meb.getId());
+		AddParticipationController apc = ControllerCreator.getInstance().getAddParticipationController();
+		return apc.isParticipating(user, meb);
 	}
 }

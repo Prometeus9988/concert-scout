@@ -4,6 +4,7 @@ import logic.login.LoginController;
 import logic.readnews.ReadNewsController;
 import logic.addmusicevent.AddMusicEventController;
 import logic.addnews.AddNewsController;
+import logic.buyticket.AddParticipationController;
 import logic.buyticket.BuyTicketController;
 import logic.followartist.FollowArtistController;
 
@@ -43,5 +44,9 @@ public class ControllerCreator {
 	
 	public ReadNewsController getReadNewsController() {
 		return new ReadNewsController();
+	}
+	
+	public AddParticipationController getAddParticipationController() {
+		return new AddParticipationController();
 	}
 }
