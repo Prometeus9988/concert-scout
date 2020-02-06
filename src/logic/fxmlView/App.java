@@ -58,6 +58,14 @@ import logic.fxmlView.*
 		loader.setController(detC);
 		Scene scene=new Scene(loader.load());
 		*/
+		/*
+		ArtistMenuBarController mbc=new ArtistMenuBarController();
+		FXMLLoader loader=new FXMLLoader(getClass().getResource("ArtistMenuBar.fxml"));
+		
+		loader.setController(mbc);
+		
+		Scene scene=new Scene(loader.load());
+		mbc.init("addEv");*/
 		
 		main.setScene(scene);
 		main.setMaximized(true);

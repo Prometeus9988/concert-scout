@@ -97,9 +97,11 @@ public class LoginViewController {
     			break;
     		case "artist":
     			//set artist homepage controller
-    			//DUMP
+    			HomepageArtistController hac=new HomepageArtistController();
     			loader=new FXMLLoader(getClass().getResource("HomepageArtist.fxml"));
+    			loader.setController(hac);
     			this.usernameTextField.getScene().setRoot(loader.load());
+    			hac.init();
     			break;
     		case "admin":
     			//set admin controller

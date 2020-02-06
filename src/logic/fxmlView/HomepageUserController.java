@@ -62,7 +62,7 @@ public class HomepageUserController {
 		
 		//init nameBar
 		this.gub=SessionUser.getInstance().getSession();
-		this.nameLabel.setText(gub.getUsername());
+		this.nameLabel.setText(this.gub.getUsername());
 		
 		//Scrollpane
 		
