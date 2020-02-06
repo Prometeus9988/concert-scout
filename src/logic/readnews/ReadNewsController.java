@@ -39,6 +39,40 @@ public class ReadNewsController {
 	private String postedSince(LocalDateTime newsTime) {
 		LocalDateTime current = LocalDateTime.now();
 
+		String years = this.getYears(current, newsTime);
+		if(years != null) {
+			return years;
+		}
+		
+		String months = this.getMonths(current, newsTime);
+		if(months != null) {
+			return months;
+		}
+		
+		String days = this.getDays(current, newsTime);
+		if(days != null) {
+			return days;
+		}
+		
+		String hours = this.getHours(current, newsTime);
+		if(hours != null) {
+			return hours;
+		}
+		
+		String minutes = this.getMinutes(current, newsTime);
+		if(minutes != null) {
+			return minutes;
+		}
+		
+		String seconds = this.getSeconds(current, newsTime);
+		if(seconds != null) {
+			return seconds;
+		}
+		
+		return "";
+	}
+	
+	private String getYears(LocalDateTime current, LocalDateTime newsTime) {
 		long years = newsTime.until( current, ChronoUnit.YEARS );
 		if(years > 0) {
 			if(years > 1) {
@@ -46,6 +80,10 @@ public class ReadNewsController {
 			} else return years + "year";
 		}
 		
+		return null;
+	}
+	
+	private String getMonths(LocalDateTime current, LocalDateTime newsTime) {
 		long months = newsTime.until( current, ChronoUnit.MONTHS );
 		if(months > 0) {
 			if(months > 1) {
@@ -53,6 +91,10 @@ public class ReadNewsController {
 			} else return months + "month";
 		}
 		
+		return null;
+	}
+	
+	private String getDays(LocalDateTime current, LocalDateTime newsTime) {
 		long days = newsTime.until( current, ChronoUnit.DAYS );
 		if(days > 0) {
 			if(days > 1) {
@@ -60,6 +102,10 @@ public class ReadNewsController {
 			} else return days + "day";
 		}
 		
+		return null;
+	}
+	
+	private String getHours(LocalDateTime current, LocalDateTime newsTime) {
 		long hours = newsTime.until( current, ChronoUnit.HOURS );
 		if(hours > 0) {
 			if(hours > 1) {
@@ -67,6 +113,10 @@ public class ReadNewsController {
 			} else return hours + "hour";
 		}
 		
+		return null;
+	}
+	
+	private String getMinutes(LocalDateTime current, LocalDateTime newsTime) {
 		long minutes = newsTime.until( current, ChronoUnit.MINUTES );
 		if(minutes > 0) {
 			if(minutes > 1) {
@@ -74,6 +124,10 @@ public class ReadNewsController {
 			} else return minutes + "minute";
 		}
 		
+		return null;
+	}
+	
+	private String getSeconds(LocalDateTime current, LocalDateTime newsTime) {
 		long seconds = newsTime.until( current, ChronoUnit.SECONDS );
 		if(seconds > 0) {
 			if(seconds > 1) {
@@ -81,6 +135,6 @@ public class ReadNewsController {
 			} else return seconds + "second";
 		}
 		
-		return "";
+		return null;
 	}
 }
