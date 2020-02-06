@@ -216,6 +216,16 @@ public class Queries {
        	stm.closeOnCompletion();
 	}
 	
+	public static ResultSet selectFriends(Connection con, String username) throws SQLException {
+        
+		String sql = "call livethemusic.view_friends(?);\r\n"; 
+		PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, username);
+       	ResultSet rs = stm.executeQuery();
+       	stm.closeOnCompletion();
+       	return rs;
+	}
+	
 	public static ResultSet isFriend(Connection con, String user, String target) throws SQLException {
         
 		String sql = "call livethemusic.is_friend(?, ?);\r\n"; 

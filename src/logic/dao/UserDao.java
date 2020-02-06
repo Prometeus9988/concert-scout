@@ -110,6 +110,40 @@ public class UserDao {
         return l;
 	}
 	
+	public List<User> getFriends(String user){
+        Connection conn = null;
+        List<User> l = new ArrayList<>();
+        try {
+            conn = DBUserConnection.getUserConnection();
+
+            ResultSet rs = Queries.selectFriends(conn, user);
+            
+            if (!rs.first())
+                return Collections.emptyList();
+            
+            do{
+            	String username = rs.getString("username");
+            	String name = rs.getString("name");
+            	String surname = rs.getString("surname");
+            	String profilePicture = rs.getString("profile_picture_path");
+            	
+            	if(profilePicture == null || profilePicture.equals("")) {
+            		profilePicture = "concert.jpg";
+            	}
+            	
+            	l.add(new User(username, name, surname, profilePicture));
+            } while (rs.next());
+            rs.close();
+
+        } catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        }
+        
+        return l;
+	}
+	
 	public boolean isFriend(String user, String target) {
 		Connection conn = null;
 		try {

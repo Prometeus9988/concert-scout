@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.ArrayList, java.util.List, logic.utils.*, logic.bean.UserBean" %>
+
+
+<% 
+    int i;
+
+	List<UserBean> friendList = (List<UserBean>) request.getAttribute("friendList");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +41,7 @@
 <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
     <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
     <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
-    <li><form action="friends.jsp" method="POST"><input type="submit" class = "selected" value="Friends"></form></li>
+    <li><form action="FriendsServlet" method="POST"><input type="submit" class = "selected" value="Friends"></form></li>
     <li><form action="aroundyou.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
     <li><form action="myevents.jsp" method="POST"><input type="submit" class = "notSelected" value="My Events"></form></li>
     <li><form action="LogoutServlet" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
@@ -47,6 +56,36 @@
   <input name = "searchString" class="form-control search" type="text" placeholder="Search user..." aria-label="Search">
   </div>
   </form>
+    <!-- Friend list -->
+    <h3 class = "h3">Your friends</h3>
+    <ul class = "hs">
+    <%
+    for(i = 0; i < friendList.size(); i++){
+    	%><li class = "item">
+
+    	<div class="card text-center" style="width: 18rem;">
+    
+    <form action="ButtonHandler" method="POST">
+  	<!-- <img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155> -->
+  	  	<button type="submit" name = "<%="f"%>" style="color: transparent; background-color: transparent; border-color: transparent;">
+	<img src="<%="img/concertPictures/" + friendList.get(i).getProfilePicture()%>" class="card-img-top cardImg" height = 215 width = 155 />
+	</button>
+  	<div class="card-body">
+	<input type="submit" name = "<%="f"%>" class = "btTxt astext" value = "<%= friendList.get(i).getUsername() %>">
+	<input type = "hidden" name = "name" value = "<%= friendList.get(i).getName()%>">
+    <input type = "hidden" name = "surname" value = "<%= friendList.get(i).getSurname()%>">
+    <input type = "hidden" name = "profileP" value = "<%= friendList.get(i).getProfilePicture()%>">
+    <input type = "hidden" name = "check" value = "<%= "Ok"%>">
+  	</div>
+  	</form>
+</div>
+
+</li>
+
+    		<%
+    }
+    %>
+</ul>
 </div>
 </div>
 </div>

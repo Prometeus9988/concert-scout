@@ -59,8 +59,12 @@ public class ButtonHandler  extends HttpServlet{
 			ub.setSurname(request.getParameter("surname"));
 			ub.setProfilePicture(request.getParameter("profileP"));
 			session.setAttribute("target", ub);
-			boolean isFriend = fc.isFriend(gu, ub);
-			request.setAttribute("isFriend", isFriend);
+			if (request.getParameter("check") == null) {
+				boolean isFriend = fc.isFriend(gu, ub);
+				request.setAttribute("isFriend", isFriend);
+			} else {
+				request.setAttribute("isFriend", true);
+			}
 			rd = request.getRequestDispatcher("userDetail.jsp");
 		} else if(request.getParameter("friend") != null) {
 			String fr = request.getParameter("friend");
