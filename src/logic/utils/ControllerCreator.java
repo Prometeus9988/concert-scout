@@ -1,6 +1,7 @@
 package logic.utils;
 
 import logic.login.LoginController;
+import logic.readnews.ReadNewsController;
 import logic.addmusicevent.AddMusicEventController;
 import logic.addnews.AddNewsController;
 import logic.buyticket.BuyTicketController;
@@ -38,5 +39,9 @@ public class ControllerCreator {
 	
 	public FollowArtistController getFollowArtistController() {
 		return new FollowArtistController();
+	}
+	
+	public ReadNewsController getReadNewsController() {
+		return new ReadNewsController();
 	}
 }

@@ -246,4 +246,14 @@ public class Queries {
        	stm.closeOnCompletion(); 
 	}
 
+	public static ResultSet selectNews(Connection con, String username) throws SQLException{
+		String sql = "call livethemusic.view_news(?);\r\n"; 
+		PreparedStatement stm = con.prepareStatement(sql);
+        stm.setString(1, username);
+        stm.executeQuery();
+       	ResultSet rs = stm.executeQuery();
+       	stm.closeOnCompletion();
+       	return rs;
+	}
+
 }

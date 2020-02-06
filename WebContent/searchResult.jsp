@@ -57,7 +57,7 @@
   
     <ul>
     <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
-    <li><form action="news.jsp" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
+    <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
     <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
     <li><form action="friends.jsp" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
     <li><form action="aroundyou.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
@@ -94,7 +94,6 @@
   	<input type="submit" name = "<%="a"%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getBandName() %>">
   	<input type = "hidden" name = "artist" value = "<%= musicEvents.get(i).getArtistId() %>">
   	</form>
-  	
 </div>
 
 </li>

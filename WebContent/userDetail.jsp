@@ -56,7 +56,7 @@
   
    <ul>    
     <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
-    <li><form action="news.jsp" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
+    <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
     <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
     <li><form action="friends.jsp" method="POST"><input type="submit" class = "selected" value="Friends"></form></li>
     <li><form action="aroundyou.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>

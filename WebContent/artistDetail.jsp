@@ -66,7 +66,7 @@
     	%>
     
     <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
-    <li><form action="news.jsp" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
+    <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
     <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
     <li><form action="friends.jsp" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
     <li><form action="aroundyou.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
@@ -85,10 +85,14 @@
   <div class="centered" style="margin-left:30px;">
 	<h1><%=ab.getBandName()%></h1>
   </div>
+  <%
+  if(!origin.equals("AdminMusicEventServlet")){
+  %>
   <form action = "ButtonHandler" method = "POST">
   <input type = "submit" name = "follow" value = "<%=foll%>">
   <input type = "hidden" name = "artist" value = "<%=ab.getUsername() %>">
   </form>
+  <%} %>
   </div>
   </div>
 

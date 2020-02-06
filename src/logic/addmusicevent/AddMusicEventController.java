@@ -65,7 +65,6 @@ public class AddMusicEventController {
 	}
 	
 	public void rejectMusicEvent(MusicEventBean meb) {
-		//TODO delete file on rejection of music event
 		Path path = Paths.get(System.getProperty("user.home") + File.separator
 				+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
 				+ "trunk" + File.separator + "WebContent" + File.separator
@@ -80,6 +79,5 @@ public class AddMusicEventController {
 			MusicEventDao med = new MusicEventDao();
 			med.rejectMusicEvent(meb.getId());
 		}
-		
 	}
 }
