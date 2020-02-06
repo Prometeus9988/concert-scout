@@ -87,7 +87,7 @@ public class SearchEventsArtistsController {
 			loader2=new FXMLLoader(getClass().getResource("Event.fxml"));
 			loader2.setController(ev);
 			this.evRow.getChildren().add(loader2.load());
-			ev.init(musicEvents.get(i));
+			ev.init(musicEvents.get(i),"search",this.mySearchString);
 		}
 		
 		for(i=0;i<artists.size();i++) {
@@ -95,7 +95,7 @@ public class SearchEventsArtistsController {
 			loader2=new FXMLLoader(getClass().getResource("Artist.fxml"));
 			loader2.setController(ac);
 			this.artRow.getChildren().add(loader2.load());
-			ac.init(artists.get(i));
+			ac.init(artists.get(i),"search",this.mySearchString);
 		}
 		
 		

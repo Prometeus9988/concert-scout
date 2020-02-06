@@ -18,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import logic.bean.*;
+import logic.buyticket.BuyTicketController;
 import logic.utils.*;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -33,13 +34,22 @@ public class ArtistController {
 	
 	private ArtistBean myArtist;
 	
+	private String from;
+	private String searchString;
+	
 	@FXML
-	public void openArtist(ActionEvent e) {
-		System.out.println("openArtist");
+	public void openArtist(ActionEvent e) throws IOException{
+		ArtDetailsController adc=new ArtDetailsController();
+		FXMLLoader loader=new FXMLLoader(getClass().getResource("ArtDetails.fxml"));
+		loader.setController(adc);
+		this.artBtn.getScene().setRoot(loader.load());
+		adc.init(this.myArtist,this.from, this.searchString);
 	}
 	
-	public void init(ArtistBean ev) {
+	public void init(ArtistBean ev,String from,String searchString) {
 		
+		this.from=from;
+		this.searchString=searchString;
 		this.myArtist=ev;
 		String path=System.getProperty("user.home")+ File.separator
 				+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator

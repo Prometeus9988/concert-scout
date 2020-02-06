@@ -53,6 +53,12 @@ import logic.fxmlView.*
 		ev.init();*/
 		
 		
+		/*EvDetailsController detC=new EvDetailsController();
+		FXMLLoader loader=new FXMLLoader(getClass().getResource("EvDetails.fxml"));
+		loader.setController(detC);
+		Scene scene=new Scene(loader.load());
+		*/
+		
 		main.setScene(scene);
 		main.setMaximized(true);
 		main.show();

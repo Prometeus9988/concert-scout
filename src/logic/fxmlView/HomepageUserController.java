@@ -94,7 +94,7 @@ public class HomepageUserController {
 			loader2=new FXMLLoader(getClass().getResource("Event.fxml"));
 			loader2.setController(ev);
 			this.suggEvRow.getChildren().add(loader2.load());
-			ev.init(musicEvents.get(i));
+			ev.init(musicEvents.get(i),"home","");
 		}
 		
 		for(i=0;i<artist.size();i++) {
@@ -102,7 +102,7 @@ public class HomepageUserController {
 			loader2=new FXMLLoader(getClass().getResource("Artist.fxml"));
 			loader2.setController(ac);
 			this.suggArtRow.getChildren().add(loader2.load());
-			ac.init(artist.get(i));
+			ac.init(artist.get(i),"home","");
 		}
 		
 		/*for(i=0;i<15;i++) {
