@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import logic.utils.*;
+import logic.utils.SessionUser;
 import java.io.File;
 import logic.bean.ArtistBean;
 import javafx.scene.image.Image;

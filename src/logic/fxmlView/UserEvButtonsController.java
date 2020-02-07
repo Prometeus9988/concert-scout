@@ -2,7 +2,7 @@ package logic.fxmlView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import logic.utils.*;
+import logic.utils.SessionUser;
 import logic.buyticket.*;
 import logic.bean.MusicEventBean;
 import javafx.scene.control.Button;

@@ -15,7 +15,7 @@ import logic.bean.ArtistBean;
 import logic.bean.GeneralUserBean;
 import logic.bean.UserBean;
 import logic.login.*;
-import logic.utils.*;
+import logic.utils.SessionUser;
 import javafx.stage.FileChooser;
 import java.io.File;
 import javafx.stage.Stage;
