@@ -1,29 +1,12 @@
 package logic.fxmlView;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
-import java.io.IOException;
 import java.io.File;
-import logic.bean.GeneralUserBean;
-import logic.login.*;
-import logic.utils.*;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 import logic.bean.*;
-import logic.utils.*;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.geometry.Rectangle2D;
-import logic.bean.*;
 import logic.buyticket.BuyTicketController;
 
 public class EventController {
@@ -65,8 +48,8 @@ public class EventController {
 		ArtistBean ab=btc.getArtist(this.myMusicEvent.getArtistId());
 		adc.init(ab,this.from, this.searchString);*/
 		
-		BuyTicketController btc=ControllerCreator.getInstance().getBuyTicketController();
-		ArtistBean ab=btc.getArtist(this.myMusicEvent.getArtistId());
+		BuyTicketController btc = new BuyTicketController();
+		ArtistBean ab = btc.getArtist(this.myMusicEvent.getArtistId());
 		this.ugc.toArtistDetails(this.artBtn.getScene(), ab, this.from, this.searchString);
 	}
 	

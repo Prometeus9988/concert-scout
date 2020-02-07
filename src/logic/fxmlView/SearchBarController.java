@@ -1,7 +1,6 @@
 package logic.fxmlView;
 
 import javafx.event.ActionEvent;
-import java.io.IOException;
 
 public interface SearchBarController {
 	

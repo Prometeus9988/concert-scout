@@ -19,7 +19,6 @@ import logic.bean.UserBean;
 import logic.buyticket.BuyTicketController;
 import logic.followartist.FollowArtistController;
 import logic.friends.FriendsController;
-import logic.utils.ControllerCreator;
 
 public class ButtonHandler  extends HttpServlet{
 	private static final Logger logger = Logger.getLogger(ButtonHandler.class.getName());
@@ -31,11 +30,10 @@ public class ButtonHandler  extends HttpServlet{
 
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-		BuyTicketController btc = ControllerCreator.getInstance().getBuyTicketController();
+		BuyTicketController btc = new BuyTicketController();
 		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
-		FollowArtistController fac = ControllerCreator.getInstance().getFollowArtistController();
-		AddMusicEventController amec = ControllerCreator.getInstance().getAddMusicEventController();
-		// TODO rework ControllerCreator logic
+		FollowArtistController fac = new FollowArtistController();
+		AddMusicEventController amec = new AddMusicEventController();
 		FriendsController fc = new FriendsController();
 		if(request.getParameter("m") != null) {
 			String id = request.getParameter("Mevent");

@@ -1,25 +1,16 @@
 package logic.fxmlView;
 
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
-import java.io.IOException;
 
-import logic.login.*;
 import logic.utils.*;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import logic.bean.ArtistBean;
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
-import logic.utils.*;
 import logic.buyticket.*;
 import java.util.List;
 
@@ -71,16 +62,16 @@ public class HomepageUserController {
 		this.ugc.searchBar(this.searchBar,1);
 		
 		//init nameBar
-		this.gub=SessionUser.getInstance().getSession();
+		this.gub = SessionUser.getInstance().getSession();
 		this.nameLabel.setText(this.gub.getUsername());
 		
 		//Scrollpane
 		
-		ScrollPane artScrollPane=new ScrollPane(this.suggArtRow);
+		ScrollPane artScrollPane = new ScrollPane(this.suggArtRow);
 		artScrollPane.setFitToHeight(true);
 		this.suggArtCol.getChildren().add(artScrollPane);
 		
-		ScrollPane evScrollPane=new ScrollPane(this.suggEvRow);
+		ScrollPane evScrollPane = new ScrollPane(this.suggEvRow);
 		evScrollPane.setFitToHeight(true);
 		this.suggEvCol.getChildren().add(evScrollPane);
 		
@@ -88,8 +79,8 @@ public class HomepageUserController {
 		artScrollPane.setStyle("-fx-background-color: transparent; -fx-background:  #F5EDF0");
 		evScrollPane.setStyle("-fx-background-color:  transparent;-fx-background:  #F5EDF0");
 		
-		BuyTicketController btc=ControllerCreator.getInstance().getBuyTicketController();
-		String username=this.gub.getUsername();
+		BuyTicketController btc = new BuyTicketController();
+		String username = this.gub.getUsername();
 		
 		List<MusicEventBean> musicEvents=btc.getSuggestedEvents(username);
 		List<ArtistBean>artist=btc.getSuggestedArtist(username);
@@ -122,8 +113,6 @@ public class HomepageUserController {
 			
 			this.ugc.artistPreview(this.suggArtRow, artist.get(i),"home", "");
 		}
-		
-	
 	}
 	
 }

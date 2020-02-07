@@ -5,31 +5,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import org.apache.tomcat.util.http.fileupload.FileItemIterator;
-import org.apache.tomcat.util.http.fileupload.FileItemStream;
-import org.apache.tomcat.util.http.fileupload.FileUploadException;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-import org.apache.tomcat.util.http.fileupload.util.Streams;
-
 import logic.addmusicevent.AddMusicEventController;
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
-import logic.utils.ControllerCreator;
-
 
 @MultipartConfig
 
@@ -43,7 +33,7 @@ public class AddMusicEventServlet extends HttpServlet{
 		
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher("artistHome.jsp");
-		AddMusicEventController controller = ControllerCreator.getInstance().getAddMusicEventController();
+		AddMusicEventController controller = new AddMusicEventController();
 		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 		String res = null;
 		String name = request.getParameter("name");

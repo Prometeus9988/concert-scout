@@ -16,12 +16,11 @@ import javax.servlet.http.HttpSession;
 import logic.bean.GeneralUserBean;
 import logic.bean.NewsBean;
 import logic.readnews.ReadNewsController;
-import logic.utils.ControllerCreator;
 
 @WebServlet("/ReadNewsServlet")
 public class ReadNewsServlet extends HttpServlet{
 	
-	private static final Logger logger = Logger.getLogger(BuyTicketServlet.class.getName());
+	private static final Logger logger = Logger.getLogger(ReadNewsServlet.class.getName());
 	private static final long serialVersionUID = 102831973239L;
 	
 	@Override
@@ -30,7 +29,7 @@ public class ReadNewsServlet extends HttpServlet{
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher("news.jsp");
 		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
-		ReadNewsController rnc = ControllerCreator.getInstance().getReadNewsController();
+		ReadNewsController rnc = new ReadNewsController();
 		
 		session.setAttribute("origin", "ReadNewsServlet");
 		

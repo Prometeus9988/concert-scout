@@ -3,11 +3,9 @@ package logic.fxmlView;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 
@@ -70,11 +68,11 @@ public class LoginViewController {
 	@FXML
 	public void loginButtonAction(ActionEvent event){
 		
-		GeneralUserBean gub=new GeneralUserBean();
+		GeneralUserBean gub = new GeneralUserBean();
 		gub.setUsername(this.usernameTextField.getText());
 		gub.setPassword(this.passwordBox.getText());
 		
-		LoginController controller=ControllerCreator.getInstance().getLoginController();
+		LoginController controller = new LoginController();
     	GeneralUserBean gu=controller.login(gub);
     	if(gu==null) {
     		this.errorLabel1.setText("Wrong username");
@@ -82,7 +80,6 @@ public class LoginViewController {
     	}
     	else {
     		String role=gu.getRole();
-    		FXMLLoader loader;
     		
     		//SET SESSION GENERAL USER
     		SessionUser su=SessionUser.getInstance();
@@ -124,8 +121,8 @@ public class LoginViewController {
 	
 	@FXML
 	public void registerButtonAction(ActionEvent event) {
-		LoginController controller = ControllerCreator.getInstance().getLoginController();
-		Boolean regResult=false;
+		LoginController controller = new LoginController();
+		Boolean regResult = false;
 		String email = "";
 		String username = "";
 		String password = "";

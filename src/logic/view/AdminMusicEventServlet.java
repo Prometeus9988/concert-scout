@@ -13,13 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import logic.addmusicevent.AddMusicEventController;
-import logic.bean.ArtistBean;
-import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
-import logic.utils.ControllerCreator;
 
 public class AdminMusicEventServlet   extends HttpServlet{
-	private static final Logger logger = Logger.getLogger(ButtonHandler.class.getName());
+	private static final Logger logger = Logger.getLogger(AdminMusicEventServlet.class.getName());
 	private static final long serialVersionUID = 102831973239L;
 	
 	@Override
@@ -27,8 +24,7 @@ public class AdminMusicEventServlet   extends HttpServlet{
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher("adminMusicEvent.jsp");
-		AddMusicEventController amc = ControllerCreator.getInstance().getAddMusicEventController();
-		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
+		AddMusicEventController amc = new AddMusicEventController();
 		session.setAttribute("origin", "AdminMusicEventServlet");
 		
 		List<MusicEventBean> musicEvents = amc.viewPendingEvents();

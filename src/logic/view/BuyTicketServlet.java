@@ -17,8 +17,6 @@ import logic.bean.ArtistBean;
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
 import logic.buyticket.BuyTicketController;
-import logic.utils.*;
-
 
 @WebServlet("/BuyTicketServlet")
 public class BuyTicketServlet extends HttpServlet{
@@ -31,9 +29,8 @@ public class BuyTicketServlet extends HttpServlet{
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-		BuyTicketController btc = ControllerCreator.getInstance().getBuyTicketController();
+		BuyTicketController btc = new BuyTicketController();
 		session.setAttribute("origin", "BuyTicketServlet");
-		int i;
 		
 		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 		String username = gu.getUsername();

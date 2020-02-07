@@ -14,10 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import logic.bean.ArtistBean;
-import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
 import logic.buyticket.BuyTicketController;
-import logic.utils.ControllerCreator;
 
 @WebServlet("/SearchServlet")
 public class SearchServlet extends HttpServlet{
@@ -29,10 +27,8 @@ public class SearchServlet extends HttpServlet{
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = null;
-		BuyTicketController btc = ControllerCreator.getInstance().getBuyTicketController();
-		int i;
-		
-		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
+		BuyTicketController btc = new BuyTicketController();
+
 		List<MusicEventBean> musicEvents = null;
 		List<ArtistBean> artists = null;
 		session.setAttribute("origin", "SearchServlet");

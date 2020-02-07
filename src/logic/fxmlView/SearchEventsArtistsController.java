@@ -1,25 +1,10 @@
 package logic.fxmlView;
 
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
-import javafx.scene.control.ComboBox;
-import logic.login.*;
-import logic.utils.*;
-import javafx.stage.FileChooser;
-import java.io.File;
-import javafx.stage.Stage;
-import java.io.FileInputStream;
 import logic.buyticket.*;
 import java.util.List;
 import logic.bean.ArtistBean;
@@ -76,7 +61,7 @@ public class SearchEventsArtistsController {
 		evScrollPane.setStyle("-fx-background-color:  transparent;-fx-background:  #F5EDF0");
 		
 		//searched lists
-		BuyTicketController btc=ControllerCreator.getInstance().getBuyTicketController();
+		BuyTicketController btc = new BuyTicketController();
 		List<MusicEventBean> musicEvents=null;
 		musicEvents=btc.getSearchMusicEvent(this.mySearchString);
 		List<ArtistBean> artists=null;

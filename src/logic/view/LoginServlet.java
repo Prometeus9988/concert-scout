@@ -22,7 +22,6 @@ import logic.bean.ArtistBean;
 import logic.bean.GeneralUserBean;
 import logic.bean.UserBean;
 import logic.login.LoginController;
-import logic.utils.*;
 
 
 @WebServlet("/LoginServlet")
@@ -43,7 +42,7 @@ public class LoginServlet extends HttpServlet{
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher(INDEX);
 
-		LoginController controller = ControllerCreator.getInstance().getLoginController();
+		LoginController controller = new LoginController();
 		
 		String email = "";
 		String username = "";

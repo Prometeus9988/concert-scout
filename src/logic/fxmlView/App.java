@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.io.IOException;
-import logic.fxmlView.*
 ;public class App extends Application {
 	
 	@Override

@@ -1,24 +1,17 @@
 package logic.buyticket;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import logic.bean.ArtistBean;
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
-import logic.bean.UserBean;
 import logic.dao.ArtistDao;
 import logic.dao.MusicEventDao;
 import logic.entity.Artist;
 import logic.entity.MusicEvent;
-import logic.entity.User;
-import logic.utils.ControllerCreator;
 
 public class BuyTicketController {
-	private static final Logger logger = Logger.getLogger(BuyTicketController.class.getName());
 
 	public List<MusicEventBean> getSuggestedEvents(String username) {
 		MusicEventDao med = new MusicEventDao();
@@ -121,17 +114,17 @@ public class BuyTicketController {
 	}
 	
 	public void addParticipation(GeneralUserBean user, MusicEventBean meb) {
-		AddParticipationController apc = ControllerCreator.getInstance().getAddParticipationController();
+		AddParticipationController apc = new AddParticipationController();
 		apc.addParticipation(user, meb);
 	}
 	
 	public void removeParticipation(GeneralUserBean user, MusicEventBean meb) {
-		AddParticipationController apc = ControllerCreator.getInstance().getAddParticipationController();
+		AddParticipationController apc = new AddParticipationController();
 		apc.removeParticipation(user, meb);
 	}
 	
 	public boolean isParticipating(GeneralUserBean user, MusicEventBean meb) {
-		AddParticipationController apc = ControllerCreator.getInstance().getAddParticipationController();
+		AddParticipationController apc = new AddParticipationController();
 		return apc.isParticipating(user, meb);
 	}
 }

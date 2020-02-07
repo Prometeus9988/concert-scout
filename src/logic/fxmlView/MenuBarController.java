@@ -1,19 +1,9 @@
 package logic.fxmlView;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
-import java.io.IOException;
 import javafx.scene.control.Button;
-import logic.bean.GeneralUserBean;
-import logic.login.*;
 import logic.utils.SessionUser;
-import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 
 public class MenuBarController {
 	
