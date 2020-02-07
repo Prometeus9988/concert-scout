@@ -40,28 +40,39 @@ public class EventController {
 	
 	private String from;
 	private String searchString;
+	private UserGraphicChange ugc;
 	
 	@FXML
-	public void openEvent(ActionEvent e) throws IOException{
-		EvDetailsController edc=new EvDetailsController();
+	public void openEvent(ActionEvent e){
+		/*EvDetailsController edc=new EvDetailsController();
 		FXMLLoader loader=new FXMLLoader(getClass().getResource("EvDetails.fxml"));
 		loader.setController(edc);
 		this.artBtn.getScene().setRoot(loader.load());
 		edc.init(this.myMusicEvent,this.from,this.searchString);
+		*/
+		
+		this.ugc.toEventDetails(this.artBtn.getScene(),this.myMusicEvent, this.from, this.searchString);
 	}
 	
 	@FXML
-	public void openArtist(ActionEvent e) throws IOException {
-		ArtDetailsController adc=new ArtDetailsController();
+	public void openArtist(ActionEvent e){
+		
+	/*	ArtDetailsController adc=new ArtDetailsController();
 		FXMLLoader loader=new FXMLLoader(getClass().getResource("ArtDetails.fxml"));
 		loader.setController(adc);
 		this.artBtn.getScene().setRoot(loader.load());
 		BuyTicketController btc=ControllerCreator.getInstance().getBuyTicketController();
 		ArtistBean ab=btc.getArtist(this.myMusicEvent.getArtistId());
-		adc.init(ab,this.from, this.searchString);
+		adc.init(ab,this.from, this.searchString);*/
+		
+		BuyTicketController btc=ControllerCreator.getInstance().getBuyTicketController();
+		ArtistBean ab=btc.getArtist(this.myMusicEvent.getArtistId());
+		this.ugc.toArtistDetails(this.artBtn.getScene(), ab, this.from, this.searchString);
 	}
 	
 	public void init(MusicEventBean ev,String from,String searchString) {
+		
+		this.ugc=UserGraphicChange.getInstance();
 		
 		this.myMusicEvent=ev;
 		this.from=from;

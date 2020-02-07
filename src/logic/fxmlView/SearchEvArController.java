@@ -27,17 +27,22 @@ public class SearchEvArController implements SearchBarController {
 	
 	@FXML
 	private TextField searchField;
+	private UserGraphicChange ucg;
+	
 	@FXML
-	public void searchAction(ActionEvent e) throws IOException{
+	public void searchAction(ActionEvent e){
 		
-		SearchEventsArtistsController evc=new SearchEventsArtistsController();
+		/*SearchEventsArtistsController evc=new SearchEventsArtistsController();
 		FXMLLoader loader=new FXMLLoader(getClass().getResource("SearchEventsArtists.fxml"));
 		loader.setController(evc);
 		this.searchField.getScene().setRoot(loader.load());
-		evc.init(this.searchField.getText());
+		evc.init(this.searchField.getText());*/
+		
+		this.ucg.toSearchEv(this.searchField.getScene(), this.searchField.getText());
 	}
 	
 	public void init() {
+		this.ucg=UserGraphicChange.getInstance();
 		this.searchField.setPromptText("Search artists or events...");
 		
 	}

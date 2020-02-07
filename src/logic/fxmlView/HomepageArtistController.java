@@ -50,6 +50,7 @@ public class HomepageArtistController {
 	private File imageFile=null;
 	private GeneralUserBean gub;
 	private AddMusicEventController controller;
+	private ArtistGraphicChange agc;
 	
 	@FXML
 	public void selectImage(ActionEvent ev) {
@@ -112,17 +113,23 @@ public class HomepageArtistController {
 		
 	}
 	
-	public void init() throws IOException{
+	public void init(){
 		
 		//init controller
 		this.controller=ControllerCreator.getInstance().getAddMusicEventController();
 		
+		this.agc=ArtistGraphicChange.getInstance();
+		
 		//init menuBar
-		ArtistMenuBarController amc=new ArtistMenuBarController();
+		
+		/*ArtistMenuBarController amc=new ArtistMenuBarController();
 		FXMLLoader loader=new FXMLLoader(getClass().getResource("ArtistMenuBar.fxml"));
 		loader.setController(amc);
 		this.menuBar.getChildren().add(loader.load());
-		amc.init("addEv");
+		amc.init("addEv");*/
+		
+		this.agc.menuBar(this.menuBar,"addEv");
+		
 		
 		//init nameBar
 		this.gub=SessionUser.getInstance().getSession();

@@ -52,6 +52,7 @@ public class LoginViewController {
 	@FXML
 	private Label imageLabel;
 	
+	
 	private File imageFile=null;
 	
 	@FXML
@@ -67,7 +68,7 @@ public class LoginViewController {
 
 	
 	@FXML
-	public void loginButtonAction(ActionEvent event) throws IOException {
+	public void loginButtonAction(ActionEvent event){
 		
 		GeneralUserBean gub=new GeneralUserBean();
 		gub.setUsername(this.usernameTextField.getText());
@@ -89,25 +90,29 @@ public class LoginViewController {
     		
     		switch(role) {
     		case "user":
-    			HomepageUserController huc=new HomepageUserController();
+    			/*HomepageUserController huc=new HomepageUserController();
     			loader=new FXMLLoader(getClass().getResource("HomepageUser.fxml"));
     			loader.setController(huc);
     			this.usernameTextField.getScene().setRoot(loader.load());
-    			huc.init();
+    			huc.init();*/
+    			UserGraphicChange.getInstance().toHomepage(this.usernameTextField.getScene());    			
     			break;
     		case "artist":
     			//set artist homepage controller
-    			HomepageArtistController hac=new HomepageArtistController();
+    			
+    			/*HomepageArtistController hac=new HomepageArtistController();
     			loader=new FXMLLoader(getClass().getResource("HomepageArtist.fxml"));
     			loader.setController(hac);
     			this.usernameTextField.getScene().setRoot(loader.load());
-    			hac.init();
+    			hac.init();*/
+    			
+    			ArtistGraphicChange.getInstance().toHomepage(this.usernameTextField.getScene());
     			break;
     		case "admin":
     			//set admin controller
     			//DUMP
-    			loader=new FXMLLoader(getClass().getResource("AdminHomepage.fxml"));
-    			this.usernameTextField.getScene().setRoot(loader.load());
+    			/*loader=new FXMLLoader(getClass().getResource("AdminHomepage.fxml"));
+    			this.usernameTextField.getScene().setRoot(loader.load());*/
     			break;
     		}
     		

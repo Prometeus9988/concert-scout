@@ -37,16 +37,22 @@ public class ArtistController {
 	private String from;
 	private String searchString;
 	
+	private UserGraphicChange ucg;
+	
 	@FXML
-	public void openArtist(ActionEvent e) throws IOException{
-		ArtDetailsController adc=new ArtDetailsController();
+	public void openArtist(ActionEvent e){
+		/*ArtDetailsController adc=new ArtDetailsController();
 		FXMLLoader loader=new FXMLLoader(getClass().getResource("ArtDetails.fxml"));
 		loader.setController(adc);
 		this.artBtn.getScene().setRoot(loader.load());
-		adc.init(this.myArtist,this.from, this.searchString);
+		adc.init(this.myArtist,this.from, this.searchString);*/
+		
+		this.ucg.toArtistDetails(this.artBtn.getScene(), this.myArtist, this.from, this.searchString);
 	}
 	
 	public void init(ArtistBean ev,String from,String searchString) {
+		
+		this.ucg=UserGraphicChange.getInstance();
 		
 		this.from=from;
 		this.searchString=searchString;
@@ -68,7 +74,8 @@ public class ArtistController {
 		
 		
 		this.artBtn.setText(this.myArtist.getBandName());
-		}
+		
+	}
 		
 	
 }

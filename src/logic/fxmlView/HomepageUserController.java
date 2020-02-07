@@ -41,24 +41,34 @@ public class HomepageUserController {
 	private HBox suggArtRow;
 	
 	private GeneralUserBean gub;
+	private UserGraphicChange ugc;
 	
 	
-	
-	public void init() throws IOException {
+	public void init(){
+		
+		this.ugc=UserGraphicChange.getInstance();
 		
 		//init menuBar
-		MenuBarController mbc=new MenuBarController();
+		
+		/*MenuBarController mbc=new MenuBarController();
 		FXMLLoader loader=new FXMLLoader(getClass().getResource("MenuBar.fxml"));
 		loader.setController(mbc);
 		this.menuBar.getChildren().add(loader.load());
-		mbc.init("home");
+		mbc.init("home");*/
+		
+		this.ugc.menuBar(this.menuBar,"home");
+		
 		
 		//init searchBar
+		
+		/*
 		SearchBarController sc=SearchBarControllerFactory.getInstance().creator(1);
 		FXMLLoader loader1=new FXMLLoader(getClass().getResource("SearchBar.fxml"));
 		loader1.setController(sc);
 		this.searchBar.getChildren().add(loader1.load());
-		sc.init();
+		sc.init();*/
+		
+		this.ugc.searchBar(this.searchBar,1);
 		
 		//init nameBar
 		this.gub=SessionUser.getInstance().getSession();
@@ -85,39 +95,33 @@ public class HomepageUserController {
 		List<ArtistBean>artist=btc.getSuggestedArtist(username);
 		
 		int i;
-		EventController ev;
-		FXMLLoader loader2;
-		ArtistController ac;
+		//EventController ev;
+		//FXMLLoader loader2;
+		//ArtistController ac;
 		
 		for(i=0;i<musicEvents.size();i++) {
-			ev=new EventController();
+			/*ev=new EventController();
 			loader2=new FXMLLoader(getClass().getResource("Event.fxml"));
 			loader2.setController(ev);
 			this.suggEvRow.getChildren().add(loader2.load());
-			ev.init(musicEvents.get(i),"home","");
+			ev.init(musicEvents.get(i),"home","");*/
+			
+			//EVENT PREVIEW
+			
+			this.ugc.eventPreview(this.suggEvRow, musicEvents.get(i),"home", "");
 		}
 		
 		for(i=0;i<artist.size();i++) {
-			ac=new ArtistController();
+			/*ac=new ArtistController();
 			loader2=new FXMLLoader(getClass().getResource("Artist.fxml"));
 			loader2.setController(ac);
 			this.suggArtRow.getChildren().add(loader2.load());
-			ac.init(artist.get(i),"home","");
-		}
-		
-		/*for(i=0;i<15;i++) {
-			ev=new EventController();
-			loader2=new FXMLLoader(getClass().getResource("Event.fxml"));
-			loader2.setController(ev);
-			this.suggEvRow.getChildren().add(loader2.load());
-			ev.init();
+			ac.init(artist.get(i),"home","");*/
 			
-			ev=new EventController();
-			loader2=new FXMLLoader(getClass().getResource("Event.fxml"));
-			loader2.setController(ev);
-			this.suggArtRow.getChildren().add(loader2.load());
-			ev.init();
-		}*/
+			//ARTIST PREVIEW
+			
+			this.ugc.artistPreview(this.suggArtRow, artist.get(i),"home", "");
+		}
 		
 	
 	}

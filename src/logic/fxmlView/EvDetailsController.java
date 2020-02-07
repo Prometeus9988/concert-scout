@@ -48,15 +48,22 @@ public class EvDetailsController {
 	@FXML
 	private HBox buttons;
 	
-	public void init(MusicEventBean myEvent,String from,String searchString) throws IOException{
+	private UserGraphicChange ucg;
+	
+	public void init(MusicEventBean myEvent,String from,String searchString){
 		this.myEvent=myEvent;
+		this.ucg=UserGraphicChange.getInstance();
 		
 		//INIT MENU BAR
-		MenuBarController mbc=new MenuBarController();
+		
+		/*MenuBarController mbc=new MenuBarController();
 		FXMLLoader loader=new FXMLLoader(getClass().getResource("MenuBar.fxml"));
 		loader.setController(mbc);
 		this.menuBar.getChildren().add(loader.load());
-		mbc.init("home");
+		mbc.init("home");*/
+		
+		this.ucg.menuBar(this.menuBar,"home");
+		
 		
 		//INIT LABEL NAMES
 		this.conc.setText(this.myEvent.getName());
@@ -65,18 +72,23 @@ public class EvDetailsController {
 		
 		//INIT BACK BUTTON
 		
-		BackUserController bc=new BackUserController();
+		/*BackUserController bc=new BackUserController();
 		loader=new FXMLLoader(getClass().getResource("BackButton.fxml"));
 		loader.setController(bc);
 		bc.init(from,searchString);
-		this.backButton.getChildren().add(loader.load());
+		this.backButton.getChildren().add(loader.load());*/
+		
+		this.ucg.backButton(this.backButton, from, searchString);
 		
 		//INIT ROLE BUTTONS
-		UserEvButtonsController btc=new UserEvButtonsController();
+		
+		/*UserEvButtonsController btc=new UserEvButtonsController();
 		loader=new FXMLLoader(getClass().getResource("UserEvDetButtons.fxml"));
 		loader.setController(btc);
 		this.buttons.getChildren().add(loader.load());
-		btc.init(this.myEvent);
+		btc.init(this.myEvent);*/
+		
+		this.ucg.evDeatilsButtons(this.buttons, this.myEvent);
 		
 		//INIT IMAGE
 		String path=System.getProperty("user.home")+ File.separator

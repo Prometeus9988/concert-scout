@@ -32,10 +32,15 @@ public class MenuBarController {
 	@FXML
 	private Button logoutButton;
 	
+	private UserGraphicChange ugc;
+	
+	
 	public MenuBarController() {}
 	
 	
 	public void init(String selected) {
+		
+		this.ugc=UserGraphicChange.getInstance();
 		
 		String style="-fx-background-color: transparent; -fx-border: none; -fx-text-fill: rgba(245, 203, 92, 1); -fx-font-size: 16 ; -fx-font-weight: bold;";
 		
@@ -65,12 +70,13 @@ public class MenuBarController {
 	
 	
 	@FXML
-	public void homeButtonAction(ActionEvent e) throws IOException{
-		HomepageUserController huc=new HomepageUserController();
+	public void homeButtonAction(ActionEvent e){
+		/*HomepageUserController huc=new HomepageUserController();
 		FXMLLoader loader=new FXMLLoader(getClass().getResource("HomepageUser.fxml"));
 		loader.setController(huc);
 		this.homeButton.getScene().setRoot(loader.load());
-		huc.init();
+		huc.init();*/
+		this.ugc.toHomepage(this.homeButton.getScene());
 	}
 	
 	@FXML
@@ -98,12 +104,13 @@ public class MenuBarController {
 	}
 	
 	@FXML
-	public void logoutButtonAction(ActionEvent e) throws IOException {
-		LoginViewController lvc=new LoginViewController();
+	public void logoutButtonAction(ActionEvent e){
+		/*LoginViewController lvc=new LoginViewController();
 		FXMLLoader loader=new FXMLLoader(getClass().getResource("Login.fxml"));
 		loader.setController(lvc);
 		this.homeButton.getScene().setRoot(loader.load());
-		lvc.init();
+		lvc.init();*/
 		SessionUser.getInstance().closeSession();
+		this.ugc.toLogin(this.homeButton.getScene());
 	}
 }

@@ -27,36 +27,47 @@ import logic.bean.MusicEventBean;
 import javafx.scene.control.Button;
 
 
-public class BackUserController {
+public class BackUserController implements BackController{
 	
 	private String from;
 	private String searchString;
 	@FXML
 	private Button buttonBack;
 	
+	private UserGraphicChange grCtrl;
 	
 	@FXML
-	public void backAction(ActionEvent ev) throws IOException{
+	public void backAction(ActionEvent ev){
 		
-		FXMLLoader loader;
+		//FXMLLoader loader;
 		
 		if(this.from=="home") {
-			HomepageUserController huc=new HomepageUserController();
+			/*HomepageUserController huc=new HomepageUserController();
 			loader=new FXMLLoader(getClass().getResource("HomepageUser.fxml"));
 			loader.setController(huc);
 			this.buttonBack.getScene().setRoot(loader.load());
-			huc.init();
+			huc.init();*/
+			
+			this.grCtrl.toHomepage(this.buttonBack.getScene());
+			
 		}else if(this.from=="search"){
-			SearchEventsArtistsController evc=new SearchEventsArtistsController();
+			/*SearchEventsArtistsController evc=new SearchEventsArtistsController();
 			loader=new FXMLLoader(getClass().getResource("SearchEventsArtists.fxml"));
 			loader.setController(evc);
 			this.buttonBack.getScene().setRoot(loader.load());
 			evc.init(this.searchString);
+			*/
 			
+			this.grCtrl.toSearchEv(this.buttonBack.getScene(), this.searchString);
 		}
+		
+		//from my friends
+		
+		//from search friends
 	}
 	
 	public void init(String from,String searchString) {
+		this.grCtrl=UserGraphicChange.getInstance();
 		this.from=from;
 		this.searchString=searchString;
 	}

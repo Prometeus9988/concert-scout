@@ -49,6 +49,7 @@ public class ArtDetailsController {
 	
 	private FollowArtistController controller;
 	private GeneralUserBean sessionUser;
+	private UserGraphicChange ucg;
 	
 	@FXML
 	public void followAction(ActionEvent ev) {
@@ -62,8 +63,8 @@ public class ArtDetailsController {
 		}
 	}
 	
-	public void init(ArtistBean ar,String from,String searchString) throws IOException {
-		
+	public void init(ArtistBean ar,String from,String searchString) {
+		this.ucg=UserGraphicChange.getInstance();
 		this.myArtist=ar;
 		
 		//INIT CONTROLLER AND SESSIONUSER
@@ -81,22 +82,27 @@ public class ArtDetailsController {
 		}
 		
 		//INIT MENU BAR
-		MenuBarController mbc=new MenuBarController();
+		/*MenuBarController mbc=new MenuBarController();
 		FXMLLoader loader=new FXMLLoader(getClass().getResource("MenuBar.fxml"));
 		loader.setController(mbc);
 		this.menuBar.getChildren().add(loader.load());
-		mbc.init("home");
+		mbc.init("home");*/
+		
+		this.ucg.menuBar(this.menuBar,"home");
 		
 		//INIT LABEL NAMES
 		this.artName.setText(this.myArtist.getBandName());
 		
 		//INIT BACK BUTTON
 		
-		BackUserController bc=new BackUserController();
+		/*BackUserController bc=new BackUserController();
 		loader=new FXMLLoader(getClass().getResource("BackButton.fxml"));
 		loader.setController(bc);
 		bc.init(from,searchString);
-		this.backButton.getChildren().add(loader.load());
+		this.backButton.getChildren().add(loader.load());*/
+		
+		
+		this.ucg.backButton(this.backButton, from, searchString);
 		
 		//INIT IMAGE
 		String path=System.getProperty("user.home")+ File.separator

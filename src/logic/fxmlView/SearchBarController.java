@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public interface SearchBarController {
 	
-	public void searchAction(ActionEvent e) throws IOException;
+	public void searchAction(ActionEvent e);
 	
 	public void init();
 	
