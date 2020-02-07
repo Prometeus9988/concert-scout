@@ -18,10 +18,16 @@ public class GeneralUserDao {
     public static GeneralUser findUser(String username, String password) {
         Connection conn = null;
         GeneralUser u = null;
+        ResultSet rs = null;
+        PreparedStatement stm = null;
         try {
             conn = DBLoginConnection.getLoginConnection();
             
-            ResultSet rs = Queries.selectGeneralUserLogin(conn, username, password);
+            String sql = "call livethemusic.login(?, ?);\r\n";
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, username);
+            stm.setString(2, password);
+    		rs = stm.executeQuery();
 
             if (!rs.first()) // rs not empty
                 return null;
@@ -37,21 +43,25 @@ public class GeneralUserDao {
             	u = new GeneralUser(usernameLoaded, "", role);
             }
 
-            rs.close();
-
         } catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
             logger.log(Level.WARNING, e.toString());
         } finally {
-//            try {
-//                if (stmt != null)
-//                    stmt.close();
-//            } catch (SQLException se2) {
-//            	logger.log(Level.WARNING, se2.toString());
-//            }
+            try {
+                if (rs != null)
+                    rs.close();
+            } catch (SQLException se1) {
+            	logger.log(Level.WARNING, se1.toString());
+            }
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
         }
-        //System.out.println("Found " + u.getRole() + "with username" + u.getUsername());
+
         return u;
     }
 }

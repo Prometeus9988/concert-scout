@@ -7,14 +7,9 @@ import logic.dao.ArtistDao;
 import logic.dao.GeneralUserDao;
 import logic.dao.UserDao;
 import logic.entity.GeneralUser;
-import logic.utils.Queries;
 
 public class LoginController {
 
-	public static void main(String[] args) {
-		System.out.println("To Implement");
-	}
-	
 	public GeneralUserBean login(GeneralUserBean userBean) {
 		GeneralUser result = GeneralUserDao.findUser(userBean.getUsername(), userBean.getPassword());
 		if (result == null)	{

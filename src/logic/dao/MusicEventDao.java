@@ -1,6 +1,7 @@
 package logic.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,88 +17,117 @@ import logic.utils.*;
 public class MusicEventDao {
 	
 	private static final Logger logger = Logger.getLogger(MusicEventDao.class.getName());
-	private static MusicEventDao instance = null;
-	
-	public static MusicEventDao getInstance() {
-		if(instance == null) {
-			instance = new MusicEventDao();
-		}
-		return instance;
-	}
+	private static final String ID = "id";
+	private static final String NAME = "name";
+	private static final String LOCATION = "location";
+	private static final String BANDNAME = "band_name";
+	private static final String ARTISTUSERNAME = "artist_username";
+	private static final String TICKETONE = "ticketone";
+	private static final String COVERPATH = "cover_path";
+	private static final String DEFAULTPICTURE = "concert.jpg";
 	
 	public MusicEvent getMusicEvent(String id, String role) {
 		Connection conn = null;
 		MusicEvent me = null;
 		ResultSet rs = null;
+		String sql = null;
+		PreparedStatement stm = null;
 		
 		try {
-			if(role.equals("user")) {
-				conn = DBUserConnection.getUserConnection();
-
-				rs = Queries.selectMusicEvent(conn, id);
-			} else if(role.equals("admin")) {
+			if(role.equals("admin")) {
 				conn = DBAdminConnection.getAdminConnection();
-
-				rs = Queries.selectMusicEventPending(conn, id);
+				sql = "call livethemusic.get_pending_musicevent(?);\r\n";
+			} else {
+				conn = DBUserConnection.getUserConnection();
+		        sql = "call livethemusic.get_musicevent(?);\r\n";
 			}
-            if (!rs.first()) // rs not empty
-                System.out.println("Empty");
 
-            int idb = rs.getInt("id");
-            System.out.println(idb);
-            String name = rs.getString("name");
-            String location = rs.getString("location");
-            String bandName = rs.getString("band_name");
-            String artistUsername = rs.getString("artist_username");
-            String ticketone = rs.getString("ticketone");
-            String coverPath = rs.getString("cover_path");
+			stm = conn.prepareStatement(sql);
+			
+	        stm.setString(1, id);
+			rs = stm.executeQuery();
+			rs.next();
+			
+            int idb = rs.getInt(ID);
+            String name = rs.getString(NAME);
+            String location = rs.getString(LOCATION);
+            String bandName = rs.getString(BANDNAME);
+            String artistUsername = rs.getString(ARTISTUSERNAME);
+            String ticketone = rs.getString(TICKETONE);
+            String coverPath = rs.getString(COVERPATH);
+            
         	if(coverPath == null || coverPath.equals("")) {
-        		coverPath = "concert.jpg";
+        		coverPath = DEFAULTPICTURE;
         	}
             me = new MusicEvent(idb, artistUsername, name, coverPath, location, bandName, ticketone);
-            
-
-            rs.close();
 
         } catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
         	logger.log(Level.WARNING, e.toString());
+        } finally {
+        	try {
+                if (rs != null)
+                    rs.close();
+            } catch (SQLException se1) {
+            	logger.log(Level.WARNING, se1.toString());
+            }
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
         }
-        
         return me;
 	}
 	
 	public List<MusicEvent> getSuggestedEvents(String username){
-        //PreparedStatement prepStmt = null;
         Connection conn = null;
+    	ResultSet rs = null;
+    	PreparedStatement stm = null;
         List<MusicEvent> l = new ArrayList<>();
         try {
             conn = DBUserConnection.getUserConnection();
 
-            ResultSet rs = Queries.selectSuggestedMusicEvents(conn, username);
+    		String sql = "call livethemusic.view_friend_partitipation(?);\r\n"; 
+    		stm = conn.prepareStatement(sql);
+            stm.setString(1, username);
+            rs = stm.executeQuery();
             
             if (!rs.first()) // rs not empty
                 return Collections.emptyList();
             
             do{
-            	int id = rs.getInt("id");
-            	String name = rs.getString("name");
-            	String location = rs.getString("location");
-            	String bandName = rs.getString("band_name");
-            	String artistUsername = rs.getString("artist_username");
-            	String coverPath = rs.getString("cover_path");
+            	int id = rs.getInt(ID);
+            	String name = rs.getString(NAME);
+            	String location = rs.getString(LOCATION);
+            	String bandName = rs.getString(BANDNAME);
+            	String artistUsername = rs.getString(ARTISTUSERNAME);
+            	String coverPath = rs.getString(COVERPATH);
             	if(coverPath == null || coverPath.equals("")) {
-            		coverPath = "concert.jpg";
+            		coverPath = DEFAULTPICTURE;
             	}
             	l.add(new MusicEvent(id, artistUsername, name, coverPath, location, bandName, ""));
             } while (rs.next());
-            rs.close();
 
         } catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
         	logger.log(Level.WARNING, e.toString());
+        } finally {
+        	try {
+                if (rs != null)
+                    rs.close();
+            } catch (SQLException se1) {
+            	logger.log(Level.WARNING, se1.toString());
+            }
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
         }
         
         return l;
@@ -105,78 +135,101 @@ public class MusicEventDao {
 	
 	public List<MusicEvent> getPendingMusicEvent(){
         Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
         List<MusicEvent> l = new ArrayList<>();
         try {
 			conn = DBAdminConnection.getAdminConnection();
 
-            ResultSet rs = Queries.selectPendingMusicEvents(conn);
+			String sql = "call livethemusic.view_pendingmusicevent();\r\n"; 
+			stm = conn.prepareStatement(sql);
+	       	rs = stm.executeQuery();
             
             if (!rs.first()) // rs not empty
                 return Collections.emptyList();
             
             do{
-            	int id = rs.getInt("id");
-            	String name = rs.getString("name");
-            	String location = rs.getString("location");
-            	String bandName = rs.getString("band_name");
-            	String artistUsername = rs.getString("artist_username");
-            	String ticketone = rs.getString("ticketone");
-            	String coverPath = rs.getString("cover_path");
+            	int id = rs.getInt(ID);
+            	String name = rs.getString(NAME);
+            	String location = rs.getString(LOCATION);
+            	String bandName = rs.getString(BANDNAME);
+            	String artistUsername = rs.getString(ARTISTUSERNAME);
+            	String ticketone = rs.getString(TICKETONE);
+            	String coverPath = rs.getString(COVERPATH);
             	if(coverPath == null || coverPath.equals("")) {
-            		coverPath = "concert.jpg";
+            		coverPath = DEFAULTPICTURE;
             	}
             	l.add(new MusicEvent(id, artistUsername, name, coverPath, location, bandName, ticketone));
             } while (rs.next());
-            rs.close();
 
         } catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
         	logger.log(Level.WARNING, e.toString());
+        } finally {
+        	try {
+                if (rs != null)
+                    rs.close();
+            } catch (SQLException se1) {
+            	logger.log(Level.WARNING, se1.toString());
+            }
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
         }
-        
         return l;
 	}
 	
 	public List<MusicEvent> getSearchMusicEvent(String searchString){
         Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
         List<MusicEvent> l = new ArrayList<>();
         try {
             conn = DBUserConnection.getUserConnection();
-            
-            //prepStmt = conn.prepareStatement();
-            ResultSet rs = Queries.selectSearchMusicEvent(conn, searchString);
+
+            String sql = "call livethemusic.search_music_event(?);\r\n"; 
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, searchString);
+            rs = stm.executeQuery();
             
             if (!rs.first()) // rs not empty
                 return Collections.emptyList();
             
             do{
-            	int id = rs.getInt("id");
-            	String name = rs.getString("name");
-            	String location = rs.getString("location");
-            	String bandName = rs.getString("band_name");
-            	String artistUsername = rs.getString("artist_username");
-            	String coverPath = rs.getString("cover_path");
+            	int id = rs.getInt(ID);
+            	String name = rs.getString(NAME);
+            	String location = rs.getString(LOCATION);
+            	String bandName = rs.getString(BANDNAME);
+            	String artistUsername = rs.getString(ARTISTUSERNAME);
+            	String coverPath = rs.getString(COVERPATH);
             	
             	if(coverPath == null || coverPath.equals("")) {
-            		coverPath = "concert.jpg";
+            		coverPath = DEFAULTPICTURE;
             	}
             	l.add(new MusicEvent(id, artistUsername, name, coverPath, location, bandName, ""));
             } while (rs.next());
-            rs.close();
 
         } catch (SQLException se) {
-        	// Errore durante l'apertura della connessione
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
         	logger.log(Level.WARNING, e.toString());
         } finally {
-//            try {
-//                if (stmt != null)
-//                    stmt.close();
-//            } catch (SQLException se2) {
-//            	logger.log(Level.WARNING, se2.toString());
-//            }
+        	try {
+                if (rs != null)
+                    rs.close();
+            } catch (SQLException se1) {
+            	logger.log(Level.WARNING, se1.toString());
+            }
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
         }
         
         return l;
@@ -184,39 +237,72 @@ public class MusicEventDao {
 	
 	public void addParticipation(String username, String musicEventId) {
 		Connection conn = null;
+		PreparedStatement stm = null;
 		try {
 			conn = DBUserConnection.getUserConnection();
-			Queries.addParticipation(conn, username, musicEventId);
+			String sql = "call livethemusic.add_participation(?, ?);\r\n"; 
+			stm = conn.prepareStatement(sql);
+	        stm.setString(1, username);
+	        stm.setInt(2,  Integer.parseInt(musicEventId));
+	        stm.executeUpdate();
+
 		} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
         	logger.log(Level.WARNING, e.toString());
+        } finally {
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
         }
 	}
 	
 	public void removeParticipation(String username, String musicEventId) {
 		Connection conn = null;
+		PreparedStatement stm = null;
+		
 		try {
 			conn = DBUserConnection.getUserConnection();
-			Queries.removeParticipation(conn, username, musicEventId);
+			String sql = "call livethemusic.remove_participation(?, ?);\r\n"; 
+			stm = conn.prepareStatement(sql);
+	        stm.setString(1, username);
+	        stm.setInt(2,  Integer.parseInt(musicEventId));
+	        stm.executeUpdate();
 		} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
         	logger.log(Level.WARNING, e.toString());
+        } finally {
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
         }
 	}
 	
 	public boolean isParticipating(String username, String musicEventId) {
 		Connection conn = null;
+		PreparedStatement stm = null;
+		ResultSet rs = null;
+		
 		try {
 			conn = DBUserConnection.getUserConnection();
-			ResultSet rs = Queries.isParticipating(conn, username, musicEventId);
+			String sql = "call livethemusic.is_participating(?, ?);\r\n"; 
+			stm = conn.prepareStatement(sql);
+	        stm.setString(1, username);
+	        stm.setInt(2,  Integer.parseInt(musicEventId));
+	        stm.executeQuery();
+	       	rs = stm.executeQuery();
             
-			if (!rs.first()) { // rs empty no participation
+			if (!rs.first()) {
 				rs.close();
 				return false;
-			}
-			else {			//not empty username participate	
+			} else {
 				rs.close();
 				return true;
 			}
@@ -225,15 +311,40 @@ public class MusicEventDao {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
         	logger.log(Level.WARNING, e.toString());
-        }	
+        } finally {
+        	try {
+                if (rs != null)
+                    rs.close();
+            } catch (SQLException se1) {
+            	logger.log(Level.WARNING, se1.toString());
+            }
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
+        }
 		return false;
 	}
 	
 	public boolean addMusicEvent(String name, String coverPath, String location, String artistUsername, Date date, String ticketone) {
     	Connection con = null;
+    	PreparedStatement stm = null;
+    	
     	try {
     		con = DBArtistConnection.getArtistConnection();
-    		Queries.addMusicEvent(con, name, coverPath, location, artistUsername,  date, ticketone);
+    		String sql = "call livethemusic.add_music_event(?, ?, ?, ?, ?, ?);\r\n"; 
+    		stm = con.prepareStatement(sql);
+    		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+    		stm.setString(1, name);
+    		stm.setString(2, coverPath);
+    		stm.setString(3, location);
+    		stm.setString(4, artistUsername);
+    		stm.setDate(5, sqlDate);
+    		stm.setString(6, ticketone);
+    		stm.executeUpdate();
     		
     	} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
@@ -241,34 +352,120 @@ public class MusicEventDao {
         } catch (ClassNotFoundException e) {
             logger.log(Level.WARNING, e.toString());
             return false;
+        } finally {
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
         }
     	return true;
 	}
 
 	public void acceptMusicEvent(String id) {
     	Connection con = null;
+    	PreparedStatement stm = null;
     	try {
     		con = DBAdminConnection.getAdminConnection();
-    		Queries.acceptMusicEvent(con, id);
+    		String sql = "call livethemusic.accept_musicevent(?);\r\n"; 
+    		stm = con.prepareStatement(sql);
+            stm.setString(1, id);
+            stm.executeUpdate();
     		
     	} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
             logger.log(Level.WARNING, e.toString());
+        } finally {
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
         }
 	}
 
 	public void rejectMusicEvent(String id) {
     	Connection con = null;
+    	PreparedStatement stm = null;
     	try {
     		con = DBAdminConnection.getAdminConnection();
-    		Queries.rejectMusicEvent(con, id);
+    		String sql = "call livethemusic.reject_musicevent(?);\r\n"; 
+    		stm = con.prepareStatement(sql);
+            stm.setString(1, id);
+            stm.executeUpdate();
     		
     	} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
             logger.log(Level.WARNING, e.toString());
+        } finally {
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
         }
+	}
+	
+	public List<MusicEvent> getUserEvents(String username){
+		Connection conn = null;
+		List<MusicEvent> l = new ArrayList<>();
+		PreparedStatement stm = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBUserConnection.getUserConnection();
+			String sql = "call livethemusic.view_user_events(?);\r\n";
+			
+			stm = conn.prepareStatement(sql);
+			stm.setString(1, username);
+			
+			rs = stm.executeQuery();
+
+			if(!rs.first()) {
+				return Collections.emptyList();
+			}
+
+            do{
+            	int id = rs.getInt(ID);
+            	String name = rs.getString(NAME);
+            	String location = rs.getString(LOCATION);
+            	String bandName = rs.getString(BANDNAME);
+            	String artistUsername = rs.getString(ARTISTUSERNAME);
+            	String coverPath = rs.getString(COVERPATH);
+            	
+            	if(coverPath == null || coverPath.equals("")) {
+            		coverPath = DEFAULTPICTURE;
+            	}
+            	l.add(new MusicEvent(id, artistUsername, name, coverPath, location, bandName, ""));
+            } while (rs.next());
+			
+			
+			
+		} catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+            logger.log(Level.WARNING, e.toString());
+        } finally {
+        	try {
+                if (rs != null)
+                    rs.close();
+            } catch (SQLException se1) {
+            	logger.log(Level.WARNING, se1.toString());
+            }
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
+        }
+		
+		return l;
 	}
 	
 }
