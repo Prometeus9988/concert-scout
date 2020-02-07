@@ -62,13 +62,28 @@
     	<%
     } else {
     	%>
-    
-    <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
+    <%
+    if(origin.equals("BuyTicketServlet")){
+    	%>
+    	<li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
+    	<%
+    } else {
+    	%>
+    	<li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
+    <%} %>
     <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
     <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
-    <li><form action="FriendsServlet" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
+    <li><form action="friends.jsp" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
     <li><form action="aroundyou.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
-    <li><form action="myevents.jsp" method="POST"><input type="submit" class = "notSelected" value="My Events"></form></li>
+    <%
+    if(origin.equals("YourEventsServlet")){
+    	%>
+    	<li><form action="YourEventsServlet" method="POST"><input type="submit" class = "selected" value="Your Events"></form></li>
+    	<%
+    } else {
+    	%>
+    	<li><form action="YourEventsServlet" method="POST"><input type="submit" class = "notSelected" value="Your Events"></form></li>
+    <%} %>
     <%} %>
     <li><form action="LogoutServlet" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
     </ul>
