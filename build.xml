@@ -3,9 +3,9 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="concert-scout">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="LIVEtheMUSIC">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../../eclipse/java-2019-09/eclipse/"/>
+    <property name="ECLIPSE_HOME" value="../../../eclipse/jee-2019-12/eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
@@ -13,9 +13,7 @@
         <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-5.1.48-bin.jar"/>
     </path>
     <path id="EAR Libraries.libraryclasspath"/>
-    <path id="JavaFX SDK.libraryclasspath">
-        <pathelement location="../../../.p2/pool/plugins/org.eclipse.fx.ide.css.jfx8_3.3.0.201805280700.jar"/>
-    </path>
+    <path id="Persisted container [org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER for project [LIVEtheMUSIC]].libraryclasspath"/>
     <path id="Server Library [Apache Tomcat v8.5] (unbound).libraryclasspath"/>
     <path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/annotations-api.jar"/>
@@ -31,7 +29,6 @@
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/jasper.jar"/>
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/jaspic-api.jar"/>
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/jsp-api.jar"/>
-        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/mysql-connector-java-5.1.48-bin.jar"/>
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/servlet-api.jar"/>
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-api.jar"/>
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-coyote.jar"/>
@@ -52,22 +49,20 @@
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-websocket.jar"/>
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/websocket-api.jar"/>
     </path>
-    <path id="concert-scout.classpath">
+    <path id="LIVEtheMUSIC.classpath">
         <pathelement location="bin"/>
         <path refid="Web App Libraries.libraryclasspath"/>
         <path refid="EAR Libraries.libraryclasspath"/>
-        <pathelement location="lib/mysql-connector-java-5.1.48-bin.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-5.1.48-bin.jar"/>
-        <path refid="JavaFX SDK.libraryclasspath"/>
+        <path refid="Persisted container [org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER for project [LIVEtheMUSIC]].libraryclasspath"/>
         <path refid="Server Library [Apache Tomcat v8.5] (unbound).libraryclasspath"/>
         <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-5.1.48-bin.jar"/>
+        <pathelement location="lib/mysql-connector-java-5.1.48-bin.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
-                <exclude name="**/*.launch"/>
-                <exclude name="**/*.xtend"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -82,7 +77,7 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="concert-scout.classpath"/>
+            <classpath refid="LIVEtheMUSIC.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -100,18 +95,8 @@
         <antcall target="build"/>
     </target>
     <target name="App">
-        <java classname="logic.loginview.App" failonerror="true" fork="yes">
-            <classpath refid="concert-scout.classpath"/>
-        </java>
-    </target>
-    <target name="BuyTicketController">
-        <java classname="logic.buyticket.BuyTicketController" failonerror="true" fork="yes">
-            <classpath refid="concert-scout.classpath"/>
-        </java>
-    </target>
-    <target name="HelloWorld (4)">
-        <java classname="logic.HelloWorld" failonerror="true" fork="yes">
-            <classpath refid="concert-scout.classpath"/>
+        <java classname="logic.fxmlView.App" failonerror="true" fork="yes">
+            <classpath refid="LIVEtheMUSIC.classpath"/>
         </java>
     </target>
 </project>
