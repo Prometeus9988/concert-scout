@@ -4,6 +4,7 @@
     <%
     int i;
     List<NewsBean> nb = (List<NewsBean>) request.getAttribute("news");
+    String role = (String) session.getAttribute("userRole");
     %>
 <!DOCTYPE html>
 <html>
@@ -36,12 +37,22 @@
   </div>
   
     <ul>
-<li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
+    <%
+    if(role.equals("admin")){
+    	%>
+    	<li><form action="AdminMusicEventServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
+    	<li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "selected" value="News"></form></li>
+    	<%
+    } else {
+    	%>
+    
+    <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
     <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "selected" value="News"></form></li>
     <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
-    <li><form action="FriendsServlet" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
+    <li><form action="friends.jsp" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
     <li><form action="aroundyou.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
     <li><form action="YourEventsServlet" method="POST"><input type="submit" class = "notSelected" value="Your Events"></form></li>
+    <%} %>
     <li><form action="LogoutServlet" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
     </ul>
   </div>
@@ -63,6 +74,18 @@
                 <input type = "hidden" name = "artist" value = "<%= nb.get(i).getArtistId() %>">
                 <b><span style = "color: rgba(0, 0, 0, 0.5); font-size: 10px;">Posted <%=nb.get(i).getPostedSince() %> ago</span></b>
                 </form>
+				<%
+    				if(role.equals("admin")){
+    			%>
+    			<form action = "AcceptNewsServlet" method = POST>
+    			<input type = "hidden" name = "id" value = "<%= nb.get(i).getId() %>">
+    			<input type = "hidden" name = "picture" value = "<%= nb.get(i).getPicturePath()%>">
+    			<input type = "submit" name = "acceptNews" value = "Accept News">
+    			<input type = "submit" name = "rejectNews" value = "Reject News">
+    			</form>
+    			<%
+    				}
+    			%>
                 </div>
                 <br>
                 <div>

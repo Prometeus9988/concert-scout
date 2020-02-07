@@ -5,6 +5,10 @@
 <%
 	String foll;
 	String origin = (String) session.getAttribute("origin");
+	String role = (String) session.getAttribute("userRole");
+	if(role == null){
+		role = "";
+	}
 	ArtistBean ab = (ArtistBean) session.getAttribute("artist");
 	boolean isFoll = (boolean) request.getAttribute("isFoll");
 	
@@ -57,10 +61,10 @@
   
    <ul>
     <%
-    if(origin.equals("AdminMusicEventServlet")){
+    if(origin.equals("AdminMusicEventServlet") || role.equals("admin")){
     	%>
     	<li><form action="AdminMusicEventServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
-    	<li><form action="adminNews.jsp" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
+    	<li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
     	<%
     } else {
     	%>
@@ -102,7 +106,7 @@
 	<h1><%=ab.getBandName()%></h1>
   </div>
   <%
-  if(!origin.equals("AdminMusicEventServlet")){
+  if(!origin.equals("AdminMusicEventServlet") || role.equals("admin")){
   %>
   <form action = "ButtonHandler" method = "POST">
   <input type = "submit" name = "follow" value = "<%=foll%>">

@@ -57,4 +57,20 @@
     <servlet-name>logout</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>addNews</servlet-name>
+    <servlet-class>logic.view.AddNewsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addNews</servlet-name>
+    <url-pattern>/addNews</url-pattern>
+  </servlet-mapping>
+      <servlet>
+      <servlet-name>acceptNews</servlet-name>
+    <servlet-class>logic.view.AcceptNewsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>acceptNews</servlet-name>
+    <url-pattern>/acceptNews</url-pattern>
+  </servlet-mapping>
 </web-app>

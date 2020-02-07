@@ -13,9 +13,19 @@ import logic.entity.News;
 public class ReadNewsController {
 	public List<NewsBean> getNews(GeneralUserBean gu){
 		NewsDao nd = new NewsDao();
+		String role;
+		
 		int i;
-			
-		List<News> l = nd.getNews(gu.getUsername());
+		
+		//TODO è giusto?
+		//Used to separate interal information from view information
+		if(gu.getRole().equals("admin")) {
+			role = "admin";
+		} else {
+			role = "user";
+		}
+		
+		List<News> l = nd.getNews(gu.getUsername(), role);
 		List<NewsBean> lb = new ArrayList<>();
 		
 		for(i = 0; i < l.size(); i++) {

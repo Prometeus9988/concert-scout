@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import logic.addmusicevent.AddMusicEventController;
 import logic.bean.MusicEventBean;
 
-public class AdminMusicEventServlet   extends HttpServlet{
+public class AdminMusicEventServlet extends HttpServlet{
 	private static final Logger logger = Logger.getLogger(AdminMusicEventServlet.class.getName());
 	private static final long serialVersionUID = 102831973239L;
 	

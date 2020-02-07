@@ -14,22 +14,35 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import logic.entity.News;
+import logic.utils.DBAdminConnection;
+import logic.utils.DBArtistConnection;
 import logic.utils.DBUserConnection;
 
 
 public class NewsDao {
 	private static final Logger logger = Logger.getLogger(NewsDao.class.getName());
+	public static final String ACCEPT = "accept";
+	public static final String REJECT = "reject";
 	
-	public List<News> getNews(String username){
+	public List<News> getNews(String username, String role){
 		Connection conn = null;
 		ResultSet rs = null;
 		PreparedStatement stm = null;
+		String sql = null;
 		List<News> l = new ArrayList<>();
         try {
-            conn = DBUserConnection.getUserConnection();
-    		String sql = "call livethemusic.view_news(?);\r\n"; 
-    		stm = conn.prepareStatement(sql);
-            stm.setString(1, username);
+            
+            if(role.equals("admin")) {
+            	conn = DBAdminConnection.getAdminConnection();
+            	sql = "call livethemusic.view_pendingnews();\r\n";
+            	stm = conn.prepareStatement(sql);
+            } else {
+            	conn = DBUserConnection.getUserConnection();
+            	sql = "call livethemusic.view_news(?);\r\n";
+            	stm = conn.prepareStatement(sql);
+                stm.setString(1, username);
+            }
+    		
             stm.executeQuery();
            	rs = stm.executeQuery();
             
@@ -78,5 +91,68 @@ public class NewsDao {
             }
         }
         return l;
+	}
+
+	public boolean addNews(String text, String picturePath, String artistId, LocalDateTime current) {
+		Connection conn = null;
+		PreparedStatement stm = null;
+		
+		try {
+			conn = DBArtistConnection.getArtistConnection();
+			
+			Timestamp timestamp = Timestamp.valueOf(current);
+			String sql = "call livethemusic.add_news(?, ?, ?, ?);\r\n";
+    		stm = conn.prepareStatement(sql);
+            stm.setString(1, text);
+            stm.setString(2, picturePath);
+            stm.setString(3, artistId);
+            stm.setTimestamp(4, timestamp);
+            stm.executeUpdate();
+            
+		} catch (SQLException se){
+        	logger.log(Level.WARNING, se.toString());
+        	return false;
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        	return false;
+        } finally {
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
+        }
+		return true;
+	}
+	
+	public void manageNews(int id, String action) {
+		Connection conn = null;
+		PreparedStatement stm = null;
+		String sql = "";
+		
+		try {
+			conn = DBAdminConnection.getAdminConnection();
+			if(action.equals(ACCEPT)) {
+				sql = "call livethemusic.accept_news(?);\r\n";
+			} else if(action.equals(REJECT)){
+				sql = "call livethemusic.reject_news(?);\r\n";
+			}
+    		stm = conn.prepareStatement(sql);
+            stm.setInt(1, id);
+            stm.executeUpdate();
+            
+		} catch (SQLException se){
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        } finally {
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
+        }
 	}
 }

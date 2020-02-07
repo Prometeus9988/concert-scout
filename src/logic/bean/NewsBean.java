@@ -12,6 +12,16 @@ public class NewsBean {
 	private String profilePath;
 	private int id;
 	
+	public NewsBean() {
+		this.text = "";
+		this.artistId = "";
+		this.postedSince = "";
+		this.picturePath = "";
+		this.bandName = "";
+		this.profilePath = "";
+		this.id = 0;
+	}
+	
 	public String getText(){
 		return this.text;
 	}

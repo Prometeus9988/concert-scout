@@ -60,7 +60,7 @@
     if(origin.equals("AdminMusicEventServlet")){
     	%>
     	<li><form action="AdminMusicEventServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
-    	<li><form action="adminNews.jsp" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
+    	<li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
     	<%
     } else {
     	%>

@@ -38,7 +38,7 @@
 
 .splitBackgroundLogin {
   height: 100%;
-  width: 70%;
+  width: 86.67%;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -48,7 +48,7 @@
 
 .splitBannerLogin {
   height: 100%;
-  width: 30%;
+  width: 13.33%;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -71,8 +71,8 @@
 	background-color: transparent;
 	background-repeat:no-repeat;
     border: none;
-    cursor:pointer;
     overflow: hidden; 
+    font-size: 16px;
 }
 
 .selected{
@@ -81,8 +81,8 @@
 	background-color: transparent;
 	background-repeat:no-repeat;
     border: none;
-    cursor:pointer;
-    overflow: hidden; 
+    overflow: hidden;
+    font-size: 16px; 
 }
 
 .logoPosition{
@@ -155,7 +155,7 @@ ul {
 .logTextBox{
 	background: #FFFCF9;
 	border-radius: 20px;
-	width: 200px;
+	width: 150px;
 }
 
 .astext {
