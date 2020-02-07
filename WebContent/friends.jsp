@@ -17,6 +17,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <!-- linked CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="img/concertIcon.png">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
@@ -57,7 +58,7 @@
   </div>
   </form>
     <!-- Friend list -->
-    <h3 class = "h3">Your friends</h3>
+    <h2 class = "h2">Your friends</h2>
     <ul class = "hs">
     <%
     for(i = 0; i < friendList.size(); i++){

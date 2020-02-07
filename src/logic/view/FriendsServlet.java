@@ -20,7 +20,7 @@ import logic.friends.FriendsController;
 @WebServlet("/FriendsServlet")
 public class FriendsServlet extends HttpServlet{
 	
-	private static final Logger logger = Logger.getLogger(BuyTicketServlet.class.getName());
+	private static final Logger logger = Logger.getLogger(FriendsServlet.class.getName());
 	private static final long serialVersionUID = 102831973239L;
 	
 	@Override
