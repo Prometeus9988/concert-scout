@@ -8,11 +8,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <!-- linked CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="img/concertIcon.png">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
     <link href="css/style.css" rel="stylesheet" type="text/css">
-<title>Insert title here</title>
+<title>Favorites</title>
 </head>
 <body class = "defaultBackgorund">
 <div class="container">

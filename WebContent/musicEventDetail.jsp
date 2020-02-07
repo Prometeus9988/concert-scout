@@ -23,6 +23,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <!-- linked CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Logo icon -->
+    <link rel="icon" href="img/concertIcon.png">
     <!-- 
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
