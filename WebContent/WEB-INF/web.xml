@@ -73,4 +73,12 @@
     <servlet-name>acceptNews</servlet-name>
     <url-pattern>/acceptNews</url-pattern>
   </servlet-mapping>
+        <servlet>
+      <servlet-name>friends</servlet-name>
+    <servlet-class>logic.view.FriendsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>friends</servlet-name>
+    <url-pattern>/friends</url-pattern>
+  </servlet-mapping>
 </web-app>
