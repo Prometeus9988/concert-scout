@@ -43,7 +43,6 @@ public class NewsDao {
                 stm.setString(1, username);
             }
     		
-            stm.executeQuery();
            	rs = stm.executeQuery();
             
             if (!rs.first()) // rs not empty

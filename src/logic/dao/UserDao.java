@@ -58,7 +58,6 @@ public class UserDao {
 			stm = conn.prepareStatement(sql);
 			stm.setString(1, username);
 			stm.setString(2,  artistId);
-			stm.executeQuery();
 			rs = stm.executeQuery();
 
 			if (rs.first()) {
@@ -252,7 +251,6 @@ public class UserDao {
 			stm = conn.prepareStatement(sql);
 	        stm.setString(1, user);
 	        stm.setString(2, target);
-	        stm.executeQuery();
 	       	rs = stm.executeQuery();
             
 			if (rs.first()) { // rs empty not friends

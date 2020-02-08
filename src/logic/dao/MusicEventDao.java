@@ -296,7 +296,6 @@ public class MusicEventDao {
 			stm = conn.prepareStatement(sql);
 	        stm.setString(1, username);
 	        stm.setInt(2,  Integer.parseInt(musicEventId));
-	        stm.executeQuery();
 	       	rs = stm.executeQuery();
             
 			if (!rs.first()) {
