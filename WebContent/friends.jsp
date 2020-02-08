@@ -7,6 +7,7 @@
     int i;
 
 	List<UserBean> friendList = (List<UserBean>) request.getAttribute("friendList");
+	List<UserBean> requestList = (List<UserBean>) request.getAttribute("requestList");
 
 %>
 <!DOCTYPE html>
@@ -69,14 +70,44 @@
     <form action="ButtonHandler" method="POST">
   	<!-- <img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155> -->
   	  	<button type="submit" name = "<%="f"%>" style="color: transparent; background-color: transparent; border-color: transparent;">
-	<img src="<%="img/concertPictures/" + friendList.get(i).getProfilePicture()%>" class="card-img-top cardImg" height = 215 width = 155 />
+	<img src="<%="img/profilePictures/" + friendList.get(i).getProfilePicture()%>" class="card-img-top cardImg" height = 215 width = 155 />
 	</button>
   	<div class="card-body">
 	<input type="submit" name = "<%="f"%>" class = "btTxt astext" value = "<%= friendList.get(i).getUsername() %>">
 	<input type = "hidden" name = "name" value = "<%= friendList.get(i).getName()%>">
     <input type = "hidden" name = "surname" value = "<%= friendList.get(i).getSurname()%>">
     <input type = "hidden" name = "profileP" value = "<%= friendList.get(i).getProfilePicture()%>">
-    <input type = "hidden" name = "check" value = "<%= "Ok"%>">
+    <input type = "hidden" name = "check" value = "<%= "F"%>">
+  	</div>
+  	</form>
+</div>
+
+</li>
+
+    		<%
+    }
+    %>
+</ul>
+    <!-- Friend requests list -->
+    <h2 class = "h2">Your friend requests</h2>
+    <ul class = "hs">
+    <%
+    for(i = 0; i < requestList.size(); i++){
+    	%><li class = "item">
+
+    	<div class="card text-center" style="width: 18rem;">
+    
+    <form action="ButtonHandler" method="POST">
+  	<!-- <img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155> -->
+  	  	<button type="submit" name = "<%="f"%>" style="color: transparent; background-color: transparent; border-color: transparent;">
+  	<img src="<%="img/profilePictures/" + requestList.get(i).getProfilePicture()%>" height = 50 width = 50 style = "object-fit: cover; border-radius: 300px;">
+	</button>
+  	<div class="card-body">
+	<input type="submit" name = "<%="f"%>" class = "btTxt astext" value = "<%= requestList.get(i).getUsername() %>">
+	<input type = "hidden" name = "name" value = "<%= requestList.get(i).getName()%>">
+    <input type = "hidden" name = "surname" value = "<%= requestList.get(i).getSurname()%>">
+    <input type = "hidden" name = "profileP" value = "<%= requestList.get(i).getProfilePicture()%>">
+    <input type = "hidden" name = "check" value = "<%= "R"%>">
   	</div>
   	</form>
 </div>

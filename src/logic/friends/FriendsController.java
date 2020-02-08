@@ -21,6 +21,24 @@ public class FriendsController {
 			UserBean ub = new UserBean();
 			ub.setUsername(curr.getUsername());
 			ub.setName(curr.getName());
+			ub.setSurname(curr.getSurname());
+			ub.setProfilePicture(curr.getProfilePicture());
+			lb.add(ub);
+		}
+		
+		return lb;
+	}
+	
+	public List<UserBean> getRequests(String username){
+		UserDao ud = new UserDao();
+		List<User> l = ud.getFriendRequests(username);
+		List<UserBean> lb = new ArrayList<>();
+		for(int i = 0; i < l.size(); i++) {
+			User curr = l.get(i);
+			UserBean ub = new UserBean();
+			ub.setUsername(curr.getUsername());
+			ub.setName(curr.getName());
+			ub.setSurname(curr.getSurname());
 			ub.setProfilePicture(curr.getProfilePicture());
 			lb.add(ub);
 		}
@@ -46,19 +64,42 @@ public class FriendsController {
 		return lb;
 	}
 
-	public boolean isFriend(GeneralUserBean user,UserBean ub) {
+	public boolean isFriend(GeneralUserBean gb, UserBean ub) {
 		UserDao ud = new UserDao();
-		return ud.isFriend(user.getUsername(), ub.getUsername());
+		return ud.isFriend(gb.getUsername(), ub.getUsername());
 	}
 	
-	public void friend(GeneralUserBean user, UserBean ub) {
+	public void requestFriend(GeneralUserBean gb, UserBean ub) {
 		UserDao ud = new UserDao();
-		ud.addFriend(user.getUsername(), ub.getUsername());
+		ud.requestFriend(gb.getUsername(), ub.getUsername());
 	}
 	
-	public void unfriend(GeneralUserBean user, UserBean ub) {
+	public void removeRequest(GeneralUserBean gb, UserBean ub) {
 		UserDao ud = new UserDao();
-		ud.removeFriend(user.getUsername(), ub.getUsername());
+		ud.removeFriendRequest(gb.getUsername(), ub.getUsername());
+	}
+	
+	public void acceptRequest(GeneralUserBean gb, UserBean ub) {
+		UserDao ud = new UserDao();
+		ud.acceptFriendRequest(gb.getUsername(), ub.getUsername());
+	}
+	
+	public String whoSentRequest(GeneralUserBean gb, UserBean ub) {
+		// TODO check this
+		UserDao ud = new UserDao();
+		String user = gb.getUsername();
+		String target = ub.getUsername();
+		if (ud.isRequestSent(user, target))
+			return "user";
+		else if (ud.isRequestSent(target, user))
+			return "target";
+		else
+			return "none";
+	}
+	
+	public void unfriend(GeneralUserBean gb, UserBean ub) {
+		UserDao ud = new UserDao();
+		ud.removeFriend(gb.getUsername(), ub.getUsername());
 	}
 
 }

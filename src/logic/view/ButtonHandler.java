@@ -57,11 +57,19 @@ public class ButtonHandler  extends HttpServlet{
 			ub.setSurname(request.getParameter("surname"));
 			ub.setProfilePicture(request.getParameter("profileP"));
 			session.setAttribute("target", ub);
-			if (request.getParameter("check") == null) {
+			String check = request.getParameter("check");
+			if (check == null) {
 				boolean isFriend = fc.isFriend(gu, ub);
 				request.setAttribute("isFriend", isFriend);
-			} else {
+				if (!isFriend) {
+					String who = fc.whoSentRequest(gu, ub);
+					request.setAttribute("request", who);
+				}
+			} else if (check.equals("F")) {
 				request.setAttribute("isFriend", true);
+			} else {
+				request.setAttribute("isFriend", false);
+				request.setAttribute("request", "target");
 			}
 			rd = request.getRequestDispatcher("userDetail.jsp");
 		} else if(request.getParameter("friend") != null) {
@@ -69,10 +77,19 @@ public class ButtonHandler  extends HttpServlet{
 			UserBean ub = new UserBean();
 			ub.setUsername(request.getParameter("target"));
 			if (fr.equals("Add Friend")) {
-				fc.friend(gu, ub);
+				fc.requestFriend(gu, ub);
+				request.setAttribute("request", "user");
+				request.setAttribute("isFriend", false);
+			} else if (fr.equals("Remove Friend Request")) {
+				fc.removeRequest(gu, ub);
+				request.setAttribute("request", "none");
+				request.setAttribute("isFriend", false);
+			} else if (fr.equals("Accept Friend Request")) {
+				fc.acceptRequest(gu, ub);
 				request.setAttribute("isFriend", true);
 			} else {
 				fc.unfriend(gu, ub);
+				request.setAttribute("request", "none");
 				request.setAttribute("isFriend", false);
 			}
 			rd = request.getRequestDispatcher("userDetail.jsp");

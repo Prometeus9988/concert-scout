@@ -36,6 +36,9 @@ public class FriendsServlet extends HttpServlet{
 
 		List<UserBean> friendList = fc.getFriends(username);
 		request.setAttribute("friendList", friendList);
+		
+		List<UserBean> requestList = fc.getRequests(username);
+		request.setAttribute("requestList", requestList);
 
 		try {
 			rd.forward(request, response);

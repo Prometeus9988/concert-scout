@@ -239,6 +239,58 @@ public class UserDao {
         return l;
 	}
 	
+	public List<User> getFriendRequests(String username){
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        List<User> l = new ArrayList<>();
+        try {
+            conn = DBUserConnection.getUserConnection();
+
+    		String sql = "call livethemusic.view_friend_requests(?);\r\n"; 
+    		stm = conn.prepareStatement(sql);
+            stm.setString(1, username);
+           	rs = stm.executeQuery();
+            
+            if (!rs.first())
+                return Collections.emptyList();
+            
+            do{
+            	String usernamed = rs.getString("username");
+            	String name = rs.getString("name");
+            	String surname = rs.getString("surname");
+            	String profilePicture = rs.getString("profile_picture_path");
+            	
+            	if(profilePicture == null || profilePicture.equals("")) {
+            		profilePicture = "concert.jpg";
+            	}
+            	
+            	l.add(new User(usernamed, name, surname, profilePicture));
+            } while (rs.next());
+
+        } catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        } finally {
+        	try {
+                if (rs != null)
+                    rs.close();
+            } catch (SQLException se1) {
+            	logger.log(Level.WARNING, se1.toString());
+            }
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
+        }
+        
+        return l;
+	}
+	
 	public boolean isFriend(String user, String target) {
 		Connection conn = null;
 		ResultSet rs = null;
@@ -277,14 +329,105 @@ public class UserDao {
         }
 		return false;
 	}
+	
+	public boolean isRequestSent(String user, String target) {
+		Connection conn = null;
+		ResultSet rs = null;
+		PreparedStatement stm = null;
+		
+		try {
+			conn = DBUserConnection.getUserConnection();
+			
+			String sql = "call livethemusic.search_friend_request(?, ?);\r\n"; 
+			stm = conn.prepareStatement(sql);
+	        stm.setString(1, user);
+	        stm.setString(2, target);
+	       	rs = stm.executeQuery();
+            
+			if (rs.first()) {
+				return true;
+			}
+			
+		} catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        } finally {
+        	try {
+                if (rs != null)
+                    rs.close();
+            } catch (SQLException se1) {
+            	logger.log(Level.WARNING, se1.toString());
+            }
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
+        }
+		return false;
+	}
 
-	public void addFriend(String user, String target) {
+	public void requestFriend(String user, String target) {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
 		try {
 			conn = DBUserConnection.getUserConnection();
-			String sql = "call livethemusic.add_friend(?, ?);\r\n"; 
+			String sql = "call livethemusic.request_friend(?, ?);\r\n"; 
+			stm = conn.prepareStatement(sql);
+	        stm.setString(1, user);
+	        stm.setString(2, target);
+	        stm.executeUpdate();
+
+		} catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        } finally {
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
+        }
+	}
+	
+	public void removeFriendRequest(String user, String target) {
+		Connection conn = null;
+		PreparedStatement stm = null;
+		
+		try {
+			conn = DBUserConnection.getUserConnection();
+			String sql = "call livethemusic.remove_friend_request(?, ?);\r\n"; 
+			stm = conn.prepareStatement(sql);
+	        stm.setString(1, user);
+	        stm.setString(2, target);
+	        stm.executeUpdate();
+
+		} catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        } finally {
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
+        }
+	}
+	
+	public void acceptFriendRequest(String user, String target) {
+		Connection conn = null;
+		PreparedStatement stm = null;
+		
+		try {
+			conn = DBUserConnection.getUserConnection();
+			String sql = "call livethemusic.accept_friend_request(?, ?);\r\n"; 
 			stm = conn.prepareStatement(sql);
 	        stm.setString(1, user);
 	        stm.setString(2, target);
