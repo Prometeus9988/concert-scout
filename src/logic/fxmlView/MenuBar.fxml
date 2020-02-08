@@ -62,7 +62,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="myEventsButton" alignment="TOP_LEFT" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#myEventsButtonAction" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: transparent; -fx-border: none; -fx-text-fill: rgba(253, 255, 252, 0.5);" text="My Events">
+            <Button fx:id="myEventsButton" alignment="TOP_LEFT" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#myEventsButtonAction" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: transparent; -fx-border: none; -fx-text-fill: rgba(253, 255, 252, 0.5);" text="Your Events">
                <font>
                   <Font size="16.0" />
                </font>

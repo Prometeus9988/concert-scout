@@ -41,23 +41,10 @@ public class HomepageUserController {
 		
 		//init menuBar
 		
-		/*MenuBarController mbc=new MenuBarController();
-		FXMLLoader loader=new FXMLLoader(getClass().getResource("MenuBar.fxml"));
-		loader.setController(mbc);
-		this.menuBar.getChildren().add(loader.load());
-		mbc.init("home");*/
-		
 		this.ugc.menuBar(this.menuBar,"home");
 		
 		
 		//init searchBar
-		
-		/*
-		SearchBarController sc=SearchBarControllerFactory.getInstance().creator(1);
-		FXMLLoader loader1=new FXMLLoader(getClass().getResource("SearchBar.fxml"));
-		loader1.setController(sc);
-		this.searchBar.getChildren().add(loader1.load());
-		sc.init();*/
 		
 		this.ugc.searchBar(this.searchBar,1);
 		
@@ -86,16 +73,8 @@ public class HomepageUserController {
 		List<ArtistBean>artist=btc.getSuggestedArtist(username);
 		
 		int i;
-		//EventController ev;
-		//FXMLLoader loader2;
-		//ArtistController ac;
 		
 		for(i=0;i<musicEvents.size();i++) {
-			/*ev=new EventController();
-			loader2=new FXMLLoader(getClass().getResource("Event.fxml"));
-			loader2.setController(ev);
-			this.suggEvRow.getChildren().add(loader2.load());
-			ev.init(musicEvents.get(i),"home","");*/
 			
 			//EVENT PREVIEW
 			
@@ -103,11 +82,6 @@ public class HomepageUserController {
 		}
 		
 		for(i=0;i<artist.size();i++) {
-			/*ac=new ArtistController();
-			loader2=new FXMLLoader(getClass().getResource("Artist.fxml"));
-			loader2.setController(ac);
-			this.suggArtRow.getChildren().add(loader2.load());
-			ac.init(artist.get(i),"home","");*/
 			
 			//ARTIST PREVIEW
 			

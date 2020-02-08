@@ -113,12 +113,6 @@ public class HomepageArtistController {
 		
 		//init menuBar
 		
-		/*ArtistMenuBarController amc=new ArtistMenuBarController();
-		FXMLLoader loader=new FXMLLoader(getClass().getResource("ArtistMenuBar.fxml"));
-		loader.setController(amc);
-		this.menuBar.getChildren().add(loader.load());
-		amc.init("addEv");*/
-		
 		this.agc.menuBar(this.menuBar,"addEv");
 		
 		

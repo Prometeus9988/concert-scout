@@ -21,13 +21,7 @@ public class ArtistMenuBarController {
 	
 	
 	@FXML
-	public void addEventAction(ActionEvent ev) throws IOException {
-		/*HomepageArtistController hac=new HomepageArtistController();
-		FXMLLoader loader=new FXMLLoader(getClass().getResource("HomepageArtist.fxml"));
-		loader.setController(hac);
-		this.addNewsBtn.getScene().setRoot(loader.load());
-		hac.init();*/
-		
+	public void addEventAction(ActionEvent ev) throws IOException {		
 		this.agc.toHomepage(this.addNewsBtn.getScene());
 	}
 	
@@ -36,14 +30,7 @@ public class ArtistMenuBarController {
 	
 	@FXML
 	public void logoutButtonAction(ActionEvent ev) throws IOException {
-		/*LoginViewController lvc=new LoginViewController();
-		FXMLLoader loader=new FXMLLoader(getClass().getResource("Login.fxml"));
-		loader.setController(lvc);
-		this.addEventBtn.getScene().setRoot(loader.load());
-		lvc.init();*/
-		
-		SessionUser.getInstance().closeSession();
-		
+		SessionUser.getInstance().closeSession();	
 		this.agc.toLogin(this.addEventBtn.getScene());
 	}
 	

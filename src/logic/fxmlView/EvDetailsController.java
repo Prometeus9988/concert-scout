@@ -37,13 +37,8 @@ public class EvDetailsController {
 		
 		//INIT MENU BAR
 		
-		/*MenuBarController mbc=new MenuBarController();
-		FXMLLoader loader=new FXMLLoader(getClass().getResource("MenuBar.fxml"));
-		loader.setController(mbc);
-		this.menuBar.getChildren().add(loader.load());
-		mbc.init("home");*/
-		
-		this.ucg.menuBar(this.menuBar,"home");
+	
+		this.ucg.menuBar(this.menuBar,from);
 		
 		
 		//INIT LABEL NAMES
@@ -53,21 +48,9 @@ public class EvDetailsController {
 		
 		//INIT BACK BUTTON
 		
-		/*BackUserController bc=new BackUserController();
-		loader=new FXMLLoader(getClass().getResource("BackButton.fxml"));
-		loader.setController(bc);
-		bc.init(from,searchString);
-		this.backButton.getChildren().add(loader.load());*/
-		
 		this.ucg.backButton(this.backButton, from, searchString);
 		
 		//INIT ROLE BUTTONS
-		
-		/*UserEvButtonsController btc=new UserEvButtonsController();
-		loader=new FXMLLoader(getClass().getResource("UserEvDetButtons.fxml"));
-		loader.setController(btc);
-		this.buttons.getChildren().add(loader.load());
-		btc.init(this.myEvent);*/
 		
 		this.ucg.evDeatilsButtons(this.buttons, this.myEvent);
 		

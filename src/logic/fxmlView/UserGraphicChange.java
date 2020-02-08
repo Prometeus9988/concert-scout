@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import java.util.logging.Logger;
 import javafx.scene.layout.AnchorPane;
 
+
 public class UserGraphicChange {
 	
 	private static UserGraphicChange myInstance=null;
@@ -161,6 +162,29 @@ public class UserGraphicChange {
 		}
 	}
 	
+	public void toMyEvents(Scene scene) {
+		try {
+			YourEventsController yec=new YourEventsController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("YourEventsSection.fxml"));
+			loader.setController(yec);
+			scene.setRoot(loader.load());
+			yec.init();
+		}catch(IOException e) {
+			logger.log(Level.WARNING,e.toString());
+		}
+	}
+	
+	public void eventPreviewMyEvents(VBox box,MusicEventBean event,String from,String searchString) {
+		try {
+			EventController ev=new EventController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("Event.fxml"));
+			loader.setController(ev);
+			box.getChildren().add(loader.load());
+			ev.init(event, from, searchString);
+		}catch(IOException e) {
+			logger.log(Level.WARNING,e.toString());
+		}
+	}
 	
 	
 }

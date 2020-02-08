@@ -33,13 +33,7 @@ public class SearchEventsArtistsController {
 		
 		this.ugc=UserGraphicChange.getInstance();
 		
-		//menuBar
-		/*MenuBarController mbc=new MenuBarController();
-		FXMLLoader loader=new FXMLLoader(getClass().getResource("MenuBar.fxml"));
-		loader.setController(mbc);
-		this.menuBar.getChildren().add(loader.load());
-		mbc.init("home");*/
-		
+		//menuBar		
 		this.ugc.menuBar(this.menuBar, "home");
 		
 		//name bar
@@ -69,28 +63,13 @@ public class SearchEventsArtistsController {
 		
 		
 		int i;
-		/*EventController ev;
-		FXMLLoader loader2;
-		ArtistController ac;*/
 		
 		for(i=0;i<musicEvents.size();i++) {
-			/*ev=new EventController();
-			loader2=new FXMLLoader(getClass().getResource("Event.fxml"));
-			loader2.setController(ev);
-			this.evRow.getChildren().add(loader2.load());
-			ev.init(musicEvents.get(i),"search",this.mySearchString);*/
-			
-			this.ugc.eventPreview(this.evRow,musicEvents.get(i),"search",this.mySearchString);
+			this.ugc.eventPreview(this.evRow,musicEvents.get(i),"home",this.mySearchString);
 		}
 		
 		for(i=0;i<artists.size();i++) {
-			/*ac=new ArtistController();
-			loader2=new FXMLLoader(getClass().getResource("Artist.fxml"));
-			loader2.setController(ac);
-			this.artRow.getChildren().add(loader2.load());
-			ac.init(artists.get(i),"search",this.mySearchString);*/
-			
-			this.ugc.artistPreview(this.artRow,artists.get(i),"search",this.mySearchString);
+			this.ugc.artistPreview(this.artRow,artists.get(i),"home",this.mySearchString);
 		}
 		
 		

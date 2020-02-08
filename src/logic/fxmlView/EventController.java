@@ -27,26 +27,12 @@ public class EventController {
 	
 	@FXML
 	public void openEvent(ActionEvent e){
-		/*EvDetailsController edc=new EvDetailsController();
-		FXMLLoader loader=new FXMLLoader(getClass().getResource("EvDetails.fxml"));
-		loader.setController(edc);
-		this.artBtn.getScene().setRoot(loader.load());
-		edc.init(this.myMusicEvent,this.from,this.searchString);
-		*/
 		
 		this.ugc.toEventDetails(this.artBtn.getScene(),this.myMusicEvent, this.from, this.searchString);
 	}
 	
 	@FXML
 	public void openArtist(ActionEvent e){
-		
-	/*	ArtDetailsController adc=new ArtDetailsController();
-		FXMLLoader loader=new FXMLLoader(getClass().getResource("ArtDetails.fxml"));
-		loader.setController(adc);
-		this.artBtn.getScene().setRoot(loader.load());
-		BuyTicketController btc=ControllerCreator.getInstance().getBuyTicketController();
-		ArtistBean ab=btc.getArtist(this.myMusicEvent.getArtistId());
-		adc.init(ab,this.from, this.searchString);*/
 		
 		BuyTicketController btc = new BuyTicketController();
 		ArtistBean ab = btc.getArtist(this.myMusicEvent.getArtistId());

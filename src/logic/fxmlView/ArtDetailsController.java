@@ -63,26 +63,13 @@ public class ArtDetailsController {
 			this.followBtn.setText("Unfollow");
 		}
 		
-		//INIT MENU BAR
-		/*MenuBarController mbc=new MenuBarController();
-		FXMLLoader loader=new FXMLLoader(getClass().getResource("MenuBar.fxml"));
-		loader.setController(mbc);
-		this.menuBar.getChildren().add(loader.load());
-		mbc.init("home");*/
-		
-		this.ucg.menuBar(this.menuBar,"home");
+		//INIT MENU BAR		
+		this.ucg.menuBar(this.menuBar,from);
 		
 		//INIT LABEL NAMES
 		this.artName.setText(this.myArtist.getBandName());
 		
-		//INIT BACK BUTTON
-		
-		/*BackUserController bc=new BackUserController();
-		loader=new FXMLLoader(getClass().getResource("BackButton.fxml"));
-		loader.setController(bc);
-		bc.init(from,searchString);
-		this.backButton.getChildren().add(loader.load());*/
-		
+		//INIT BACK BUTTON	
 		
 		this.ucg.backButton(this.backButton, from, searchString);
 		

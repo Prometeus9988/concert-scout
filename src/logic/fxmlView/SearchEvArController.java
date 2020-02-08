@@ -13,12 +13,6 @@ public class SearchEvArController implements SearchBarController {
 	@FXML
 	public void searchAction(ActionEvent e){
 		
-		/*SearchEventsArtistsController evc=new SearchEventsArtistsController();
-		FXMLLoader loader=new FXMLLoader(getClass().getResource("SearchEventsArtists.fxml"));
-		loader.setController(evc);
-		this.searchField.getScene().setRoot(loader.load());
-		evc.init(this.searchField.getText());*/
-		
 		this.ucg.toSearchEv(this.searchField.getScene(), this.searchField.getText());
 	}
 	

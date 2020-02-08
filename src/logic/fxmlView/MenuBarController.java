@@ -61,11 +61,6 @@ public class MenuBarController {
 	
 	@FXML
 	public void homeButtonAction(ActionEvent e){
-		/*HomepageUserController huc=new HomepageUserController();
-		FXMLLoader loader=new FXMLLoader(getClass().getResource("HomepageUser.fxml"));
-		loader.setController(huc);
-		this.homeButton.getScene().setRoot(loader.load());
-		huc.init();*/
 		this.ugc.toHomepage(this.homeButton.getScene());
 	}
 	
@@ -90,16 +85,11 @@ public class MenuBarController {
 	}
 	@FXML
 	public void myEventsButtonAction(ActionEvent e) {
-		System.out.println("Go to myEvents");
+		this.ugc.toMyEvents(this.homeButton.getScene());
 	}
 	
 	@FXML
 	public void logoutButtonAction(ActionEvent e){
-		/*LoginViewController lvc=new LoginViewController();
-		FXMLLoader loader=new FXMLLoader(getClass().getResource("Login.fxml"));
-		loader.setController(lvc);
-		this.homeButton.getScene().setRoot(loader.load());
-		lvc.init();*/
 		SessionUser.getInstance().closeSession();
 		this.ugc.toLogin(this.homeButton.getScene());
 	}

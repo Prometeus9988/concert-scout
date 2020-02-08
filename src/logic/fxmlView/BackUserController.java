@@ -20,28 +20,19 @@ public class BackUserController implements BackController{
 		//FXMLLoader loader;
 		
 		if (this.from.equals("home")) {
-			/*HomepageUserController huc=new HomepageUserController();
-			loader=new FXMLLoader(getClass().getResource("HomepageUser.fxml"));
-			loader.setController(huc);
-			this.buttonBack.getScene().setRoot(loader.load());
-			huc.init();*/
-			
-			this.grCtrl.toHomepage(this.buttonBack.getScene());
-			
-		} else if (this.from.equals("search")){
-			/*SearchEventsArtistsController evc=new SearchEventsArtistsController();
-			loader=new FXMLLoader(getClass().getResource("SearchEventsArtists.fxml"));
-			loader.setController(evc);
-			this.buttonBack.getScene().setRoot(loader.load());
-			evc.init(this.searchString);
-			*/
-			
-			this.grCtrl.toSearchEv(this.buttonBack.getScene(), this.searchString);
-		}
-		
+			if(this.searchString.equals(""))
+				this.grCtrl.toHomepage(this.buttonBack.getScene());
+			else 
+				this.grCtrl.toSearchEv(this.buttonBack.getScene(), this.searchString);
+			}
 		//from my friends
 		
 		//from search friends
+		
+		//from my events
+		else if(this.from.equals("myEvents")) {
+			this.grCtrl.toMyEvents(this.buttonBack.getScene());
+		}
 	}
 	
 	public void init(String from,String searchString) {
