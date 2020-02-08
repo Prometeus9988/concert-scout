@@ -291,7 +291,6 @@ public class UserDao {
 	        stm.setString(1, user);
 	        stm.setString(2, target);
 	        stm.executeUpdate();
-	        stm.executeQuery();
 
 		} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());

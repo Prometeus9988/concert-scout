@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="logic.bean.GeneralUserBean" %>
+<%@ page import="logic.bean.GeneralUserBean, logic.utils.GoogleMapBoundary" %>
 
 <%
 	String resString = "Add Music Event";
@@ -35,7 +35,7 @@
     <link href="./css/style.css" rel="stylesheet" type="text/css">
 
 <!-- API for autocomplete search -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgh5giYuBPhM0nw6jErLKykHTwLO99_Y&libraries=places"></script>
+<script type="text/javascript" src="<%="https://maps.googleapis.com/maps/api/js?key=" + GoogleMapBoundary.getAPI() + "&libraries=places"%>"></script>
 </head>
 <body class = "defaultBackgorund">
 <div class="container">

@@ -328,13 +328,13 @@ public class MusicEventDao {
 		return false;
 	}
 	
-	public boolean addMusicEvent(String name, String coverPath, String location, String artistUsername, Date date, String ticketone) {
+	public boolean addMusicEvent(String name, String coverPath, String location, String artistUsername, Date date, String ticketone, List<Double> coordinates) {
     	Connection con = null;
     	PreparedStatement stm = null;
     	
     	try {
     		con = DBArtistConnection.getArtistConnection();
-    		String sql = "call livethemusic.add_music_event(?, ?, ?, ?, ?, ?);\r\n"; 
+    		String sql = "call livethemusic.add_music_event(?, ?, ?, ?, ?, ?, ?, ?);\r\n"; 
     		stm = con.prepareStatement(sql);
     		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
@@ -344,6 +344,8 @@ public class MusicEventDao {
     		stm.setString(4, artistUsername);
     		stm.setDate(5, sqlDate);
     		stm.setString(6, ticketone);
+    		stm.setDouble(7, coordinates.get(0));
+    		stm.setDouble(8, coordinates.get(1));
     		stm.executeUpdate();
     		
     	} catch (SQLException se) {
