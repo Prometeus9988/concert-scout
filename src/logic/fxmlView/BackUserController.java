@@ -19,7 +19,7 @@ public class BackUserController implements BackController{
 		
 		//FXMLLoader loader;
 		
-		if(this.from=="home") {
+		if (this.from.equals("home")) {
 			/*HomepageUserController huc=new HomepageUserController();
 			loader=new FXMLLoader(getClass().getResource("HomepageUser.fxml"));
 			loader.setController(huc);
@@ -28,7 +28,7 @@ public class BackUserController implements BackController{
 			
 			this.grCtrl.toHomepage(this.buttonBack.getScene());
 			
-		}else if(this.from=="search"){
+		} else if (this.from.equals("search")){
 			/*SearchEventsArtistsController evc=new SearchEventsArtistsController();
 			loader=new FXMLLoader(getClass().getResource("SearchEventsArtists.fxml"));
 			loader.setController(evc);

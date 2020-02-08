@@ -40,15 +40,11 @@ public class AddMusicEventServlet extends HttpServlet{
 		String location = request.getParameter("location");
 		String date = request.getParameter("date");
 		String ticketone = request.getParameter("ticketone");
-		String fileName = null;
-		String newFileName = null;
-		Part filePart = null;
+		String newFileName;
 		boolean result = false;
 		
-		filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
-		if(filePart != null) {
-			fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-		}
+		Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
+		String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 		
 		if(fileName.equals("")) {
 			fileName = "";
