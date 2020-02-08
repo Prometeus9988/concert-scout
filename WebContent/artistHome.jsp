@@ -32,13 +32,10 @@
      -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- 
-    <script src="js/bootstrap.bundle.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
- -->
     <link href="./css/style.css" rel="stylesheet" type="text/css">
 
+<!-- API for autocomplete search -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgh5giYuBPhM0nw6jErLKykHTwLO99_Y&libraries=places"></script>
 </head>
 <body class = "defaultBackgorund">
 <div class="container">
@@ -74,7 +71,7 @@ GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
     <div class = "form.group"><br>
     <label><%=resString %></label><br>
     <input type="text" class="form-control" name="name" placeholder="Name"><br>
-    <input type="text" class="form-control" name="location" placeholder="Location"><br>
+    <input type="text" class="form-control" name="location" id = "location" placeholder="Location"><br>
     <input type="text" class="form-control" name="ticketone" placeholder="TicketOne Link"><br>
     <input type="date" class="form-control" name="date"><br>
     <label for="avatar">Choose a cover picture:</label>
@@ -86,5 +83,10 @@ GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 </div>
 </div>
 </div>
+<!-- Autocomplete script -->
+    <script>
+      var input = document.getElementById('location');
+      var autocomplete = new google.maps.places.Autocomplete(input);
+    </script>
 </body>
 </html>

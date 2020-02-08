@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
-import logic.bean.GeneralUserBean;
 import logic.dao.NewsDao;
 import logic.bean.NewsBean;
 
@@ -17,7 +16,7 @@ public class AddNewsController {
 		
 		//Time of the postedNews
 		LocalDateTime current = LocalDateTime.now();
-
+		
 		return nd.addNews(nb.getText(), nb.getPicturePath(), nb.getArtistId(), current); 
 	}
 	
