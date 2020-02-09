@@ -69,7 +69,7 @@
     
     <form action="ButtonHandler" method="POST">
   	<!-- <img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155> -->
-  	  	<button type="submit" name = "<%="f"%>" style="color: transparent; background-color: transparent; border-color: transparent;">
+  	  	<button type="submit" name = "<%="f"%>" value = "<%= friendList.get(i).getUsername() %>" style="color: transparent; background-color: transparent; border-color: transparent;">
 	<img src="<%="img/profilePictures/" + friendList.get(i).getProfilePicture()%>" class="card-img-top cardImg" height = 215 width = 155 />
 	</button>
   	<div class="card-body">
@@ -99,7 +99,7 @@
     
     <form action="ButtonHandler" method="POST">
   	<!-- <img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155> -->
-  	  	<button type="submit" name = "<%="f"%>" style="color: transparent; background-color: transparent; border-color: transparent;">
+  	  	<button type="submit" name = "<%="f"%>" value = "<%= requestList.get(i).getUsername() %>" style="color: transparent; background-color: transparent; border-color: transparent;">
   	<img src="<%="img/profilePictures/" + requestList.get(i).getProfilePicture()%>" height = 50 width = 50 style = "object-fit: cover; border-radius: 300px;">
 	</button>
   	<div class="card-body">
