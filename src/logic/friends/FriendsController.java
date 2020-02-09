@@ -84,6 +84,11 @@ public class FriendsController {
 		ud.acceptFriendRequest(gb.getUsername(), ub.getUsername());
 	}
 	
+	public void declineRequest(GeneralUserBean gb, UserBean ub) {
+		UserDao ud = new UserDao();
+		ud.removeFriendRequest(ub.getUsername(), gb.getUsername());
+	}
+	
 	public String whoSentRequest(GeneralUserBean gb, UserBean ub) {
 		// TODO check this
 		UserDao ud = new UserDao();

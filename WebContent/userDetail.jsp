@@ -6,9 +6,9 @@
 	String fr;
 	UserBean ub = (UserBean) session.getAttribute("target");
 	boolean isFriend = (boolean) request.getAttribute("isFriend");
+	String who = (String) request.getAttribute("request");
 	
 	if (!isFriend) {
-		String who = (String) request.getAttribute("request");
 		if (who.equals("user"))
 			fr = "Remove Friend Request";
 		else if (who.equals("target"))
@@ -81,10 +81,26 @@
 	<h1><%=ub.getUsername()%></h1>
 	<h2><%=ub.getName() + " " + ub.getSurname() %></h2>
   </div>
+  <div>
+  <div style="float: left">
   <form action = "ButtonHandler" method = "POST">
   <input type = "submit" name = "friend" value = "<%=fr%>">
   <input type = "hidden" name = "target" value = "<%=ub.getUsername() %>">
   </form>
+  </div>
+  <%
+  if (who.equals("target")) {
+  %>
+  <div style="margin-left: 200px">
+  <form action = "ButtonHandler" method = "POST">
+  <input type = "submit" name = "decline" value = "Decline Friend Request">
+  <input type = "hidden" name = "target" value = "<%=ub.getUsername() %>">
+  <%
+  }
+  %>
+  </form>
+  </div>
+  </div>
   </div>
   </div>
 
