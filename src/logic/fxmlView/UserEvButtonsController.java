@@ -44,12 +44,12 @@ public class UserEvButtonsController {
 	@FXML
 	public void tkAction(ActionEvent ev) {
 		//MANAGE NULL LINK
-		/*try {
+		try {
 			OpenBrowser.openWebpage(new URL(this.myMusicEvent.getTicketone()));
 		}
 		catch(IOException e) {
 			logger.log(Level.WARNING, e.toString());
-		}*/System.out.println("link "+this.myMusicEvent.getTicketone());
+		}
 	}
 	
 	public void init(MusicEventBean myMusicEvent) {

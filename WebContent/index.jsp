@@ -67,7 +67,7 @@
   <p class = "logoText">LIVE<mark style = "background-color: rgba(0,0,0,0); color: #6A4C93">the</mark>MUSIC</p>
   </div>
   </div>
-  <div class ="col-sm-5" style = "padding-top:170px;">
+  <div style = "padding-top:190px;">
 				<%
 					String log = (String) request.getAttribute("login");
 					if (log != null) {

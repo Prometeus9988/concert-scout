@@ -13,7 +13,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
 public class GoogleMapBoundary {
-	private static final String GOOGLEAPI = "";
+	private static final String GOOGLEAPI = "AIzaSyBCcBobecZpQn8TdiS0kteEHs_RP2qiS34";
 	public static List<Double> locateAddress(String address) throws IOException, ParseException{
 		String jsonString = "";
 		List<Double> coordinates = new ArrayList<Double>();

@@ -49,7 +49,6 @@ public class BuyTicketController {
 			meb.setLocation(me.getLocation());
 			meb.setBandName(me.getBandName());
 			meb.setTicketone(me.getTicketone());
-			System.out.println("controller "+me.getTicketone());
 			lb.add(meb);
 		}
 		

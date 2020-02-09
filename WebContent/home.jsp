@@ -23,19 +23,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Logo icon -->
     <link rel="icon" href="img/concertIcon.png">
-    <!-- 
-    <link href="css/bootstrap-theme.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet">
-     -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- 
-    <script src="js/bootstrap.bundle.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
- -->
-
     <link href="./css/style.css" rel="stylesheet" type="text/css">
 
 <title>Home</title>
@@ -139,5 +128,6 @@
     </ul>
   </div>
 </div> 
+</div>
 </body>
 </html>
