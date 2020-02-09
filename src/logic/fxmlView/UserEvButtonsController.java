@@ -13,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import logic.bean.GeneralUserBean;
-import logic.utils.OpenBrowser;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
