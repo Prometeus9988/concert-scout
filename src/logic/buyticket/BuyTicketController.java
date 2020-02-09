@@ -89,7 +89,7 @@ public class BuyTicketController {
 	}
 	
 	public MusicEventBean getMusicEvent(String id, GeneralUserBean gu) {
-		//TODO dovrebbe essere relativo al musicevent e non al buyticketcontroller
+		//TODO dovrebbe essere relativo al musicevent e non al buyticketcontroller?
 		MusicEventDao med = new MusicEventDao();
 		MusicEvent me = med.getMusicEvent(id, gu.getRole());
 		MusicEventBean meb = new MusicEventBean();
@@ -100,6 +100,9 @@ public class BuyTicketController {
 		meb.setLocation(me.getLocation());
 		meb.setBandName(me.getBandName());
 		meb.setTicketone(me.getTicketone());
+		
+		meb.setLatitude(me.getCoordinates().get(0));
+		meb.setLongitude(me.getCoordinates().get(1));
 		return meb;
 	}
 	

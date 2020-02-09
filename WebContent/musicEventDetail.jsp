@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ page import="logic.bean.MusicEventBean, logic.bean.GeneralUserBean, logic.utils.*" %>
+    <%@ page import="logic.bean.MusicEventBean, logic.utils.GoogleMapBoundary, logic.bean.GeneralUserBean, logic.utils.*" %>
 <%
 	String part;
 	String origin = (String) session.getAttribute("origin");
@@ -25,18 +25,16 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Logo icon -->
     <link rel="icon" href="img/concertIcon.png">
-    <!-- 
-    <link href="css/bootstrap-theme.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet">
-     -->
+
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- 
-    <script src="js/bootstrap.bundle.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
- -->
+    <style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        width: 400px;
+       }
+    </style>
 
     <link href="css/style.css" rel="stylesheet" type="text/css">
 <title>Music Event</title>
@@ -103,8 +101,8 @@
 </form>
 
 <h1><%=meb.getName()%></h1>
-<h2><%=meb.getLocation()%></h2>
-<h3><%=meb.getArtistId()%></h3>
+<h2><%=meb.getBandName()%></h2>
+<h3><%=meb.getLocation()%></h3>
 <!-- Add participation -->
 <form action = "ButtonHandler" method = "POST">
 
@@ -121,7 +119,27 @@
 %>
 <input type="submit" name = "goToTicketone" value = "TicketOne">
 </form>
-<!-- TicketOne Link -->
+
+<div id="map"></div>
+<!-- Maps script -->
+<script>
+// Initialize and add the map
+function initMap() {
+  
+  var location = {lat: <%=meb.getLatitude()%>, lng: <%=meb.getLongitude()%>};
+  
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 13, center: location});
+ 
+  var marker = new google.maps.Marker({position: location, map: map});
+
+}
+</script>
+
+<script async defer
+    src="<%="https://maps.googleapis.com/maps/api/js?key="+ GoogleMapBoundary.getAPI() +"&callback=initMap"%>">
+</script>
+    
 </div>
 </div>
 </div>

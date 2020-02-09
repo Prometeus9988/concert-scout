@@ -24,6 +24,8 @@ public class MusicEventDao {
 	private static final String ARTISTUSERNAME = "artist_username";
 	private static final String TICKETONE = "ticketone";
 	private static final String COVERPATH = "cover_path";
+	private static final String LATITUDE = "latitude";
+	private static final String LONGITUDE = "longitude";
 	private static final String DEFAULTPICTURE = "concert.jpg";
 	
 	public MusicEvent getMusicEvent(String id, String role) {
@@ -56,11 +58,20 @@ public class MusicEventDao {
             String ticketone = rs.getString(TICKETONE);
             String coverPath = rs.getString(COVERPATH);
             
+            //setting up coordinates of the musicevent
+            double latitude = rs.getDouble(LATITUDE);
+            double longitude = rs.getDouble(LONGITUDE);
+            List<Double> coordinates = new ArrayList<>();
+            coordinates.add(latitude);
+            coordinates.add(longitude);
+            
         	if(coverPath == null || coverPath.equals("")) {
         		coverPath = DEFAULTPICTURE;
         	}
+        	
             me = new MusicEvent(idb, artistUsername, name, coverPath, location, bandName, ticketone);
-
+            me.setCoordinates(coordinates);
+            
         } catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {

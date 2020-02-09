@@ -1,5 +1,7 @@
 package logic.entity;
 
+import java.util.List;
+
 public class MusicEvent {
 	private int id;
 	private String artistUsername;
@@ -8,6 +10,7 @@ public class MusicEvent {
 	private String coverPath;
 	private String location;
 	private String ticketone;
+	private List<Double> coordinates;
 	
 	public MusicEvent(int id, String artistId, String name, String coverPath, String location, String bandName, String ticketone) {
 		this.id = id;
@@ -18,6 +21,8 @@ public class MusicEvent {
 		this.bandName = bandName;
 		this.ticketone = ticketone;
 	}
+	
+	
 	
 	public int getId() {
 		return id;
@@ -45,5 +50,13 @@ public class MusicEvent {
 	
 	public String getTicketone() {
 		return this.ticketone;
+	}
+	
+	public void setCoordinates(List<Double> coordinates) {
+		this.coordinates = coordinates;
+	}
+	
+	public List<Double> getCoordinates(){
+		return this.coordinates;
 	}
 }
