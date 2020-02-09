@@ -130,4 +130,8 @@ public class BuyTicketController {
 		AddParticipationController apc = new AddParticipationController();
 		return apc.isParticipating(user, meb);
 	}
+	
+	public void getAroundYou(double latitude, double longitude, int radius){
+		System.out.println("lat: " + latitude + " lng: " + longitude + " radius " + radius);
+	}
 }

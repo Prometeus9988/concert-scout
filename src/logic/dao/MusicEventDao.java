@@ -452,11 +452,12 @@ public class MusicEventDao {
             	String bandName = rs.getString(BANDNAME);
             	String artistUsername = rs.getString(ARTISTUSERNAME);
             	String coverPath = rs.getString(COVERPATH);
+            	String ticketone = rs.getString(TICKETONE);
             	
             	if(coverPath == null || coverPath.equals("")) {
             		coverPath = DEFAULTPICTURE;
             	}
-            	l.add(new MusicEvent(id, artistUsername, name, coverPath, location, bandName, ""));
+            	l.add(new MusicEvent(id, artistUsername, name, coverPath, location, bandName, ticketone));
             } while (rs.next());
 			
 			
