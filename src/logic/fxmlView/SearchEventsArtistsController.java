@@ -66,6 +66,7 @@ public class SearchEventsArtistsController {
 		
 		for(i=0;i<musicEvents.size();i++) {
 			this.ugc.eventPreview(this.evRow,musicEvents.get(i),"home",this.mySearchString);
+			System.out.println(musicEvents.get(i).getTicketone());
 		}
 		
 		for(i=0;i<artists.size();i++) {

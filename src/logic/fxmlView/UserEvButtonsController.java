@@ -1,12 +1,20 @@
 package logic.fxmlView;
 
 import javafx.event.ActionEvent;
+import java.net.URL;
+
+
+
 import javafx.fxml.FXML;
 import logic.utils.SessionUser;
 import logic.buyticket.*;
 import logic.bean.MusicEventBean;
 import javafx.scene.control.Button;
 import logic.bean.GeneralUserBean;
+import logic.utils.OpenBrowser;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserEvButtonsController {
 	
@@ -14,11 +22,12 @@ public class UserEvButtonsController {
 	private Button part;
 	@FXML
 	private Button tk;
-	
+	 
 	private MusicEventBean myMusicEvent;
 	
 	private BuyTicketController controller;
 	private GeneralUserBean sessionUser;
+	private static final Logger logger=Logger.getLogger(UserEvButtonsController.class.getName());
 	
 	@FXML
 	public void partAction(ActionEvent ev) {
@@ -34,8 +43,13 @@ public class UserEvButtonsController {
 	
 	@FXML
 	public void tkAction(ActionEvent ev) {
-		//TO IMPLEMENT
-		System.out.println("Tk pressed");
+		//MANAGE NULL LINK
+		/*try {
+			OpenBrowser.openWebpage(new URL(this.myMusicEvent.getTicketone()));
+		}
+		catch(IOException e) {
+			logger.log(Level.WARNING, e.toString());
+		}*/System.out.println("link "+this.myMusicEvent.getTicketone());
 	}
 	
 	public void init(MusicEventBean myMusicEvent) {
