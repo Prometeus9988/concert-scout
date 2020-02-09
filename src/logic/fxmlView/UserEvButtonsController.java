@@ -9,12 +9,16 @@ import javafx.fxml.FXML;
 import logic.utils.SessionUser;
 import logic.buyticket.*;
 import logic.bean.MusicEventBean;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import logic.bean.GeneralUserBean;
 import logic.utils.OpenBrowser;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 public class UserEvButtonsController {
 	
@@ -44,12 +48,29 @@ public class UserEvButtonsController {
 	@FXML
 	public void tkAction(ActionEvent ev) {
 		//MANAGE NULL LINK
-		try {
-			OpenBrowser.openWebpage(new URL(this.myMusicEvent.getTicketone()));
+		/*try {
+			boolean test=OpenBrowser.openWebpage(new URL(this.myMusicEvent.getTicketone()));
+			if(test) {
+				System.out.println("OKAY");
+			}else {
+				System.out.println("NOPE");
+			}
 		}
 		catch(IOException e) {
 			logger.log(Level.WARNING, e.toString());
-		}
+		}*/
+		
+		Stage primaryStage=new Stage();
+		primaryStage.setTitle("TicketOne");
+		WebView webView = new WebView();
+
+        webView.getEngine().load(this.myMusicEvent.getTicketone());
+
+        VBox vBox = new VBox(webView);
+        Scene scene = new Scene(vBox);
+        
+        primaryStage.setScene(scene);
+        primaryStage.show();
 	}
 	
 	public void init(MusicEventBean myMusicEvent) {
