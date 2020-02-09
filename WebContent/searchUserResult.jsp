@@ -78,7 +78,9 @@
 
     	<div class="card text-center" style="width: 18rem;">
     <form action="ButtonHandler" method="POST">
-  	<img class="card-img-top cardImg" src="<%="img/profilePictures/" + users.get(i).getProfilePicture() %>" height = 215 width = 155 alt="Submit">
+  	<button type="submit" name = "<%="f"%>" value = "<%= users.get(i).getUsername() %>" style="color: transparent; background-color: transparent; border-color: transparent;">
+  	<img src="<%="img/profilePictures/" + users.get(i).getProfilePicture()%>" class="card-img-top cardImg" height = 215 width = 155 />
+	</button>
   	<div class="card-body">
 <input type="submit" name = "<%="f"%>" class = "btTxt astext" value = "<%= users.get(i).getUsername() %>">
     <input type = "hidden" name = "name" value = "<%= users.get(i).getName()%>">
