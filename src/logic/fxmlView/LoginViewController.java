@@ -20,6 +20,8 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import javafx.stage.Stage;
 import java.io.FileInputStream;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 public class LoginViewController {
 	
@@ -63,7 +65,8 @@ public class LoginViewController {
 		this.imageFile=fc.showOpenDialog(new Stage());
 		if(this.imageFile!=null)this.imageLabel.setText(this.imageFile.getName());
 	}
-
+	
+	//NO IMAGE SELECTED STRING
 	
 	@FXML
 	public void loginButtonAction(ActionEvent event){
@@ -77,6 +80,8 @@ public class LoginViewController {
     	if(gu==null) {
     		this.errorLabel1.setText("Wrong username");
     		this.errorLabel2.setText("or password");
+    		this.usernameTextField.setText(null);
+    		this.passwordBox.setText(null);
     	}
     	else {
     		String role=gu.getRole();
@@ -179,13 +184,39 @@ public class LoginViewController {
 			this.registerLabel.setText("Registration unsuccessfull");
 		}
 		
+		this.emailField.setText(null);
+		this.usernameRegField.setText(null);
+		this.passwordRegField.setText(null);
+		this.bandNameField.setText(null);
+		this.firstNameField.setText(null);
+		this.lastNameField.setText(null);
+		this.imageFile=null;
+		this.imageLabel.setText("No image selected");
+		
 	}
 	
 	
-	public void init() {
+	public void init() { 
 		String[] kinds= {"User","Artist"};
 		this.typeOfUserField.setItems(FXCollections.observableArrayList(kinds));
 		this.typeOfUserField.getSelectionModel().selectFirst();
+		this.typeOfUserField.valueProperty().addListener(new ChangeListener<String>() {	
+			public void changed(ObservableValue<? extends String> composant,String oldValue,String newValue ) {
+					if(newValue.equals("User")) {
+						bandNameField.setDisable(true);
+						firstNameField.setDisable(false);
+						lastNameField.setDisable(false);
+						bandNameField.setText(null);
+					}else if(newValue.equals("Artist")) {
+						bandNameField.setDisable(false);
+						firstNameField.setDisable(true);
+						lastNameField.setDisable(true);
+						firstNameField.setText(null);
+						lastNameField.setText(null);
+					}
+				}
+		});
+		this.bandNameField.setDisable(true);
 	}
 
 }

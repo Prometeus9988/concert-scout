@@ -47,17 +47,6 @@ public class UserEvButtonsController {
 	@FXML
 	public void tkAction(ActionEvent ev) {
 		//MANAGE NULL LINK
-		/*try {
-			boolean test=OpenBrowser.openWebpage(new URL(this.myMusicEvent.getTicketone()));
-			if(test) {
-				System.out.println("OKAY");
-			}else {
-				System.out.println("NOPE");
-			}
-		}
-		catch(IOException e) {
-			logger.log(Level.WARNING, e.toString());
-		}*/
 		
 		Stage primaryStage=new Stage();
 		primaryStage.setTitle("TicketOne");
@@ -68,6 +57,7 @@ public class UserEvButtonsController {
         VBox vBox = new VBox(webView);
         Scene scene = new Scene(vBox);
         
+        primaryStage.resizableProperty().setValue(Boolean.FALSE);
         primaryStage.setScene(scene);
         primaryStage.show();
 	}
