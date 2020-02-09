@@ -77,7 +77,6 @@
 	<input type = "hidden" name = "name" value = "<%= friendList.get(i).getName()%>">
     <input type = "hidden" name = "surname" value = "<%= friendList.get(i).getSurname()%>">
     <input type = "hidden" name = "profileP" value = "<%= friendList.get(i).getProfilePicture()%>">
-    <input type = "hidden" name = "check" value = "<%= "F"%>">
   	</div>
   	</form>
 </div>
@@ -107,7 +106,6 @@
 	<input type = "hidden" name = "name" value = "<%= requestList.get(i).getName()%>">
     <input type = "hidden" name = "surname" value = "<%= requestList.get(i).getSurname()%>">
     <input type = "hidden" name = "profileP" value = "<%= requestList.get(i).getProfilePicture()%>">
-    <input type = "hidden" name = "check" value = "<%= "R"%>">
   	</div>
   	</form>
 </div>

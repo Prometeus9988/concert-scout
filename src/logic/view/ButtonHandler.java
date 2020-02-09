@@ -57,41 +57,29 @@ public class ButtonHandler  extends HttpServlet{
 			ub.setSurname(request.getParameter("surname"));
 			ub.setProfilePicture(request.getParameter("profileP"));
 			session.setAttribute("target", ub);
-			String check = request.getParameter("check");
-			if (check == null) {
-				boolean isFriend = fc.isFriend(gu, ub);
-				request.setAttribute("isFriend", isFriend);
-				if (!isFriend) {
-					String who = fc.whoSentRequest(gu, ub);
-					request.setAttribute("request", who);
-				}
-			} else if (check.equals("F")) {
-				request.setAttribute("isFriend", true);
-			} else {
-				request.setAttribute("isFriend", false);
-				request.setAttribute("request", "target");
+			boolean isFriend = fc.isFriend(gu, ub);
+			request.setAttribute("isFriend", isFriend);
+			if (!isFriend) {
+				String who = fc.whoSentRequest(gu, ub);
+				request.setAttribute("request", who);
 			}
 			rd = request.getRequestDispatcher("userDetail.jsp");
 		} else if(request.getParameter("friend") != null) {
-			String fr = request.getParameter("friend");
 			UserBean ub = new UserBean();
 			ub.setUsername(request.getParameter("target"));
-			if (fr.equals("Add Friend")) {
-				fc.requestFriend(gu, ub);
-				request.setAttribute("request", "user");
-				request.setAttribute("isFriend", false);
-			} else if (fr.equals("Remove Friend Request")) {
-				fc.removeRequest(gu, ub);
-				request.setAttribute("request", "none");
-				request.setAttribute("isFriend", false);
-			} else if (fr.equals("Accept Friend Request")) {
-				fc.acceptRequest(gu, ub);
-				request.setAttribute("isFriend", true);
-			} else {
+			boolean isFriend = fc.isFriend(gu, ub);
+			String who;
+			if (isFriend) {
 				fc.unfriend(gu, ub);
-				request.setAttribute("request", "none");
-				request.setAttribute("isFriend", false);
+			} else if ((who = fc.whoSentRequest(gu, ub)).equals("none")) {
+				fc.requestFriend(gu, ub);
+			} else if (who.equals("user")) {
+				fc.removeRequest(gu, ub);
+			} else {
+				fc.acceptRequest(gu, ub);
 			}
+			request.setAttribute("request", fc.whoSentRequest(gu, ub));
+			request.setAttribute("isFriend", fc.isFriend(gu, ub));
 			rd = request.getRequestDispatcher("userDetail.jsp");
 		} else if(request.getParameter("addPart") != null) {
 			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
