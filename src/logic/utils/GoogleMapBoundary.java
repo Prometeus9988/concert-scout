@@ -13,10 +13,16 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
 public class GoogleMapBoundary {
+	
 	private static final String GOOGLEAPI = "";
+	
+	private GoogleMapBoundary(){
+		
+	}
+	
 	public static List<Double> locateAddress(String address) throws IOException, ParseException{
 		String jsonString = "";
-		List<Double> coordinates = new ArrayList<Double>();
+		List<Double> coordinates = new ArrayList<>();
         
 		//Request to the geocoding service
 		URL geocodingUrl = new URL("https://maps.googleapis.com/maps/api/geocode/json?"

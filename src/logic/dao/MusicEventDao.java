@@ -31,7 +31,14 @@ public class MusicEventDao {
 	private static final String DEFAULTPICTURE = "concert.jpg";
 	private static final String DISTANCE = "distance_in_km";
 	
-	private String request = "";
+	//Operations for the queries
+	private static final String AROUNDYOU = "aroundyou";
+	private static final String ACCEPT = "accepet";
+	private static final String REJECT = "reject";
+	
+	private double lat = 0;
+	private double lng = 0;
+	private int rng = 0;
 	
 	public MusicEvent getMusicEvent(String id, String role) {
 		Connection conn = null;
@@ -240,132 +247,22 @@ public class MusicEventDao {
 	}
 
 	public void acceptMusicEvent(String id) {
-    	Connection con = null;
-    	PreparedStatement stm = null;
-    	try {
-    		con = DBAdminConnection.getAdminConnection();
-    		String sql = "call livethemusic.accept_musicevent(?);\r\n"; 
-    		stm = con.prepareStatement(sql);
-            stm.setString(1, id);
-            stm.executeUpdate();
-    		
-    	} catch (SQLException se) {
-        	logger.log(Level.WARNING, se.toString());
-        } catch (ClassNotFoundException e) {
-            logger.log(Level.WARNING, e.toString());
-        } finally {
-            try {
-                if (stm != null)
-                    stm.close();
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
-        }
+    	this.manageMusicEvent(id, ACCEPT);
 	}
 
 	public void rejectMusicEvent(String id) {
-    	Connection con = null;
-    	PreparedStatement stm = null;
-    	try {
-    		con = DBAdminConnection.getAdminConnection();
-    		String sql = "call livethemusic.reject_musicevent(?);\r\n"; 
-    		stm = con.prepareStatement(sql);
-            stm.setString(1, id);
-            stm.executeUpdate();
-    		
-    	} catch (SQLException se) {
-        	logger.log(Level.WARNING, se.toString());
-        } catch (ClassNotFoundException e) {
-            logger.log(Level.WARNING, e.toString());
-        } finally {
-            try {
-                if (stm != null)
-                    stm.close();
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
-        }
+    	this.manageMusicEvent(id, REJECT);
 	}
 	
 	public List<MusicEvent> getUserEvents(String username){
-		Connection conn = null;
-		List<MusicEvent> l = new ArrayList<>();
-		PreparedStatement stm = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = DBUserConnection.getUserConnection();
-			String sql = "call livethemusic.view_user_events(?);\r\n";
-			
-			stm = conn.prepareStatement(sql);
-			stm.setString(1, username);
-			
-			rs = stm.executeQuery();
-
-			l = this.unpackResultSet(rs);
-			
-		} catch (SQLException se) {
-        	logger.log(Level.WARNING, se.toString());
-        } catch (ClassNotFoundException e) {
-            logger.log(Level.WARNING, e.toString());
-        } finally {
-        	try {
-                if (rs != null)
-                    rs.close();
-            } catch (SQLException se1) {
-            	logger.log(Level.WARNING, se1.toString());
-            }
-            try {
-                if (stm != null)
-                    stm.close();
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
-        }
-		
-		return l;
+		return this.queryDataBase(username, "userevents");
 	}
 	
 	public List<MusicEvent> getAroundYou(double latitude, double longitude, int range){
-		Connection conn = null;
-		List<MusicEvent> l = new ArrayList<>();
-		PreparedStatement stm = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = DBUserConnection.getUserConnection();
-			String sql = "call livethemusic.around_you(?, ?, ?);\r\n";
-			
-			stm = conn.prepareStatement(sql);
-			stm.setDouble(1, latitude);
-			stm.setDouble(2, longitude);
-			stm.setInt(3, range);
-			
-			rs = stm.executeQuery();
-			
-			this.request = "aroundYou";
-			l = this.unpackResultSet(rs);
-			
-		} catch (SQLException se) {
-        	logger.log(Level.WARNING, se.toString());
-        } catch (ClassNotFoundException e) {
-            logger.log(Level.WARNING, e.toString());
-        } finally {
-        	try {
-                if (rs != null)
-                    rs.close();
-            } catch (SQLException se1) {
-            	logger.log(Level.WARNING, se1.toString());
-            }
-            try {
-                if (stm != null)
-                    stm.close();
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
-        }
-		
-		return l;
+		lat = latitude;
+		lng = longitude;
+		rng = range;
+		return this.queryDataBase("", AROUNDYOU);
 	}
 	
 	//User to round double numbers
@@ -385,16 +282,14 @@ public class MusicEventDao {
 		ResultSet rs = null;
 		
 		try {
+			conn = DBUserConnection.getUserConnection();
+			
 			if(type.equals("search")) {
-	            conn = DBUserConnection.getUserConnection();
-
 	            String sql = "call livethemusic.search_music_event(?);\r\n"; 
 	            stm = conn.prepareStatement(sql);
 	            //SearchString
 	            stm.setString(1, string);
 			} else if(type.equals("suggested")) {
-	            conn = DBUserConnection.getUserConnection();
-
 	    		String sql = "call livethemusic.view_friend_partitipation(?);\r\n"; 
 	    		stm = conn.prepareStatement(sql);
 	    		//Username
@@ -404,12 +299,24 @@ public class MusicEventDao {
 
 				String sql = "call livethemusic.view_pendingmusicevent();\r\n"; 
 				stm = conn.prepareStatement(sql);
+			} else if(type.equals(AROUNDYOU)) {
+				String sql = "call livethemusic.around_you(?, ?, ?);\r\n";
+				
+				stm = conn.prepareStatement(sql);
+				stm.setDouble(1, lat);
+				stm.setDouble(2, lng);
+				stm.setInt(3, rng);
+			} else if(type.equals("userevents")) {
+				String sql = "call livethemusic.view_user_events(?);\r\n";
+				
+				stm = conn.prepareStatement(sql);
+				stm.setString(1, string);
 			}
 			
 			if(stm != null) {
 				rs = stm.executeQuery();
 			}
-			l = this.unpackResultSet(rs);
+			l = this.unpackResultSet(rs, type);
 		} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
@@ -432,7 +339,7 @@ public class MusicEventDao {
 		return l;
 	}
 	
-	private List<MusicEvent> unpackResultSet(ResultSet rs) throws SQLException{
+	private List<MusicEvent> unpackResultSet(ResultSet rs, String type) throws SQLException{
 		List<MusicEvent> l = new ArrayList<>();
 		
         if (!rs.first()) // rs not empty
@@ -452,7 +359,7 @@ public class MusicEventDao {
         	}
         	MusicEvent temp = new MusicEvent(id, artistUsername, name, coverPath, location, bandName, ticketone);
         	
-        	if(this.request.equals("aroundYou")) {
+        	if(type.equals(AROUNDYOU)) {
         		double distance = rs.getDouble(DISTANCE);
             	temp.setDistance(this.round(distance, 2));
         	}
@@ -460,5 +367,40 @@ public class MusicEventDao {
         	l.add(temp);
         } while (rs.next());
         return l;
+	}
+	
+	public void manageMusicEvent(String id, String operation) {
+		Connection con = null;
+    	PreparedStatement stm = null;
+    	try {
+    		if(operation.equals(REJECT)) {
+    			con = DBAdminConnection.getAdminConnection();
+    			String sql = "call livethemusic.reject_musicevent(?);\r\n"; 
+    			stm = con.prepareStatement(sql);
+    			stm.setString(1, id);
+    			
+    		} else if(operation.equals(ACCEPT)) {
+        		con = DBAdminConnection.getAdminConnection();
+        		String sql = "call livethemusic.accept_musicevent(?);\r\n"; 
+        		stm = con.prepareStatement(sql);
+                stm.setString(1, id);
+    		}
+    		
+    		if(stm != null) {
+    			stm.executeUpdate();
+    		}
+    		
+    	} catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+            logger.log(Level.WARNING, e.toString());
+        } finally {
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
+        }
 	}
 }
