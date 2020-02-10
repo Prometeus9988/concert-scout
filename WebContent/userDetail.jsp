@@ -29,18 +29,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Logo icon -->
     <link rel="icon" href="img/concertIcon.png">
-    <!-- 
-    <link href="css/bootstrap-theme.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet">
-     -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- 
-    <script src="js/bootstrap.bundle.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
- -->
 
     <link href="./css/style.css" rel="stylesheet" type="text/css">
 
@@ -74,31 +64,27 @@
 
 <div class="splitBackground right">
 <img src = "<%="img/profilePictures/" + ub.getProfilePicture() %>" height = 334  width = 1252 style = "object-fit: cover;" >
-  <form action = "ButtonHandler" method = "POST">
+<div class="centered" style="margin-left:30px;">
+<form action = "ButtonHandler" method = "POST">
 <input type="submit" class = "submit" name = "back" value = "back">
 </form>
-  <div class="centered" style="margin-left:30px;">
 	<h1><%=ub.getUsername()%></h1>
 	<h2><%=ub.getName() + " " + ub.getSurname() %></h2>
-  </div>
   <div>
   <div style="float: left">
   <form action = "ButtonHandler" method = "POST">
   <input type = "submit" name = "friend" value = "<%=fr%>">
   <input type = "hidden" name = "target" value = "<%=ub.getUsername() %>">
-  </form>
-  </div>
   <%
   if (who.equals("target")) {
   %>
-  <div style="margin-left: 200px">
-  <form action = "ButtonHandler" method = "POST">
   <input type = "submit" name = "decline" value = "Decline Friend Request">
   <input type = "hidden" name = "target" value = "<%=ub.getUsername() %>">
   <%
   }
   %>
   </form>
+  </div>
   </div>
   </div>
   </div>
