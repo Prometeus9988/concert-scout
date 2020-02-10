@@ -1,6 +1,7 @@
 package logic.view;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,6 +20,7 @@ import logic.bean.UserBean;
 import logic.buyticket.BuyTicketController;
 import logic.followartist.FollowArtistController;
 import logic.friends.FriendsController;
+import logic.userevents.UserEventsController;
 
 public class ButtonHandler  extends HttpServlet{
 	private static final Logger logger = Logger.getLogger(ButtonHandler.class.getName());
@@ -35,6 +37,7 @@ public class ButtonHandler  extends HttpServlet{
 		FollowArtistController fac = new FollowArtistController();
 		AddMusicEventController amec = new AddMusicEventController();
 		FriendsController fc = new FriendsController();
+		UserEventsController uc = new UserEventsController();
 		if(request.getParameter("m") != null) {
 			String id = request.getParameter("Mevent");
 			MusicEventBean meb = btc.getMusicEvent(id, gu);
@@ -56,7 +59,10 @@ public class ButtonHandler  extends HttpServlet{
 			ub.setName(request.getParameter("name"));
 			ub.setSurname(request.getParameter("surname"));
 			ub.setProfilePicture(request.getParameter("profileP"));
+			// TODO for now keep it here, maybe split buttonhandler in the future
+			List <MusicEventBean> targetEvents = uc.getUserEvents(ub.getUsername());
 			session.setAttribute("target", ub);
+			session.setAttribute("targetEvents", targetEvents);
 			boolean isFriend = fc.isFriend(gu, ub);
 			request.setAttribute("isFriend", isFriend);
 			String who = fc.whoSentRequest(gu, ub);

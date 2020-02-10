@@ -49,18 +49,17 @@
   </div>
   </div>
   
-   <ul>
+    <ul>
     <%
-    if(origin.equals("AdminMusicEventServlet") || role.equals("admin")){
+    if(origin.equals("AdminMusicEventServlet")){
     	%>
     	<li><form action="AdminMusicEventServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
     	<li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
     	<%
     } else {
     	%>
-    
     <%
-    if(origin.equals("BuyTicketServlet")){
+    if(origin.equals("BuyTicketServlet") || origin.equals("SearchServlet")) {
     	%>
     	<li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
     	<%
@@ -68,10 +67,34 @@
     	%>
     	<li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
     <%} %>
+    <%
+    if(origin.equals("ReadNewsServlet")) {
+    	%>
+    <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "selected" value="News"></form></li>
+    	<%
+    } else {
+    	%>
     <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
+    <%} %>
     <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
+    <%
+    if(origin.equals("FriendsServlet")) {
+    	%>
+    <li><form action="FriendsServlet" method="POST"><input type="submit" class = "selected" value="Friends"></form></li>
+    	<%
+    } else {
+    	%>
     <li><form action="FriendsServlet" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
+    <%} %>
+    <%
+    if(origin.equals("AroundYouServlet")) {
+    	%>
+    <li><form action="redirectPage.jsp" method="POST"><input type="submit" class = "selected" value="Around you"></form></li>
+    	<%
+    } else {
+    	%>
     <li><form action="redirectPage.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
+    <%} %>
     <%
     if(origin.equals("YourEventsServlet")){
     	%>

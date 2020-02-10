@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ page import="logic.friends.*, logic.bean.UserBean" %>
+    <%@ page import="logic.friends.*, logic.bean.UserBean, logic.bean.MusicEventBean, java.util.List" %>
 
 <%
 	String fr;
+	int i;
 	UserBean ub = (UserBean) session.getAttribute("target");
+	List <MusicEventBean> targetEvents = (List <MusicEventBean>)session.getAttribute("targetEvents");
 	boolean isFriend = (boolean) request.getAttribute("isFriend");
 	String who = (String) request.getAttribute("request");
 	
@@ -70,8 +72,6 @@
 </form>
 	<h1><%=ub.getUsername()%></h1>
 	<h2><%=ub.getName() + " " + ub.getSurname() %></h2>
-  <div>
-  <div style="float: left">
   <form action = "ButtonHandler" method = "POST">
   <input type = "submit" name = "friend" value = "<%=fr%>">
   <input type = "hidden" name = "target" value = "<%=ub.getUsername() %>">
@@ -84,8 +84,34 @@
   }
   %>
   </form>
-  </div>
-  </div>
+  <h2><%=ub.getUsername() + " is going to:" %></h2>
+      <ul class = "hs">
+    <%
+    for(i = 0; i < targetEvents.size(); i++){
+    	%><li class = "item">
+
+    	<div class="card text-center" style="width: 18rem;">
+    	
+<form action="ButtonHandler" method="POST">
+  	 <button type="submit" name = "<%="m"%>" style="color: transparent; background-color: transparent; border-color: transparent;">
+	<img src="<%="img/concertPictures/" + targetEvents.get(i).getCoverPath()%>" height = 50 width = 50 style = "object-fit: cover; border-radius: 300px;" />
+	</button>
+  	<div class="card-body">
+	<input type="submit" name = "<%="m"%>" class = "btTxt astext" value = "<%= targetEvents.get(i).getName() %>">
+  	</div>
+  	<input type = "hidden" name = "Mevent" value = "<%= targetEvents.get(i).getId() %>">
+  	</form>
+  	<form action="ButtonHandler" method="POST">
+  	<input type="submit" name = "<%="a"%>" class = "btTxt astext" value = "<%= targetEvents.get(i).getBandName() %>">
+  	<input type = "hidden" name = "artist" value = "<%= targetEvents.get(i).getArtistId() %>">
+  	</form>
+</div>
+
+</li>
+    		<%
+    }
+    %>
+</ul>
   </div>
   </div>
   </div>
