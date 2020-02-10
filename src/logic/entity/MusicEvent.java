@@ -11,6 +11,7 @@ public class MusicEvent {
 	private String location;
 	private String ticketone;
 	private List<Double> coordinates;
+	private double distance;
 	
 	public MusicEvent(int id, String artistId, String name, String coverPath, String location, String bandName, String ticketone) {
 		this.id = id;
@@ -58,5 +59,13 @@ public class MusicEvent {
 	
 	public List<Double> getCoordinates(){
 		return this.coordinates;
+	}
+	
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+	
+	public double getDistance() {
+		return this.distance;
 	}
 }

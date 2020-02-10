@@ -1,5 +1,7 @@
 package logic.dao;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -484,4 +486,73 @@ public class MusicEventDao {
 		return l;
 	}
 	
+	public List<MusicEvent> getAroundYou(double latitude, double longitude, int range){
+		Connection conn = null;
+		List<MusicEvent> l = new ArrayList<>();
+		PreparedStatement stm = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBUserConnection.getUserConnection();
+			String sql = "call livethemusic.around_you(?, ?, ?);\r\n";
+			
+			stm = conn.prepareStatement(sql);
+			stm.setDouble(1, latitude);
+			stm.setDouble(2, longitude);
+			stm.setInt(3, range);
+			
+			rs = stm.executeQuery();
+
+			if(!rs.first()) {
+				return Collections.emptyList();
+			}
+
+            do{
+            	int id = rs.getInt(ID);
+            	String name = rs.getString(NAME);
+            	String location = rs.getString(LOCATION);
+            	String bandName = rs.getString(BANDNAME);
+            	String artistUsername = rs.getString(ARTISTUSERNAME);
+            	String coverPath = rs.getString(COVERPATH);
+            	String ticketone = rs.getString(TICKETONE);
+            	double distance = rs.getDouble("distance_in_km");
+            	
+            	
+            	if(coverPath == null || coverPath.equals("")) {
+            		coverPath = DEFAULTPICTURE;
+            	}
+            	MusicEvent temp = new MusicEvent(id, artistUsername, name, coverPath, location, bandName, ticketone);
+            	temp.setDistance(this.round(distance, 2));
+            	l.add(temp);
+            } while (rs.next());	
+		} catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+            logger.log(Level.WARNING, e.toString());
+        } finally {
+        	try {
+                if (rs != null)
+                    rs.close();
+            } catch (SQLException se1) {
+            	logger.log(Level.WARNING, se1.toString());
+            }
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
+        }
+		
+		return l;
+	}
+	
+	//User to round double numbers
+	private double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+	 
+	    BigDecimal bd = new BigDecimal(Double.toString(value));
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
+	}
 }

@@ -14,6 +14,7 @@ public class MusicEventBean implements Serializable {
 	private String date;
 	private double latitude;
 	private double longitude;
+	private double distance;
 	
 	public void setId(int id) {
 		
@@ -96,4 +97,11 @@ public class MusicEventBean implements Serializable {
 		return this.longitude;
 	}
 	
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+	
+	public double getDistance() {
+		return this.distance;
+	}
 }

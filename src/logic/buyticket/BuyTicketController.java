@@ -131,7 +131,25 @@ public class BuyTicketController {
 		return apc.isParticipating(user, meb);
 	}
 	
-	public void getAroundYou(double latitude, double longitude, int radius){
-		System.out.println("lat: " + latitude + " lng: " + longitude + " radius " + radius);
+	public List<MusicEventBean> getAroundYou(double latitude, double longitude, int radius){
+		MusicEventDao med = new MusicEventDao();
+
+		List<MusicEvent> l = med.getAroundYou(latitude, longitude, radius);
+		List<MusicEventBean> lb = new ArrayList<>();
+		for(int i = 0; i < l.size(); i++) {
+			MusicEvent me = l.get(i);
+			MusicEventBean meb = new MusicEventBean();
+			meb.setId(me.getId());
+			meb.setArtistId(me.getArtistId());
+			meb.setName(me.getName());
+			meb.setCoverPath(me.getCoverPath());
+			meb.setLocation(me.getLocation());
+			meb.setBandName(me.getBandName());
+			meb.setTicketone(me.getTicketone());
+			meb.setDistance(me.getDistance());
+			lb.add(meb);
+		}
+		
+		return lb;
 	}
 }
