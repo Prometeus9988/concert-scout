@@ -60,4 +60,16 @@ public class ArtistGraphicChange {
 		}	
 	}
 	
+	public void toAddNews(Scene scene) {
+		try {
+			AddNewsArtistController anc=new AddNewsArtistController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("AddNewsArtist.fxml"));
+			loader.setController(anc);
+			scene.setRoot(loader.load());
+			anc.init();
+		}catch(IOException e) {
+			logger.log(Level.WARNING,e.toString());
+		}
+	}
+	
 }
