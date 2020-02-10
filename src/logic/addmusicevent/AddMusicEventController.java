@@ -50,7 +50,7 @@ public class AddMusicEventController {
 	public List<MusicEventBean> viewPendingEvents() {
 		MusicEventDao med = new MusicEventDao();
 
-		List<MusicEvent> l = med.getPendingMusicEvent();
+		List<MusicEvent> l = med.getPendingMusicEvents();
 		List<MusicEventBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {
 			MusicEvent me = l.get(i);
