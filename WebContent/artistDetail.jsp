@@ -51,7 +51,7 @@
   
     <ul>
     <%
-    if(origin.equals("AdminMusicEventServlet")){
+    if(origin.equals("AdminMusicEventServlet") || role.equals("admin")){
     	%>
     	<li><form action="AdminMusicEventServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
     	<li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
