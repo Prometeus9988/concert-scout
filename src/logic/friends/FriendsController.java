@@ -15,53 +15,20 @@ public class FriendsController {
 	public List<UserBean> getFriends(String username){
 		UserDao ud = new UserDao();
 		List<User> l = ud.getFriends(username);
-		List<UserBean> lb = new ArrayList<>();
-		for(int i = 0; i < l.size(); i++) {
-			User curr = l.get(i);
-			UserBean ub = new UserBean();
-			ub.setUsername(curr.getUsername());
-			ub.setName(curr.getName());
-			ub.setSurname(curr.getSurname());
-			ub.setProfilePicture(curr.getProfilePicture());
-			lb.add(ub);
-		}
-		
-		return lb;
+		return this.convert(l);
 	}
 	
 	public List<UserBean> getRequests(String username){
 		UserDao ud = new UserDao();
 		List<User> l = ud.getFriendRequests(username);
-		List<UserBean> lb = new ArrayList<>();
-		for(int i = 0; i < l.size(); i++) {
-			User curr = l.get(i);
-			UserBean ub = new UserBean();
-			ub.setUsername(curr.getUsername());
-			ub.setName(curr.getName());
-			ub.setSurname(curr.getSurname());
-			ub.setProfilePicture(curr.getProfilePicture());
-			lb.add(ub);
-		}
-		
-		return lb;
+		return this.convert(l);
 	}
 	
 	public List<UserBean> getSearchUser(String searchString, String caller) {
 		UserDao ud = new UserDao();
 
 		List<User> l = ud.getSearchUser(searchString, caller);
-		List<UserBean> lb = new ArrayList<>();
-		for(int i = 0; i < l.size(); i++) {
-			User u = l.get(i);
-			UserBean ub = new UserBean();
-			ub.setUsername(u.getUsername());
-			ub.setName(u.getName());
-			ub.setSurname(u.getSurname());
-			ub.setProfilePicture(u.getProfilePicture());
-			lb.add(ub);
-		}
-		
-		return lb;
+		return this.convert(l);
 	}
 
 	public boolean isFriend(GeneralUserBean gb, UserBean ub) {
@@ -107,4 +74,19 @@ public class FriendsController {
 		ud.removeFriend(gb.getUsername(), ub.getUsername());
 	}
 
+	private List<UserBean> convert(List<User> l){
+		List<UserBean> lb = new ArrayList<>();
+		for(int i = 0; i < l.size(); i++) {
+			User u = l.get(i);
+			UserBean ub = new UserBean();
+			ub.setUsername(u.getUsername());
+			ub.setName(u.getName());
+			ub.setSurname(u.getSurname());
+			ub.setProfilePicture(u.getProfilePicture());
+			lb.add(ub);
+		}
+		
+		return lb;
+	}
+	
 }
