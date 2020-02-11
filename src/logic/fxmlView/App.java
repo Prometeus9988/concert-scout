@@ -1,10 +1,12 @@
 package logic.fxmlView;
 
 import javafx.application.Application;
+import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.io.IOException;
+
 ;public class App extends Application {
 	
 	@Override
@@ -64,11 +66,25 @@ import java.io.IOException;
 		loader.setController(mbc);
 		
 		Scene scene=new Scene(loader.load());
-		mbc.init("addEv");*/
+		mbc.init("addEv");
 		
+		HomepageAdminController ahc=new HomepageAdminController();
+		FXMLLoader loader=new FXMLLoader (getClass().getResource("AdminHomepage.fxml"));
+		Scene scene=new Scene(loader.load());
+		ahc.init();*/
+		
+		/*AdminMenuBarController controller=new AdminMenuBarController();
+		FXMLLoader loader=new FXMLLoader (getClass().getResource("AdminMenuBar.fxml"));
+		loader.setController(controller);
+	
+		Scene scene=new Scene(loader.load());
+		controller.init("news");*/
+
 		main.setScene(scene);
+		
 		main.setMaximized(true);
 		main.show();
+		
 		
 
 	}

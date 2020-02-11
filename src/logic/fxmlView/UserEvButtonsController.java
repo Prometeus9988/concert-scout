@@ -1,7 +1,6 @@
 package logic.fxmlView;
 
 import javafx.event.ActionEvent;
-import java.net.URL;
 
 
 
@@ -13,9 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import logic.bean.GeneralUserBean;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
@@ -30,7 +26,7 @@ public class UserEvButtonsController {
 	
 	private BuyTicketController controller;
 	private GeneralUserBean sessionUser;
-	private static final Logger logger=Logger.getLogger(UserEvButtonsController.class.getName());
+
 	
 	@FXML
 	public void partAction(ActionEvent ev) {

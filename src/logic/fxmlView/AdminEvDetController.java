@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class EvDetailsController {
+public class AdminEvDetController {
 	
 	private MusicEventBean myEvent;
 	
@@ -29,15 +29,15 @@ public class EvDetailsController {
 	@FXML
 	private HBox buttons;
 	
-	private UserGraphicChange ucg;
+	private AdminGraphicChange agc;
 	
 	public void init(MusicEventBean myEvent,String from,String searchString){
+		
 		this.myEvent=myEvent;
-		this.ucg=UserGraphicChange.getInstance();
+		this.agc=AdminGraphicChange.getInstance();
 		
 		//INIT MENU BAR
-		this.ucg.menuBar(this.menuBar,from);
-		
+		this.agc.menuBar(this.menuBar, from);
 		
 		//INIT LABEL NAMES
 		this.conc.setText(this.myEvent.getName());
@@ -45,26 +45,21 @@ public class EvDetailsController {
 		this.arName.setText(this.myEvent.getArtistId());
 		
 		//INIT BACK BUTTON
-		
-		this.ucg.backButton(this.backButton, from, searchString);
+		this.agc.backButton(this.backButton, from, searchString);
 		
 		//INIT ROLE BUTTONS
-		
-		this.ucg.evDetailsButtons(this.buttons, this.myEvent);
+		this.agc.evDetailsButtons(this.buttons, this.myEvent);
 		
 		//INIT IMAGE
 		String path=System.getProperty("user.home")+ File.separator
-				+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-				+ "trunk" + File.separator + "WebContent" + File.separator
-				+ "img" + File.separator + "concertPictures"+File.separator+this.myEvent.getCoverPath();
-		
+					+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
+					+ "trunk" + File.separator + "WebContent" + File.separator+ "img" + File.separator + "concertPictures"+File.separator+this.myEvent.getCoverPath();
+				
 		File file = new File(path);
 		Image image = new Image(file.toURI().toString());
 		this.profileImage.setImage(image);
 		this.profileImage.setFitHeight(400);
 		this.profileImage.setFitWidth(1200);
-		
+				
 	}
-	
-
 }

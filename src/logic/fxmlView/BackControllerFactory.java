@@ -17,10 +17,10 @@ public class BackControllerFactory {
 		//THEN INTRODUCING ADMIN BACK CONTROLLER
 		//ARTISTS DON'T NEED IT
 		
-		//if(kind==1) 
-		
+		if(kind==1) 
 			return new BackUserController();
-		
+		else
+			return new BackAdminController();
 		
 	}
 

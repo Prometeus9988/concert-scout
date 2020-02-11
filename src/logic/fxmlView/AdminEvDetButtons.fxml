@@ -8,8 +8,9 @@
    <children>
       <HBox fx:id="buttons" prefHeight="40.0" prefWidth="1141.0" spacing="10.0">
          <children>
-            <Button fx:id="part" mnemonicParsing="false" onAction="#partAction" prefHeight="26.0" prefWidth="181.0" text="Remove Participation" />
-            <Button fx:id="tk" mnemonicParsing="false" onAction="#tkAction" text="TicketOne" />
+            <Button mnemonicParsing="false" onAction="#acceptAction" prefHeight="26.0" prefWidth="105.0" text="Accept Event" />
+            <Button mnemonicParsing="false" onAction="#rejectAction" text="Reject Event" />
+            <Button fx:id="tkButton" mnemonicParsing="false" onAction="#tkAction" text="TicketOne" />
          </children>
       </HBox>
    </children>

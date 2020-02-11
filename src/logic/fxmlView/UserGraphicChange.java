@@ -125,7 +125,7 @@ public class UserGraphicChange {
 		}
 	}
 	
-	public void evDeatilsButtons(HBox box,MusicEventBean event) {
+	public void evDetailsButtons(HBox box,MusicEventBean event) {
 		try {
 			UserEvButtonsController btc=new UserEvButtonsController();
 			FXMLLoader loader=new FXMLLoader(getClass().getResource("UserEvDetButtons.fxml"));

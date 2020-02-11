@@ -103,6 +103,8 @@ public class LoginViewController {
     			//DUMP
     			/*loader=new FXMLLoader(getClass().getResource("AdminHomepage.fxml"));
     			this.usernameTextField.getScene().setRoot(loader.load());*/
+    			AdminGraphicChange.getInstance().toHomepage(this.usernameTextField.getScene());
+    			//ArtistGraphicChange.getInstance().toHomepage(this.usernameTextField.getScene());
     			break;
     		}
     		
