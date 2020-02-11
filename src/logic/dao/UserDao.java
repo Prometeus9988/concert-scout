@@ -115,12 +115,12 @@ public class UserDao extends DaoTemplate {
 				} else if(operation.equals(UNFOLLOW)) {
 					sql = "call livethemusic.unfollow_artist(?, ?);\r\n";
 				}
-				PreparedStatement stm = conn.prepareStatement(sql);
-				stm.setString(1, username);
-				stm.setString(2, artist);
-				stm.executeUpdate();
-				stm.close();
-				return null;
+				try (PreparedStatement stm = conn.prepareStatement(sql)) {
+					stm.setString(1, username);
+					stm.setString(2, artist);
+					stm.executeUpdate();
+					return null;
+				}
 			}
 		});
 
@@ -141,12 +141,12 @@ public class UserDao extends DaoTemplate {
 					} else if(operation.equals(REQUESTFRIEND)){
 						sql = "call livethemusic.request_friend(?, ?);\r\n";
 					}
-					PreparedStatement stm = conn.prepareStatement(sql);
-					stm.setString(1, user);
-					stm.setString(2, target);
-					stm.executeUpdate();
-					stm.close();
-					return null;
+					try (PreparedStatement stm = conn.prepareStatement(sql)) {
+						stm.setString(1, user);
+						stm.setString(2, target);
+						stm.executeUpdate();
+						return null;
+					}
 			}
 		});
 	}
@@ -158,39 +158,43 @@ public class UserDao extends DaoTemplate {
 				List<User> l = new ArrayList<>();
 				Connection conn = DBUserConnection.getUserConnection();
 				PreparedStatement stm = null;
-				if(operation.equals(SEARCHUSER)) {
-					String sql = "call livethemusic.search_user(?, ?);\r\n";
-					stm = conn.prepareStatement(sql);
-					stm.setString(1, string);
-					stm.setString(2, caller);
-				} else if(operation.equals(VIEWFRIENDS)) {
-					String sql = "call livethemusic.view_friends(?);\r\n"; 
-					stm = conn.prepareStatement(sql);
-					stm.setString(1, string);
-				} else if(operation.equals(VIEWFRIENDSREQUESTS)) {
-					String sql = "call livethemusic.view_friend_requests(?);\r\n"; 
-					stm = conn.prepareStatement(sql);
-					stm.setString(1, string);
-				}
-				ResultSet rs = stm.executeQuery();
-				if (!rs.first()) // rs not empty
-					return Collections.emptyList();
-
-				do{
-					String username = rs.getString("username");
-					String name = rs.getString("name");
-					String surname = rs.getString("surname");
-					String profilePicture = rs.getString("profile_picture_path");
-
-					if(profilePicture == null || profilePicture.equals("")) {
-						profilePicture = "concert.jpg";
+				try {
+					if(operation.equals(SEARCHUSER)) {
+						String sql = "call livethemusic.search_user(?, ?);\r\n";
+						stm = conn.prepareStatement(sql);
+						stm.setString(1, string);
+						stm.setString(2, caller);
+					} else if(operation.equals(VIEWFRIENDS)) {
+						String sql = "call livethemusic.view_friends(?);\r\n"; 
+						stm = conn.prepareStatement(sql);
+						stm.setString(1, string);
+					} else {
+						String sql = "call livethemusic.view_friend_requests(?);\r\n"; 
+						stm = conn.prepareStatement(sql);
+						stm.setString(1, string);
 					}
+					try (ResultSet rs = stm.executeQuery()) {
+						if (!rs.first()) // rs not empty
+							return Collections.emptyList();
 
-					l.add(new User(username, name, surname, profilePicture));
-				} while (rs.next());
-				if (stm != null)
-					stm.close();
-				return l;
+						do{
+							String username = rs.getString("username");
+							String name = rs.getString("name");
+							String surname = rs.getString("surname");
+							String profilePicture = rs.getString("profile_picture_path");
+
+							if(profilePicture == null || profilePicture.equals("")) {
+								profilePicture = "concert.jpg";
+							}
+
+							l.add(new User(username, name, surname, profilePicture));
+						} while (rs.next());
+						return l;
+					}
+				} finally {
+					if (stm != null)
+						stm.close();
+				}
 			}
 		});
 	}
@@ -209,16 +213,13 @@ public class UserDao extends DaoTemplate {
 				} else if(operation.equals(ISFOLLOWING)) {
 					sql = "call livethemusic.is_following(?, ?);\r\n";
 				}
-				PreparedStatement stm = conn.prepareStatement(sql);
-				stm.setString(1, user);
-				stm.setString(2, target);
-				ResultSet rs = stm.executeQuery();
-				if (rs.first()) {
-					stm.close();
-					return true;
+				try (PreparedStatement stm = conn.prepareStatement(sql)) {
+					stm.setString(1, user);
+					stm.setString(2, target);
+					try (ResultSet rs = stm.executeQuery()) {
+						return rs.first();
+					}
 				}
-				stm.close();
-				return false;
 			}
 		});
 	}
