@@ -13,11 +13,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List; 
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger; 
 
 public class AddMusicEventController extends Controller{
+	
+	private static final Logger logger = Logger.getLogger(AddMusicEventController.class.getName());
+	
 	public boolean addMusicEvent(MusicEventBean meb) {
 		MusicEventDao med = new MusicEventDao();
 		Date date = null;
@@ -27,9 +31,9 @@ public class AddMusicEventController extends Controller{
 		try {
 			coordinates = GoogleMapBoundary.locateAddress(meb.getLocation());
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.log(Level.WARNING, e.toString());
 		} catch (org.json.simple.parser.ParseException pe) {
-			pe.printStackTrace();
+			logger.log(Level.WARNING, pe.toString());
 		}
 
 		if (meb.getDate() != null) {
@@ -71,7 +75,7 @@ public class AddMusicEventController extends Controller{
 				Files.delete(path);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.log(Level.WARNING, e.toString());
 		} finally {
 			MusicEventDao med = new MusicEventDao();
 			med.rejectMusicEvent(meb.getId());

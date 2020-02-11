@@ -44,103 +44,10 @@ public class LoginServlet extends HttpServlet{
 
 		LoginController controller = new LoginController();
 		
-		String email = "";
-		String username = "";
-		String password = "";
-		String userType = "";
-		
 		if(request.getParameter("login") != null) {
-			username = request.getParameter("username");
-			password = request.getParameter("password");
-			GeneralUserBean gu = new GeneralUserBean();
-			gu.setUsername(username);
-			gu.setPassword(password);
-			gu = controller.login(gu);
-			
-			if(gu == null) {
-				rd = request.getRequestDispatcher(INDEX);
-				request.setAttribute("login", "notSuccessfull");
-			} else if(gu.getRole().equals("user")){
-				rd = request.getRequestDispatcher("BuyTicketServlet");
-				session.setAttribute("user", gu);
-			} else if(gu.getRole().equals("artist")) {
-				rd = request.getRequestDispatcher("artistHome.jsp");
-				session.setAttribute("user", gu);
-			} else if(gu.getRole().equals("admin")) {
-				rd = request.getRequestDispatcher("AdminMusicEventServlet");
-				session.setAttribute("user", gu);
-			}
+			rd = this.login(request, session, controller);
 		} else if(request.getParameter("register") != null) {
-			
-				Boolean regResult = false;
-				email = request.getParameter("createEmail");
-				username = request.getParameter("createUsername");
-				password = request.getParameter("createPassword");
-				userType = request.getParameter("userType");
-				String newFileName = null;
-				String fileName = null;
-				Part filePart = null;
-
-				//For profile picture
-				filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
-				fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-				
-				if(fileName.equals("")) {
-					fileName = "";
-					newFileName = "";
-				} else {
-					newFileName = username + fileName;
-				}
-				
-				if(userType.equals("User")){
-					String firstName = request.getParameter("firstName");
-					String lastName = request.getParameter("lastName");
-					UserBean u = new UserBean();
-					u.setUsername(username);
-					u.setPassword(password);
-					u.setEmail(email);
-					u.setName(firstName);
-					u.setSurname(lastName);
-					u.setProfilePicture(newFileName);
-					regResult = controller.createUser(u);
-				} else if(userType.equals("Artist")){
-					String bandName = request.getParameter("bandName");
-					ArtistBean a = new ArtistBean();
-					a.setUsername(username);
-					a.setPassword(password);
-					a.setBandName(bandName);
-					a.setProfilePicture(newFileName);
-					a.setEmail(email);
-					regResult = controller.createArtist(a);
-				}
-				
-
-			    //
-			    if(Boolean.TRUE.equals(regResult)){
-					rd = request.getRequestDispatcher(INDEX);
-					request.setAttribute("reg", "registered");
-					
-					//File upload- if registration successfull loads the file in profilePictures
-					
-				    if(!fileName.equals("")) {
-				    	String path = System.getProperty("user.home") + File.separator
-								+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-								+ "trunk" + File.separator + "WebContent" + File.separator
-								+ "img" + File.separator + "profilePictures";
-					    File file = new File(path, fileName);
-					    File newFile = new File(path, newFileName);
-					    try (InputStream input = filePart.getInputStream()) {
-					    		Files.copy(input, file.toPath());
-					    } catch (Exception e) {
-					    	e.printStackTrace();
-					    }
-					    file.renameTo(newFile);
-				    }
-				} else {
-					rd = request.getRequestDispatcher(INDEX);
-					request.setAttribute("reg", "notRegistered");
-				}
-			
+			rd = this.register(request, controller);
 		}
 
 		try {
@@ -148,6 +55,116 @@ public class LoginServlet extends HttpServlet{
 		} catch (Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
+	}
+	
+	private RequestDispatcher login(HttpServletRequest request, HttpSession session, LoginController controller) {
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		GeneralUserBean gu = new GeneralUserBean();
+		gu.setUsername(username);
+		gu.setPassword(password);
+		gu = controller.login(gu);
+		
+		if(gu == null) {
+			request.setAttribute("login", "notSuccessfull");
+			return request.getRequestDispatcher(INDEX);
+		} else if(gu.getRole().equals("user")){
+			session.setAttribute("user", gu);
+			return request.getRequestDispatcher("BuyTicketServlet");
+		} else if(gu.getRole().equals("artist")) {
+			session.setAttribute("user", gu);
+			return request.getRequestDispatcher("artistHome.jsp");
+		} else if(gu.getRole().equals("admin")) {
+			session.setAttribute("user", gu);
+			return request.getRequestDispatcher("AdminMusicEventServlet");
+		}
+		
+		return request.getRequestDispatcher(INDEX);
+	}
+	
+	private RequestDispatcher register(HttpServletRequest request, LoginController controller) {
+		
+		Boolean regResult = false;
+		String email = request.getParameter("createEmail");
+		String username = request.getParameter("createUsername");
+		String password = request.getParameter("createPassword");
+		String userType = request.getParameter("userType");
+		String newFileName = null;
+		String fileName = "";
+		Part filePart = null;
+
+		//For profile picture
+		try {
+			filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
+		} catch (Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+		
+		if(filePart != null) {
+			fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+		}
+		if(fileName.equals("")) {
+			newFileName = "";
+		} else {
+			newFileName = username + fileName;
+		}
+		
+		regResult = this.create(userType, username, password, email, newFileName, controller, request);
+		
+
+	    //
+	    if(Boolean.TRUE.equals(regResult)){
+			request.setAttribute("reg", "registered");
+			
+			//File upload- if registration successfull loads the file in profilePictures
+			
+		    if(!fileName.equals("") && filePart != null) {
+		    	String path = System.getProperty("user.home") + File.separator
+						+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
+						+ "trunk" + File.separator + "WebContent" + File.separator
+						+ "img" + File.separator + "profilePictures";
+			    File file = new File(path, fileName);
+			    File newFile = new File(path, newFileName);
+			    try (InputStream input = filePart.getInputStream()) {
+			    		Files.copy(input, file.toPath());
+			    } catch (Exception e) {
+			    	logger.log(Level.WARNING, e.toString());
+			    }
+			    
+			    if(!file.renameTo(newFile)) {
+			    	logger.log(Level.WARNING, "Unable to rename: {0}", fileName);
+			    }
+		    }
+		} else {
+			request.setAttribute("reg", "notRegistered");
+		}
+	    return request.getRequestDispatcher(INDEX);
+	}
+	
+	private boolean create(String userType, String username, String password, String email, String newFileName, LoginController controller, HttpServletRequest request) {
+		if(userType.equals("User")){
+			String firstName = request.getParameter("firstName");
+			String lastName = request.getParameter("lastName");
+			UserBean u = new UserBean();
+			u.setUsername(username);
+			u.setPassword(password);
+			u.setEmail(email);
+			u.setName(firstName);
+			u.setSurname(lastName);
+			u.setProfilePicture(newFileName);
+			return controller.createUser(u);
+		} else if(userType.equals("Artist")){
+			String bandName = request.getParameter("bandName");
+			ArtistBean a = new ArtistBean();
+			a.setUsername(username);
+			a.setPassword(password);
+			a.setBandName(bandName);
+			a.setProfilePicture(newFileName);
+			a.setEmail(email);
+			return controller.createArtist(a);
+		}
+		
+		return false;
 	}
 	
 }

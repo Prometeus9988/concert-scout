@@ -16,9 +16,7 @@ public class ReadNewsController {
 		String role;
 		
 		int i;
-		
-		//TODO è giusto?
-		//Used to separate interal information from view information
+
 		if(gu.getRole().equals("admin")) {
 			role = "admin";
 		} else {

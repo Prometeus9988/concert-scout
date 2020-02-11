@@ -1,8 +1,5 @@
 package logic.bean;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-
 public class NewsBean {
 	private String text;
 	private String artistId;

@@ -41,13 +41,21 @@ public class AddMusicEventServlet extends HttpServlet{
 		String date = request.getParameter("date");
 		String ticketone = request.getParameter("ticketone");
 		String newFileName;
+		String fileName = "";
 		boolean result = false;
 		
-		Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
-		String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+		Part filePart = null; // Retrieves <input type="file" name="file">
+		try {
+			filePart = request.getPart("file");
+		} catch (Exception e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+		
+		if(filePart != null) {
+			fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+		}
 		
 		if(fileName.equals("")) {
-			fileName = "";
 			newFileName = "";
 		} else {
 			newFileName = gu.getUsername() + name + fileName;
@@ -69,19 +77,24 @@ public class AddMusicEventServlet extends HttpServlet{
 				res = "notAdded";
 			}
 		
-		if(!fileName.equals("") && result){
+		if(!fileName.equals("") && result && filePart != null){
 			String path = System.getProperty("user.home") + File.separator
 					+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
 					+ "trunk" + File.separator + "WebContent" + File.separator
 					+ "img" + File.separator + "concertPictures";
 		    File file = new File(path, fileName);
 		    File newFile = new File(path, newFileName);
+
 		    try (InputStream input = filePart.getInputStream()) {
 		    		Files.copy(input, file.toPath());
 		    } catch (Exception e) {
-		    	e.printStackTrace();
+		    	logger.log(Level.WARNING, e.toString());
 		    }
-		    file.renameTo(newFile);
+		    
+		    if(file.renameTo(newFile)) {
+		    	logger.log(Level.WARNING, "Unable to rename: {0}", fileName);
+		    }
+		    
 		}
 		request.setAttribute("result", res);
 		

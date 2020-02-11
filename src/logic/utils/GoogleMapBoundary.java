@@ -23,6 +23,7 @@ public class GoogleMapBoundary {
 	public static List<Double> locateAddress(String address) throws IOException, ParseException{
 		String jsonString = "";
 		List<Double> coordinates = new ArrayList<>();
+        StringBuilder str = new StringBuilder();
         
 		//Request to the geocoding service
 		URL geocodingUrl = new URL("https://maps.googleapis.com/maps/api/geocode/json?"
@@ -35,9 +36,10 @@ public class GoogleMapBoundary {
 
         //Create a JSON string from the response
         while ((inputLine = in.readLine()) != null) 
-            jsonString = jsonString + "\n" + inputLine;
+            str.append("\n" + inputLine);
         in.close();
         
+        jsonString = str.toString();
         JSONParser parser = new JSONParser();
         
         //Get coordinates from JSON string
