@@ -12,7 +12,7 @@ import logic.bean.MusicEventBean;
 import logic.bean.ArtistBean;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-
+import logic.bean.NewsBean;
 
 public class AdminGraphicChange {
 	
@@ -126,5 +126,40 @@ public class AdminGraphicChange {
 		}
 	}
 	
+	public void newsPrev(VBox anchor,NewsBean myNews) {
+		try {
+			NewsAdminController controller=new NewsAdminController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("News.fxml"));
+			loader.setController(controller);
+			anchor.getChildren().add(loader.load());
+			controller.init(myNews);
+		}catch(IOException e) {
+			logger.log(Level.WARNING,e.toString());
+		}
+	}
+	
+	public void toNews(Scene scene) {
+		try {
+			AdminNewsSectionController controller=new AdminNewsSectionController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("NewsSection.fxml"));
+			loader.setController(controller);
+			scene.setRoot(loader.load());
+			controller.init();
+		}catch(IOException e) {
+			logger.log(Level.WARNING,e.toString());
+		}
+	}
+	
+	public void newsBtn(HBox box,NewsBean nb) {
+		try {
+			AdminNewsBtnController controller=new AdminNewsBtnController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("AdminNewsBtn.fxml"));
+			loader.setController(controller);
+			box.getChildren().add(loader.load());
+			controller.init(nb);
+		}catch(IOException e) {
+			logger.log(Level.WARNING,e.toString());
+		}
+	}
 	
 }

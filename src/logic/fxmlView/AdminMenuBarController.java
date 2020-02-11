@@ -23,8 +23,7 @@ public class AdminMenuBarController {
 	
 	@FXML
 	public void newsButtonAction(ActionEvent e) {
-		//this.agc.toNewsSection(this.homeButton.getScene());
-		System.out.println("PressedNews");
+		this.agc.toNews(this.newsBtn.getScene());
 	}
 	
 	@FXML

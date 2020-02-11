@@ -33,6 +33,10 @@ public class BackUserController implements BackController{
 		else if(this.from.equals("myEvents")) {
 			this.grCtrl.toMyEvents(this.buttonBack.getScene());
 		}
+		//from news
+		else if(this.from.equals("news")) {
+			this.grCtrl.toNews(this.buttonBack.getScene());
+		}
 	}
 	
 	public void init(String from,String searchString) {

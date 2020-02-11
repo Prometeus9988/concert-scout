@@ -21,6 +21,7 @@ public class BackAdminController implements BackController {
 			this.agc.toHomepage(this.buttonBack.getScene());
 		}else if(this.from.equals("news")) {
 			//go to accept news
+			this.agc.toNews(this.buttonBack.getScene());
 		}
 		
 		

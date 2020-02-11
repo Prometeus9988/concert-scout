@@ -12,7 +12,7 @@ import logic.bean.MusicEventBean;
 import javafx.scene.Scene;
 import java.util.logging.Logger;
 import javafx.scene.layout.AnchorPane;
-
+import logic.bean.NewsBean;
 
 public class UserGraphicChange {
 	
@@ -186,5 +186,27 @@ public class UserGraphicChange {
 		}
 	}
 	
+	public void toNews(Scene scene) {
+		try {
+			NewsUserSectionController controller=new NewsUserSectionController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("NewsSection.fxml"));
+			loader.setController(controller);
+			scene.setRoot(loader.load());
+			controller.init();
+		}catch(IOException e) {
+			logger.log(Level.WARNING,e.toString());
+		}
+	}
 	
+	public void newsPrev(VBox anchor,NewsBean myNews) {
+		try {
+			NewsUserController controller=new NewsUserController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("News.fxml"));
+			loader.setController(controller);
+			anchor.getChildren().add(loader.load());
+			controller.init(myNews);
+		}catch(IOException e) {
+			logger.log(Level.WARNING,e.toString());
+		}
+	}
 }

@@ -7,7 +7,8 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.io.IOException;
 
-;public class App extends Application {
+
+public class App extends Application {
 	
 	@Override
 	public void start(Stage main) throws IOException {
@@ -79,9 +80,23 @@ import java.io.IOException;
 	
 		Scene scene=new Scene(loader.load());
 		controller.init("news");*/
-
+		/*
+		VBox root=new VBox();
+		root.setSpacing(20);
+		Scene scene= new Scene(root);
+	
+		NewsUserController nc=new NewsUserController();
+		FXMLLoader loader=new FXMLLoader(getClass().getResource("News.fxml"));
+		loader.setController(nc);
+		root.getChildren().add(loader.load());
+		nc.init();
+		nc=new NewsUserController();
+		loader=new FXMLLoader(getClass().getResource("News.fxml"));
+		loader.setController(nc);
+		root.getChildren().add(loader.load());
+		*/
 		main.setScene(scene);
-		
+		//nc.init();
 		main.setMaximized(true);
 		main.show();
 		

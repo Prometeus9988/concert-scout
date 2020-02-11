@@ -66,7 +66,7 @@ public class MenuBarController {
 	
 	@FXML
 	public void newsButtonAction(ActionEvent e) {
-		System.out.println("Go to news");
+		this.ugc.toNews(this.homeButton.getScene());
 	}
 	
 	@FXML
