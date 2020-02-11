@@ -105,22 +105,24 @@ public class UserDao extends DaoTemplate {
 	}
 	
 	private void manageFollow(String username, String artist, String operation) {
-		this.execute(
-				() -> {
-					String sql = null;
-					Connection conn = DBUserConnection.getUserConnection();
-					if(operation.equals(FOLLOW)) {
-						sql = "call livethemusic.follow_artist(?, ?);\r\n"; 
-					} else if(operation.equals(UNFOLLOW)) {
-						sql = "call livethemusic.unfollow_artist(?, ?);\r\n";
-					}
-					PreparedStatement stm = conn.prepareStatement(sql);
-					stm.setString(1, username);
-					stm.setString(2, artist);
-					stm.executeUpdate();
-					stm.close();
-					return null;
-				});
+		this.execute(new DaoAction<Void>() {
+			@Override
+			public Void execute() throws ClassNotFoundException, SQLException {
+				String sql = null;
+				Connection conn = DBUserConnection.getUserConnection();
+				if(operation.equals(FOLLOW)) {
+					sql = "call livethemusic.follow_artist(?, ?);\r\n"; 
+				} else if(operation.equals(UNFOLLOW)) {
+					sql = "call livethemusic.unfollow_artist(?, ?);\r\n";
+				}
+				PreparedStatement stm = conn.prepareStatement(sql);
+				stm.setString(1, username);
+				stm.setString(2, artist);
+				stm.executeUpdate();
+				stm.close();
+				return null;
+			}
+		});
 
 	}
 	
@@ -150,71 +152,74 @@ public class UserDao extends DaoTemplate {
 	}
 	
 	private List<User> queryDatabase(String string, String caller, String operation){
-		return this.execute(
-				() -> {
-					List<User> l = new ArrayList<>();
-					Connection conn = DBUserConnection.getUserConnection();
-					PreparedStatement stm = null;
-					if(operation.equals(SEARCHUSER)) {
-						String sql = "call livethemusic.search_user(?, ?);\r\n";
-						stm = conn.prepareStatement(sql);
-						stm.setString(1, string);
-						stm.setString(2, caller);
-					} else if(operation.equals(VIEWFRIENDS)) {
-						String sql = "call livethemusic.view_friends(?);\r\n"; 
-						stm = conn.prepareStatement(sql);
-						stm.setString(1, string);
-					} else if(operation.equals(VIEWFRIENDSREQUESTS)) {
-						String sql = "call livethemusic.view_friend_requests(?);\r\n"; 
-						stm = conn.prepareStatement(sql);
-						stm.setString(1, string);
+		return this.execute(new DaoAction<List<User>>() {
+			@Override
+			public List<User> execute() throws ClassNotFoundException, SQLException {
+				List<User> l = new ArrayList<>();
+				Connection conn = DBUserConnection.getUserConnection();
+				PreparedStatement stm = null;
+				if(operation.equals(SEARCHUSER)) {
+					String sql = "call livethemusic.search_user(?, ?);\r\n";
+					stm = conn.prepareStatement(sql);
+					stm.setString(1, string);
+					stm.setString(2, caller);
+				} else if(operation.equals(VIEWFRIENDS)) {
+					String sql = "call livethemusic.view_friends(?);\r\n"; 
+					stm = conn.prepareStatement(sql);
+					stm.setString(1, string);
+				} else if(operation.equals(VIEWFRIENDSREQUESTS)) {
+					String sql = "call livethemusic.view_friend_requests(?);\r\n"; 
+					stm = conn.prepareStatement(sql);
+					stm.setString(1, string);
+				}
+				ResultSet rs = stm.executeQuery();
+				if (!rs.first()) // rs not empty
+					return Collections.emptyList();
+
+				do{
+					String username = rs.getString("username");
+					String name = rs.getString("name");
+					String surname = rs.getString("surname");
+					String profilePicture = rs.getString("profile_picture_path");
+
+					if(profilePicture == null || profilePicture.equals("")) {
+						profilePicture = "concert.jpg";
 					}
-					ResultSet rs = stm.executeQuery();
-            
-					if (!rs.first()) // rs not empty
-						return Collections.emptyList();
-            
-					do{
-						String username = rs.getString("username");
-						String name = rs.getString("name");
-						String surname = rs.getString("surname");
-						String profilePicture = rs.getString("profile_picture_path");
-            	
-						if(profilePicture == null || profilePicture.equals("")) {
-							profilePicture = "concert.jpg";
-						}
-            	
-						l.add(new User(username, name, surname, profilePicture));
-					} while (rs.next());
-                    if (stm != null)
-                    	stm.close();
-                    return l;
-				});
+
+					l.add(new User(username, name, surname, profilePicture));
+				} while (rs.next());
+				if (stm != null)
+					stm.close();
+				return l;
+			}
+		});
 	}
 	
 	
-	private boolean isQueryDataBase(String user, String target, String operation) {
-		return this.execute(
-				() -> {
-					String sql = null;
-					Connection conn = DBUserConnection.getUserConnection();
-					if(operation.equals(SEARCHFRIENDREQUEST)) {
-						sql = "call livethemusic.search_friend_request(?, ?);\r\n";
-					} else if(operation.equals(ISFRIEND)) {
-						sql = "call livethemusic.is_friend(?, ?);\r\n"; 
-					} else if(operation.equals(ISFOLLOWING)) {
-						sql = "call livethemusic.is_following(?, ?);\r\n";
-					}
-					PreparedStatement stm = conn.prepareStatement(sql);
-					stm.setString(1, user);
-					stm.setString(2, target);
-					ResultSet rs = stm.executeQuery();
-					if (rs.first()) {
-						stm.close();
-						return true;
-					}
+	private Boolean isQueryDataBase(String user, String target, String operation) {
+		return this.execute(new DaoAction<Boolean>() {
+			@Override
+			public Boolean execute() throws ClassNotFoundException, SQLException {
+				String sql = null;
+				Connection conn = DBUserConnection.getUserConnection();
+				if(operation.equals(SEARCHFRIENDREQUEST)) {
+					sql = "call livethemusic.search_friend_request(?, ?);\r\n";
+				} else if(operation.equals(ISFRIEND)) {
+					sql = "call livethemusic.is_friend(?, ?);\r\n"; 
+				} else if(operation.equals(ISFOLLOWING)) {
+					sql = "call livethemusic.is_following(?, ?);\r\n";
+				}
+				PreparedStatement stm = conn.prepareStatement(sql);
+				stm.setString(1, user);
+				stm.setString(2, target);
+				ResultSet rs = stm.executeQuery();
+				if (rs.first()) {
 					stm.close();
-					return false;
-				});
+					return true;
+				}
+				stm.close();
+				return false;
+			}
+		});
 	}
 }
