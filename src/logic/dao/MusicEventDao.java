@@ -35,6 +35,8 @@ public class MusicEventDao {
 	private static final String AROUNDYOU = "aroundyou";
 	private static final String ACCEPT = "accepet";
 	private static final String REJECT = "reject";
+	private static final String ADDPART = "addpart";
+	private static final String REMOVEPART = "removepart";
 	
 	private double lat = 0;
 	private double lng = 0;
@@ -118,53 +120,11 @@ public class MusicEventDao {
 	}
 	
 	public void addParticipation(String username, String musicEventId) {
-		Connection conn = null;
-		PreparedStatement stm = null;
-		try {
-			conn = DBUserConnection.getUserConnection();
-			String sql = "call livethemusic.add_participation(?, ?);\r\n"; 
-			stm = conn.prepareStatement(sql);
-	        stm.setString(1, username);
-	        stm.setInt(2,  Integer.parseInt(musicEventId));
-	        stm.executeUpdate();
-
-		} catch (SQLException se) {
-        	logger.log(Level.WARNING, se.toString());
-        } catch (ClassNotFoundException e) {
-        	logger.log(Level.WARNING, e.toString());
-        } finally {
-            try {
-                if (stm != null)
-                    stm.close();
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
-        }
+		this.manageParticipation(username, musicEventId, ADDPART);
 	}
 	
 	public void removeParticipation(String username, String musicEventId) {
-		Connection conn = null;
-		PreparedStatement stm = null;
-		
-		try {
-			conn = DBUserConnection.getUserConnection();
-			String sql = "call livethemusic.remove_participation(?, ?);\r\n"; 
-			stm = conn.prepareStatement(sql);
-	        stm.setString(1, username);
-	        stm.setInt(2,  Integer.parseInt(musicEventId));
-	        stm.executeUpdate();
-		} catch (SQLException se) {
-        	logger.log(Level.WARNING, se.toString());
-        } catch (ClassNotFoundException e) {
-        	logger.log(Level.WARNING, e.toString());
-        } finally {
-            try {
-                if (stm != null)
-                    stm.close();
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
-        }
+		this.manageParticipation(username, musicEventId, REMOVEPART);
 	}
 	
 	public boolean isParticipating(String username, String musicEventId) {
@@ -394,6 +354,35 @@ public class MusicEventDao {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {
             logger.log(Level.WARNING, e.toString());
+        } finally {
+            try {
+                if (stm != null)
+                    stm.close();
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
+        }
+	}
+	
+	private void manageParticipation(String username, String musicEventId, String operation) {
+		Connection conn = null;
+		PreparedStatement stm = null;
+		String sql = null;
+		try {
+			conn = DBUserConnection.getUserConnection();
+			if(operation.equals(ADDPART)) {
+				sql = "call livethemusic.add_participation(?, ?);\r\n";
+			} else if(operation.equals(REMOVEPART)) {
+				sql = "call livethemusic.remove_participation(?, ?);\r\n"; 
+			}
+			stm = conn.prepareStatement(sql);
+	        stm.setString(1, username);
+	        stm.setInt(2,  Integer.parseInt(musicEventId));
+	        stm.executeUpdate();
+		} catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
         } finally {
             try {
                 if (stm != null)

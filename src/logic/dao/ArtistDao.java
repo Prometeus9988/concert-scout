@@ -22,113 +22,15 @@ public class ArtistDao {
 	private static final String USERNAME = "username";
 	private static final String BANDNAME = "band_name";
 	private static final String PROFILEPICTURE = "profile_picture_path";
+	private static final String SEARCH = "search";
+	private static final String SUGGESTED = "suggested";
 	
 	public List<Artist> getSuggestedArtist(String username){
-		PreparedStatement stm = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        List<Artist> l = new ArrayList<>();
-        try {
-            conn = DBUserConnection.getUserConnection();
-            
-            String sql = "call livethemusic.followed_artists(?);\r\n"; 
-            
-            stm = conn.prepareStatement(sql);
-
-            stm.setString(1, username);
-            rs = stm.executeQuery();
-            
-            if (!rs.first()) // rs not empty
-                return Collections.emptyList();
-            
-            do{
-            	String usernameA = rs.getString(USERNAME);
-            	String bandName = rs.getString(BANDNAME);
-            	String profilePicture = rs.getString(PROFILEPICTURE);
-            	
-            	if(profilePicture == null || profilePicture.equals("")) {
-            		profilePicture = DEFAULTPICTURE;
-            	}
-            	
-            	l.add(new Artist(usernameA, bandName, profilePicture));
-            } while (rs.next());
-
-        } catch (SQLException se) {
-        	logger.log(Level.WARNING, se.toString());
-        } catch (ClassNotFoundException e) {
-        	logger.log(Level.WARNING, e.toString());
-        } finally {
-            try {
-            	if(rs != null){
-            		rs.close();
-            	}
-            } catch (SQLException se1) {
-            	logger.log(Level.WARNING, se1.toString());
-            }
-        	try {
-            	if(stm != null) {
-            		stm.close();
-            	}
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
-        }
-        
-        return l;
+		return this.queryDataBase(username, SUGGESTED);
 	}
 	
 	public List<Artist> getSearchArtist(String searchString){
-        PreparedStatement stm = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        List<Artist> l = new ArrayList<>();
-        try {
-            conn = DBUserConnection.getUserConnection();
-            
-            String sql = "call livethemusic.search_artist(?);\r\n";
-            
-            stm = conn.prepareStatement(sql);
-
-            stm.setString(1, searchString);
-            rs = stm.executeQuery();
-            
-            if (!rs.first()) // rs not empty
-                return Collections.emptyList();
-            
-            do{
-            	String usernameA = rs.getString(USERNAME);
-            	String bandName = rs.getString(BANDNAME);
-            	String profilePicture = rs.getString(PROFILEPICTURE);
-            	
-            	if(profilePicture == null || profilePicture.equals("")) {
-            		profilePicture = DEFAULTPICTURE;
-            	}
-            	
-            	l.add(new Artist(usernameA, bandName, profilePicture));
-            } while (rs.next());
-
-        } catch (SQLException se) {
-        	logger.log(Level.WARNING, se.toString());
-        } catch (ClassNotFoundException e) {
-        	logger.log(Level.WARNING, e.toString());
-        } finally {
-            try {
-            	if(rs != null){
-            		rs.close();
-            	}
-            } catch (SQLException se1) {
-            	logger.log(Level.WARNING, se1.toString());
-            }
-        	try {
-            	if(stm != null) {
-            		stm.close();
-            	}
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
-        }
-        
-        return l;
+		return this.queryDataBase(searchString, SEARCH);
 	}
 	
 	public Artist getArtist(String username) {
@@ -147,15 +49,7 @@ public class ArtistDao {
     		rs = stm.executeQuery();
     		
             rs.next();
-            String usernamed = rs.getString(USERNAME);
-            String profilePicture = rs.getString(PROFILEPICTURE);
-            String bandName = rs.getString(BANDNAME);
-            
-        	if(profilePicture == null || profilePicture.equals("")) {
-        		profilePicture = DEFAULTPICTURE;
-        	}
-        	
-            a = new Artist(usernamed, bandName, profilePicture);
+            a = this.fetchTuple(rs);
 
         } catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
@@ -210,5 +104,74 @@ public class ArtistDao {
             }
         }
     	return true;
+	}
+	
+	private List<Artist> queryDataBase(String string, String operation){
+        PreparedStatement stm = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        List<Artist> l = new ArrayList<>();
+        String sql = null;
+        try {
+            conn = DBUserConnection.getUserConnection();
+            
+            if(operation.equals(SEARCH)) {
+            	sql = "call livethemusic.search_artist(?);\r\n";
+            } else if(operation.equals(SUGGESTED)) {
+            	sql = "call livethemusic.followed_artists(?);\r\n";
+            }
+            
+            stm = conn.prepareStatement(sql);
+
+            stm.setString(1, string);
+            rs = stm.executeQuery();
+            
+            l = this.unpackResultSet(rs);
+
+        } catch (SQLException se) {
+        	logger.log(Level.WARNING, se.toString());
+        } catch (ClassNotFoundException e) {
+        	logger.log(Level.WARNING, e.toString());
+        } finally {
+            try {
+            	if(rs != null){
+            		rs.close();
+            	}
+            } catch (SQLException se1) {
+            	logger.log(Level.WARNING, se1.toString());
+            }
+        	try {
+            	if(stm != null) {
+            		stm.close();
+            	}
+            } catch (SQLException se2) {
+            	logger.log(Level.WARNING, se2.toString());
+            }
+        }
+        
+        return l;
+	}
+	
+	private List<Artist> unpackResultSet(ResultSet rs) throws SQLException{
+		List<Artist> l = new ArrayList<>();
+		if (!rs.first()) // rs not empty
+            return Collections.emptyList();
+        
+        do{
+        	l.add(this.fetchTuple(rs));
+        } while (rs.next());
+        return l;
+	}
+	
+	private Artist fetchTuple(ResultSet rs) throws SQLException{
+		String usernameA = rs.getString(USERNAME);
+    	String bandName = rs.getString(BANDNAME);
+    	String profilePicture = rs.getString(PROFILEPICTURE);
+    	
+    	if(profilePicture == null || profilePicture.equals("")) {
+    		profilePicture = DEFAULTPICTURE;
+    	}
+    	
+    	return new Artist(usernameA, bandName, profilePicture);
 	}
 }
