@@ -125,8 +125,9 @@ public class UserDao extends DaoTemplate {
 	}
 	
 	private void manageFriends(String user, String target, String operation) {
-		this.execute(
-				() -> {
+		this.execute(new DaoAction<Void>() {
+			@Override
+			public Void execute() throws ClassNotFoundException, SQLException {
 					String sql = null;
 					Connection conn = DBUserConnection.getUserConnection();
 					if(operation.equals(REMOVEFRIEND)) {
@@ -144,7 +145,8 @@ public class UserDao extends DaoTemplate {
 					stm.executeUpdate();
 					stm.close();
 					return null;
-				});
+			}
+		});
 	}
 	
 	private List<User> queryDatabase(String string, String caller, String operation){

@@ -8,7 +8,7 @@ public abstract class DaoTemplate {
 	
     private static final Logger logger = Logger.getLogger("Dao");
 	
-	protected <T> T execute (DaoAction <T> da) {
+	protected final <T> T execute (DaoAction <T> da) {
 		try {
 			return da.execute();
 		} catch (SQLException se) {
