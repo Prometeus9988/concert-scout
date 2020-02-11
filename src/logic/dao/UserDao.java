@@ -6,12 +6,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class UserDao {
+public class UserDao extends DaoTemplate {
 
-    private static final Logger logger = Logger.getLogger(UserDao.class.getName());
 	private static final String FOLLOW = "follow";
 	private static final String UNFOLLOW = "unfollow";
 	private static final String REMOVEFRIEND = "removefriend";
@@ -43,17 +40,17 @@ public class UserDao {
             stm.executeUpdate();
     		
     	} catch (SQLException se) {
-        	logger.log(Level.WARNING, se.toString());
+        	//logger.log(Level.WARNING, se.toString());
         	return false;
         } catch (ClassNotFoundException e) {
-            logger.log(Level.WARNING, e.toString());
+            //logger.log(Level.WARNING, e.toString());
             return false;
         } finally {
             try {
                 if (stm != null)
                     stm.close();
             } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
+            	//logger.log(Level.WARNING, se2.toString());
             }
         }
     	return true;
@@ -106,179 +103,116 @@ public class UserDao {
 	public void removeFriend(String user, String target) {
 		this.manageFriends(user, target, REMOVEFRIEND);
 	}
+	
+	private void manageFollow(String username, String artist, String operation) {
+		this.execute(
+				() -> {
+					String sql = null;
+					Connection conn = DBUserConnection.getUserConnection();
+					if(operation.equals(FOLLOW)) {
+						sql = "call livethemusic.follow_artist(?, ?);\r\n"; 
+					} else if(operation.equals(UNFOLLOW)) {
+						sql = "call livethemusic.unfollow_artist(?, ?);\r\n";
+					}
+					PreparedStatement stm = conn.prepareStatement(sql);
+					stm.setString(1, username);
+					stm.setString(2, artist);
+					stm.executeUpdate();
+					stm.close();
+					return null;
+				});
 
-	public void manageFollow(String username, String artist, String operation) {
-		Connection conn = null;
-		PreparedStatement stm = null;
-		String sql = null;
-		
-		try {
-			conn = DBUserConnection.getUserConnection();
-			
-			if(operation.equals(FOLLOW)) {
-				sql = "call livethemusic.follow_artist(?, ?);\r\n"; 
-			} else if(operation.equals(UNFOLLOW)) {
-				sql = "call livethemusic.unfollow_artist(?, ?);\r\n";
-			}
-			
-			stm = conn.prepareStatement(sql);
-	        stm.setString(1, username);
-	        stm.setString(2, artist);
-	        stm.executeUpdate();
-		} catch (SQLException se) {
-        	logger.log(Level.WARNING, se.toString());
-        } catch (ClassNotFoundException e) {
-        	logger.log(Level.WARNING, e.toString());
-        } finally {
-            try {
-                if (stm != null)
-                    stm.close();
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
-        }
 	}
 	
-	public void manageFriends(String user, String target, String operation) {
-		Connection conn = null;
-		PreparedStatement stm = null;
-		String sql = null;
-		
-		try {
-			conn = DBUserConnection.getUserConnection();
-			if(operation.equals(REMOVEFRIEND)) {
-				sql = "call livethemusic.remove_friend(?, ?);\r\n";
-			} else if(operation.equals(ACCEPTFRIENDREQUEST)) {
-				sql = "call livethemusic.accept_friend_request(?, ?);\r\n";
-			} else if(operation.equals(REMOVEFRIENDREQUEST)) {
-				sql = "call livethemusic.remove_friend_request(?, ?);\r\n"; 
-			} else if(operation.equals(REQUESTFRIEND)){
-				sql = "call livethemusic.request_friend(?, ?);\r\n";
-			}
-			
-			stm = conn.prepareStatement(sql);
-	        stm.setString(1, user);
-	        stm.setString(2, target);
-	        stm.executeUpdate();
-		} catch (SQLException se) {
-        	logger.log(Level.WARNING, se.toString());
-        } catch (ClassNotFoundException e) {
-        	logger.log(Level.WARNING, e.toString());
-        } finally {
-            try {
-                if (stm != null)
-                    stm.close();
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
-        }
+	private void manageFriends(String user, String target, String operation) {
+		this.execute(
+				() -> {
+					String sql = null;
+					Connection conn = DBUserConnection.getUserConnection();
+					if(operation.equals(REMOVEFRIEND)) {
+						sql = "call livethemusic.remove_friend(?, ?);\r\n";
+					} else if(operation.equals(ACCEPTFRIENDREQUEST)) {
+						sql = "call livethemusic.accept_friend_request(?, ?);\r\n";
+					} else if(operation.equals(REMOVEFRIENDREQUEST)) {
+						sql = "call livethemusic.remove_friend_request(?, ?);\r\n"; 
+					} else if(operation.equals(REQUESTFRIEND)){
+						sql = "call livethemusic.request_friend(?, ?);\r\n";
+					}
+					PreparedStatement stm = conn.prepareStatement(sql);
+					stm.setString(1, user);
+					stm.setString(2, target);
+					stm.executeUpdate();
+					stm.close();
+					return null;
+				});
 	}
 	
-	public List<User> queryDatabase(String string, String caller, String operation){
-		Connection conn = null;
-        ResultSet rs = null;
-        PreparedStatement stm = null;
-        
-        List<User> l = new ArrayList<>();
-        try {
-            conn = DBUserConnection.getUserConnection();
-            if(operation.equals(SEARCHUSER)) {
-            	String sql = "call livethemusic.search_user(?, ?);\r\n";
-            	stm = conn.prepareStatement(sql);
-            	stm.setString(1, string);
-            	stm.setString(2, caller);
-            } else if(operation.equals(VIEWFRIENDS)) {
-        		String sql = "call livethemusic.view_friends(?);\r\n"; 
-        		stm = conn.prepareStatement(sql);
-                stm.setString(1, string);
-            } else if(operation.equals(VIEWFRIENDSREQUESTS)) {
-        		String sql = "call livethemusic.view_friend_requests(?);\r\n"; 
-        		stm = conn.prepareStatement(sql);
-                stm.setString(1, string);
-            }
-    		rs = stm.executeQuery();
+	private List<User> queryDatabase(String string, String caller, String operation){
+		return this.execute(
+				() -> {
+					List<User> l = new ArrayList<>();
+					Connection conn = DBUserConnection.getUserConnection();
+					PreparedStatement stm = null;
+					if(operation.equals(SEARCHUSER)) {
+						String sql = "call livethemusic.search_user(?, ?);\r\n";
+						stm = conn.prepareStatement(sql);
+						stm.setString(1, string);
+						stm.setString(2, caller);
+					} else if(operation.equals(VIEWFRIENDS)) {
+						String sql = "call livethemusic.view_friends(?);\r\n"; 
+						stm = conn.prepareStatement(sql);
+						stm.setString(1, string);
+					} else if(operation.equals(VIEWFRIENDSREQUESTS)) {
+						String sql = "call livethemusic.view_friend_requests(?);\r\n"; 
+						stm = conn.prepareStatement(sql);
+						stm.setString(1, string);
+					}
+					ResultSet rs = stm.executeQuery();
             
-            if (!rs.first()) // rs not empty
-                return Collections.emptyList();
+					if (!rs.first()) // rs not empty
+						return Collections.emptyList();
             
-            do{
-            	String username = rs.getString("username");
-            	String name = rs.getString("name");
-            	String surname = rs.getString("surname");
-            	String profilePicture = rs.getString("profile_picture_path");
+					do{
+						String username = rs.getString("username");
+						String name = rs.getString("name");
+						String surname = rs.getString("surname");
+						String profilePicture = rs.getString("profile_picture_path");
             	
-            	if(profilePicture == null || profilePicture.equals("")) {
-            		profilePicture = "concert.jpg";
-            	}
+						if(profilePicture == null || profilePicture.equals("")) {
+							profilePicture = "concert.jpg";
+						}
             	
-            	l.add(new User(username, name, surname, profilePicture));
-            } while (rs.next());
-
-        } catch (SQLException se) {
-        	logger.log(Level.WARNING, se.toString());
-        } catch (ClassNotFoundException e) {
-        	logger.log(Level.WARNING, e.toString());
-        } finally {
-        	try {
-                if (rs != null)
-                    rs.close();
-            } catch (SQLException se1) {
-            	logger.log(Level.WARNING, se1.toString());
-            }
-            try {
-                if (stm != null)
-                    stm.close();
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
-        }
-        return l;
+						l.add(new User(username, name, surname, profilePicture));
+					} while (rs.next());
+                    if (stm != null)
+                    	stm.close();
+                    return l;
+				});
 	}
 	
 	
 	private boolean isQueryDataBase(String user, String target, String operation) {
-		Connection conn = null;
-		ResultSet rs = null;
-		PreparedStatement stm = null;
-		String sql = null;
-		
-		try {
-			conn = DBUserConnection.getUserConnection();
-			
-			if(operation.equals(SEARCHFRIENDREQUEST)) {
-				sql = "call livethemusic.search_friend_request(?, ?);\r\n";
-			} else if(operation.equals(ISFRIEND)) {
-				sql = "call livethemusic.is_friend(?, ?);\r\n"; 
-			} else if(operation.equals(ISFOLLOWING)) {
-				sql = "call livethemusic.is_following(?, ?);\r\n";
-			}
-			stm = conn.prepareStatement(sql);
-	        stm.setString(1, user);
-	        stm.setString(2, target);
-	       	rs = stm.executeQuery();
-            
-			if (rs.first()) {
-				return true;
-			}
-			
-		} catch (SQLException se) {
-        	logger.log(Level.WARNING, se.toString());
-        } catch (ClassNotFoundException e) {
-        	logger.log(Level.WARNING, e.toString());
-        } finally {
-        	try {
-                if (rs != null)
-                    rs.close();
-            } catch (SQLException se1) {
-            	logger.log(Level.WARNING, se1.toString());
-            }
-            try {
-                if (stm != null)
-                    stm.close();
-            } catch (SQLException se2) {
-            	logger.log(Level.WARNING, se2.toString());
-            }
-        }
-		return false;
+		return this.execute(
+				() -> {
+					String sql = null;
+					Connection conn = DBUserConnection.getUserConnection();
+					if(operation.equals(SEARCHFRIENDREQUEST)) {
+						sql = "call livethemusic.search_friend_request(?, ?);\r\n";
+					} else if(operation.equals(ISFRIEND)) {
+						sql = "call livethemusic.is_friend(?, ?);\r\n"; 
+					} else if(operation.equals(ISFOLLOWING)) {
+						sql = "call livethemusic.is_following(?, ?);\r\n";
+					}
+					PreparedStatement stm = conn.prepareStatement(sql);
+					stm.setString(1, user);
+					stm.setString(2, target);
+					ResultSet rs = stm.executeQuery();
+					if (rs.first()) {
+						stm.close();
+						return true;
+					}
+					stm.close();
+					return false;
+				});
 	}
 }
