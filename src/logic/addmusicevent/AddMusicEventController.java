@@ -3,6 +3,7 @@ package logic.addmusicevent;
 import logic.bean.MusicEventBean;
 import logic.dao.MusicEventDao;
 import logic.entity.MusicEvent;
+import logic.utils.Controller;
 import logic.utils.GoogleMapBoundary;
 
 import java.io.File;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List; 
 
-public class AddMusicEventController {
+public class AddMusicEventController extends Controller{
 	public boolean addMusicEvent(MusicEventBean meb) {
 		MusicEventDao med = new MusicEventDao();
 		Date date = null;
@@ -51,21 +52,7 @@ public class AddMusicEventController {
 		MusicEventDao med = new MusicEventDao();
 
 		List<MusicEvent> l = med.getPendingMusicEvents();
-		List<MusicEventBean> lb = new ArrayList<>();
-		for(int i = 0; i < l.size(); i++) {
-			MusicEvent me = l.get(i);
-			MusicEventBean meb = new MusicEventBean();
-			meb.setId(me.getId());
-			meb.setArtistId(me.getArtistId());
-			meb.setName(me.getName());
-			meb.setCoverPath(me.getCoverPath());
-			meb.setLocation(me.getLocation());
-			meb.setBandName(me.getBandName());
-			meb.setTicketone(me.getTicketone());
-			lb.add(meb);
-		}
-		
-		return lb;
+		return this.convertMusicEventList(l);
 	}
 	
 	//TODO forse deve essere relativo all'evento musicale

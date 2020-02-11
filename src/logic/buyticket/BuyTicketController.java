@@ -10,96 +10,42 @@ import logic.dao.ArtistDao;
 import logic.dao.MusicEventDao;
 import logic.entity.Artist;
 import logic.entity.MusicEvent;
+import logic.utils.Controller;
 
-public class BuyTicketController {
+public class BuyTicketController extends Controller{
 
 	public List<MusicEventBean> getSuggestedEvents(String username) {
 		MusicEventDao med = new MusicEventDao();
 
 		List<MusicEvent> l = med.getSuggestedEvents(username);
-		List<MusicEventBean> lb = new ArrayList<>();
-		for(int i = 0; i < l.size(); i++) {
-			MusicEvent me = l.get(i);
-			MusicEventBean meb = new MusicEventBean();
-			meb.setId(me.getId());
-			meb.setArtistId(me.getArtistId());
-			meb.setName(me.getName());
-			meb.setCoverPath(me.getCoverPath());
-			meb.setLocation(me.getLocation());
-			meb.setBandName(me.getBandName());
-			meb.setTicketone(me.getTicketone());
-			lb.add(meb);
-		}
-		
-		return lb;
+		return this.convertMusicEventList(l);
 	}
 	
 	public List<MusicEventBean> getSearchMusicEvent(String searchString) {
 		MusicEventDao med = new MusicEventDao();
 
 		List<MusicEvent> l = med.getSearchMusicEvent(searchString);
-		List<MusicEventBean> lb = new ArrayList<>();
-		for(int i = 0; i < l.size(); i++) {
-			MusicEvent me = l.get(i);
-			MusicEventBean meb = new MusicEventBean();
-			meb.setId(me.getId());
-			meb.setArtistId(me.getArtistId());
-			meb.setName(me.getName());
-			meb.setCoverPath(me.getCoverPath());
-			meb.setLocation(me.getLocation());
-			meb.setBandName(me.getBandName());
-			meb.setTicketone(me.getTicketone());
-			lb.add(meb);
-		}
-		
-		return lb;
+		return this.convertMusicEventList(l);
 	}
 	
 	public List<ArtistBean> getSearchArtist(String searchString) {
 		ArtistDao ad = new ArtistDao();
 
 		List<Artist> l = ad.getSearchArtist(searchString);
-		List<ArtistBean> lb = new ArrayList<>();
-		for(int i = 0; i < l.size(); i++) {
-			Artist curr = l.get(i);
-			ArtistBean ab = new ArtistBean();
-			ab.setUsername(curr.getUsername());
-			ab.setBandName(curr.getName());
-			ab.setProfilePicture(curr.getProfilePicture());
-			lb.add(ab);
-		}
-		
-		return lb;
+		return this.convertArtistList(l);
 	}
 	
 	public List<ArtistBean> getSuggestedArtist(String username){
 		ArtistDao ad = new ArtistDao();
 		List<Artist> l = ad.getSuggestedArtist(username);
-		List<ArtistBean> lb = new ArrayList<>();
-		for(int i = 0; i < l.size(); i++) {
-			Artist curr = l.get(i);
-			ArtistBean ab = new ArtistBean();
-			ab.setUsername(curr.getUsername());
-			ab.setBandName(curr.getName());
-			ab.setProfilePicture(curr.getProfilePicture());
-			lb.add(ab);
-		}
-		
-		return lb;
+		return this.convertArtistList(l);
 	}
 	
 	public MusicEventBean getMusicEvent(String id, GeneralUserBean gu) {
 		//TODO dovrebbe essere relativo al musicevent e non al buyticketcontroller?
 		MusicEventDao med = new MusicEventDao();
 		MusicEvent me = med.getMusicEvent(id, gu.getRole());
-		MusicEventBean meb = new MusicEventBean();
-		meb.setId(me.getId());
-		meb.setArtistId(me.getArtistId());
-		meb.setName(me.getName());
-		meb.setCoverPath(me.getCoverPath());
-		meb.setLocation(me.getLocation());
-		meb.setBandName(me.getBandName());
-		meb.setTicketone(me.getTicketone());
+		MusicEventBean meb = this.convert(me);
 		
 		meb.setLatitude(me.getCoordinates().get(0));
 		meb.setLongitude(me.getCoordinates().get(1));
@@ -109,11 +55,7 @@ public class BuyTicketController {
 	public ArtistBean getArtist(String username) {
 		ArtistDao ad = new ArtistDao();
 		Artist a = ad.getArtist(username);
-		ArtistBean ab = new ArtistBean();
-		ab.setUsername(a.getUsername());
-		ab.setBandName(a.getName());
-		ab.setProfilePicture(a.getProfilePicture());
-		return ab;
+		return this.convert(a);
 	}
 	
 	public void addParticipation(GeneralUserBean user, MusicEventBean meb) {
@@ -138,14 +80,7 @@ public class BuyTicketController {
 		List<MusicEventBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {
 			MusicEvent me = l.get(i);
-			MusicEventBean meb = new MusicEventBean();
-			meb.setId(me.getId());
-			meb.setArtistId(me.getArtistId());
-			meb.setName(me.getName());
-			meb.setCoverPath(me.getCoverPath());
-			meb.setLocation(me.getLocation());
-			meb.setBandName(me.getBandName());
-			meb.setTicketone(me.getTicketone());
+			MusicEventBean meb = this.convert(me);
 			meb.setDistance(me.getDistance());
 			lb.add(meb);
 		}

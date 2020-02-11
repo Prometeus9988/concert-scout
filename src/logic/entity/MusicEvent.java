@@ -2,6 +2,8 @@ package logic.entity;
 
 import java.util.List;
 
+import logic.bean.MusicEventBean;
+
 public class MusicEvent {
 	private int id;
 	private String artistUsername;
