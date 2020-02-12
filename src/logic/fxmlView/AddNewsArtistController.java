@@ -18,7 +18,6 @@ import javafx.scene .layout.VBox;
 import javafx.scene.control.TextArea;
 
 import logic.addnews.AddNewsController;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,8 +41,6 @@ public class AddNewsArtistController {
 	private AddNewsController controller;
 	private GeneralUserBean gub;
 	private File imageFile=null;
-	private static final int MIN = 0;
-	private static final int MAX = 10000;
 	private static final Logger logger = Logger.getLogger(AddNewsArtistController.class.getName());
 	
 	@FXML
@@ -64,13 +61,12 @@ public class AddNewsArtistController {
 		String newFileName = null;
 		String text=this.newsArea.getText();
 		NewsBean nb=new NewsBean();
-		Random r=new Random();
 		
 		if(this.imageFile==null) {
 			fileName="";
 			newFileName="";
 		}else {
-			int salt = r.nextInt((MAX - MIN) + 1) + MIN;
+			int salt = RandomNumberGenerator.getInstance().randomInt();
 			fileName=this.imageFile.getName();
 			newFileName=this.gub.getUsername() + salt + fileName;
 		}

@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,6 +21,7 @@ import javax.servlet.http.Part;
 import logic.addnews.AddNewsController;
 import logic.bean.GeneralUserBean;
 import logic.bean.NewsBean;
+import logic.utils.RandomNumberGenerator;
 
 @WebServlet("/AddNewsServlet")
 @MultipartConfig
@@ -29,14 +29,11 @@ public class AddNewsServlet extends HttpServlet{
 	
 	private static final Logger logger = Logger.getLogger(AddNewsServlet.class.getName());
 	private static final long serialVersionUID = 102831973239L;
-	private static final int MIN = 0;
-	private static final int MAX = 10000;
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Random r = new Random();
 		RequestDispatcher rd = request.getRequestDispatcher("addNews.jsp");
 		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 		String resString = "";
@@ -64,7 +61,7 @@ public class AddNewsServlet extends HttpServlet{
 			newFileName = "";
 		} else {
 			//Used salt to difference the name of the file of the news
-			int salt = r.nextInt((MAX - MIN) + 1) + MIN;
+			int salt = RandomNumberGenerator.getInstance().randomInt();
 			
 			newFileName = gu.getUsername() + salt + fileName;
 		}
@@ -81,7 +78,7 @@ public class AddNewsServlet extends HttpServlet{
 			resString = "notAdded";
 		}
 		
-		if(!fileName.equals("") && result){
+		if(!fileName.equals("") && result && filePart != null){
 			String path = System.getProperty("user.home") + File.separator
 					+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
 					+ "trunk" + File.separator + "WebContent" + File.separator
@@ -91,9 +88,11 @@ public class AddNewsServlet extends HttpServlet{
 		    try (InputStream input = filePart.getInputStream()) {
 		    		Files.copy(input, file.toPath());
 		    } catch (Exception e) {
-		    	e.printStackTrace();
+		    	logger.log(Level.WARNING, e.toString());
 		    }
-		    file.renameTo(newFile);
+		    if(!file.renameTo(newFile)) {
+		    	logger.log(Level.WARNING, "Unable to rename file {0}", fileName);
+		    }
 		}
 		
 		request.setAttribute("result", resString);
