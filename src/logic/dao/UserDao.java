@@ -165,7 +165,7 @@ public class UserDao extends DaoTemplate {
 						stm.setString(1, string);
 						break;
 					default:
-						return null;
+						return Collections.emptyList();
 					}
 					try (ResultSet rs = stm.executeQuery()) {
 						if (!rs.first()) // rs not empty
