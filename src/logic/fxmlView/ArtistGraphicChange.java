@@ -13,7 +13,7 @@ public class ArtistGraphicChange {
 	
 	private ArtistGraphicChange() {}
 	
-	public static ArtistGraphicChange myInstance=null;
+	private static ArtistGraphicChange myInstance=null;
 	private static final Logger logger = Logger.getLogger(ArtistGraphicChange.class.getName());
 	
 	public static ArtistGraphicChange getInstance() {

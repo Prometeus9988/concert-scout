@@ -33,19 +33,21 @@ public class AdminMenuBarController {
 	}
 	
 	public void init(String selected) {
-			
+
 		this.agc=AdminGraphicChange.getInstance();
-		
+
 		String style="-fx-background-color: transparent; -fx-border: none; -fx-text-fill: rgba(245, 203, 92, 1); -fx-font-size: 16 ; -fx-font-weight: bold;";
-		switch(selected) {
-			case "home":
-				this.homeBtn.setStyle(style);
-				break;
-			case "news":
-				this.newsBtn.setStyle(style);
-				break;
-		}
-		
-	}
 	
+		if(selected.equals("home")) {
+			
+			this.homeBtn.setStyle(style);
+			
+		} else if(selected.equals("news")) {
+			
+			this.newsBtn.setStyle(style);
+			
+		}
+	}
 }
+	
+

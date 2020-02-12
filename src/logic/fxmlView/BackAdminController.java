@@ -8,7 +8,6 @@ public class BackAdminController implements BackController {
 		
 	
 	private String from;
-	private String searchString;
 	@FXML
 	private Button buttonBack;
 	
@@ -30,6 +29,5 @@ public class BackAdminController implements BackController {
 	public void init(String from,String searchString) {
 		this.agc=AdminGraphicChange.getInstance();
 		this.from=from;
-		this.searchString=searchString;
 	}
 }

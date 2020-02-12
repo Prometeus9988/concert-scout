@@ -16,7 +16,7 @@ import logic.bean.NewsBean;
 
 public class AdminGraphicChange {
 	
-	public static AdminGraphicChange myInstance=null;
+	private static AdminGraphicChange myInstance = null;
 	private static final Logger logger=Logger.getLogger(AdminGraphicChange.class.getName());
 	
 	private AdminGraphicChange() {}

@@ -1,14 +1,10 @@
 package logic.fxmlView;
 
-import java.io.IOException;
-import java.util.logging.Level;
-
 import javafx.event.ActionEvent;
 
 
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import logic.bean.MusicEventBean;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,7 +12,6 @@ import javafx.scene.layout.VBox;
 import logic.addmusicevent.AddMusicEventController;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import javafx.scene.control.Label;
 
 public class AdminEvButtonsController {
 	

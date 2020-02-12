@@ -31,7 +31,6 @@ public class ArtDetailsController {
 	
 	private FollowArtistController controller;
 	private GeneralUserBean sessionUser;
-	private UserGraphicChange ucg;
 	
 	@FXML
 	public void followAction(ActionEvent ev) {
@@ -46,7 +45,8 @@ public class ArtDetailsController {
 	}
 	
 	public void init(ArtistBean ar,String from,String searchString) {
-		this.ucg=UserGraphicChange.getInstance();
+		UserGraphicChange ucg;
+		ucg=UserGraphicChange.getInstance();
 		this.myArtist=ar;
 		
 		//INIT CONTROLLER AND SESSIONUSER
@@ -57,21 +57,21 @@ public class ArtDetailsController {
 		//INIT BUTTON VAL
 		
 		boolean isFoll=this.controller.isFollowing(this.sessionUser, this.myArtist);
-		if(isFoll==false) {
+		if(!isFoll) {
 			this.followBtn.setText("Follow");
 		}else {
 			this.followBtn.setText("Unfollow");
 		}
 		
 		//INIT MENU BAR		
-		this.ucg.menuBar(this.menuBar,from);
+		ucg.menuBar(this.menuBar,from);
 		
 		//INIT LABEL NAMES
 		this.artName.setText(this.myArtist.getBandName());
 		
 		//INIT BACK BUTTON	
 		
-		this.ucg.backButton(this.backButton, from, searchString);
+		ucg.backButton(this.backButton, from, searchString);
 		
 		//INIT IMAGE
 		String path=System.getProperty("user.home")+ File.separator

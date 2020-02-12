@@ -40,13 +40,11 @@ public class ArtistMenuBarController {
 		this.agc=ArtistGraphicChange.getInstance();
 		
 		String style="-fx-background-color: transparent; -fx-border: none; -fx-text-fill: rgba(245, 203, 92, 1); -fx-font-size: 16 ; -fx-font-weight: bold;";
-		switch(selected) {
-			case "addEv":
-				this.addEventBtn.setStyle(style);
-				break;
-			case "addNews":
-				this.addNewsBtn.setStyle(style);
-				break;
+		
+		if(selected.equals("addEv")) {
+			this.addEventBtn.setStyle(style);
+		} else if(selected.equals("addNews")) {
+			this.addNewsBtn.setStyle(style);
 		}
 		
 	}

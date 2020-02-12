@@ -29,8 +29,6 @@ public class HomepageAdminController {
 	@FXML
 	private VBox col5;
 	
-	private AdminGraphicChange auc;
-	
 	public void init() {
 		
 		
@@ -42,8 +40,9 @@ public class HomepageAdminController {
 		columns.add(this.col4);
 		columns.add(this.col5);
 		
+		AdminGraphicChange auc;
 		//init menu bar
-		this.auc=AdminGraphicChange.getInstance();
+		auc = AdminGraphicChange.getInstance();
 		auc.menuBar(this.menuBar, "home");
 		
 		//scrollpane
@@ -57,10 +56,10 @@ public class HomepageAdminController {
 		AddMusicEventController aec=new AddMusicEventController();
 		List<MusicEventBean> musicEvents=aec.viewPendingEvents();
 		
-		int i,j;
-		j=0;
+		int i;
+		int j = 0;
 		for(i=0;i<musicEvents.size();i++) {
-			this.auc.eventPreview(columns.get(j), musicEvents.get(i), "home", "");
+			auc.eventPreview(columns.get(j), musicEvents.get(i), "home", "");
 			j=(j+1)%5;
 		}
 		

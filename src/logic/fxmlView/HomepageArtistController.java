@@ -6,6 +6,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
@@ -19,7 +21,7 @@ import javafx.scene.control.DatePicker;
 import logic.addmusicevent.AddMusicEventController;
 
 public class HomepageArtistController {
-
+	private static final Logger logger = Logger.getLogger(HomepageArtistController.class.getName());
 	
 	@FXML
 	private VBox menuBar;
@@ -41,7 +43,6 @@ public class HomepageArtistController {
 	private File imageFile=null;
 	private GeneralUserBean gub;
 	private AddMusicEventController controller;
-	private ArtistGraphicChange agc;
 	
 	@FXML
 	public void selectImage(ActionEvent ev) {
@@ -97,9 +98,11 @@ public class HomepageArtistController {
 		    try (InputStream input = new FileInputStream(this.imageFile)) {
 		    		Files.copy(input, file.toPath());
 		    } catch (Exception e) {
-		    	e.printStackTrace();
+		    	logger.log(Level.WARNING, e.toString());
 		    }
-		    file.renameTo(newFile);
+		    if(!file.renameTo(newFile)) {
+		    	logger.log(Level.WARNING, "Unable to rename {0}: ", fileName);
+		    }
 		}
 		
 	}
@@ -108,12 +111,12 @@ public class HomepageArtistController {
 		
 		//init controller
 		this.controller = new AddMusicEventController();
-		
-		this.agc=ArtistGraphicChange.getInstance();
+		ArtistGraphicChange agc;
+		agc = ArtistGraphicChange.getInstance();
 		
 		//init menuBar
 		
-		this.agc.menuBar(this.menuBar,"addEv");
+		agc.menuBar(this.menuBar,"addEv");
 		
 		
 		//init nameBar

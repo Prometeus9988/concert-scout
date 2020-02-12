@@ -1,13 +1,7 @@
 package logic.fxmlView;
 
-import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXML;
-import logic.readnews.*;
-import logic.utils.*;
 import logic.bean.*;
 import java.util.List;
 import javafx.scene.control.ScrollPane;

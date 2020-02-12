@@ -19,6 +19,9 @@ import javafx.scene.control.TextArea;
 
 import logic.addnews.AddNewsController;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import logic.bean.NewsBean;
 
 public class AddNewsArtistController {
@@ -37,12 +40,11 @@ public class AddNewsArtistController {
 	private VBox scrBox;
 	
 	private AddNewsController controller;
-	private ArtistGraphicChange agc;
 	private GeneralUserBean gub;
 	private File imageFile=null;
 	private static final int MIN = 0;
 	private static final int MAX = 10000;
-	
+	private static final Logger logger = Logger.getLogger(AddNewsArtistController.class.getName());
 	
 	@FXML
 	public void selectImage(ActionEvent e) {
@@ -95,9 +97,13 @@ public class AddNewsArtistController {
 		    try (InputStream input = new FileInputStream(this.imageFile)) {
 		    		Files.copy(input, file.toPath());
 		    } catch (Exception ex) {
-		    	ex.printStackTrace();
+		    	logger.log(Level.WARNING, ex.toString());
 		    }
-		    file.renameTo(newFile);
+
+		    if(file.renameTo(newFile)) {
+		    	logger.log(Level.WARNING, "Unable to rename: {0}", fileName);
+		    }
+
 		}
 		
 		this.newsArea.setText(null);
@@ -108,12 +114,14 @@ public class AddNewsArtistController {
 	}
 	
 	public void init() {
+		ArtistGraphicChange agc;
+		
 		//init controller
 		this.controller=new AddNewsController();
-		this.agc=ArtistGraphicChange.getInstance();
+		agc = ArtistGraphicChange.getInstance();
 		
 		//init menuBar
-		this.agc.menuBar(this.menuBar, "addNews");
+		agc.menuBar(this.menuBar, "addNews");
 		
 		//init scrollBar
 		ScrollPane scroll =new ScrollPane(this.newsArea);
