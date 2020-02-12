@@ -33,6 +33,7 @@ public class ReadNewsServlet extends HttpServlet{
 		
 		session.setAttribute("origin", "ReadNewsServlet");
 		session.setAttribute("userRole", gu.getRole());
+		
 		List<NewsBean> nb = rnc.getNews(gu);
 		
 		request.setAttribute("news", nb);

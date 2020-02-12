@@ -51,10 +51,16 @@
   
     <ul>
     <%
-    if(origin.equals("AdminMusicEventServlet") || role.equals("admin")){
+    if(origin.equals("AdminMusicEventServlet")){
     	%>
     	<li><form action="AdminMusicEventServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
     	<li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
+    	<%
+    } else if(origin.equals("ReadNewsServlet") && role.equals("admin")){
+    	
+    	%>
+    	<li><form action="AdminMusicEventServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
+    	<li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "selected" value="News"></form></li>
     	<%
     } else {
     	%>
@@ -118,7 +124,8 @@
 </form>
 	<h1><%=ab.getBandName()%></h1>
   <%
-  if(!origin.equals("AdminMusicEventServlet") || role.equals("admin")){
+  if(origin.equals("AdminMusicEventServlet") || role.equals("admin")){
+  } else {
   %>
   <form action = "ButtonHandler" method = "POST">
   <input type = "submit" name = "follow" value = "<%=foll%>">

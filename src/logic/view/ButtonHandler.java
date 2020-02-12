@@ -125,10 +125,9 @@ public class ButtonHandler  extends HttpServlet{
 			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
 			amec.rejectMusicEvent(meb);
 			rd = request.getRequestDispatcher("AdminMusicEventServlet");
-		}else if(request.getParameter("goToTicketone") != null) {
+		} else if(request.getParameter("goToTicketone") != null) {
 			MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
 			rd = request.getRequestDispatcher(meb.getTicketone());
-			System.out.println(meb.getTicketone());
 			response.sendRedirect(meb.getTicketone());
 		}
 
@@ -138,7 +137,14 @@ public class ButtonHandler  extends HttpServlet{
 			logger.log(Level.INFO, "redirected");
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
-		} 
+		}
 	}
+	
+	private RequestDispatcher gotoTicketone(HttpServletResponse response, HttpServletRequest request, HttpSession session) throws IOException {
+		MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
+		response.sendRedirect(meb.getTicketone());
+		return request.getRequestDispatcher(meb.getTicketone());
+	}
+	
 }
 

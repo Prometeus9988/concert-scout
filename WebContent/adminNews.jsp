@@ -38,7 +38,7 @@
     <ul>
 <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
     <li><form action="AdminMusicEventServlet" method="POST"><input type="submit" class = "selected" value="Home"></form></li>
-    <li><form action="adminNews.jsp" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
+    <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
     <li><form action="LogoutServlet" method="POST"><input type="submit" class = "notSelected" value="Logout"></form></li>
     </ul>
   </div>
