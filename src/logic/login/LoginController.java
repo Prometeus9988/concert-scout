@@ -30,6 +30,7 @@ public class LoginController {
 	}
 	
 	public boolean createArtist(ArtistBean ab) {
-		return ArtistDao.createArtist(ab.getUsername(), ab.getPassword(), ab.getBandName(), ab.getProfilePicture(), ab.getEmail());
+		ArtistDao ad = new ArtistDao();
+		return ad.createArtist(ab.getUsername(), ab.getPassword(), ab.getBandName(), ab.getProfilePicture(), ab.getEmail());
 	}
 }
