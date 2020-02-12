@@ -84,7 +84,7 @@
     <%} %>
     <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
     <%
-    if(origin.equals("FriendsServlet")) {
+    if(origin.equals("FriendsServlet") || origin.equals("SearchUserServlet")) {
     	%>
     <li><form action="FriendsServlet" method="POST"><input type="submit" class = "selected" value="Friends"></form></li>
     	<%
