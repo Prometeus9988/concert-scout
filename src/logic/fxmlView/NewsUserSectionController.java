@@ -31,7 +31,7 @@ public class NewsUserSectionController {
 		ReadNewsController rnc=new ReadNewsController();
 		
 		//news list
-		List<NewsBean> nb=rnc.getNews(SessionUser.getInstance().getSession());
+		List<NewsBean> nb=rnc.getNewsUser(SessionUser.getInstance().getSession());
 		
 		//init scrollPane
 		ScrollPane scroll=new ScrollPane(this.newsAnchor);

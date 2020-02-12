@@ -11,19 +11,19 @@ import logic.dao.NewsDao;
 import logic.entity.News;
 
 public class ReadNewsController {
-	public List<NewsBean> getNews(GeneralUserBean gu){
+	
+	
+	public List<NewsBean> getNews(GeneralUserBean gu, String role){
 		NewsDao nd = new NewsDao();
-		String role;
+		String username = null;
 		
 		int i;
 
-		if(gu.getRole().equals("admin")) {
-			role = "admin";
-		} else {
-			role = "user";
+		if(gu != null) {
+			username = gu.getUsername();
 		}
 		
-		List<News> l = nd.getNews(gu.getUsername(), role);
+		List<News> l = nd.getNews(username, role);
 		List<NewsBean> lb = new ArrayList<>();
 		
 		for(i = 0; i < l.size(); i++) {
@@ -42,6 +42,14 @@ public class ReadNewsController {
 		}
 		
 		return lb;
+	}
+	
+	public List<NewsBean> getNewsAdmin(){
+		return this.getNews(null, "admin");
+	}
+	
+	public List<NewsBean> getNewsUser(GeneralUserBean gu){
+		return this.getNews(gu, "user");
 	}
 	
 	private String postedSince(LocalDateTime newsTime) {

@@ -276,7 +276,7 @@ public class MusicEventDao extends DaoTemplate {
         return l;
 	}
 	
-	public void manageMusicEvent(String id, String operation) {
+	private void manageMusicEvent(String id, String operation) {
 		this.execute(new DaoAction<Void>() {
 			@Override
 			public Void execute() throws ClassNotFoundException, SQLException {

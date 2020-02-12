@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import logic.addnews.AddNewsController;
 import logic.bean.GeneralUserBean;
 import logic.bean.NewsBean;
 import logic.readnews.ReadNewsController;
@@ -29,12 +30,18 @@ public class ReadNewsServlet extends HttpServlet{
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher("news.jsp");
 		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
-		ReadNewsController rnc = new ReadNewsController();
+		List<NewsBean> nb = null;
 		
 		session.setAttribute("origin", "ReadNewsServlet");
 		session.setAttribute("userRole", gu.getRole());
 		
-		List<NewsBean> nb = rnc.getNews(gu);
+		if(gu.getRole().equals("admin")) {
+			AddNewsController anc = new AddNewsController();
+			nb = anc.getNews();
+		} else {
+			ReadNewsController rnc = new ReadNewsController();
+			nb = rnc.getNewsUser(gu);
+		}
 		
 		request.setAttribute("news", nb);
 		

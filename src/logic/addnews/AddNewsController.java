@@ -6,8 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import logic.dao.NewsDao;
+import logic.readnews.ReadNewsController;
 import logic.bean.NewsBean;
 
 public class AddNewsController {
@@ -18,6 +20,11 @@ public class AddNewsController {
 		LocalDateTime current = LocalDateTime.now();
 		
 		return nd.addNews(nb.getText(), nb.getPicturePath(), nb.getArtistId(), current); 
+	}
+	
+	public List<NewsBean> getNews(){
+		ReadNewsController rnc = new ReadNewsController();
+		return rnc.getNewsAdmin();
 	}
 	
 	public void acceptNews(NewsBean nb) {

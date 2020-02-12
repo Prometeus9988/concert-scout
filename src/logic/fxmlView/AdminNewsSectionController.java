@@ -22,14 +22,13 @@ public class AdminNewsSectionController {
 	@FXML
 	private VBox newsAnchor;
 	
-	private AdminGraphicChange adm;
-	
 	public void init() {
 		//init controllers
-		this.adm=AdminGraphicChange.getInstance();
+		AdminGraphicChange adm;
+		adm=AdminGraphicChange.getInstance();
 		
-		ReadNewsController rnc=new ReadNewsController();
-		List<NewsBean>nb=rnc.getNews(SessionUser.getInstance().getSession());
+		AddNewsController anc = new AddNewsController();
+		List<NewsBean>nb=anc.getNews();
 		
 		//init scrollPane
 		ScrollPane scroll=new ScrollPane(this.newsAnchor);
@@ -37,10 +36,10 @@ public class AdminNewsSectionController {
 		this.secRoot.getChildren().add(scroll);
 		scroll.setStyle("-fx-background-color: transparent; -fx-background:  #F5EDF0");
 		//init menubar
-		this.adm.menuBar(this.menuBar, "news");
+		adm.menuBar(this.menuBar, "news");
 		
 		for(int i=0;i<nb.size();i++) {
-			this.adm.newsPrev(this.newsAnchor,nb.get(i));
+			adm.newsPrev(this.newsAnchor,nb.get(i));
 		}	
 		
 	}
