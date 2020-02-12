@@ -22,38 +22,26 @@ public class UserDao extends DaoTemplate {
 	private static final String ISFRIEND = "isfriend";
 	private static final String ISFOLLOWING = "isfollowing";
     
-    public static boolean createUser(String username, String password, String firstName,
+    public Boolean createUser(String username, String password, String firstName,
     		String lastName, String profilePicture, String email) {
-    	Connection con = null;
-    	PreparedStatement stm = null;
-    	
-    	try {
-    		con = DBLoginConnection.getLoginConnection();
-    		String sql = "call livethemusic.add_user(?, ?, ?, ?,?, ?);\r\n"; 
-    		stm = con.prepareStatement(sql);
-            stm.setString(1, username);
-            stm.setString(2, firstName);
-            stm.setString(3, lastName);
-            stm.setString(4, email);
-            stm.setString(5, password);
-            stm.setString(6, profilePicture);
-            stm.executeUpdate();
-    		
-    	} catch (SQLException se) {
-        	//logger.log(Level.WARNING, se.toString());
-        	return false;
-        } catch (ClassNotFoundException e) {
-            //logger.log(Level.WARNING, e.toString());
-            return false;
-        } finally {
-            try {
-                if (stm != null)
-                    stm.close();
-            } catch (SQLException se2) {
-            	//logger.log(Level.WARNING, se2.toString());
-            }
-        }
-    	return true;
+		return this.execute(new DaoAction<Boolean>() {
+			@Override
+			public Boolean execute() throws ClassNotFoundException, SQLException {
+				try(Connection con = DBLoginConnection.getLoginConnection()) {
+					String sql = "call livethemusic.add_user(?, ?, ?, ?,?, ?);\r\n"; 
+					try (PreparedStatement stm = con.prepareStatement(sql)) {
+						stm.setString(1, username);
+						stm.setString(2, firstName);
+						stm.setString(3, lastName);
+						stm.setString(4, email);
+						stm.setString(5, password);
+						stm.setString(6, profilePicture);
+						stm.executeUpdate();
+					}
+				}
+				return true;
+			}
+		});
     }
     
     public boolean isFollowing(String username, String artistId) {

@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 public abstract class DaoTemplate {
 	
-    private static final Logger logger = Logger.getLogger("Dao");
+    protected static final Logger logger = Logger.getLogger("Dao");
 	
 	protected final <T> T execute (DaoAction <T> da) {
 		try {

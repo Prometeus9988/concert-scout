@@ -24,7 +24,8 @@ public class LoginController {
 	}
 	
 	public boolean createUser(UserBean ub) {
-		return UserDao.createUser(ub.getUsername(), ub.getPassword(), ub.getName(), ub.getSurname(), ub.getProfilePicture(), ub.getEmail()); 
+		UserDao ud = new UserDao();
+		return (ud.createUser(ub.getUsername(), ub.getPassword(), ub.getName(), ub.getSurname(), ub.getProfilePicture(), ub.getEmail()) != null); 
 	}
 	
 	public boolean createArtist(ArtistBean ab) {
