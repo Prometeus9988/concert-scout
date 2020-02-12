@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <%
 int i;
-List<MusicEventBean> musicEvents = (List<MusicEventBean>) request.getAttribute("musicEventList");
+List<MusicEventBean> musicEvents = (List<MusicEventBean>) session.getAttribute("musicEventList");
 %>
 <html>
 <head>
@@ -72,6 +72,7 @@ List<MusicEventBean> musicEvents = (List<MusicEventBean>) request.getAttribute("
 	<input type="submit" name = "<%="m"%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getName() %>">
   	</div>
   	<input type = "hidden" name = "Mevent" value = "<%= musicEvents.get(i).getId() %>">
+  	<input type = "hidden" name = "index" value = "<%=i%>">
   	</form>
   	  	<form action="ButtonHandler" method="POST">
   	<input type="submit" name = "<%="a"%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getBandName() %>">

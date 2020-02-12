@@ -45,8 +45,9 @@ public class SearchServlet extends HttpServlet{
 		artists = btc.getSearchArtist(searchString);
 		
 		session.setAttribute("searchString", searchString);
-		request.setAttribute("musicEventList", musicEvents);
-		request.setAttribute("artistList", artists);
+
+		session.setAttribute("musicEventList", musicEvents);
+		session.setAttribute("artistList", artists);
 		rd = request.getRequestDispatcher("searchResult.jsp");
 		
 		try {

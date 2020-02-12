@@ -77,7 +77,7 @@
     	%><li class = "item">
 
     	<div class="card text-center" style="width: 18rem;">
-    <form action="ButtonHandler" method="POST">
+    <form action="FriendButtonServlet" method="POST">
   	<button type="submit" name = "<%="f"%>" value = "<%= users.get(i).getUsername() %>" style="color: transparent; background-color: transparent; border-color: transparent;">
   	<img src="<%="img/profilePictures/" + users.get(i).getProfilePicture()%>" class="card-img-top cardImg" height = 215 width = 155 />
 	</button>

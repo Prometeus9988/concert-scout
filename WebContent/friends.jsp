@@ -67,7 +67,7 @@
 
     	<div class="card text-center" style="width: 18rem;">
     
-    <form action="ButtonHandler" method="POST">
+    <form action="FriendButtonServlet" method="POST">
   	<!-- <img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155> -->
   	  	<button type="submit" name = "<%="f"%>" value = "<%= friendList.get(i).getUsername() %>" style="color: transparent; background-color: transparent; border-color: transparent;">
 	<img src="<%="img/profilePictures/" + friendList.get(i).getProfilePicture()%>" class="card-img-top cardImg" height = 215 width = 155 />
@@ -96,7 +96,7 @@
 
     	<div class="card text-center" style="width: 18rem;">
     
-    <form action="ButtonHandler" method="POST">
+    <form action="FriendButtonServlet" method="POST">
   	<!-- <img class="card-img-top cardImg" src="img/concert.jpg" height = 215 width = 155> -->
   	  	<button type="submit" name = "<%="f"%>" value = "<%= requestList.get(i).getUsername() %>" style="color: transparent; background-color: transparent; border-color: transparent;">
   	<img src="<%="img/profilePictures/" + requestList.get(i).getProfilePicture()%>" height = 50 width = 50 style = "object-fit: cover; border-radius: 300px;">

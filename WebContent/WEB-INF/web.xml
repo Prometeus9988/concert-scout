@@ -81,4 +81,13 @@
     <servlet-name>friends</servlet-name>
     <url-pattern>/friends</url-pattern>
   </servlet-mapping>
+          <servlet>
+      <servlet-name>MusicEvent</servlet-name>
+    <servlet-class>logic.view.MusicEventServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MusicEvent</servlet-name>
+    <url-pattern>/MusicEvent</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

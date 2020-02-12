@@ -6,7 +6,7 @@
 	String fr;
 	int i;
 	UserBean ub = (UserBean) session.getAttribute("target");
-	List <MusicEventBean> targetEvents = (List <MusicEventBean>)session.getAttribute("targetEvents");
+	List <MusicEventBean> targetEvents = (List <MusicEventBean>)session.getAttribute("musicEventList");
 	boolean isFriend = (boolean) request.getAttribute("isFriend");
 	String who = (String) request.getAttribute("request");
 	
@@ -72,7 +72,7 @@
 </form>
 	<h1><%=ub.getUsername()%></h1>
 	<h2><%=ub.getName() + " " + ub.getSurname() %></h2>
-  <form action = "ButtonHandler" method = "POST">
+  <form action = "FriendButtonServlet" method = "POST">
   <input type = "submit" name = "friend" value = "<%=fr%>">
   <input type = "hidden" name = "target" value = "<%=ub.getUsername() %>">
   <%
@@ -100,6 +100,7 @@
 	<input type="submit" name = "<%="m"%>" class = "btTxt astext" value = "<%= targetEvents.get(i).getName() %>">
   	</div>
   	<input type = "hidden" name = "Mevent" value = "<%= targetEvents.get(i).getId() %>">
+  	<input type = "hidden" name = "index" value = "<%=i%>">
   	</form>
   	<form action="ButtonHandler" method="POST">
   	<input type="submit" name = "<%="a"%>" class = "btTxt astext" value = "<%= targetEvents.get(i).getBandName() %>">

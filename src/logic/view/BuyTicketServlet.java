@@ -37,9 +37,10 @@ public class BuyTicketServlet extends HttpServlet{
 
 		List<MusicEventBean> musicEvents = btc.getSuggestedEvents(username);
 		List<ArtistBean> artists = btc.getSuggestedArtist(username);
-		request.setAttribute("musicEventList", musicEvents);
-		request.setAttribute("artistList", artists);
-
+		
+		session.setAttribute("musicEventList", musicEvents);
+		session.setAttribute("artistList", artists);
+		
 		try {
 			rd.forward(request, response);
 		} catch(Exception e) {

@@ -58,8 +58,8 @@ public class AroundYouServlet extends HttpServlet{
 		
 		request.setAttribute("MAXDISTANCE", MAXDISTANCE + "");
 		request.setAttribute("MINDISTANCE", MINDISTANCE + "");
-		request.setAttribute("musicEventList", l);
 		
+		session.setAttribute("musicEventList", l);
 		try {
 			rd.forward(request, response);
 		} catch(Exception e) {

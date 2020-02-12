@@ -6,7 +6,7 @@
 	String origin = (String) session.getAttribute("origin");
 	MusicEventBean meb = (MusicEventBean) session.getAttribute("Mevent");
 	GeneralUserBean user = (GeneralUserBean) session.getAttribute("user");
-	boolean isPart = (boolean) request.getAttribute("isPart");
+	boolean isPart = (boolean) session.getAttribute("isPart");
 	if (isPart == false) {
 		part = "Add Participation";
 	} else {
@@ -120,7 +120,7 @@
 <h2><%=meb.getBandName()%></h2>
 <h3><%=meb.getLocation()%></h3>
 <!-- Add participation -->
-<form action = "ButtonHandler" method = "POST">
+<form action = "MusicEventServlet" method = "POST">
 
 <input type = "hidden" name = "isPart" value = "<%=isPart%>">
 <%

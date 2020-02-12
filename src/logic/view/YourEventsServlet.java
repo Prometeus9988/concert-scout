@@ -35,7 +35,7 @@ public class YourEventsServlet extends HttpServlet{
 		String username = gu.getUsername();
 
 		List<MusicEventBean> musicEventList = ec.getUserEvents(username);
-		request.setAttribute("musicEventList", musicEventList);
+		session.setAttribute("musicEventList", musicEventList);
 
 		try {
 			rd.forward(request, response);

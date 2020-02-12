@@ -28,8 +28,9 @@ public class AdminMusicEventServlet extends HttpServlet{
 		session.setAttribute("origin", "AdminMusicEventServlet");
 		
 		List<MusicEventBean> musicEvents = amc.viewPendingEvents();
-		request.setAttribute("musicEventList", musicEvents);
 
+		session.setAttribute("musicEventList", musicEvents);
+		
 		try {
 			rd.forward(request, response);
 		} catch(Exception e) {

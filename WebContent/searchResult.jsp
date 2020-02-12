@@ -10,8 +10,8 @@
 	String searchString = (String) request.getAttribute("searchString");	
 	request.setAttribute("searchString", searchString);
 	
-	List<MusicEventBean> musicEvents = (List<MusicEventBean>) request.getAttribute("musicEventList");
-	List<ArtistBean> artists = (List<ArtistBean>) request.getAttribute("artistList");
+	List<MusicEventBean> musicEvents = (List<MusicEventBean>) session.getAttribute("musicEventList");
+	List<ArtistBean> artists = (List<ArtistBean>) session.getAttribute("artistList");
 
 %> 
 <html>
@@ -89,6 +89,7 @@
 	<input type="submit" name = "<%="m"%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getName() %>">
   	</div>
   	<input type = "hidden" name = "Mevent" value = "<%= musicEvents.get(i).getId() %>">
+  	<input type = "hidden" name = "index" value = "<%=i%>">
   	</form>
   	<form action="ButtonHandler" method="POST">
   	<input type="submit" name = "<%="a"%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getBandName() %>">
@@ -115,6 +116,7 @@
   	<div class="card-body">
 <input type="submit" name = "<%="a"%>" class = "btTxt astext" value = "<%= artists.get(i).getBandName() %>">
     <input type = "hidden" name = "artist" value = "<%= artists.get(i).getUsername()%>">
+  	<input type = "hidden" name = "index" value = "<%=i%>">
   </div>
   </form>
 </div>
