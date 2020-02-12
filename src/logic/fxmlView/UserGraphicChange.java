@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import java.util.logging.Logger;
 import javafx.scene.layout.AnchorPane;
 import logic.bean.NewsBean;
+import logic.bean.UserBean;
 
 public class UserGraphicChange {
 	
@@ -207,6 +208,54 @@ public class UserGraphicChange {
 			controller.init(myNews);
 		}catch(IOException e) {
 			logger.log(Level.WARNING,e.toString());
+		}
+	}
+	
+	public void toFriendsSection(Scene scene) {
+		try {
+			FriendsSectionController controller=new FriendsSectionController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("FriendsSection.fxml"));
+			loader.setController(controller);
+			scene.setRoot(loader.load());
+			controller.init();
+		}catch(IOException e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+	}
+	
+	public void userPrev(HBox box,UserBean ub,String from,String searchString){
+		try {
+			UserPrevController controller=new UserPrevController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("User.fxml"));
+			loader.setController(controller);
+			box.getChildren().add(loader.load());
+			controller.init(ub, from, searchString);
+		}catch(IOException e) {
+			logger.log(Level.WARNING,e.toString());
+		}
+	}
+	
+	public void usrSerachPrev(VBox box,UserBean ub,String from,String searchString) {
+		try {
+			UserPrevController controller=new UserPrevController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("User.fxml"));
+			loader.setController(controller);
+			box.getChildren().add(loader.load());
+			controller.init(ub, from, searchString);
+		}catch(IOException e) {
+			logger.log(Level.WARNING,e.toString());
+		}
+	}
+	
+	public void toSearchUsr(Scene scene,String searchString) {
+		try {
+			UserSearchSecController controller=new UserSearchSecController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("SearchUsers.fxml"));
+			loader.setController(controller);
+			scene.setRoot(loader.load());
+			controller.init(searchString);
+		}catch(IOException e) {
+			logger.log(Level.WARNING, e.toString());
 		}
 	}
 }

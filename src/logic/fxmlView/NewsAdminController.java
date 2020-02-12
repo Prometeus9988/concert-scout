@@ -47,7 +47,7 @@ public class NewsAdminController {
 		//INIT LABELS
 		this.myNews=myNews;
 		this.artBtn.setText(this.myNews.getBandName());
-		this.postTime.setText(this.myNews.getPostedSince());
+		this.postTime.setText("Posted "+this.myNews.getPostedSince()+" ago");
 		this.newsText.setText(this.myNews.getText());
 		
 		//INIT BUTTONS

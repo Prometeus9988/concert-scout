@@ -76,7 +76,7 @@ public class MenuBarController {
 	
 	@FXML
 	public void friendsButtonAction(ActionEvent e) {
-		System.out.println("Go to friends");
+		this.ugc.toFriendsSection(this.homeButton.getScene());
 	}
 	
 	@FXML

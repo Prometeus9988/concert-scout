@@ -8,13 +8,17 @@ public class SearchUserController implements SearchBarController {
 		
 	@FXML
 	private TextField searchField;
+	private UserGraphicChange ucg;
+	
 	@FXML
 	public void searchAction(ActionEvent e) {
 		System.out.println("User");
+		this.ucg.toSearchUsr(this.searchField.getScene(),this.searchField.getText());
 	}
 	
 	public void init() {
-		this.searchField.setPromptText("Search other users...");
+		this.ucg=UserGraphicChange.getInstance();
+		this.searchField.setPromptText("Search user...");
 	}
 	
 	
