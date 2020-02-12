@@ -24,24 +24,23 @@ public class UserDao extends DaoTemplate {
     
     public Boolean createUser(String username, String password, String firstName,
     		String lastName, String profilePicture, String email) {
-		return this.execute(new DaoAction<Boolean>() {
+		return (this.execute(new DaoAction<Boolean>() {
 			@Override
 			public Boolean execute() throws ClassNotFoundException, SQLException {
-				try(Connection con = DBLoginConnection.getLoginConnection()) {
-					String sql = "call livethemusic.add_user(?, ?, ?, ?,?, ?);\r\n"; 
-					try (PreparedStatement stm = con.prepareStatement(sql)) {
-						stm.setString(1, username);
-						stm.setString(2, firstName);
-						stm.setString(3, lastName);
-						stm.setString(4, email);
-						stm.setString(5, password);
-						stm.setString(6, profilePicture);
-						stm.executeUpdate();
-					}
+				Connection con = DBLoginConnection.getLoginConnection();
+				String sql = "call livethemusic.add_user(?, ?, ?, ?,?, ?);\r\n"; 
+				try (PreparedStatement stm = con.prepareStatement(sql)) {
+					stm.setString(1, username);
+					stm.setString(2, firstName);
+					stm.setString(3, lastName);
+					stm.setString(4, email);
+					stm.setString(5, password);
+					stm.setString(6, profilePicture);
+					stm.executeUpdate();
 				}
 				return true;
 			}
-		});
+		}) != null);
     }
     
     public boolean isFollowing(String username, String artistId) {
@@ -140,26 +139,33 @@ public class UserDao extends DaoTemplate {
 	}
 	
 	private List<User> queryDatabase(String string, String caller, String operation){
-		return this.execute(new DaoAction<List<User>>() {
+		List <User> ret = this.execute(new DaoAction<List<User>>() {
 			@Override
 			public List<User> execute() throws ClassNotFoundException, SQLException {
 				List<User> l = new ArrayList<>();
 				Connection conn = DBUserConnection.getUserConnection();
 				PreparedStatement stm = null;
 				try {
-					if(operation.equals(SEARCHUSER)) {
-						String sql = "call livethemusic.search_user(?, ?);\r\n";
+					String sql;
+					switch (operation) {
+					case SEARCHUSER:
+						sql = "call livethemusic.search_user(?, ?);\r\n";
 						stm = conn.prepareStatement(sql);
 						stm.setString(1, string);
 						stm.setString(2, caller);
-					} else if(operation.equals(VIEWFRIENDS)) {
-						String sql = "call livethemusic.view_friends(?);\r\n"; 
+						break;
+					case VIEWFRIENDS:
+						sql = "call livethemusic.view_friends(?);\r\n"; 
 						stm = conn.prepareStatement(sql);
 						stm.setString(1, string);
-					} else {
-						String sql = "call livethemusic.view_friend_requests(?);\r\n"; 
+						break;
+					case VIEWFRIENDSREQUESTS:
+						sql = "call livethemusic.view_friend_requests(?);\r\n"; 
 						stm = conn.prepareStatement(sql);
 						stm.setString(1, string);
+						break;
+					default:
+						return null;
 					}
 					try (ResultSet rs = stm.executeQuery()) {
 						if (!rs.first()) // rs not empty
@@ -185,11 +191,16 @@ public class UserDao extends DaoTemplate {
 				}
 			}
 		});
+		if (ret != null) {
+			return ret;
+		} else {
+			return Collections.emptyList();
+		}
 	}
 	
 	
 	private Boolean isQueryDataBase(String user, String target, String operation) {
-		return this.execute(new DaoAction<Boolean>() {
+		Boolean ret = this.execute(new DaoAction<Boolean>() {
 			@Override
 			public Boolean execute() throws ClassNotFoundException, SQLException {
 				String sql = null;
@@ -210,5 +221,10 @@ public class UserDao extends DaoTemplate {
 				}
 			}
 		});
+		if (ret != null) {
+			return ret;	
+		} else {
+			return false;
+		}
 	}
 }
