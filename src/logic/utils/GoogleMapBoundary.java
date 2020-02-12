@@ -14,7 +14,7 @@ import org.json.simple.parser.*;
 
 public class GoogleMapBoundary {
 	
-	private static final String GOOGLEAPI = "";
+	private static final String GOOGLEAPI = "AIzaSyCwCl0AlDzqfQOwJQcaok76MR-T8KWQgDw";
 	
 	private GoogleMapBoundary(){
 		

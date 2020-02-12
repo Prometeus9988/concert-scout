@@ -18,6 +18,10 @@ public abstract class Controller {
 		meb.setLocation(me.getLocation());
 		meb.setBandName(me.getBandName());
 		meb.setTicketone(me.getTicketone());
+		
+		meb.setLatitude(me.getCoordinates().get(0));
+		meb.setLongitude(me.getCoordinates().get(1));
+		
 		return meb;
 	}
 	
@@ -25,14 +29,7 @@ public abstract class Controller {
 		List<MusicEventBean> lb = new ArrayList<>();
 		for(int i = 0; i < l.size(); i++) {
 			MusicEvent me = l.get(i);
-			MusicEventBean meb = new MusicEventBean();
-			meb.setId(me.getId());
-			meb.setArtistId(me.getArtistId());
-			meb.setName(me.getName());
-			meb.setCoverPath(me.getCoverPath());
-			meb.setLocation(me.getLocation());
-			meb.setBandName(me.getBandName());
-			meb.setTicketone(me.getTicketone());
+			MusicEventBean meb = this.convert(me);
 			lb.add(meb);
 		}
 		

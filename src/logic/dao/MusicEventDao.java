@@ -264,6 +264,7 @@ public class MusicEventDao extends DaoTemplate {
         		coverPath = DEFAULTPICTURE;
         	}
         	MusicEvent temp = new MusicEvent(id, artistUsername, name, coverPath, location, bandName, ticketone);
+        	temp.setCoordinates(coordinates);
         	
         	if(type.equals(AROUNDYOU)) {
         		double distance = rs.getDouble(DISTANCE);
