@@ -11,7 +11,8 @@ import logic.entity.GeneralUser;
 public class LoginController {
 
 	public GeneralUserBean login(GeneralUserBean userBean) {
-		GeneralUser result = GeneralUserDao.findUser(userBean.getUsername(), userBean.getPassword());
+		GeneralUserDao gud = new GeneralUserDao();
+		GeneralUser result = gud.findUser(userBean.getUsername(), userBean.getPassword());
 		if (result == null)	{
 			return null;
 		} else {
