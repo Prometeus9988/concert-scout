@@ -21,6 +21,7 @@ import logic.buyticket.BuyTicketController;
 public class SearchServlet extends HttpServlet{
 	private static final Logger logger = Logger.getLogger(SearchServlet.class.getName());
 	private static final long serialVersionUID = 102831973239L;
+	private static final String SEARCHSTRING = "searchString";
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -33,18 +34,18 @@ public class SearchServlet extends HttpServlet{
 		List<ArtistBean> artists = null;
 		session.setAttribute("origin", "SearchServlet");
 		
-		String searchString = request.getParameter("searchString");
+		String searchString = request.getParameter(SEARCHSTRING);
 		
 		if(searchString == null) {
-			searchString = (String) request.getAttribute("searchString");
+			searchString = (String) request.getAttribute(SEARCHSTRING);
 		}
 		
-		request.setAttribute("searchString", searchString);
+		request.setAttribute(SEARCHSTRING, searchString);
 		
 		musicEvents = btc.getSearchMusicEvent(searchString);
 		artists = btc.getSearchArtist(searchString);
 		
-		session.setAttribute("searchString", searchString);
+		session.setAttribute(SEARCHSTRING, searchString);
 
 		session.setAttribute("musicEventList", musicEvents);
 		session.setAttribute("artistList", artists);

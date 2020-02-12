@@ -40,7 +40,7 @@ public class AroundYouServlet extends HttpServlet{
 			latitude = Double.parseDouble(request.getParameter("latitude"));
 			longitude = Double.parseDouble(request.getParameter("longitude"));
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.log(Level.WARNING, e.toString());
 		}
 		
 		int radius = DEFAULTRADIUS;
@@ -48,7 +48,11 @@ public class AroundYouServlet extends HttpServlet{
 		String radiusString = request.getParameter("slider");
 		
 		if(radiusString != null) {
+			try {
 			radius = Integer.parseInt(radiusString);
+			} catch (Exception e) {
+				logger.log(Level.WARNING, e.toString());
+			}
 			request.setAttribute("DEFAULTRADIUS", radiusString);
 		} else {
 			request.setAttribute("DEFAULTRADIUS", DEFAULTRADIUS + "");
