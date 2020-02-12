@@ -28,6 +28,10 @@ public class AddMusicEventController extends Controller{
 		Date currentDate = new Date();
 		List<Double> coordinates = null;
 		
+		if(meb.getName().equals("") || meb.getLocation().equals("")) {
+			return false;
+		}
+		
 		try {
 			coordinates = GoogleMapBoundary.locateAddress(meb.getLocation());
 		} catch (IOException e) {

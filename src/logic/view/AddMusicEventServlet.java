@@ -69,7 +69,6 @@ public class AddMusicEventServlet extends HttpServlet{
 		meb.setTicketone(ticketone);
 		meb.setDate(date);
 		
-		//TODO check if all the parameters are not null except for the picture wich is optional
 			result = controller.addMusicEvent(meb);
 			if(result) {
 				res = "added";
