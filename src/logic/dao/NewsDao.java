@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -57,7 +57,7 @@ public class NewsDao extends DaoTemplate {
 							int id = rs.getInt("id");
             	
 							//Conversion from timestamp to LocalDateTime used by the system
-							LocalDateTime dateTime = LocalDateTime.ofInstant(timestamp.toInstant(), ZoneOffset.ofHours(0));
+							LocalDateTime dateTime = LocalDateTime.ofInstant(timestamp.toInstant(), ZoneId.systemDefault());
             	
 							if(picturePath == null) {
 								picturePath = "";
