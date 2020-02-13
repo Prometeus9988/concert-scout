@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import javafx.scene.control.ComboBox;
 
@@ -20,7 +22,6 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import javafx.stage.Stage;
 import java.io.FileInputStream;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
 public class LoginViewController {
@@ -52,6 +53,10 @@ public class LoginViewController {
 	@FXML
 	private Label imageLabel;
 	
+	private static final String ARTIST  = "Artist";
+	private static final String USER = "User";
+	
+	private static final Logger logger = Logger.getLogger(LoginViewController.class.getName());
 	
 	private File imageFile=null;
 	
@@ -100,11 +105,9 @@ public class LoginViewController {
     			break;
     		case "admin":
     			//set admin controller
-    			//DUMP
-    			/*loader=new FXMLLoader(getClass().getResource("AdminHomepage.fxml"));
-    			this.usernameTextField.getScene().setRoot(loader.load());*/
     			AdminGraphicChange.getInstance().toHomepage(this.usernameTextField.getScene());
-    			//ArtistGraphicChange.getInstance().toHomepage(this.usernameTextField.getScene());
+    			break;
+    		default:
     			break;
     		}
     		
@@ -143,7 +146,7 @@ public class LoginViewController {
 		}
 		
 		
-		if(userType.equals("User")) {
+		if(userType.equals(USER)) {
 			String firstName=this.firstNameField.getText();
 			String lastName=this.lastNameField.getText();
 			UserBean u = new UserBean();
@@ -154,7 +157,7 @@ public class LoginViewController {
 			u.setSurname(lastName);
 			u.setProfilePicture(newFileName);
 			regResult = controller.createUser(u);	
-		}else if(userType.contentEquals("Artist")) {
+		}else if(userType.contentEquals(ARTIST)) {
 			String bandName=this.bandNameField.getText();
 			ArtistBean a = new ArtistBean();
 			a.setUsername(username);
@@ -177,9 +180,12 @@ public class LoginViewController {
 			    try (InputStream input = new FileInputStream(this.imageFile)) {
 			    		Files.copy(input, file.toPath());
 			    } catch (Exception e) {
-			    	e.printStackTrace();
+			    	logger.log(Level.WARNING, e.toString());
 			    }
-			    file.renameTo(newFile);
+			    
+			    if(!file.renameTo(newFile)) {
+			    	logger.log(Level.WARNING, "Unable to rename: {0}", fileName);
+			    }
 			}
 		}
 		else {
@@ -199,24 +205,23 @@ public class LoginViewController {
 	
 	
 	public void init() { 
-		String[] kinds= {"User","Artist"};
+		String[] kinds= {USER,ARTIST};
 		this.typeOfUserField.setItems(FXCollections.observableArrayList(kinds));
 		this.typeOfUserField.getSelectionModel().selectFirst();
-		this.typeOfUserField.valueProperty().addListener(new ChangeListener<String>() {	
-			public void changed(ObservableValue<? extends String> composant,String oldValue,String newValue ) {
-					if(newValue.equals("User")) {
-						bandNameField.setDisable(true);
-						firstNameField.setDisable(false);
-						lastNameField.setDisable(false);
-						bandNameField.setText(null);
-					}else if(newValue.equals("Artist")) {
-						bandNameField.setDisable(false);
-						firstNameField.setDisable(true);
-						lastNameField.setDisable(true);
-						firstNameField.setText(null);
-						lastNameField.setText(null);
-					}
-				}
+		this.typeOfUserField.valueProperty().addListener(
+				(ObservableValue<? extends String> composant, String oldValue, String newValue) -> {
+			if (newValue.equals(USER)) {
+				bandNameField.setDisable(true);
+				firstNameField.setDisable(false);
+				lastNameField.setDisable(false);
+				bandNameField.setText(null);
+			} else if (newValue.equals(ARTIST)) {
+				bandNameField.setDisable(false);
+				firstNameField.setDisable(true);
+				lastNameField.setDisable(true);
+				firstNameField.setText(null);
+				lastNameField.setText(null);
+			}
 		});
 		this.bandNameField.setDisable(true);
 	}
