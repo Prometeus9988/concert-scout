@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="2116.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane prefHeight="800.0" prefWidth="204.0">
+         <items>
+            <AnchorPane prefHeight="835.0" prefWidth="202.0">
+               <children>
+                  <VBox fx:id="menuBar" prefHeight="834.0" prefWidth="202.0" AnchorPane.bottomAnchor="-36.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children></AnchorPane>
+         </items>
+      </SplitPane>
+      <SplitPane layoutX="204.0" prefHeight="800.0" prefWidth="1169.0" style="-fx-background-color: #F5EDF0;">
+         <items>
+            <AnchorPane prefHeight="841.0" prefWidth="2000.0">
+               <children>
+                  <ImageView fx:id="profileImage" fitHeight="350.0" fitWidth="1898.0" pickOnBounds="true" />
+                  <AnchorPane fx:id="backButton" layoutX="14.0" layoutY="333.0" prefHeight="34.0" prefWidth="1591.0" />
+                  <VBox fx:id="verPane" layoutX="14.0" layoutY="367.0" prefHeight="334.0" prefWidth="960.0">
+                     <children>
+                        <VBox fx:id="evParent" prefHeight="334.0" prefWidth="1231.0" spacing="10.0">
+                           <children>
+                              <VBox prefHeight="194.0" prefWidth="1607.0">
+                                 <children>
+                                    <Label fx:id="username" prefHeight="16.0" prefWidth="1144.0" text="username">
+                                       <font>
+                                          <Font size="33.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="usrName" prefHeight="30.0" prefWidth="1160.0" text="name surname">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox fx:id="btnAnchor" prefHeight="35.0" prefWidth="1366.0" spacing="20.0" />
+                                    <Label fx:id="isGoing" prefHeight="25.0" prefWidth="1146.0" text="is going to">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <HBox fx:id="evAnchor" prefHeight="143.0" prefWidth="1241.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
