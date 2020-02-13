@@ -7,12 +7,17 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import logic.dao.NewsDao;
 import logic.readnews.ReadNewsController;
+import logic.addmusicevent.AddMusicEventController;
 import logic.bean.NewsBean;
 
 public class AddNewsController {
+	private static final Logger logger = Logger.getLogger(AddNewsController.class.getName());
+	
 	public boolean addNews(NewsBean nb) {
 		NewsDao nd = new NewsDao();
 		
@@ -42,7 +47,7 @@ public class AddNewsController {
 				Files.delete(path);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.log(Level.WARNING, e.toString());
 		} finally {
 			NewsDao nd = new NewsDao();
 			nd.manageNews(nb.getId(), NewsDao.REJECT);
