@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 
 import logic.dao.NewsDao;
 import logic.readnews.ReadNewsController;
-import logic.addmusicevent.AddMusicEventController;
 import logic.bean.NewsBean;
 
 public class AddNewsController {
