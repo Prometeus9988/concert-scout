@@ -28,12 +28,13 @@ public class BackUserController implements BackController{
 		//from my friends
 		else if(this.from.equals("friends")) {
 			if(this.searchString.equals("")) {
+				//go to friends section
 				this.grCtrl.toFriendsSection(this.buttonBack.getScene());
 			}else {
 				//go to search user
+				this.grCtrl.toSearchUsr(this.buttonBack.getScene(), searchString);
 			}
 		}
-		//from search friends
 		
 		//from my events
 		else if(this.from.equals("myEvents")) {

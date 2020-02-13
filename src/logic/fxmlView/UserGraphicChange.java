@@ -258,4 +258,26 @@ public class UserGraphicChange {
 			logger.log(Level.WARNING, e.toString());
 		}
 	}
+	
+	public void toUserDetails(Scene scene,UserBean ub,String from,String searchString) {
+		try {
+			UserDetailsController controller=new UserDetailsController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("UserDetails.fxml"));
+			loader.setController(controller);
+			scene.setRoot(loader.load());
+			controller.init(ub, from, searchString);
+		}catch(IOException e) {
+			logger.log(Level.WARNING, e.toString());
+		}
+	}
+	
+	/*public void userDetButtons(AnchorPane anchor,UserBean target,boolean isFriend,String who){
+		try {
+			
+			
+			
+		}catch(IOException e){
+			logger.log(Level.WARNING, e.toString());
+		}
+	}*/
 }

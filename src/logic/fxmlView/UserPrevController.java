@@ -17,16 +17,21 @@ public class UserPrevController {
 	private Button usrBtn;
 	
 	private UserBean myUser;
+	private String from;
+	private String searchString;
 	
 	private UserGraphicChange ucg;
 	
 	@FXML
 	public void openUser(ActionEvent e) {
 		//DUMP
-		System.out.println("Open User details");
+		this.ucg.toUserDetails(this.imageBtn.getScene(), this.myUser, this.from, this.searchString);
 	}
 	
 	public void init(UserBean ub,String from,String searchString) {
+		
+		this.from=from;
+		this.searchString=searchString;
 		
 		this.ucg=UserGraphicChange.getInstance();
 		this.myUser=ub;
