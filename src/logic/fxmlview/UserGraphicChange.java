@@ -15,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import logic.bean.NewsBean;
 import logic.bean.UserBean;
 
-public class UserGraphicChange {
+public class UserGraphicChange{
 	
 	private static UserGraphicChange myInstance=null;
 	private static final Logger logger = Logger.getLogger(UserGraphicChange.class.getName());
