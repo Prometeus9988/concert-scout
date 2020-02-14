@@ -136,7 +136,7 @@ public class UserDetailsController {
 				String path=System.getProperty("user.home")+ File.separator
 						+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
 						+ "trunk" + File.separator + "WebContent" + File.separator
-						+ "img" + File.separator + "concertPictures"+File.separator+ub.getProfilePicture();
+						+ "img" + File.separator + "profilePictures"+File.separator+ub.getProfilePicture();
 				
 				File file = new File(path);
 				Image image = new Image(file.toURI().toString());
