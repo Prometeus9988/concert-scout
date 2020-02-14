@@ -23,11 +23,7 @@ public class MenuBarController {
 	private Button logoutButton;
 	
 	private UserGraphicChange ugc;
-	
-	
-	public MenuBarController() {}
-	
-	
+
 	public void init(String selected) {
 		
 		this.ugc=UserGraphicChange.getInstance();
@@ -53,7 +49,8 @@ public class MenuBarController {
 			case "myEvents":
 				this.myEventsButton.setStyle(style);
 				break;
-		
+			default:
+				break;
 		}
 		
 	}
