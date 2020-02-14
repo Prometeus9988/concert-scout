@@ -7,11 +7,9 @@ import com.lynden.gmapsfx.javascript.object.MapOptions;
 import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
 import com.lynden.gmapsfx.javascript.object.Marker;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
+import logic.utils.GoogleMapBoundary;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
 
@@ -25,12 +23,9 @@ public class MapController {
 
     @FXML
     private GoogleMapView googleMapView;
-
-    private GoogleMap map;
-
     
     public void init(double latitude,double longitude) {
-    	googleMapView.setKey("AIzaSyCMLtyoLFQYnuPqYXt_mpFHXt9L_kMefc4");
+    	googleMapView.setKey(GoogleMapBoundary.getAPI());
     	googleMapView.addMapInializedListener(() -> configureMap(latitude,longitude));
         
     }
@@ -45,7 +40,7 @@ public class MapController {
         mapOptions.center(location)
                 .mapType(MapTypeIdEnum.ROADMAP)
                 .zoom(9);
-        map = googleMapView.createMap(mapOptions, false);
+        GoogleMap map = googleMapView.createMap(mapOptions, false);
 
         //Create marker of the position
         MarkerOptions markerOptions1 = new MarkerOptions();

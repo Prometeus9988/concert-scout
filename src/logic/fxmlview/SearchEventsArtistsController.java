@@ -11,7 +11,7 @@ import logic.bean.ArtistBean;
 import logic.bean.MusicEventBean;
 
 public class SearchEventsArtistsController {
-	
+
 	@FXML
 	private VBox menuBar;
 	@FXML
@@ -24,58 +24,46 @@ public class SearchEventsArtistsController {
 	private HBox evRow;
 	@FXML
 	private VBox evCol;
-	
-	private String mySearchString;
-	
-	private UserGraphicChange ugc;
-	
+
 	public void init(String searchString){
-		
-		this.ugc=UserGraphicChange.getInstance();
-		
+
+		UserGraphicChange ugc = UserGraphicChange.getInstance();
+
 		//menuBar		
-		this.ugc.menuBar(this.menuBar, "home");
-		
+		ugc.menuBar(this.menuBar, "home");
+
 		//name bar
-		this.mySearchString=searchString;
-		this.searchStringLabel.setText("\""+this.mySearchString+"\"");
-		
-		
+		this.searchStringLabel.setText("\"" + searchString + "\"");
+
 		//scrollPane
-		ScrollPane artScrollPane=new ScrollPane(this.artRow);
+		ScrollPane artScrollPane = new ScrollPane(this.artRow);
 		artScrollPane.setFitToHeight(true);
 		this.artCol.getChildren().add(artScrollPane);
-		
-		ScrollPane evScrollPane=new ScrollPane(this.evRow);
+
+		ScrollPane evScrollPane = new ScrollPane(this.evRow);
 		evScrollPane.setFitToHeight(true);
 		this.evCol.getChildren().add(evScrollPane);
-		
-		
+
 		artScrollPane.setStyle("-fx-background-color: transparent; -fx-background:  #F5EDF0");
 		evScrollPane.setStyle("-fx-background-color:  transparent;-fx-background:  #F5EDF0");
-		
+
 		//searched lists
 		BuyTicketController btc = new BuyTicketController();
-		List<MusicEventBean> musicEvents=null;
-		musicEvents=btc.getSearchMusicEvent(this.mySearchString);
-		List<ArtistBean> artists=null;
-		artists=btc.getSearchArtist(this.mySearchString);
-		
-		
+		List<MusicEventBean> musicEvents = null;
+		musicEvents = btc.getSearchMusicEvent(searchString);
+		List<ArtistBean> artists = null;
+		artists = btc.getSearchArtist(searchString);
+
 		int i;
-		
-		for(i=0;i<musicEvents.size();i++) {
-			this.ugc.eventPreview(this.evRow,musicEvents.get(i),"home",this.mySearchString);
-			System.out.println(musicEvents.get(i).getTicketone());
+
+		for(i = 0; i < musicEvents.size(); i++) {
+			ugc.eventPreview(this.evRow, musicEvents.get(i), "home", searchString);
 		}
-		
-		for(i=0;i<artists.size();i++) {
-			this.ugc.artistPreview(this.artRow,artists.get(i),"home",this.mySearchString);
+
+		for(i = 0; i < artists.size(); i++) {
+			ugc.artistPreview(this.artRow, artists.get(i), "home", searchString);
 		}
-		
-		
-		
+
 	}
-	
 
 }
