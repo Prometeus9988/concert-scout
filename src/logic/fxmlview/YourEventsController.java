@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class YourEventsController {
-	
+
 	@FXML
 	private VBox menuBar;
 	@FXML
@@ -29,49 +29,47 @@ public class YourEventsController {
 	private VBox col4;
 	@FXML
 	private VBox col5;
-	
-	private UserGraphicChange ugc;
-	
+
 	public void init() {
-		
+
 		//LIST
-		List<VBox> columns=new ArrayList<>();
+		List<VBox> columns = new ArrayList<>();
 		columns.add(this.col1);
 		columns.add(this.col2);
 		columns.add(this.col3);
 		columns.add(this.col4);
 		columns.add(this.col5);
-		
-		
+
 		//init UGC
-		this.ugc=UserGraphicChange.getInstance();
+		UserGraphicChange ugc = UserGraphicChange.getInstance();
 		
 		//init menubar
-		this.ugc.menuBar(this.menuBar, "myEvents");
-		
+		ugc.menuBar(this.menuBar, "myEvents");
+
 		//scrollPane
-		
-		ScrollPane scroll=new ScrollPane(this.scrPane);
+
+		ScrollPane scroll = new ScrollPane(this.scrPane);
 		scroll.setFitToWidth(true);
 		this.secRoot.getChildren().add(scroll);
-		
+
 		scroll.setStyle("-fx-background-color: transparent; -fx-background:  #F5EDF0");
-		
+
 		//init controller
-		UserEventsController ec=new UserEventsController();
-		
-		GeneralUserBean gu=SessionUser.getInstance().getSession();
-		
-		List<MusicEventBean> musicEventList= ec.getUserEvents(gu.getUsername());
-		
-		int i,j;
-		j=0;
-		for(i=0;i<musicEventList.size();i++) {
-			
-			this.ugc.eventPreviewMyEvents(columns.get(j), musicEventList.get(i), "myEvents", "");
-			j=(j+1)%5;
+		UserEventsController ec = new UserEventsController();
+
+		GeneralUserBean gu = SessionUser.getInstance().getSession();
+
+		List<MusicEventBean> musicEventList = ec.getUserEvents(gu.getUsername());
+
+		int i;
+		int j = 0;
+
+		for(i = 0; i < musicEventList.size(); i++) {
+
+			ugc.eventPreviewMyEvents(columns.get(j), musicEventList.get(i), "myEvents", "");
+			j = (j + 1) % 5;
 		}
-		
+
 	}
 
 }

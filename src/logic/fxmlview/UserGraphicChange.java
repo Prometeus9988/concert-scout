@@ -270,14 +270,5 @@ public class UserGraphicChange {
 			logger.log(Level.WARNING, e.toString());
 		}
 	}
-	
-	/*public void userDetButtons(AnchorPane anchor,UserBean target,boolean isFriend,String who){
-		try {
-			
-			
-			
-		}catch(IOException e){
-			logger.log(Level.WARNING, e.toString());
-		}
-	}*/
+
 }
