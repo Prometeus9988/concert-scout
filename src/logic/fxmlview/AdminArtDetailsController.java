@@ -2,27 +2,11 @@ package logic.fxmlview;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import java.io.File;
 import logic.bean.ArtistBean;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.Button;
 
 public class AdminArtDetailsController extends ArtDetailsController{
-	
-	@FXML
-	private VBox menuBar;
-	@FXML 
-	private ImageView profileImage;
-	@FXML
-	private AnchorPane backButton;
-	@FXML
-	private Label artName;
-	@FXML 
-	private Button followBtn;
 	
 	@FXML
 	@Override
