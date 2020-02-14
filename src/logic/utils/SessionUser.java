@@ -5,13 +5,13 @@ import logic.bean.*;
 public class SessionUser {
 	
 	private GeneralUserBean userSession=null;
-	static private SessionUser myInstance=null;
+	private static SessionUser myInstance=null;
 	
 	private SessionUser() {
 		
 	}
 	
-	static public SessionUser getInstance() {
+	public static SessionUser getInstance() {
 		if(myInstance==null) {
 			myInstance=new SessionUser();
 		}

@@ -7,7 +7,6 @@ public class User extends GeneralUser{
 
 	public User(String username, String password, String name,
 			String surname, String profilePicture) {
-		// TODO remove me?
 		this.username = username;
 		this.password = password;
 		this.name = name;

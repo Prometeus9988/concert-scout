@@ -27,7 +27,6 @@ public class SearchUserServlet extends HttpServlet{
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = null;
-		// TODO rework controllerCreator logic
 		FriendsController fc = new FriendsController();
 		String ss = "searchString";
 

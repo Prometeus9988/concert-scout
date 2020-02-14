@@ -10,8 +10,6 @@ import logic.entity.User;
 
 public class FriendsController {
 	
-	// TODO maybe split this controller
-	
 	public List<UserBean> getFriends(String username){
 		UserDao ud = new UserDao();
 		List<User> l = ud.getFriends(username);
@@ -57,7 +55,6 @@ public class FriendsController {
 	}
 	
 	public String whoSentRequest(GeneralUserBean gb, UserBean ub) {
-		// TODO check this
 		UserDao ud = new UserDao();
 		String user = gb.getUsername();
 		String target = ub.getUsername();

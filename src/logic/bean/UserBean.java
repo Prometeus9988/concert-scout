@@ -1,7 +1,7 @@
 package logic.bean;
 
 public class UserBean extends GeneralUserBean{
-	// TODO check this
+
 	private static final long serialVersionUID = 42L;
 	private String name;
 	private String surname;
