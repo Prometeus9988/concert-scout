@@ -2,16 +2,11 @@ package logic.fxmlview;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Label;
 
 import logic.utils.SessionUser;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
-import logic.bean.ArtistBean;
-import logic.bean.GeneralUserBean;
-import logic.bean.MusicEventBean;
-import logic.buyticket.*;
 import java.util.List;
 import logic.friends.*;
 import logic.bean.UserBean;
@@ -32,12 +27,13 @@ public class FriendsSectionController {
 	@FXML
 	private HBox requestsRow;
 	
+	private static final String FRIENDS = "friends";
 	
 	public void init() {
 		
 		//set menubar
 		UserGraphicChange ugc=UserGraphicChange.getInstance();
-		ugc.menuBar(this.menuBar,"friends");
+		ugc.menuBar(this.menuBar, FRIENDS);
 		
 		//set searchBar
 		ugc.searchBar(this.searchBar,2);
@@ -63,11 +59,11 @@ public class FriendsSectionController {
 		
 		int i;
 		for(i=0;i<friend.size();i++) {
-			ugc.userPrev(this.friendsRow, friend.get(i), "friends", "");
+			ugc.userPrev(this.friendsRow, friend.get(i), FRIENDS, "");
 		}
 		
 		for(i=0;i<requests.size();i++) {
-			ugc.userPrev(this.requestsRow, requests.get(i),"friends","");
+			ugc.userPrev(this.requestsRow, requests.get(i), FRIENDS,"");
 		}
 		
 	}
