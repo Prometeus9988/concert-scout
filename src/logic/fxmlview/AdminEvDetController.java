@@ -2,6 +2,7 @@ package logic.fxmlview;
 
 import java.io.File;
 import logic.bean.MusicEventBean;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 
 public class AdminEvDetController extends EvDetailsController {
@@ -36,6 +37,13 @@ public class AdminEvDetController extends EvDetailsController {
 		this.profileImage.setImage(image);
 		this.profileImage.setFitHeight(400);
 		this.profileImage.setFitWidth(1200);
+		
+		//INIT SCROLL AND MAP
+		ScrollPane scrollBar=new ScrollPane(scroll);
+		scrollBar.setFitToHeight(true);
+		scrollParent.getChildren().add(scrollBar);
+		scrollBar.setStyle("-fx-background-color: transparent; -fx-background:  #F5EDF0");
+		agc.addMap(map,myEvent.getLatitude(),myEvent.getLongitude());
 				
 	}
 }

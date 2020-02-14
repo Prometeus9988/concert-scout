@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import logic.bean.NewsBean;
 
-public class AdminGraphicChange{
+public class AdminGraphicChange {
 	
 	private static AdminGraphicChange myInstance = null;
 	private static final Logger logger=Logger.getLogger(AdminGraphicChange.class.getName());
@@ -159,6 +159,18 @@ public class AdminGraphicChange{
 			controller.init(nb);
 		}catch(IOException e) {
 			logger.log(Level.WARNING,e.toString());
+		}
+	}
+	
+	public void addMap(AnchorPane pane, double latitude,double longitude) {
+		try{
+			MapController controller=new MapController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("Map.fxml"));
+			loader.setController(controller);
+			pane.getChildren().add(loader.load());
+			controller.init(latitude,longitude); 
+		}catch(IOException e) {   
+			logger.log(Level.WARNING, e.toString());
 		}
 	}
 	

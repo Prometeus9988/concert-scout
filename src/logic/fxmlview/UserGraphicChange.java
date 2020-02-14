@@ -15,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import logic.bean.NewsBean;
 import logic.bean.UserBean;
 
-public class UserGraphicChange{
+public class UserGraphicChange {
 	
 	private static UserGraphicChange myInstance=null;
 	private static final Logger logger = Logger.getLogger(UserGraphicChange.class.getName());
@@ -270,5 +270,26 @@ public class UserGraphicChange{
 			logger.log(Level.WARNING, e.toString());
 		}
 	}
-
+	
+	/*public void userDetButtons(AnchorPane anchor,UserBean target,boolean isFriend,String who){
+		try {
+			
+			
+			
+		}catch(IOException e){
+			logger.log(Level.WARNING, e.toString());
+		}
+	}*/
+	
+	public void addMap(AnchorPane pane, double latitude,double longitude) {
+		try{
+			MapController controller=new MapController();
+			FXMLLoader loader=new FXMLLoader(getClass().getResource("Map.fxml"));
+			loader.setController(controller);
+			pane.getChildren().add(loader.load());
+			controller.init(latitude,longitude); 
+		}catch(IOException e) {   
+			logger.log(Level.WARNING, e.toString());
+		}
+	}
 }

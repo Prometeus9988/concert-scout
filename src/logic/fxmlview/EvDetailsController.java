@@ -24,6 +24,12 @@ public abstract class EvDetailsController {
 	protected Label arName;
 	@FXML
 	protected HBox buttons;
+	@FXML
+	protected VBox scrollParent;
+	@FXML
+	protected VBox scroll;
+	@FXML
+	protected AnchorPane map;
 	
 	public abstract void init(MusicEventBean myEvent, String from, String searchString);
 
