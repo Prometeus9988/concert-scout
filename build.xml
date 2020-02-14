@@ -5,15 +5,19 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="LIVEtheMUSIC">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../../eclipse/jee-2019-12/eclipse/"/>
+    <property name="ECLIPSE_HOME" value="../../../eclipse/java-2019-09/eclipse/"/>
+    <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
     <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/json-simple-1.1.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-5.1.48-bin.jar"/>
     </path>
     <path id="EAR Libraries.libraryclasspath"/>
-    <path id="Persisted container [org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER for project [LIVEtheMUSIC]].libraryclasspath"/>
+    <path id="JavaFX SDK.libraryclasspath">
+        <pathelement location="../../../.p2/pool/plugins/org.eclipse.fx.ide.css.jfx8_3.3.0.201805280700.jar"/>
+    </path>
     <path id="Server Library [Apache Tomcat v8.5] (unbound).libraryclasspath"/>
     <path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/annotations-api.jar"/>
@@ -29,6 +33,7 @@
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/jasper.jar"/>
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/jaspic-api.jar"/>
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/jsp-api.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/mysql-connector-java-5.1.48-bin.jar"/>
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/servlet-api.jar"/>
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-api.jar"/>
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-coyote.jar"/>
@@ -49,20 +54,41 @@
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-websocket.jar"/>
         <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/websocket-api.jar"/>
     </path>
+    <path id="JUnit 5.libraryclasspath">
+        <pathelement location="../../../.p2/pool/plugins/org.junit.jupiter.api_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../../.p2/pool/plugins/org.junit.jupiter.engine_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../../.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../../.p2/pool/plugins/org.junit.jupiter.params_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../../.p2/pool/plugins/org.junit.platform.commons_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../../.p2/pool/plugins/org.junit.platform.engine_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../../.p2/pool/plugins/org.junit.platform.launcher_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../../.p2/pool/plugins/org.junit.platform.runner_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../../.p2/pool/plugins/org.junit.platform.suite.api_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../../.p2/pool/plugins/org.junit.vintage.engine_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="../../../.p2/pool/plugins/org.opentest4j_1.2.0.v20190826-0900.jar"/>
+        <pathelement location="../../../.p2/pool/plugins/org.apiguardian_1.1.0.v20190826-0900.jar"/>
+        <pathelement location="../../../.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+        <pathelement location="../../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+    </path>
     <path id="LIVEtheMUSIC.classpath">
         <pathelement location="bin"/>
         <path refid="Web App Libraries.libraryclasspath"/>
         <path refid="EAR Libraries.libraryclasspath"/>
-        <path refid="Persisted container [org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER for project [LIVEtheMUSIC]].libraryclasspath"/>
+        <path refid="JavaFX SDK.libraryclasspath"/>
         <path refid="Server Library [Apache Tomcat v8.5] (unbound).libraryclasspath"/>
         <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
         <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-5.1.48-bin.jar"/>
         <pathelement location="lib/mysql-connector-java-5.1.48-bin.jar"/>
+        <pathelement location="lib/json-simple-1.1.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/json-simple-1.1.1.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.xtend"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -94,9 +120,31 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="App">
+    <target name="App (3)">
         <java classname="logic.fxmlView.App" failonerror="true" fork="yes">
             <classpath refid="LIVEtheMUSIC.classpath"/>
         </java>
+    </target>
+    <target name="App (4)">
+        <java classname="logic.fxmlview.App" failonerror="true" fork="yes">
+            <classpath refid="LIVEtheMUSIC.classpath"/>
+        </java>
+    </target>
+    <target name="LIVEtheMUSIC (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestFriendController" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="LIVEtheMUSIC.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
     </target>
 </project>
