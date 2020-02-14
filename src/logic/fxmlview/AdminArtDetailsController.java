@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 
-public class AdminArtDetailsController {
+public class AdminArtDetailsController extends ArtDetailsController{
 	
 	@FXML
 	private VBox menuBar;
@@ -25,10 +25,12 @@ public class AdminArtDetailsController {
 	private Button followBtn;
 	
 	@FXML
+	@Override
 	public void followAction(ActionEvent ev) {
 		//Not used for the admin
 	}
 	
+	@Override
 	public void init(ArtistBean ar,String from,String searchString) {
 		ArtistBean myArtist;
 		AdminGraphicChange ucg;

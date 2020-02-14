@@ -17,15 +17,15 @@ import logic.bean.GeneralUserBean;
 public class ArtDetailsController {
 	
 	@FXML
-	private VBox menuBar;
+	protected VBox menuBar;
 	@FXML 
-	private ImageView profileImage;
+	protected ImageView profileImage;
 	@FXML
-	private AnchorPane backButton;
+	protected AnchorPane backButton;
 	@FXML
-	private Label artName;
+	protected Label artName;
 	@FXML 
-	private Button followBtn;
+	protected Button followBtn;
 	
 	private  ArtistBean myArtist;
 	
