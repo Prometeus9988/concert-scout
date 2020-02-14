@@ -25,7 +25,7 @@ public class NewsDao extends DaoTemplate {
 	public List<News> getNews(String username, String role){
 		List <News> ret = this.execute(new DaoAction<List<News>>() {
 			@Override
-			public List<News> execute() throws ClassNotFoundException, SQLException {
+			public List<News> act() throws ClassNotFoundException, SQLException {
 				Connection conn = null;
 				String sql = null;
 				PreparedStatement stm = null;
@@ -85,7 +85,7 @@ public class NewsDao extends DaoTemplate {
 	public Boolean addNews(String text, String picturePath, String artistId, LocalDateTime current) {
 		return (this.execute(new DaoAction<Boolean>() {
 			@Override
-			public Boolean execute() throws ClassNotFoundException, SQLException {
+			public Boolean act() throws ClassNotFoundException, SQLException {
 				Connection conn = DBArtistConnection.getArtistConnection();
 			
 				Timestamp timestamp = Timestamp.valueOf(current);
@@ -105,7 +105,7 @@ public class NewsDao extends DaoTemplate {
 	public void manageNews(int id, String action) {
 		this.execute(new DaoAction<Void>() {
 			@Override
-			public Void execute() throws ClassNotFoundException, SQLException {
+			public Void act() throws ClassNotFoundException, SQLException {
 				Connection conn = DBAdminConnection.getAdminConnection();
 				String sql = null;
 				if(action.equals(ACCEPT)) {

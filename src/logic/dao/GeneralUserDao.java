@@ -9,7 +9,7 @@ public class GeneralUserDao extends DaoTemplate{
 	public GeneralUser findUser(String username, String password) {
 		return this.execute(new DaoAction<GeneralUser>() {
 			@Override
-			public GeneralUser execute() throws ClassNotFoundException, SQLException {
+			public GeneralUser act() throws ClassNotFoundException, SQLException {
 				Connection conn = null;
 				GeneralUser u = null;
 				conn = DBLoginConnection.getLoginConnection();

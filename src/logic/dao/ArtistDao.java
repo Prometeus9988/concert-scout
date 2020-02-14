@@ -33,7 +33,7 @@ public class ArtistDao extends DaoTemplate {
 	public Artist getArtist(String username) {
 		return this.execute(new DaoAction<Artist>() {
 			@Override
-			public Artist execute() throws ClassNotFoundException, SQLException {
+			public Artist act() throws ClassNotFoundException, SQLException {
 				Connection conn = DBUserConnection.getUserConnection();
 				Artist a = null;
 
@@ -55,7 +55,7 @@ public class ArtistDao extends DaoTemplate {
 	public Boolean createArtist(String username, String password, String bandName, String profilePicture, String email) {
 		return (this.execute(new DaoAction<Boolean>() {
 			@Override
-			public Boolean execute() throws ClassNotFoundException, SQLException {
+			public Boolean act() throws ClassNotFoundException, SQLException {
 				Connection con =  DBLoginConnection.getLoginConnection();
 				String sql = "call livethemusic.add_artist(?, ?, ?, ?,?);\r\n"; 
 				try (PreparedStatement stm = con.prepareStatement(sql)) {
@@ -74,7 +74,7 @@ public class ArtistDao extends DaoTemplate {
 	private List<Artist> queryDataBase(String string, String operation) {
 		List<Artist> ret = this.execute(new DaoAction<List<Artist>>() {
 			@Override
-			public List<Artist> execute() throws ClassNotFoundException, SQLException {
+			public List<Artist> act() throws ClassNotFoundException, SQLException {
 				Connection conn = DBUserConnection.getUserConnection();
 				String sql = null;
 				List<Artist> l = new ArrayList<>();

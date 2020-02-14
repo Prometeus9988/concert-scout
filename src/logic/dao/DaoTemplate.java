@@ -10,7 +10,7 @@ public abstract class DaoTemplate {
 	
 	protected final <T> T execute (DaoAction <T> da) {
 		try {
-			return da.execute();
+			return da.act();
 		} catch (SQLException se) {
         	logger.log(Level.WARNING, se.toString());
         } catch (ClassNotFoundException e) {

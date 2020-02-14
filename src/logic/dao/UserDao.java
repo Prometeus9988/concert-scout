@@ -26,7 +26,7 @@ public class UserDao extends DaoTemplate {
     		String lastName, String profilePicture, String email) {
 		return (this.execute(new DaoAction<Boolean>() {
 			@Override
-			public Boolean execute() throws ClassNotFoundException, SQLException {
+			public Boolean act() throws ClassNotFoundException, SQLException {
 				Connection con = DBLoginConnection.getLoginConnection();
 				String sql = "call livethemusic.add_user(?, ?, ?, ?,?, ?);\r\n"; 
 				try (PreparedStatement stm = con.prepareStatement(sql)) {
@@ -94,7 +94,7 @@ public class UserDao extends DaoTemplate {
 	private void manageFollow(String username, String artist, String operation) {
 		this.execute(new DaoAction<Void>() {
 			@Override
-			public Void execute() throws ClassNotFoundException, SQLException {
+			public Void act() throws ClassNotFoundException, SQLException {
 				String sql = null;
 				Connection conn = DBUserConnection.getUserConnection();
 				if(operation.equals(FOLLOW)) {
@@ -116,7 +116,7 @@ public class UserDao extends DaoTemplate {
 	private void manageFriends(String user, String target, String operation) {
 		this.execute(new DaoAction<Void>() {
 			@Override
-			public Void execute() throws ClassNotFoundException, SQLException {
+			public Void act() throws ClassNotFoundException, SQLException {
 					String sql = null;
 					Connection conn = DBUserConnection.getUserConnection();
 					if(operation.equals(REMOVEFRIEND)) {
@@ -141,7 +141,7 @@ public class UserDao extends DaoTemplate {
 	private List<User> queryDatabase(String string, String caller, String operation){
 		List <User> ret = this.execute(new DaoAction<List<User>>() {
 			@Override
-			public List<User> execute() throws ClassNotFoundException, SQLException {
+			public List<User> act() throws ClassNotFoundException, SQLException {
 				List<User> l = new ArrayList<>();
 				Connection conn = DBUserConnection.getUserConnection();
 				PreparedStatement stm = null;
@@ -202,7 +202,7 @@ public class UserDao extends DaoTemplate {
 	private Boolean isQueryDataBase(String user, String target, String operation) {
 		Boolean ret = this.execute(new DaoAction<Boolean>() {
 			@Override
-			public Boolean execute() throws ClassNotFoundException, SQLException {
+			public Boolean act() throws ClassNotFoundException, SQLException {
 				String sql = null;
 				Connection conn = DBUserConnection.getUserConnection();
 				if(operation.equals(SEARCHFRIENDREQUEST)) {

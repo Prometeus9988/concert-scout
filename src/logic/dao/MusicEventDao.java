@@ -42,7 +42,7 @@ public class MusicEventDao extends DaoTemplate {
 	public MusicEvent getMusicEvent(String id, String role) {
 		return this.execute(new DaoAction<MusicEvent>() {
 			@Override
-			public MusicEvent execute() throws ClassNotFoundException, SQLException {
+			public MusicEvent act() throws ClassNotFoundException, SQLException {
 				Connection conn = null;
 				MusicEvent me = null;
 				String sql = null;
@@ -113,7 +113,7 @@ public class MusicEventDao extends DaoTemplate {
 	public Boolean isParticipating(String username, String musicEventId) {
 		Boolean ret = this.execute(new DaoAction<Boolean>() {
 			@Override
-			public Boolean execute() throws ClassNotFoundException, SQLException {
+			public Boolean act() throws ClassNotFoundException, SQLException {
 				Connection conn = DBUserConnection.getUserConnection();
 				String sql = "call livethemusic.is_participating(?, ?);\r\n"; 
 				try (PreparedStatement stm = conn.prepareStatement(sql)) {
@@ -134,7 +134,7 @@ public class MusicEventDao extends DaoTemplate {
 	public boolean addMusicEvent(String name, String coverPath, String location, String artistUsername, Date date, String ticketone, List<Double> coordinates) {
 		return (this.execute(new DaoAction<Boolean>() {
 			@Override
-			public Boolean execute() throws ClassNotFoundException, SQLException {
+			public Boolean act() throws ClassNotFoundException, SQLException {
 				Connection con = DBArtistConnection.getArtistConnection();
 				String sql = "call livethemusic.add_music_event(?, ?, ?, ?, ?, ?, ?, ?);\r\n"; 
 				try (PreparedStatement stm = con.prepareStatement(sql)) {
@@ -187,7 +187,7 @@ public class MusicEventDao extends DaoTemplate {
 	private List<MusicEvent> queryDataBase(String string, String type) {
 		List<MusicEvent> ret = this.execute(new DaoAction<List<MusicEvent>>() {
 			@Override
-			public List<MusicEvent> execute() throws ClassNotFoundException, SQLException {
+			public List<MusicEvent> act() throws ClassNotFoundException, SQLException {
 				Connection conn = null;
 				List<MusicEvent> l = new ArrayList<>();
 				PreparedStatement stm = null;
@@ -279,7 +279,7 @@ public class MusicEventDao extends DaoTemplate {
 	private void manageMusicEvent(String id, String operation) {
 		this.execute(new DaoAction<Void>() {
 			@Override
-			public Void execute() throws ClassNotFoundException, SQLException {
+			public Void act() throws ClassNotFoundException, SQLException {
 				Connection con = null;
 				PreparedStatement stm = null;
 				try {
@@ -311,7 +311,7 @@ public class MusicEventDao extends DaoTemplate {
 	private void manageParticipation(String username, String musicEventId, String operation) {
 		this.execute(new DaoAction<Void>() {
 			@Override
-			public Void execute() throws ClassNotFoundException, SQLException {
+			public Void act() throws ClassNotFoundException, SQLException {
 				Connection conn = null;
 				PreparedStatement stm = null;
 				String sql = null;
