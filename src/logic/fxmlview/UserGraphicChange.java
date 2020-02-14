@@ -153,8 +153,8 @@ public class UserGraphicChange {
 	
 	public void toEventDetails(Scene scene,MusicEventBean meb,String from,String searchString ) {
 		try {
-			EvDetailsController edc=new EvDetailsController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("EvDetails.fxml"));
+			UserEvDetController edc = new UserEvDetController();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("EvDetails.fxml"));
 			loader.setController(edc);
 			scene.setRoot(loader.load());
 			edc.init(meb, from, searchString);
