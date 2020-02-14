@@ -16,9 +16,8 @@ import javafx.scene.shape.Circle;
 import logic.bean.*;
 import logic.buyticket.BuyTicketController;
 
-
 public class NewsAdminController {
-	
+
 	@FXML
 	private ImageView image;
 	@FXML
@@ -31,63 +30,61 @@ public class NewsAdminController {
 	private VBox imageAnchor;
 	@FXML
 	private Text newsText;
-	
+
 	private NewsBean myNews;
-	
+
 	@FXML
 	public void openArtist(ActionEvent e) {
 		BuyTicketController btc = new BuyTicketController();
 		ArtistBean ab = btc.getArtist(this.myNews.getArtistId());
 		AdminGraphicChange.getInstance().toArtistDetails(this.newsText.getScene(), ab, "news", "");
-		
+
 	}
-	
+
 	public void init(NewsBean myNews) {
-		
+
 		//INIT LABELS
 		this.myNews=myNews;
 		this.artBtn.setText(this.myNews.getBandName());
-		this.postTime.setText("Posted "+this.myNews.getPostedSince()+" ago");
+		this.postTime.setText("Posted " + this.myNews.getPostedSince() + " ago");
 		this.newsText.setText(this.myNews.getText());
-		
+
 		//INIT BUTTONS
 		AdminGraphicChange.getInstance().newsBtn(this.admBtn, this.myNews);
-		
+
 		//INIT PROFILE IMAGE
 		final Circle clip = new Circle(30, 25, 25);
         this.image.setClip(clip);
-        
-        String path=System.getProperty("user.home")+ File.separator
+
+        String path=System.getProperty("user.home") + File.separator
 				+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
 				+ "trunk" + File.separator + "WebContent" + File.separator
-				+ "img" + File.separator + "profilePictures"+File.separator+this.myNews.getProfilePath();
-        
+				+ "img" + File.separator + "profilePictures" + File.separator + this.myNews.getProfilePath();
+
         File file = new File(path);
-		Image image = new Image(file.toURI().toString());
-		this.image.setImage(image);
+		Image img = new Image(file.toURI().toString());
+		this.image.setImage(img);
 		this.image.setFitHeight(60);
 		this.image.setFitWidth(60);
-		
-		
+
 		//INIT PICTURE IF IT EXISTS
-		if(!this.myNews.getPicturePath().equals("")) {
-			path=System.getProperty("user.home")+ File.separator
+		if (!this.myNews.getPicturePath().equals("")) {
+			path=System.getProperty("user.home") + File.separator
 					+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
 					+ "trunk" + File.separator + "WebContent" + File.separator
-					+ "img" + File.separator + "newsPictures"+File.separator+this.myNews.getPicturePath();
-			
+					+ "img" + File.separator + "newsPictures" + File.separator + this.myNews.getPicturePath();
+
 			file = new File(path);
-			image = new Image(file.toURI().toString());
-			
-			ImageView iv=new ImageView();
+			img = new Image(file.toURI().toString());
+
+			ImageView iv = new ImageView();
 			iv.setPreserveRatio(false);
-			iv.setImage(image);
+			iv.setImage(img);
 			iv.setFitHeight(300);
 			iv.setFitWidth(300);
 			this.imageAnchor.getChildren().add(iv);
 		}
-		
-		
+
 	}
 
 }

@@ -31,26 +31,22 @@ public class HomepageUserController {
 	@FXML
 	private HBox suggArtRow;
 	
-	private GeneralUserBean gub;
-	private UserGraphicChange ugc;
-	
-	
 	public void init(){
 		
-		this.ugc=UserGraphicChange.getInstance();
+		UserGraphicChange ugc = UserGraphicChange.getInstance();
 		
 		//init menuBar
 		
-		this.ugc.menuBar(this.menuBar,"home");
+		ugc.menuBar(this.menuBar,"home");
 		
 		
 		//init searchBar
 		
-		this.ugc.searchBar(this.searchBar,1);
+		ugc.searchBar(this.searchBar,1);
 		
 		//init nameBar
-		this.gub = SessionUser.getInstance().getSession();
-		this.nameLabel.setText(this.gub.getUsername());
+		GeneralUserBean gub = SessionUser.getInstance().getSession();
+		this.nameLabel.setText(gub.getUsername());
 		
 		//Scrollpane
 		
@@ -67,25 +63,25 @@ public class HomepageUserController {
 		evScrollPane.setStyle("-fx-background-color:  transparent;-fx-background:  #F5EDF0");
 		
 		BuyTicketController btc = new BuyTicketController();
-		String username = this.gub.getUsername();
+		String username = gub.getUsername();
 		
-		List<MusicEventBean> musicEvents=btc.getSuggestedEvents(username);
-		List<ArtistBean>artist=btc.getSuggestedArtist(username);
+		List<MusicEventBean> musicEvents = btc.getSuggestedEvents(username);
+		List<ArtistBean>artist = btc.getSuggestedArtist(username);
 		
 		int i;
 		
-		for(i=0;i<musicEvents.size();i++) {
+		for(i = 0; i < musicEvents.size(); i++) {
 			
 			//EVENT PREVIEW
 			
-			this.ugc.eventPreview(this.suggEvRow, musicEvents.get(i),"home", "");
+			ugc.eventPreview(this.suggEvRow, musicEvents.get(i),"home", "");
 		}
 		
-		for(i=0;i<artist.size();i++) {
+		for(i = 0; i < artist.size(); i++) {
 			
 			//ARTIST PREVIEW
 			
-			this.ugc.artistPreview(this.suggArtRow, artist.get(i),"home", "");
+			ugc.artistPreview(this.suggArtRow, artist.get(i),"home", "");
 		}
 	}
 	
