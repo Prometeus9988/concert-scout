@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import logic.bean.NewsBean;
 
-public class AdminGraphicChange {
+public class AdminGraphicChange{
 	
 	private static AdminGraphicChange myInstance = null;
 	private static final Logger logger=Logger.getLogger(AdminGraphicChange.class.getName());
