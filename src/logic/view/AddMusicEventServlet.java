@@ -20,6 +20,7 @@ import javax.servlet.http.Part;
 import logic.addmusicevent.AddMusicEventController;
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
+import logic.utils.RenameFile;
 
 @MultipartConfig
 
@@ -55,11 +56,7 @@ public class AddMusicEventServlet extends HttpServlet{
 			fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 		}
 		
-		if(fileName.equals("")) {
-			newFileName = "";
-		} else {
-			newFileName = gu.getUsername() + name + fileName;
-		}
+		newFileName = RenameFile.generateNewFileName(fileName, true, gu.getUsername());
 		
 		MusicEventBean meb = new MusicEventBean();
 		meb.setArtistId(gu.getUsername());

@@ -22,6 +22,7 @@ import logic.bean.ArtistBean;
 import logic.bean.GeneralUserBean;
 import logic.bean.UserBean;
 import logic.login.LoginController;
+import logic.utils.RenameFile;
 
 
 @WebServlet("/LoginServlet")
@@ -103,11 +104,8 @@ public class LoginServlet extends HttpServlet{
 		if(filePart != null) {
 			fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 		}
-		if(fileName.equals("")) {
-			newFileName = "";
-		} else {
-			newFileName = username + fileName;
-		}
+
+		newFileName = RenameFile.generateNewFileName(fileName, false, username);
 		
 		regResult = this.create(userType, username, password, email, newFileName, controller, request);
 		

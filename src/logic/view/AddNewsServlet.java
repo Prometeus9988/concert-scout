@@ -21,7 +21,7 @@ import javax.servlet.http.Part;
 import logic.addnews.AddNewsController;
 import logic.bean.GeneralUserBean;
 import logic.bean.NewsBean;
-import logic.utils.RandomNumberGenerator;
+import logic.utils.RenameFile;
 
 @WebServlet("/AddNewsServlet")
 @MultipartConfig
@@ -56,15 +56,7 @@ public class AddNewsServlet extends HttpServlet{
 			fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 		}
 		
-		if(fileName.equals("")) {
-			fileName = "";
-			newFileName = "";
-		} else {
-			//Used salt to difference the name of the file of the news
-			int salt = RandomNumberGenerator.getInstance().randomInt();
-			
-			newFileName = gu.getUsername() + salt + fileName;
-		}
+		newFileName = RenameFile.generateNewFileName(fileName, true, gu.getUsername());
 		
 		nb.setText(text);
 		nb.setArtistId(gu.getUsername());
