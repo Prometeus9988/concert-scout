@@ -7,9 +7,8 @@ import logic.bean.MusicEventBean;
 import java.util.List;
 import logic.addmusicevent.*;
 
-public class HomepageAdminController extends EventListPage {
+public class HomepageAdminController extends SingleListPage {
 
-	@Override
 	public void init() {
 
 		//LIST

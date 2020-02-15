@@ -8,9 +8,8 @@ import logic.userevents.UserEventsController;
 import logic.bean.MusicEventBean;
 import java.util.List;
 
-public class YourEventsController extends EventListPage {
+public class YourEventsController extends SingleListPage {
 
-	@Override
 	public void init() {
 
 		//LIST

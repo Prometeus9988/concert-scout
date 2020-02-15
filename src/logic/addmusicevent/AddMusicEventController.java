@@ -64,8 +64,7 @@ public class AddMusicEventController extends Controller{
 		List<MusicEvent> l = med.getPendingMusicEvents();
 		return this.convertMusicEventList(l);
 	}
-	
-	//TODO forse deve essere relativo all'evento musicale
+
 	public void acceptMusicEvent(MusicEventBean meb) {
 		MusicEventDao med = new MusicEventDao();
 		med.acceptMusicEvent(meb.getId());

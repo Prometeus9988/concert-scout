@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public abstract class EventListPage {
+public abstract class SingleListPage {
 
 	@FXML
 	protected VBox menuBar;
@@ -35,7 +35,5 @@ public abstract class EventListPage {
 		columns.add(this.col5);
 		return columns;
 	}
-	
-	public abstract void init();
 
 }

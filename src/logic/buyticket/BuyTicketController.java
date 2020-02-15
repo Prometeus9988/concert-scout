@@ -42,7 +42,6 @@ public class BuyTicketController extends Controller{
 	}
 	
 	public MusicEventBean getMusicEvent(String id, GeneralUserBean gu) {
-		//TODO dovrebbe essere relativo al musicevent e non al buyticketcontroller?
 		MusicEventDao med = new MusicEventDao();
 		MusicEvent me = med.getMusicEvent(id, gu.getRole());
 		MusicEventBean meb = this.convert(me);

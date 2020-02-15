@@ -4,32 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 
-import java.util.ArrayList;
 import java.util.List;
 import logic.bean.UserBean;
 import logic.friends.*;
 import logic.utils.SessionUser;
 
-public class UserSearchSecController {
+public class UserSearchSecController extends SingleListPage {
 
-	@FXML
-	private VBox menuBar;
-	@FXML
-	private VBox usrCol;
-	@FXML
-	private HBox usrRow;
-	@FXML
-	private VBox col1;
-	@FXML
-	private VBox col2;
-	@FXML
-	private VBox col3;
-	@FXML
-	private VBox col4;
-	@FXML
-	private VBox col5;
 	@FXML
 	private Label searchStringLabel;
 
@@ -38,22 +20,16 @@ public class UserSearchSecController {
 		UserGraphicChange ugc = UserGraphicChange.getInstance();
 
 		//LIST
-		List<VBox> columns = new ArrayList<>();
-		columns.add(this.col1);
-		columns.add(this.col2);
-		columns.add(this.col3);
-		columns.add(this.col4);
-		columns.add(this.col5);
-
+		List<VBox> columns = initList();
 		//init menu
 		ugc.menuBar(this.menuBar, "friends");
 		//init label
 		this.searchStringLabel.setText("\"" + searchString + "\"");
 
 		//scrollPane
-		ScrollPane scroll = new ScrollPane(this.usrRow);
+		ScrollPane scroll = new ScrollPane(this.scrPane);
 		scroll.setFitToHeight(true);
-		this.usrCol.getChildren().add(scroll);
+		this.secRoot.getChildren().add(scroll);
 		scroll.setStyle("-fx-background-color: transparent; -fx-background:  #F5EDF0");
 
 		//init controller
