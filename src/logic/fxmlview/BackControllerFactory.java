@@ -1,5 +1,7 @@
 package logic.fxmlview;
 
+import logic.utils.Roles;
+
 public class BackControllerFactory {
 	
 	private static BackControllerFactory myInstance=null;
@@ -11,17 +13,16 @@ public class BackControllerFactory {
 		return myInstance;
 	}
 	
-	public BackController creator(int kind) {
-		
-		//DUMMY FOR NOW
-		//THEN INTRODUCING ADMIN BACK CONTROLLER
+	public BackController creator(Roles role) {
 		//ARTISTS DON'T NEED IT
-		
-		if(kind==1) 
+		switch (role) {
+		case USER:
 			return new BackUserController();
-		else
+		case ADMIN:
 			return new BackAdminController();
-		
+		default:
+			return null;
+		}
 	}
 
 }

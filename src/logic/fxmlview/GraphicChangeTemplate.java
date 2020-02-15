@@ -8,11 +8,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import logic.utils.Roles;
 
 public abstract class GraphicChangeTemplate {
 
 	protected final Logger logger = Logger.getLogger("GraphicChange");
 
+	protected Roles whoAmI;
+	
 	public void catcher(GraphicChangeAction gca) {
 		try {
 			gca.act();
@@ -43,6 +46,19 @@ public abstract class GraphicChangeTemplate {
 				loader.setController(controller);
 				pane.getChildren().add(loader.load());
 				controller.init(latitude,longitude); 
+			}
+		});
+	}
+
+	public void backButton(AnchorPane ap, String from, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				BackController bc = BackControllerFactory.getInstance().creator(whoAmI);
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("BackButton.fxml"));
+				loader.setController(bc);
+				ap.getChildren().add(loader.load());
+				bc.init(from, searchString);
 			}
 		});
 	}

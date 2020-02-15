@@ -7,15 +7,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.Scene;
 import logic.bean.MusicEventBean;
 import logic.bean.ArtistBean;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import logic.bean.NewsBean;
+import logic.utils.Roles;
 
 public class AdminGraphicChange extends GraphicChangeTemplate {
 
 	private static AdminGraphicChange myInstance = null;
 
-	private AdminGraphicChange() {}
+	private AdminGraphicChange() {
+		whoAmI = Roles.ADMIN;
+	}
 
 	public static AdminGraphicChange getInstance() {
 		if(myInstance==null) {
@@ -48,19 +50,6 @@ public class AdminGraphicChange extends GraphicChangeTemplate {
 				loader.setController(hac);
 				scene.setRoot(loader.load());
 				hac.init();
-			}
-		});
-	}
-
-	public void backButton(AnchorPane ap, String from, String searchString) {
-		this.catcher(new GraphicChangeAction() {
-			@Override
-			public void act() throws IOException {
-				BackController bc = BackControllerFactory.getInstance().creator(2);
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("BackButton.fxml"));
-				loader.setController(bc);
-				ap.getChildren().add(loader.load());
-				bc.init(from, searchString);
 			}
 		});
 	}

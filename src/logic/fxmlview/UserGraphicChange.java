@@ -11,12 +11,15 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import logic.bean.NewsBean;
 import logic.bean.UserBean;
+import logic.utils.Roles;
 
 public class UserGraphicChange extends GraphicChangeTemplate {
 
 	private static UserGraphicChange myInstance=null;
 
-	private UserGraphicChange(){}
+	private UserGraphicChange() {
+		whoAmI = Roles.USER;
+	}
 
 	public static UserGraphicChange getInstance(){
 		if(myInstance==null) {
@@ -62,19 +65,6 @@ public class UserGraphicChange extends GraphicChangeTemplate {
 				loader.setController(mbc);
 				pos.getChildren().add(loader.load());
 				mbc.init(sel);
-			}
-		});
-	}
-
-	public void backButton(AnchorPane ap, String from, String searchString) {
-		this.catcher(new GraphicChangeAction() {
-			@Override
-			public void act() throws IOException {
-				BackController bc = BackControllerFactory.getInstance().creator(1);
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("BackButton.fxml"));
-				loader.setController(bc);
-				ap.getChildren().add(loader.load());
-				bc.init(from, searchString);
 			}
 		});
 	}
