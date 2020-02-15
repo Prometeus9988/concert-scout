@@ -57,18 +57,21 @@ public class HomepageArtistController {
 	
 	@FXML
 	public void createBtn(ActionEvent ev) {
+
+		String name = this.nameField.getText();
+		String location = this.locField.getText();
+		String date = "";
 		
-		//TODO check parameters not null
+		if(this.dateField.getValue() != null) {
+			date = this.dateField.getValue().toString();
+		}
 		
-		String name=this.nameField.getText();
-		String location=this.locField.getText();
-		String date=this.dateField.getValue().toString();
-		String ticketone=this.tkField.getText();
-		String fileName=null;
-		String newFileName=null;
-		boolean result=false;
+		String ticketone = this.tkField.getText();
+		String fileName = null;
+		String newFileName = null;
+		boolean result = false;
 		
-		if(this.imageFile==null) {
+		if(this.imageFile == null) {
 			fileName="";
 			newFileName="";
 		}else {

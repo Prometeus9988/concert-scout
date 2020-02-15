@@ -36,8 +36,10 @@ public class AddMusicEventController extends Controller{
 			coordinates = GoogleMapBoundary.locateAddress(meb.getLocation());
 		} catch (IOException e) {
 			logger.log(Level.WARNING, e.toString());
+			return false;
 		} catch (org.json.simple.parser.ParseException pe) {
 			logger.log(Level.WARNING, pe.toString());
+			return false;
 		}
 
 		if (meb.getDate() != null) {
