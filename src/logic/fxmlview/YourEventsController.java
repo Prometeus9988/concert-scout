@@ -1,45 +1,20 @@
 package logic.fxmlview;
 
-import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 import logic.utils.SessionUser;
 import logic.bean.GeneralUserBean;
 import javafx.scene.control.ScrollPane;
 import logic.userevents.UserEventsController;
 import logic.bean.MusicEventBean;
 import java.util.List;
-import java.util.ArrayList;
 
-public class YourEventsController {
+public class YourEventsController extends EventListPage {
 
-	@FXML
-	private VBox menuBar;
-	@FXML
-	private HBox scrPane;
-	@FXML
-	private VBox secRoot;
-	@FXML
-	private VBox col1;
-	@FXML
-	private VBox col2;
-	@FXML
-	private VBox col3;
-	@FXML
-	private VBox col4;
-	@FXML
-	private VBox col5;
-
+	@Override
 	public void init() {
 
 		//LIST
-		List<VBox> columns = new ArrayList<>();
-		columns.add(this.col1);
-		columns.add(this.col2);
-		columns.add(this.col3);
-		columns.add(this.col4);
-		columns.add(this.col5);
-
+		List<VBox> columns = initList();
 		//init UGC
 		UserGraphicChange ugc = UserGraphicChange.getInstance();
 		

@@ -1,44 +1,19 @@
 package logic.fxmlview;
 
-import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 import logic.bean.MusicEventBean;
 
-import java.util.ArrayList;
 import java.util.List;
 import logic.addmusicevent.*;
 
-public class HomepageAdminController {
-	
-	@FXML
-	private VBox menuBar;
-	@FXML
-	private HBox scrPane;
-	@FXML
-	private VBox secRoot;
-	@FXML
-	private VBox col1;
-	@FXML
-	private VBox col2;
-	@FXML
-	private VBox col3;
-	@FXML
-	private VBox col4;
-	@FXML
-	private VBox col5;
-	
+public class HomepageAdminController extends EventListPage {
+
+	@Override
 	public void init() {
-		
-		
+
 		//LIST
-		List<VBox> columns=new ArrayList<>();
-		columns.add(this.col1);
-		columns.add(this.col2);
-		columns.add(this.col3);
-		columns.add(this.col4);
-		columns.add(this.col5);
+		List<VBox> columns = initList();
 		
 		AdminGraphicChange auc;
 		//init menu bar
