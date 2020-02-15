@@ -27,20 +27,6 @@ public class AdminGraphicChange extends GraphicChangeTemplate {
 	}
 
 	@Override
-	public void menuBar(VBox menu, String sel) {
-		this.catcher(new GraphicChangeAction() {
-			@Override
-			public void act() throws IOException {
-				AdminMenuBarController amc = new AdminMenuBarController();
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminMenuBar.fxml"));
-				loader.setController(amc);
-				menu.getChildren().add(loader.load());
-				amc.init(sel);
-			}
-		});
-	}
-
-	@Override
 	public void toHomepage(Scene scene) {
 		this.catcher(new GraphicChangeAction() {
 			@Override

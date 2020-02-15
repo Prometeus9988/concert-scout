@@ -2,13 +2,14 @@ package logic.fxmlview;
 
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
-import javafx.scene.layout.VBox;
-
+import logic.utils.Roles;
 import javafx.scene.Scene;
 
 public class ArtistGraphicChange extends GraphicChangeTemplate {
 
-	private ArtistGraphicChange() {}
+	private ArtistGraphicChange() {
+		whoAmI = Roles.ARTIST;
+	}
 
 	private static ArtistGraphicChange myInstance=null;
 
@@ -18,20 +19,6 @@ public class ArtistGraphicChange extends GraphicChangeTemplate {
 			myInstance=new ArtistGraphicChange();
 		}
 		return myInstance;
-	}
-
-	@Override
-	public void menuBar(VBox menu,String sel) {
-		this.catcher(new GraphicChangeAction() {
-			@Override
-			public void act() throws IOException {
-				ArtistMenuBarController amc = new ArtistMenuBarController();
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("ArtistMenuBar.fxml"));			
-				loader.setController(amc);
-				menu.getChildren().add(loader.load());
-				amc.init(sel);
-			}
-		});
 	}
 
 	@Override

@@ -55,20 +55,6 @@ public class UserGraphicChange extends GraphicChangeTemplate {
 		});
 	}
 
-	@Override
-	public void menuBar(VBox pos, String sel) {
-		this.catcher(new GraphicChangeAction() {
-			@Override
-			public void act() throws IOException {
-				MenuBarController mbc = new MenuBarController();
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuBar.fxml"));
-				loader.setController(mbc);
-				pos.getChildren().add(loader.load());
-				mbc.init(sel);
-			}
-		});
-	}
-
 	public void searchBar(AnchorPane ap, int kind) {
 		this.catcher(new GraphicChangeAction() {
 			@Override

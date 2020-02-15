@@ -63,8 +63,37 @@ public abstract class GraphicChangeTemplate {
 		});
 	}
 
-	public abstract void toHomepage(Scene scene);
+	public void menuBar(VBox pos, String sel) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuBar.fxml"));
+				switch (whoAmI) {
+				case USER:
+					MenuBarController mbc = new MenuBarController();
+					loader.setController(mbc);
+					pos.getChildren().add(loader.load());
+					mbc.init(sel);
+					break;
+				case ADMIN:
+					AdminMenuBarController amc = new AdminMenuBarController();
+					loader.setController(amc);
+					pos.getChildren().add(loader.load());
+					amc.init(sel);
+					break;
+				case ARTIST:
+					ArtistMenuBarController ac = new ArtistMenuBarController();
+					loader.setController(ac);
+					pos.getChildren().add(loader.load());
+					ac.init(sel);
+					break;
+				default:
+					break;
+				}
+			}
+		});
+	}
 
-	public abstract void menuBar(VBox menu, String sel);
+	public abstract void toHomepage(Scene scene);
 
 }
