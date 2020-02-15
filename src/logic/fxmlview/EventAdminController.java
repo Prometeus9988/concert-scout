@@ -1,70 +1,28 @@
 package logic.fxmlview;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import java.io.File;
-import logic.bean.*;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import logic.bean.ArtistBean;
 import logic.buyticket.BuyTicketController;
 
-public class EventAdminController {
-	
-	
-	@FXML
-	private Button eventBtn;
-	@FXML
-	private Button artBtn;
-	@FXML
-	private Button imageBtn;
-	
-	private MusicEventBean myMusicEvent;
-	
-	private String from;
-	private String searchString;
+public class EventAdminController extends EventController {
+
 	private AdminGraphicChange agc;
-	
-	@FXML
-	public void openEvent(ActionEvent e){
-		
-		this.agc.toEventDetails(this.artBtn.getScene(),this.myMusicEvent, this.from, this.searchString);
-		
+
+	public EventAdminController() {
+		this.agc = AdminGraphicChange.getInstance();
 	}
-	
-	@FXML
+
+	@Override
+	public void openEvent(ActionEvent e){
+		this.agc.toEventDetails(this.artBtn.getScene(),this.myMusicEvent, this.from, this.searchString);
+	}
+
+	@Override
 	public void openArtist(ActionEvent e){
-		
 		//open artist
 		BuyTicketController btc = new BuyTicketController();
 		ArtistBean ab = btc.getArtist(this.myMusicEvent.getArtistId());
 		this.agc.toArtistDetails(this.imageBtn.getScene(), ab, this.from, this.searchString);
 	}
-	
-	public void init(MusicEventBean ev,String from,String searchString) {
-		
-		this.agc=AdminGraphicChange.getInstance();
-		
-		this.myMusicEvent=ev;
-		this.from=from;
-		this.searchString=searchString;
-		String path=System.getProperty("user.home")+ File.separator
-				+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-				+ "trunk" + File.separator + "WebContent" + File.separator
-				+ "img" + File.separator + "concertPictures"+File.separator+this.myMusicEvent.getCoverPath();
-		
-		File file = new File(path);
-		Image image = new Image(file.toURI().toString());
-		ImageView iv3 = new ImageView(image);
-		iv3.setFitHeight(170);
-        iv3.setFitWidth(110);
-		this.imageBtn.setGraphic(iv3);
-		
-		
-		
-		
-		
-		this.artBtn.setText(this.myMusicEvent.getBandName());
-		this.eventBtn.setText(this.myMusicEvent.getName());
-	}
+
 }
