@@ -47,11 +47,6 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="favouritesButton" alignment="TOP_LEFT" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#favouritesButtonAction" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: transparent; -fx-border: none; -fx-text-fill: rgba(253, 255, 252, 0.5);" text="Favourites">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
             <Button fx:id="friendsButton" alignment="TOP_LEFT" contentDisplay="TEXT_ONLY" mnemonicParsing="false" onAction="#friendsButtonAction" prefHeight="32.0" prefWidth="132.0" style="-fx-background-color: transparent; -fx-border: none; -fx-text-fill: rgba(253, 255, 252, 0.5);" text="Friends">
                <font>
                   <Font size="16.0" />

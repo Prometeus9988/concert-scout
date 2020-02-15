@@ -12,8 +12,6 @@ public class MenuBarController {
 	@FXML
 	private Button newsButton;
 	@FXML
-	private Button favouritesButton;
-	@FXML
 	private Button friendsButton;
 	@FXML
 	private Button aroundYouButton;
@@ -36,9 +34,6 @@ public class MenuBarController {
 				break;
 			case "news":
 				this.newsButton.setStyle(style);
-				break;
-			case "favourites":
-				this.favouritesButton.setStyle(style);
 				break;
 			case "friends":
 				this.friendsButton.setStyle(style);
@@ -67,18 +62,13 @@ public class MenuBarController {
 	}
 	
 	@FXML
-	public void favouritesButtonAction(ActionEvent e) {
-		System.out.println("Go to favourites");
-	}
-	
-	@FXML
 	public void friendsButtonAction(ActionEvent e) {
 		this.ugc.toFriendsSection(this.homeButton.getScene());
 	}
 	
 	@FXML
 	public void aroundYouButtonAction(ActionEvent e) {
-		System.out.println("Go to around you");
+		//not implemented yet
 	}
 	@FXML
 	public void myEventsButtonAction(ActionEvent e) {
