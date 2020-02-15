@@ -12,7 +12,6 @@ public class SearchUserController implements SearchBarController {
 	
 	@FXML
 	public void searchAction(ActionEvent e) {
-		System.out.println("User");
 		this.ucg.toSearchUsr(this.searchField.getScene(),this.searchField.getText());
 	}
 	
