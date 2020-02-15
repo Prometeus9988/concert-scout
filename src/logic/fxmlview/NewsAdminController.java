@@ -1,18 +1,8 @@
 package logic.fxmlview;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.fxml.FXML;
 
-import java.io.File;
-
 import javafx.event.ActionEvent;
-import javafx.scene.shape.Circle;
 import logic.bean.*;
 import logic.buyticket.BuyTicketController;
 
