@@ -67,7 +67,7 @@ public class AdminGraphicChange {
 	public void eventPreview(VBox box,MusicEventBean event,String from,String searchString){
 		
 		try {
-			EventAdmController ev=new EventAdmController();
+			EventAdminController ev=new EventAdminController();
 			FXMLLoader loader=new FXMLLoader(getClass().getResource("Event.fxml"));
 			loader.setController(ev);
 			box.getChildren().add(loader.load());

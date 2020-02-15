@@ -2,31 +2,50 @@ package logic.fxmlview;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import logic.bean.*;
-import logic.buyticket.BuyTicketController;
+import java.io.File;
+import logic.bean.MusicEventBean;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-public class EventController extends EventControllerTemplate{
-	
+public abstract class EventController {
 
-	private UserGraphicChange ugc;
-	
 	@FXML
-	public void openEvent(ActionEvent e){
-		
-		this.ugc.toEventDetails(this.artBtn.getScene(),this.myMusicEvent, this.from, this.searchString);
-	}
-	
+	protected Button eventBtn;
 	@FXML
-	public void openArtist(ActionEvent e){
-		
-		BuyTicketController btc = new BuyTicketController();
-		ArtistBean ab = btc.getArtist(this.myMusicEvent.getArtistId());
-		this.ugc.toArtistDetails(this.artBtn.getScene(), ab, this.from, this.searchString);
+	protected Button artBtn;
+	@FXML
+	protected Button imageBtn;
+
+	protected MusicEventBean myMusicEvent;
+
+	protected String from;
+	protected String searchString;
+
+	@FXML
+	protected abstract void openEvent(ActionEvent e);
+
+	@FXML
+	protected abstract void openArtist(ActionEvent e);
+
+	public void init(MusicEventBean ev, String from, String searchString) {
+		this.myMusicEvent=ev;
+		this.from=from;
+		this.searchString=searchString;
+		String path=System.getProperty("user.home") + File.separator
+				+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
+				+ "trunk" + File.separator + "WebContent" + File.separator
+				+ "img" + File.separator + "concertPictures" + File.separator+this.myMusicEvent.getCoverPath();
+
+		File file = new File(path);
+		Image image = new Image(file.toURI().toString());
+		ImageView iv3 = new ImageView(image);
+		iv3.setFitHeight(170);
+        iv3.setFitWidth(110);
+		this.imageBtn.setGraphic(iv3);
+
+		this.artBtn.setText(this.myMusicEvent.getBandName());
+		this.eventBtn.setText(this.myMusicEvent.getName());
 	}
-	
-	@Override
-	public void init(MusicEventBean ev,String from,String searchString) {
-		this.ugc=UserGraphicChange.getInstance();
-		super.init(ev, from, searchString);
-	}
+
 }

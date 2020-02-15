@@ -89,10 +89,10 @@ public class UserGraphicChange {
 		}
 	}
 	
-	public void eventPreview(HBox box,MusicEventBean event,String from,String searchString) {
+	public void eventPreview(HBox box, MusicEventBean event, String from, String searchString) {
 		try {
-			EventController ev=new EventController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("Event.fxml"));
+			EventUserController ev = new EventUserController();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Event.fxml"));
 			loader.setController(ev);
 			box.getChildren().add(loader.load());
 			ev.init(event, from, searchString);
@@ -177,8 +177,8 @@ public class UserGraphicChange {
 	
 	public void eventPreviewMyEvents(VBox box,MusicEventBean event,String from,String searchString) {
 		try {
-			EventController ev=new EventController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("Event.fxml"));
+			EventUserController ev = new EventUserController();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Event.fxml"));
 			loader.setController(ev);
 			box.getChildren().add(loader.load());
 			ev.init(event, from, searchString);
