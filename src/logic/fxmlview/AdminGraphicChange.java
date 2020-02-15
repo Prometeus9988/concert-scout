@@ -4,8 +4,6 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import javafx.scene.layout.VBox;
 
-import java.util.logging.Level;
-
 import javafx.scene.Scene;
 import logic.bean.MusicEventBean;
 import logic.bean.ArtistBean;
@@ -14,150 +12,148 @@ import javafx.scene.layout.HBox;
 import logic.bean.NewsBean;
 
 public class AdminGraphicChange extends GraphicChangeTemplate {
-	
+
 	private static AdminGraphicChange myInstance = null;
-	
+
 	private AdminGraphicChange() {}
-	
+
 	public static AdminGraphicChange getInstance() {
 		if(myInstance==null) {
 			myInstance=new AdminGraphicChange();
 		}
 		return myInstance;
 	}
-	
-	public void menuBar(VBox menu,String sel) {
-		try {
-			AdminMenuBarController amc=new AdminMenuBarController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("AdminMenuBar.fxml"));
-			loader.setController(amc);
-			menu.getChildren().add(loader.load());
-			amc.init(sel);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
+
+	@Override
+	public void menuBar(VBox menu, String sel) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				AdminMenuBarController amc = new AdminMenuBarController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminMenuBar.fxml"));
+				loader.setController(amc);
+				menu.getChildren().add(loader.load());
+				amc.init(sel);
+			}
+		});
 	}
-	
+
+	@Override
 	public void toHomepage(Scene scene) {
-		try {
-			HomepageAdminController hac=new HomepageAdminController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("AdminHomepage.fxml"));
-			loader.setController(hac);
-			scene.setRoot(loader.load());
-			hac.init();
-		}catch(IOException e) {
-			logger.log(Level.WARNING, e.toString());
-		}
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				HomepageAdminController hac = new HomepageAdminController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminHomepage.fxml"));
+				loader.setController(hac);
+				scene.setRoot(loader.load());
+				hac.init();
+			}
+		});
 	}
-	
-	public void eventPreview(VBox box,MusicEventBean event,String from,String searchString){
-		
-		try {
-			EventAdminController ev=new EventAdminController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("Event.fxml"));
-			loader.setController(ev);
-			box.getChildren().add(loader.load());
-			ev.init(event, from, searchString);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
+
+	public void backButton(AnchorPane ap, String from, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				BackController bc = BackControllerFactory.getInstance().creator(2);
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("BackButton.fxml"));
+				loader.setController(bc);
+				ap.getChildren().add(loader.load());
+				bc.init(from, searchString);
+			}
+		});
 	}
-	
-	public void toArtistDetails(Scene scene,ArtistBean ar,String from,String searchString) {
-		try {	
-			AdminArtDetailsController adc=new AdminArtDetailsController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("ArtDetails.fxml"));
-			loader.setController(adc);
-			scene.setRoot(loader.load());
-			adc.init(ar,from,searchString);			
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
+
+	public void eventPreview(VBox box, MusicEventBean event, String from, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				EventAdminController ev = new EventAdminController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("Event.fxml"));
+				loader.setController(ev);
+				box.getChildren().add(loader.load());
+				ev.init(event, from, searchString);
+			}
+		});
 	}
-	
-	public void backButton(AnchorPane ap,String from,String searchString) {
-		try {
-			BackController bc= BackControllerFactory.getInstance().creator(2);
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("BackButton.fxml"));
-			loader.setController(bc);
-			ap.getChildren().add(loader.load());
-			bc.init(from, searchString);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
+
+	public void toArtistDetails(Scene scene, ArtistBean ar, String from, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				AdminArtDetailsController adc = new AdminArtDetailsController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("ArtDetails.fxml"));
+				loader.setController(adc);
+				scene.setRoot(loader.load());
+				adc.init(ar,from,searchString);			
+			}
+		});
 	}
-	
-	public void evDetailsButtons(HBox box,MusicEventBean event) {
-		try {
-			AdminEvButtonsController controller=new AdminEvButtonsController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("AdminEvDetButtons.fxml"));
-			loader.setController(controller);
-			box.getChildren().add(loader.load());
-			controller.init(event);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
-		
+
+	public void evDetailsButtons(HBox box, MusicEventBean event) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				AdminEvButtonsController controller = new AdminEvButtonsController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminEvDetButtons.fxml"));
+				loader.setController(controller);
+				box.getChildren().add(loader.load());
+				controller.init(event);
+			}
+		});
 	}
-	
-	public void toEventDetails(Scene scene,MusicEventBean meb,String from,String searchString) {
-		try {
-			AdminEvDetController controller=new AdminEvDetController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("EvDetails.fxml"));
-			loader.setController(controller);
-			scene.setRoot(loader.load());
-			controller.init(meb,from,searchString);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
+
+	public void toEventDetails(Scene scene, MusicEventBean meb, String from, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				AdminEvDetController controller = new AdminEvDetController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("EvDetails.fxml"));
+				loader.setController(controller);
+				scene.setRoot(loader.load());
+				controller.init(meb,from,searchString);
+			}
+		});
 	}
-	
-	public void newsPrev(VBox anchor,NewsBean myNews) {
-		try {
-			NewsAdminController controller=new NewsAdminController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("News.fxml"));
-			loader.setController(controller);
-			anchor.getChildren().add(loader.load());
-			controller.init(myNews);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
+
+	public void newsPrev(VBox anchor, NewsBean myNews) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				NewsAdminController controller = new NewsAdminController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("News.fxml"));
+				loader.setController(controller);
+				anchor.getChildren().add(loader.load());
+				controller.init(myNews);
+			}
+		});
 	}
-	
+
 	public void toNews(Scene scene) {
-		try {
-			AdminNewsSectionController controller=new AdminNewsSectionController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("NewsSection.fxml"));
-			loader.setController(controller);
-			scene.setRoot(loader.load());
-			controller.init();
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				AdminNewsSectionController controller = new AdminNewsSectionController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("NewsSection.fxml"));
+				loader.setController(controller);
+				scene.setRoot(loader.load());
+				controller.init();
+			}
+		});
 	}
-	
-	public void newsBtn(HBox box,NewsBean nb) {
-		try {
-			AdminNewsBtnController controller=new AdminNewsBtnController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("AdminNewsBtn.fxml"));
-			loader.setController(controller);
-			box.getChildren().add(loader.load());
-			controller.init(nb);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
+
+	public void newsBtn(HBox box, NewsBean nb) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				AdminNewsBtnController controller = new AdminNewsBtnController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminNewsBtn.fxml"));
+				loader.setController(controller);
+				box.getChildren().add(loader.load());
+				controller.init(nb);
+			}
+		});
 	}
-	
-	public void addMap(AnchorPane pane, double latitude,double longitude) {
-		try{
-			MapController controller=new MapController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("Map.fxml"));
-			loader.setController(controller);
-			pane.getChildren().add(loader.load());
-			controller.init(latitude,longitude); 
-		}catch(IOException e) {   
-			logger.log(Level.WARNING, e.toString());
-		}
-	}
-	
+
 }

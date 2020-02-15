@@ -5,8 +5,6 @@ import java.io.IOException;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 
-import java.util.logging.Level;
-
 import logic.bean.ArtistBean;
 import logic.bean.MusicEventBean;
 import javafx.scene.Scene;
@@ -15,257 +13,265 @@ import logic.bean.NewsBean;
 import logic.bean.UserBean;
 
 public class UserGraphicChange extends GraphicChangeTemplate {
-	
+
 	private static UserGraphicChange myInstance=null;
-	
+
 	private UserGraphicChange(){}
-	
+
 	public static UserGraphicChange getInstance(){
 		if(myInstance==null) {
 			myInstance=new UserGraphicChange();
 		}
 		return myInstance;
 	}
-	
+
+	@Override
 	public void toHomepage(Scene scene) {
-		try {
-			HomepageUserController huc=new HomepageUserController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("HomepageUser.fxml"));
-			loader.setController(huc);
-			scene.setRoot(loader.load());
-			huc.init();
-		}catch(IOException e) {
-			logger.log(Level.WARNING, e.toString());
-		}
-	}
-	
-	public void toSearchEv(Scene scene,String searchString) {
-		try {
-			SearchEventsArtistsController evc=new SearchEventsArtistsController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("SearchEventsArtists.fxml"));
-			loader.setController(evc);
-			scene.setRoot(loader.load());
-			evc.init(searchString);
-		}catch(IOException e) {
-			logger.log(Level.WARNING, e.toString());
-		}
-	}
-	
-	public void menuBar(VBox pos,String sel) {
-		try {
-			MenuBarController mbc=new MenuBarController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("MenuBar.fxml"));
-			loader.setController(mbc);
-			pos.getChildren().add(loader.load());
-			mbc.init(sel);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
-	}
-	
-	public void searchBar(AnchorPane ap,int kind) {
-		try {
-			SearchBarController sc=SearchBarControllerFactory.getInstance().creator(kind);
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("SearchBar.fxml"));
-			loader.setController(sc);
-			ap.getChildren().add(loader.load());
-			sc.init();
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
-	}
-	
-	public void eventPreview(HBox box, MusicEventBean event, String from, String searchString) {
-		try {
-			EventUserController ev = new EventUserController();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Event.fxml"));
-			loader.setController(ev);
-			box.getChildren().add(loader.load());
-			ev.init(event, from, searchString);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
-	}
-	
-	public void artistPreview(HBox box, ArtistBean ar,String from,String searchString) {
-		try {	
-			ArtistController ac=new ArtistController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("Artist.fxml"));
-			loader.setController(ac);
-			box.getChildren().add(loader.load());
-			ac.init(ar, from, searchString);
-			
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
-	}
-	
-	public void backButton(AnchorPane ap,String from,String searchString) {
-		try {
-			BackController bc= BackControllerFactory.getInstance().creator(1);
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("BackButton.fxml"));
-			loader.setController(bc);
-			ap.getChildren().add(loader.load());
-			bc.init(from, searchString);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
-	}
-	
-	public void evDetailsButtons(HBox box,MusicEventBean event) {
-		try {
-			UserEvButtonsController btc=new UserEvButtonsController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("UserEvDetButtons.fxml"));
-			loader.setController(btc);
-			box.getChildren().add(loader.load());
-			btc.init(event);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
-	}
-	
-	public void toArtistDetails(Scene scene,ArtistBean ar, String from,String searchString) {
-		try {
-			ArtDetailsController adc=new ArtDetailsController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("ArtDetails.fxml"));
-			loader.setController(adc);
-			scene.setRoot(loader.load());
-			adc.init(ar,from,searchString);
-			
-		}catch(IOException e) {
-			logger.log(Level.WARNING, e.toString());
-		}
-	}
-	
-	public void toEventDetails(Scene scene,MusicEventBean meb,String from,String searchString ) {
-		try {
-			UserEvDetController edc = new UserEvDetController();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("EvDetails.fxml"));
-			loader.setController(edc);
-			scene.setRoot(loader.load());
-			edc.init(meb, from, searchString);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
-	}
-	
-	public void toMyEvents(Scene scene) {
-		try {
-			YourEventsController yec=new YourEventsController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("YourEventsSection.fxml"));
-			loader.setController(yec);
-			scene.setRoot(loader.load());
-			yec.init();
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
-	}
-	
-	public void eventPreviewMyEvents(VBox box,MusicEventBean event,String from,String searchString) {
-		try {
-			EventUserController ev = new EventUserController();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Event.fxml"));
-			loader.setController(ev);
-			box.getChildren().add(loader.load());
-			ev.init(event, from, searchString);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
-	}
-	
-	public void toNews(Scene scene) {
-		try {
-			NewsUserSectionController controller=new NewsUserSectionController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("NewsSection.fxml"));
-			loader.setController(controller);
-			scene.setRoot(loader.load());
-			controller.init();
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
-	}
-	
-	public void newsPrev(VBox anchor,NewsBean myNews) {
-		try {
-			NewsUserController controller=new NewsUserController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("News.fxml"));
-			loader.setController(controller);
-			anchor.getChildren().add(loader.load());
-			controller.init(myNews);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
-	}
-	
-	public void toFriendsSection(Scene scene) {
-		try {
-			FriendsSectionController controller=new FriendsSectionController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("FriendsSection.fxml"));
-			loader.setController(controller);
-			scene.setRoot(loader.load());
-			controller.init();
-		}catch(IOException e) {
-			logger.log(Level.WARNING, e.toString());
-		}
-	}
-	
-	public void userPrev(HBox box,UserBean ub,String from,String searchString){
-		try {
-			UserPrevController controller=new UserPrevController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("User.fxml"));
-			loader.setController(controller);
-			box.getChildren().add(loader.load());
-			controller.init(ub, from, searchString);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
-	}
-	
-	public void usrSerachPrev(VBox box,UserBean ub,String from,String searchString) {
-		try {
-			UserPrevController controller=new UserPrevController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("User.fxml"));
-			loader.setController(controller);
-			box.getChildren().add(loader.load());
-			controller.init(ub, from, searchString);
-		}catch(IOException e) {
-			logger.log(Level.WARNING,e.toString());
-		}
-	}
-	
-	public void toSearchUsr(Scene scene,String searchString) {
-		try {
-			UserSearchSecController controller=new UserSearchSecController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("SearchUsers.fxml"));
-			loader.setController(controller);
-			scene.setRoot(loader.load());
-			controller.init(searchString);
-		}catch(IOException e) {
-			logger.log(Level.WARNING, e.toString());
-		}
-	}
-	
-	public void toUserDetails(Scene scene,UserBean ub,String from,String searchString) {
-		try {
-			UserDetailsController controller=new UserDetailsController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("UserDetails.fxml"));
-			loader.setController(controller);
-			scene.setRoot(loader.load());
-			controller.init(ub, from, searchString);
-		}catch(IOException e) {
-			logger.log(Level.WARNING, e.toString());
-		}
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				HomepageUserController huc = new HomepageUserController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("HomepageUser.fxml"));
+				loader.setController(huc);
+				scene.setRoot(loader.load());
+				huc.init();
+			}
+		});
 	}
 
-	public void addMap(AnchorPane pane, double latitude,double longitude) {
-		try{
-			MapController controller=new MapController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("Map.fxml"));
-			loader.setController(controller);
-			pane.getChildren().add(loader.load());
-			controller.init(latitude,longitude); 
-		}catch(IOException e) {   
-			logger.log(Level.WARNING, e.toString());
-		}
+	public void toSearchEv(Scene scene, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				SearchEventsArtistsController evc = new SearchEventsArtistsController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("SearchEventsArtists.fxml"));
+				loader.setController(evc);
+				scene.setRoot(loader.load());
+				evc.init(searchString);
+			}
+		});
 	}
+
+	@Override
+	public void menuBar(VBox pos, String sel) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				MenuBarController mbc = new MenuBarController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuBar.fxml"));
+				loader.setController(mbc);
+				pos.getChildren().add(loader.load());
+				mbc.init(sel);
+			}
+		});
+	}
+
+	public void backButton(AnchorPane ap, String from, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				BackController bc = BackControllerFactory.getInstance().creator(1);
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("BackButton.fxml"));
+				loader.setController(bc);
+				ap.getChildren().add(loader.load());
+				bc.init(from, searchString);
+			}
+		});
+	}
+
+	public void searchBar(AnchorPane ap, int kind) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				SearchBarController sc = SearchBarControllerFactory.getInstance().creator(kind);
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("SearchBar.fxml"));
+				loader.setController(sc);
+				ap.getChildren().add(loader.load());
+				sc.init();
+			}
+		});
+	}
+
+	public void eventPreview(HBox box, MusicEventBean event, String from, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				EventUserController ev = new EventUserController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("Event.fxml"));
+				loader.setController(ev);
+				box.getChildren().add(loader.load());
+				ev.init(event, from, searchString);
+			}
+		});
+	}
+
+	public void artistPreview(HBox box, ArtistBean ar, String from, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				ArtistController ac = new ArtistController();
+				FXMLLoader loader=new FXMLLoader(getClass().getResource("Artist.fxml"));
+				loader.setController(ac);
+				box.getChildren().add(loader.load());
+				ac.init(ar, from, searchString);
+			}
+		});
+	}
+
+	public void evDetailsButtons(HBox box, MusicEventBean event) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				UserEvButtonsController btc = new UserEvButtonsController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("UserEvDetButtons.fxml"));
+				loader.setController(btc);
+				box.getChildren().add(loader.load());
+				btc.init(event);
+			}
+		});
+	}
+
+	public void toArtistDetails(Scene scene, ArtistBean ar, String from, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				ArtDetailsController adc = new ArtDetailsController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("ArtDetails.fxml"));
+				loader.setController(adc);
+				scene.setRoot(loader.load());
+				adc.init(ar,from,searchString);
+			}
+		});
+	}
+
+	public void toEventDetails(Scene scene, MusicEventBean meb, String from, String searchString ) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				UserEvDetController edc = new UserEvDetController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("EvDetails.fxml"));
+				loader.setController(edc);
+				scene.setRoot(loader.load());
+				edc.init(meb, from, searchString);
+			}
+		});
+	}
+
+	public void toMyEvents(Scene scene) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				YourEventsController yec = new YourEventsController();
+				FXMLLoader loader=new FXMLLoader(getClass().getResource("YourEventsSection.fxml"));
+				loader.setController(yec);
+				scene.setRoot(loader.load());
+				yec.init();
+			}
+		});
+	}
+
+	public void eventPreviewMyEvents(VBox box, MusicEventBean event, String from, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				EventUserController ev = new EventUserController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("Event.fxml"));
+				loader.setController(ev);
+				box.getChildren().add(loader.load());
+				ev.init(event, from, searchString);
+			}
+		});
+	}
+
+	public void toNews(Scene scene) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				NewsUserSectionController controller = new NewsUserSectionController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("NewsSection.fxml"));
+				loader.setController(controller);
+				scene.setRoot(loader.load());
+				controller.init();
+			}
+		});
+	}
+
+	public void newsPrev(VBox anchor, NewsBean myNews) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				NewsUserController controller = new NewsUserController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("News.fxml"));
+				loader.setController(controller);
+				anchor.getChildren().add(loader.load());
+				controller.init(myNews);
+			}
+		});
+	}
+
+	public void toFriendsSection(Scene scene) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				FriendsSectionController controller = new FriendsSectionController();
+				FXMLLoader loader=new FXMLLoader(getClass().getResource("FriendsSection.fxml"));
+				loader.setController(controller);
+				scene.setRoot(loader.load());
+				controller.init();
+			}
+		});
+	}
+
+	public void userPrev(HBox box, UserBean ub, String from, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				UserPrevController controller = new UserPrevController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("User.fxml"));
+				loader.setController(controller);
+				box.getChildren().add(loader.load());
+				controller.init(ub, from, searchString);
+			}
+		});
+	}
+
+	public void usrSerachPrev(VBox box, UserBean ub, String from, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				UserPrevController controller = new UserPrevController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("User.fxml"));
+				loader.setController(controller);
+				box.getChildren().add(loader.load());
+				controller.init(ub, from, searchString);
+			}
+		});
+	}
+
+	public void toSearchUsr(Scene scene, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				UserSearchSecController controller = new UserSearchSecController();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("SearchUsers.fxml"));
+				loader.setController(controller);
+				scene.setRoot(loader.load());
+				controller.init(searchString);
+			}
+		});
+	}
+
+	public void toUserDetails(Scene scene, UserBean ub, String from, String searchString) {
+		this.catcher(new GraphicChangeAction() {
+			@Override
+			public void act() throws IOException {
+				UserDetailsController controller = new UserDetailsController();
+				FXMLLoader loader=  new FXMLLoader(getClass().getResource("UserDetails.fxml"));
+				loader.setController(controller);
+				scene.setRoot(loader.load());
+				controller.init(ub, from, searchString);
+			}
+		});
+	}
+
 }
