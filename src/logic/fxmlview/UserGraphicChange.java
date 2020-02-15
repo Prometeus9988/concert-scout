@@ -10,15 +10,13 @@ import java.util.logging.Level;
 import logic.bean.ArtistBean;
 import logic.bean.MusicEventBean;
 import javafx.scene.Scene;
-import java.util.logging.Logger;
 import javafx.scene.layout.AnchorPane;
 import logic.bean.NewsBean;
 import logic.bean.UserBean;
 
-public class UserGraphicChange {
+public class UserGraphicChange extends GraphicChangeTemplate {
 	
 	private static UserGraphicChange myInstance=null;
-	private static final Logger logger = Logger.getLogger(UserGraphicChange.class.getName());
 	
 	private UserGraphicChange(){}
 	
@@ -51,18 +49,6 @@ public class UserGraphicChange {
 		}catch(IOException e) {
 			logger.log(Level.WARNING, e.toString());
 		}
-	}
-	
-	public void toLogin(Scene scene) {
-		try {
-			LoginViewController lvc=new LoginViewController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("Login.fxml"));
-			loader.setController(lvc);
-			scene.setRoot(loader.load());
-			lvc.init();
-		}catch(IOException e) {
-			logger.log(Level.WARNING, e.toString());
-		}	
 	}
 	
 	public void menuBar(VBox pos,String sel) {

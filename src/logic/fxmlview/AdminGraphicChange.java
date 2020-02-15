@@ -7,17 +7,15 @@ import javafx.scene.layout.VBox;
 import java.util.logging.Level;
 
 import javafx.scene.Scene;
-import java.util.logging.Logger;
 import logic.bean.MusicEventBean;
 import logic.bean.ArtistBean;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import logic.bean.NewsBean;
 
-public class AdminGraphicChange {
+public class AdminGraphicChange extends GraphicChangeTemplate {
 	
 	private static AdminGraphicChange myInstance = null;
-	private static final Logger logger=Logger.getLogger(AdminGraphicChange.class.getName());
 	
 	private AdminGraphicChange() {}
 	
@@ -50,18 +48,6 @@ public class AdminGraphicChange {
 		}catch(IOException e) {
 			logger.log(Level.WARNING, e.toString());
 		}
-	}
-	
-	public void toLogin(Scene scene) {
-		try {
-			LoginViewController lvc=new LoginViewController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("Login.fxml"));
-			loader.setController(lvc);
-			scene.setRoot(loader.load());
-			lvc.init();
-		}catch(IOException e) {
-			logger.log(Level.WARNING, e.toString());
-		}	
 	}
 	
 	public void eventPreview(VBox box,MusicEventBean event,String from,String searchString){

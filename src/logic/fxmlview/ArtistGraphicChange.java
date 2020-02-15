@@ -7,14 +7,12 @@ import javafx.scene.layout.VBox;
 import java.util.logging.Level;
 
 import javafx.scene.Scene;
-import java.util.logging.Logger;
 
-public class ArtistGraphicChange {
+public class ArtistGraphicChange extends GraphicChangeTemplate {
 	
 	private ArtistGraphicChange() {}
 	
 	private static ArtistGraphicChange myInstance=null;
-	private static final Logger logger = Logger.getLogger(ArtistGraphicChange.class.getName());
 	
 	public static ArtistGraphicChange getInstance() {
 		
@@ -46,18 +44,6 @@ public class ArtistGraphicChange {
 		}catch(IOException e) {
 			logger.log(Level.WARNING, e.toString());
 		}
-	}
-	
-	public void toLogin(Scene scene) {
-		try {
-			LoginViewController lvc=new LoginViewController();
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("Login.fxml"));
-			loader.setController(lvc);
-			scene.setRoot(loader.load());
-			lvc.init();
-		}catch(IOException e) {
-			logger.log(Level.WARNING, e.toString());
-		}	
 	}
 	
 	public void toAddNews(Scene scene) {
