@@ -112,6 +112,12 @@ public class HomepageArtistController {
 		    	logger.log(Level.WARNING, "Unable to rename {0}: ", fileName);
 		    }
 		}
+		this.dateField.setValue(null);
+		this.imageFile=null;
+		this.imageLabel.setText("No image selected");
+		this.nameField.setText("");
+		this.locField.setText("");
+		this.tkField.setText("");
 		
 	}
 	

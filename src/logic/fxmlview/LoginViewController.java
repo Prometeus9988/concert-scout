@@ -88,8 +88,8 @@ public class LoginViewController {
     		if(gu==null) {
     			this.errorLabel1.setText("Wrong username");
     			this.errorLabel2.setText("or password");
-    			this.usernameTextField.setText(null);
-    			this.passwordBox.setText(null);
+    			this.usernameTextField.setText("");
+    			this.passwordBox.setText("");
     		}else {
         		String role=gu.getRole();
         		
@@ -195,12 +195,12 @@ public class LoginViewController {
 			this.registerLabel.setText("Registration unsuccessfull");
 		}
 		
-		this.emailField.setText(null);
-		this.usernameRegField.setText(null);
-		this.passwordRegField.setText(null);
-		this.bandNameField.setText(null);
-		this.firstNameField.setText(null);
-		this.lastNameField.setText(null);
+		this.emailField.setText("");
+		this.usernameRegField.setText("");
+		this.passwordRegField.setText("");
+		this.bandNameField.setText("");
+		this.firstNameField.setText("");
+		this.lastNameField.setText("");
 		this.imageFile=null;
 		this.imageLabel.setText("No image selected");
 		

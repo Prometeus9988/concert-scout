@@ -22,7 +22,7 @@
                <children>
                   <VBox fx:id="secRoot" layoutX="52.0" layoutY="94.0" prefHeight="666.0" prefWidth="1048.0" spacing="5.0">
                      <children>
-                        <Label style="-fx-font-size: 21; -fx-font-style: italic;" text="Users" />
+                        <Label fx:id="userLabel" style="-fx-font-size: 21; -fx-font-style: italic;" text="Users" />
                         <HBox fx:id="scrPane" prefHeight="582.0" spacing="20.0">
                            <children>
                               <VBox fx:id="col1" prefHeight="200.0" prefWidth="176.0" spacing="20.0" />

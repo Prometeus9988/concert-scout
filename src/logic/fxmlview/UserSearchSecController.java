@@ -14,7 +14,9 @@ public class UserSearchSecController extends SingleListPage {
 
 	@FXML
 	private Label searchStringLabel;
-
+	@FXML
+	private Label userLabel;
+	
 	public void init(String searchString) {
 
 		UserGraphicChange ugc = UserGraphicChange.getInstance();

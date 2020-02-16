@@ -102,7 +102,7 @@ public class AddNewsArtistController {
 
 		}
 		
-		this.newsArea.setText(null);
+		this.newsArea.setText("");
 		this.imageFile=null;
 		this.imageLabel.setText("No image selected");
 		
