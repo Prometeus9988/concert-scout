@@ -5,6 +5,7 @@
     String maxdist = (String) request.getAttribute("MAXDISTANCE");
     String mindist = (String) request.getAttribute("MINDISTANCE");
     String defrad = (String) request.getAttribute("DEFAULTRADIUS");
+    String foundMusicEvents = (String) request.getAttribute("FoundMusicEvents");
     List<MusicEventBean> musicEvents = (List<MusicEventBean>) session.getAttribute("musicEventList");
     int i;
     %>
@@ -91,6 +92,7 @@ function showPosition(position) {
 	  document.getElementById("form").submit(); 
 }
 </script>
+<h3 class = "h3"><%=foundMusicEvents %></h3>
 <ul class = "hs">
     <%
     for(i = 0; i < musicEvents.size(); i++){

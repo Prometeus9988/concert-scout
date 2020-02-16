@@ -69,7 +69,7 @@
   <div class="centered" style="margin-left:30px;">
 
 <h1><i>Search results for "<%=searchString %>"</i></h1>
-   	<h1>Users</h1>
+   	<h1><i>Users</i></h1>
        <ul class = "hs">
     <%
     for(i = 0; i < users.size(); i++){

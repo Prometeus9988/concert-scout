@@ -1,6 +1,7 @@
 package logic.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import logic.bean.MusicEventBean;
 import logic.buyticket.BuyTicketController;
+import logic.exceptions.NoMusicEventFoundException;
 
 
 @WebServlet("/AroundYouServlet")
@@ -31,6 +33,8 @@ public class AroundYouServlet extends HttpServlet{
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher("aroundyou.jsp");
 		BuyTicketController btc = new BuyTicketController();
+		List<MusicEventBean> l = new ArrayList<>();
+		
 		session.setAttribute("origin", "AroundYouServlet");
 		double latitude = 0;
 		double longitude = 0;
@@ -58,7 +62,12 @@ public class AroundYouServlet extends HttpServlet{
 			request.setAttribute("DEFAULTRADIUS", DEFAULTRADIUS + "");
 		}
 		
-		List<MusicEventBean> l = btc.getAroundYou(latitude, longitude, radius);
+		try {
+			l = btc.getAroundYou(latitude, longitude, radius);
+			request.setAttribute("FoundMusicEvents", "Music events around you");
+		} catch (NoMusicEventFoundException e){
+			request.setAttribute("FoundMusicEvents", e.getMessage());
+		}
 		
 		request.setAttribute("MAXDISTANCE", MAXDISTANCE + "");
 		request.setAttribute("MINDISTANCE", MINDISTANCE + "");

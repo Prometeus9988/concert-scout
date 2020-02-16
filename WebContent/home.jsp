@@ -8,6 +8,9 @@
 
 	GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 	String username = gu.getUsername();
+	String foundMusicEvents = (String) request.getAttribute("FoundMusicEvents");
+	String foundArtists = (String) request.getAttribute("FoundArtists");
+	
 	List<MusicEventBean> musicEvents = (List<MusicEventBean>) session.getAttribute("musicEventList");
 	List<ArtistBean> artists = (List<ArtistBean>) session.getAttribute("artistList");
 
@@ -68,7 +71,7 @@
     <h2><i>Welcome <%=username%></i></h2>
     
     <!-- List of suggested events -->
-    <h3 class = "h3"><i>Suggested Events</i></h3>
+    <h3 class = "h3"><i><%=foundMusicEvents %></i></h3>
     <ul class = "hs">
     <%
     for(i = 0; i < musicEvents.size(); i++){
@@ -102,7 +105,7 @@
 </ul>
 
 	<!-- List of suggested artists -->
-    <h3 class = "h3"><i>Suggested Artists</i></h3>
+    <h3 class = "h3"><i><%=foundArtists %></i></h3>
        <ul class = "hs">
     <%
     for(i = 0; i < artists.size(); i++){

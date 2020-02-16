@@ -1,6 +1,7 @@
 package logic.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +18,8 @@ import logic.bean.ArtistBean;
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
 import logic.buyticket.BuyTicketController;
+import logic.exceptions.NoArtistFoundException;
+import logic.exceptions.NoMusicEventFoundException;
 
 @WebServlet("/BuyTicketServlet")
 public class BuyTicketServlet extends HttpServlet{
@@ -30,13 +33,26 @@ public class BuyTicketServlet extends HttpServlet{
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 		BuyTicketController btc = new BuyTicketController();
+		List<MusicEventBean> musicEvents = new ArrayList<>();
+		List<ArtistBean> artists = new ArrayList<>();
 		session.setAttribute("origin", "BuyTicketServlet");
 		
 		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 		String username = gu.getUsername();
 
-		List<MusicEventBean> musicEvents = btc.getSuggestedEvents(username);
-		List<ArtistBean> artists = btc.getSuggestedArtist(username);
+		try {
+			musicEvents = btc.getSuggestedEvents(username);
+			request.setAttribute("FoundMusicEvents", "Suggested Events");
+		} catch (NoMusicEventFoundException e) {
+			request.setAttribute("FoundMusicEvents", e.getMessage());
+		}
+		
+		try {
+			artists = btc.getSuggestedArtist(username);
+			request.setAttribute("FoundArtists", "Suggested Artists");
+		} catch (NoArtistFoundException e) {
+			request.setAttribute("FoundArtists", e.getMessage());
+		}
 		
 		session.setAttribute("musicEventList", musicEvents);
 		session.setAttribute("artistList", artists);

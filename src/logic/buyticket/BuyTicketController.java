@@ -10,34 +10,50 @@ import logic.dao.ArtistDao;
 import logic.dao.MusicEventDao;
 import logic.entity.Artist;
 import logic.entity.MusicEvent;
+import logic.exceptions.NoArtistFoundException;
+import logic.exceptions.NoMusicEventFoundException;
 import logic.utils.Controller;
 
 public class BuyTicketController extends Controller{
 
-	public List<MusicEventBean> getSuggestedEvents(String username) {
+	public List<MusicEventBean> getSuggestedEvents(String username) throws NoMusicEventFoundException {
 		MusicEventDao med = new MusicEventDao();
 
 		List<MusicEvent> l = med.getSuggestedEvents(username);
+		if(l.isEmpty()) {
+			throw new NoMusicEventFoundException("No suggested music events found");
+		}
 		return this.convertMusicEventList(l);
 	}
 	
-	public List<MusicEventBean> getSearchMusicEvent(String searchString) {
+	public List<MusicEventBean> getSearchMusicEvent(String searchString) throws NoMusicEventFoundException {
 		MusicEventDao med = new MusicEventDao();
 
 		List<MusicEvent> l = med.getSearchMusicEvent(searchString);
+		
+		if(l.isEmpty()) {
+			throw new NoMusicEventFoundException("No music events found with " + searchString);
+		}
+		
 		return this.convertMusicEventList(l);
 	}
 	
-	public List<ArtistBean> getSearchArtist(String searchString) {
+	public List<ArtistBean> getSearchArtist(String searchString) throws NoArtistFoundException {
 		ArtistDao ad = new ArtistDao();
 
 		List<Artist> l = ad.getSearchArtist(searchString);
+		if(l.isEmpty()) {
+			throw new NoArtistFoundException("No artists found with " + searchString);
+		}
 		return this.convertArtistList(l);
 	}
 	
-	public List<ArtistBean> getSuggestedArtist(String username){
+	public List<ArtistBean> getSuggestedArtist(String username) throws NoArtistFoundException{
 		ArtistDao ad = new ArtistDao();
 		List<Artist> l = ad.getSuggestedArtist(username);
+		if(l.isEmpty()) {
+			throw new NoArtistFoundException("No suggested artists found");
+		}
 		return this.convertArtistList(l);
 	}
 	
@@ -72,11 +88,16 @@ public class BuyTicketController extends Controller{
 		return apc.isParticipating(user, meb);
 	}
 	
-	public List<MusicEventBean> getAroundYou(double latitude, double longitude, int radius){
+	public List<MusicEventBean> getAroundYou(double latitude, double longitude, int radius) throws NoMusicEventFoundException{
 		MusicEventDao med = new MusicEventDao();
 
 		List<MusicEvent> l = med.getAroundYou(latitude, longitude, radius);
 		List<MusicEventBean> lb = new ArrayList<>();
+		
+		if(l.isEmpty()) {
+			throw new NoMusicEventFoundException("No music events found in the specified distance");
+		}
+		
 		for(int i = 0; i < l.size(); i++) {
 			MusicEvent me = l.get(i);
 			MusicEventBean meb = this.convert(me);

@@ -1,6 +1,7 @@
 package logic.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpSession;
 import logic.bean.ArtistBean;
 import logic.bean.MusicEventBean;
 import logic.buyticket.BuyTicketController;
+import logic.exceptions.NoArtistFoundException;
+import logic.exceptions.NoMusicEventFoundException;
 
 @WebServlet("/SearchServlet")
 public class SearchServlet extends HttpServlet{
@@ -30,8 +33,8 @@ public class SearchServlet extends HttpServlet{
 		RequestDispatcher rd = null;
 		BuyTicketController btc = new BuyTicketController();
 
-		List<MusicEventBean> musicEvents = null;
-		List<ArtistBean> artists = null;
+		List<MusicEventBean> musicEvents = new ArrayList<>();
+		List<ArtistBean> artists = new ArrayList<>();
 		session.setAttribute("origin", "SearchServlet");
 		
 		String searchString = request.getParameter(SEARCHSTRING);
@@ -42,12 +45,23 @@ public class SearchServlet extends HttpServlet{
 		
 		request.setAttribute(SEARCHSTRING, searchString);
 		
-		musicEvents = btc.getSearchMusicEvent(searchString);
-		artists = btc.getSearchArtist(searchString);
+		try {
+			musicEvents = btc.getSearchMusicEvent(searchString);
+			request.setAttribute("FoundMusicEvents", "Music Events");
+		} catch (NoMusicEventFoundException e) {
+			request.setAttribute("FoundMusicEvents", e.getMessage());
+		}
+		
+		try {
+			artists = btc.getSearchArtist(searchString);
+			request.setAttribute("FoundArtists", "Artists");
+		} catch (NoArtistFoundException e) {
+			request.setAttribute("FoundArtists", e.getMessage());
+		}
 		
 		session.setAttribute(SEARCHSTRING, searchString);
-
 		session.setAttribute("musicEventList", musicEvents);
+		
 		session.setAttribute("artistList", artists);
 		rd = request.getRequestDispatcher("searchResult.jsp");
 		

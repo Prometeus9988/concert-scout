@@ -7,7 +7,9 @@
 	GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 	String username = gu.getUsername();	
 	
-	String searchString = (String) request.getAttribute("searchString");	
+	String searchString = (String) request.getAttribute("searchString");
+	String resultMusicEvents = (String) request.getAttribute("FoundMusicEvents");
+	String resultArtists = (String) request.getAttribute("FoundArtists");
 	request.setAttribute("searchString", searchString);
 	
 	List<MusicEventBean> musicEvents = (List<MusicEventBean>) session.getAttribute("musicEventList");
@@ -69,8 +71,8 @@
 <div class="splitBackground right">
   <div class="centered" style="margin-left:30px;">
 
-<h1><i>Search results for "<%=searchString %>"</i></h1>
-<h1><i>Music Events</i></h1>
+<h3><i>Search results for "<%=searchString %>"</i></h3>
+<h3><i><%=resultMusicEvents%></i></h3>
 
     <ul class = "hs">
     <%
@@ -101,7 +103,7 @@
     }
     %>
 </ul>
-    	<h1><i>Artists</i></h1>
+    	<h3><i><%=resultArtists %></i></h3>
        <ul class = "hs">
     <%
     for(i = 0; i < artists.size(); i++){

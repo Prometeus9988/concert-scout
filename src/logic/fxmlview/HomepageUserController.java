@@ -12,6 +12,10 @@ import logic.bean.ArtistBean;
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
 import logic.buyticket.*;
+import logic.exceptions.NoArtistFoundException;
+import logic.exceptions.NoMusicEventFoundException;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomepageUserController {
@@ -34,7 +38,8 @@ public class HomepageUserController {
 	public void init(){
 		
 		UserGraphicChange ugc = UserGraphicChange.getInstance();
-		
+		List<MusicEventBean> musicEvents = new ArrayList<>();
+		List<ArtistBean> artist = new ArrayList<>(); 
 		//init menuBar
 		
 		ugc.menuBar(this.menuBar,"home");
@@ -65,8 +70,17 @@ public class HomepageUserController {
 		BuyTicketController btc = new BuyTicketController();
 		String username = gub.getUsername();
 		
-		List<MusicEventBean> musicEvents = btc.getSuggestedEvents(username);
-		List<ArtistBean>artist = btc.getSuggestedArtist(username);
+		try {
+			musicEvents = btc.getSuggestedEvents(username);
+		} catch (NoMusicEventFoundException e) {
+			//change label with e.getMessage()
+		}
+		
+		try {
+			artist = btc.getSuggestedArtist(username);
+		} catch (NoArtistFoundException e) {
+			//change label with e.getMessage()
+		}
 		
 		int i;
 		

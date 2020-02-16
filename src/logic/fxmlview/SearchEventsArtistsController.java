@@ -6,6 +6,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import logic.buyticket.*;
+import logic.exceptions.NoArtistFoundException;
+import logic.exceptions.NoMusicEventFoundException;
+
+import java.util.ArrayList;
 import java.util.List;
 import logic.bean.ArtistBean;
 import logic.bean.MusicEventBean;
@@ -29,7 +33,7 @@ public class SearchEventsArtistsController {
 
 		UserGraphicChange ugc = UserGraphicChange.getInstance();
 
-		//menuBar		
+		//menuBar	
 		ugc.menuBar(this.menuBar, "home");
 
 		//name bar
@@ -50,10 +54,21 @@ public class SearchEventsArtistsController {
 		//searched lists
 		BuyTicketController btc = new BuyTicketController();
 		List<MusicEventBean> musicEvents = null;
-		musicEvents = btc.getSearchMusicEvent(searchString);
+		
+		try {
+			musicEvents = btc.getSearchMusicEvent(searchString);
+		} catch (NoMusicEventFoundException e) {
+			musicEvents = new ArrayList<>();
+		}
+		
 		List<ArtistBean> artists = null;
-		artists = btc.getSearchArtist(searchString);
-
+		
+		try {
+			artists = btc.getSearchArtist(searchString);
+		} catch (NoArtistFoundException e) {
+			artists = new ArrayList<>();
+		}
+		
 		int i;
 
 		for(i = 0; i < musicEvents.size(); i++) {
