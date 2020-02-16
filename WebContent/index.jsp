@@ -71,9 +71,9 @@
 				<%
 					String log = (String) request.getAttribute("login");
 					if (log != null) {
-						if (log.equals("notSuccessfull")) {
+						if (log != null) {
 				%>
-				<h6 style="color: red;">Wrong username or password</h6>
+				<h6 style="color: red;"><%=log %></h6>
 				<%
 					}
 					}		

@@ -66,21 +66,22 @@ public class LoginServlet extends HttpServlet{
 		gu.setPassword(password);
 		try {
 			gu = controller.login(gu);
+			
+			if(gu == null) {
+				request.setAttribute("login", "Wrong username of password");
+				return request.getRequestDispatcher(INDEX);
+			} else if(gu.getRole().equals("user")){
+				session.setAttribute("user", gu);
+				return request.getRequestDispatcher("BuyTicketServlet");
+			} else if(gu.getRole().equals("artist")) {
+				session.setAttribute("user", gu);
+				return request.getRequestDispatcher("artistHome.jsp");
+			} else if(gu.getRole().equals("admin")) {
+				session.setAttribute("user", gu);
+				return request.getRequestDispatcher("AdminMusicEventServlet");
+			}
 		}catch(LoginEmptyFieldException e) {
-			//manage exception
-		}
-		if(gu == null) {
-			request.setAttribute("login", "notSuccessfull");
-			return request.getRequestDispatcher(INDEX);
-		} else if(gu.getRole().equals("user")){
-			session.setAttribute("user", gu);
-			return request.getRequestDispatcher("BuyTicketServlet");
-		} else if(gu.getRole().equals("artist")) {
-			session.setAttribute("user", gu);
-			return request.getRequestDispatcher("artistHome.jsp");
-		} else if(gu.getRole().equals("admin")) {
-			session.setAttribute("user", gu);
-			return request.getRequestDispatcher("AdminMusicEventServlet");
+			request.setAttribute("login", e.getMessage());
 		}
 		
 		return request.getRequestDispatcher(INDEX);
