@@ -50,9 +50,9 @@ public class FriendButtonServlet  extends HttpServlet{
 
 			try {
 				targetEvents = fc.getUserEvents(ub.getUsername());
-				request.setAttribute("foundEvents", ub.getUsername() + " is going to:");
+				session.setAttribute("foundEvents", ub.getUsername() + " is going to:");
 			} catch (NoMusicEventFoundException nme) {
-				request.setAttribute("foundEvents", nme.getMessage());
+				session.setAttribute("foundEvents", nme.getMessage());
 			}
 			session.setAttribute("musicEventList", targetEvents);
 			boolean isFriend = fc.isFriend(gu, ub);

@@ -9,7 +9,7 @@
 	List <MusicEventBean> targetEvents = (List <MusicEventBean>)session.getAttribute("musicEventList");
 	boolean isFriend = (boolean) request.getAttribute("isFriend");
 	String who = (String) request.getAttribute("request");
-	String foundEvents = (String) request.getAttribute("foundEvents");
+	String foundEvents = (String) session.getAttribute("foundEvents");
 	
 	if (!isFriend) {
 		if (who.equals("user"))
