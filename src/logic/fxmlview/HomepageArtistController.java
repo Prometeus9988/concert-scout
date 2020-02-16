@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
+import logic.exceptions.DateException;
 import logic.utils.*;
 import javafx.stage.FileChooser;
 import java.io.File;
@@ -87,9 +88,13 @@ public class HomepageArtistController {
 		meb.setTicketone(ticketone);
 		meb.setDate(date);
 		
-		result=controller.addMusicEvent(meb);
-		if(result)this.headerLabel.setText("Music Event Added");
-		else this.headerLabel.setText("Failed to add music event");
+		try {
+			result = controller.addMusicEvent(meb);
+			if(result)this.headerLabel.setText("Music Event Added");
+			else this.headerLabel.setText("Failed to add music event");
+		} catch (DateException de) {
+			this.headerLabel.setText(de.getMessage());
+		}
 		
 		if(!fileName.contentEquals("") && result) {
 			String path = System.getProperty("user.home") + File.separator

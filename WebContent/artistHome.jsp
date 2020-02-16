@@ -9,8 +9,10 @@
 	if(res != null){
 		if (res.equals("added")) {
 			resString = "Music Event Added";
-		} else {
+		} else if (res.equals("notAdded")) {
 			resString = "Failed to add music event";
+		} else {
+			resString = res;
 		}
 	}
 %>

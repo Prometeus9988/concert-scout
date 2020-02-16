@@ -3,6 +3,7 @@ package logic.addmusicevent;
 import logic.bean.MusicEventBean;
 import logic.dao.MusicEventDao;
 import logic.entity.MusicEvent;
+import logic.exceptions.DateException;
 import logic.utils.Controller;
 import logic.utils.GoogleMapBoundary;
 
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +24,7 @@ public class AddMusicEventController extends Controller{
 	
 	private static final Logger logger = Logger.getLogger(AddMusicEventController.class.getName());
 	
-	public boolean addMusicEvent(MusicEventBean meb) {
+	public boolean addMusicEvent(MusicEventBean meb) throws DateException {
 		MusicEventDao med = new MusicEventDao();
 		Date date = null;
 		Date currentDate = new Date();
@@ -53,7 +55,8 @@ public class AddMusicEventController extends Controller{
 		}
 		
 		if(date.before(currentDate)){
-	        return false;
+			DateFormat outputFormatter = new SimpleDateFormat("dd/MM/yyyy");
+	        throw new DateException(outputFormatter.format(date) + " is before current date");
 	    }
 		return med.addMusicEvent(meb.getName(), meb.getCoverPath(), meb.getLocation(), meb.getArtistId(), date, meb.getTicketone(), coordinates);
 	}

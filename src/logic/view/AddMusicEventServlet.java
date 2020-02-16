@@ -20,6 +20,7 @@ import javax.servlet.http.Part;
 import logic.addmusicevent.AddMusicEventController;
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
+import logic.exceptions.DateException;
 import logic.utils.RenameFile;
 
 @MultipartConfig
@@ -66,12 +67,16 @@ public class AddMusicEventServlet extends HttpServlet{
 		meb.setTicketone(ticketone);
 		meb.setDate(date);
 		
+		try {
 			result = controller.addMusicEvent(meb);
-			if(result) {
+			if (result) {
 				res = "added";
 			} else {
 				res = "notAdded";
 			}
+		} catch (DateException de) {
+			res = de.getMessage();
+		}
 		
 		if(!fileName.equals("") && result && filePart != null){
 			String path = System.getProperty("user.home") + File.separator
