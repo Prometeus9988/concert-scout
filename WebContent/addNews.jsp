@@ -8,8 +8,10 @@ String res = (String) request.getAttribute("result");
 if(res != null){
 	if (res.equals("added")) {
 		resString = "News posted";
-	} else {
+	} else if (res.equals("notAdded")) {
 		resString = "Failed to post the news";
+	} else {
+		resString = res;
 	}
 }
 %>

@@ -11,18 +11,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import logic.dao.NewsDao;
+import logic.exceptions.FieldTooLongException;
 import logic.readnews.ReadNewsController;
 import logic.bean.NewsBean;
 
 public class AddNewsController {
 	private static final Logger logger = Logger.getLogger(AddNewsController.class.getName());
 	
-	public boolean addNews(NewsBean nb) {
+	public boolean addNews(NewsBean nb) throws FieldTooLongException {
 		NewsDao nd = new NewsDao();
 		
 		//Time of the postedNews
 		LocalDateTime current = LocalDateTime.now();
 		
+		if (nb.getText().length() >= 200) {
+			throw new FieldTooLongException("News body can't be longer than 200 characters");
+		}
 		return nd.addNews(nb.getText(), nb.getPicturePath(), nb.getArtistId(), current); 
 	}
 	

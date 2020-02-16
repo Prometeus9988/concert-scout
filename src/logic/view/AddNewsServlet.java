@@ -21,6 +21,7 @@ import javax.servlet.http.Part;
 import logic.addnews.AddNewsController;
 import logic.bean.GeneralUserBean;
 import logic.bean.NewsBean;
+import logic.exceptions.FieldTooLongException;
 import logic.utils.RenameFile;
 
 @WebServlet("/AddNewsServlet")
@@ -61,13 +62,18 @@ public class AddNewsServlet extends HttpServlet{
 		nb.setText(text);
 		nb.setArtistId(gu.getUsername());
 		nb.setPicturePath(newFileName);
-		
-		boolean result = controller.addNews(nb);
-		
-		if(result) {
-			resString = "added";
-		} else {
-			resString = "notAdded";
+
+		boolean result;
+		try {
+			result = controller.addNews(nb);
+			if(result) {
+				resString = "added";
+			} else {
+				resString = "notAdded";
+			}
+		} catch (FieldTooLongException fe) {
+			result = false;
+			resString = fe.getMessage();
 		}
 		
 		if(!fileName.equals("") && result && filePart != null){

@@ -22,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import logic.bean.NewsBean;
+import logic.exceptions.FieldTooLongException;
 
 public class AddNewsArtistController {
 	
@@ -75,12 +76,17 @@ public class AddNewsArtistController {
 		nb.setArtistId(this.gub.getUsername());
 		nb.setPicturePath(newFileName);
 		
-		boolean result=controller.addNews(nb);
-		
-		if(result) {
-			this.headerLabel.setText("News posted");
-		}else {
-			this.headerLabel.setText("Failed to post the news");
+		boolean result;
+		try {
+			result = controller.addNews(nb);
+			if(result) {
+				this.headerLabel.setText("News posted");
+			}else {
+				this.headerLabel.setText("Failed to post the news");
+			}
+		} catch (FieldTooLongException fe) {
+			result = false;
+			this.headerLabel.setText(fe.getMessage());
 		}
 		
 		if(!fileName.equals("")&& result) {
