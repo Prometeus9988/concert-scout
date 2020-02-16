@@ -7,18 +7,26 @@ import logic.bean.GeneralUserBean;
 import logic.bean.UserBean;
 import logic.dao.UserDao;
 import logic.entity.User;
+import logic.exceptions.NoFriendRequestException;
+import logic.exceptions.NoFriendException;
 
 public class FriendsController {
 	
-	public List<UserBean> getFriends(String username){
+	public List<UserBean> getFriends(String username) throws NoFriendException{
 		UserDao ud = new UserDao();
 		List<User> l = ud.getFriends(username);
+		if(l.isEmpty()) {
+			throw new NoFriendException("No friends found :-(");
+		}
 		return this.convert(l);
 	}
 	
-	public List<UserBean> getRequests(String username){
+	public List<UserBean> getRequests(String username) throws NoFriendRequestException{
 		UserDao ud = new UserDao();
 		List<User> l = ud.getFriendRequests(username);
+		if(l.isEmpty()) {
+			throw new NoFriendRequestException("No friend's requests found :-(");
+		}
 		return this.convert(l);
 	}
 	

@@ -1,6 +1,7 @@
 package logic.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpSession;
 
 import logic.bean.GeneralUserBean;
 import logic.bean.UserBean;
+import logic.exceptions.NoFriendRequestException;
+import logic.exceptions.NoFriendException;
 import logic.friends.FriendsController;
 
 @WebServlet("/FriendsServlet")
@@ -29,15 +32,29 @@ public class FriendsServlet extends HttpServlet{
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher("friends.jsp");
 		FriendsController fc = new FriendsController();
+		List<UserBean> friendList = new ArrayList<>();
+		List<UserBean> requestList = new ArrayList<>();
 		session.setAttribute("origin", "FriendsServlet");
 		
 		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 		String username = gu.getUsername();
 
-		List<UserBean> friendList = fc.getFriends(username);
+		try {
+			friendList = fc.getFriends(username);
+			request.setAttribute("FoundFriends", "Your friends");
+		} catch (NoFriendException e) {
+			request.setAttribute("FoundFriends", e.getMessage());
+		}
+		
 		request.setAttribute("friendList", friendList);
 		
-		List<UserBean> requestList = fc.getRequests(username);
+		try {
+			requestList = fc.getRequests(username);
+			request.setAttribute("FoundRequests", "Your friend requests");
+		} catch (NoFriendRequestException e) {
+			request.setAttribute("FoundRequests", e.getMessage());
+		}
+		
 		request.setAttribute("requestList", requestList);
 
 		try {

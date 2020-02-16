@@ -8,7 +8,8 @@
 
 	List<UserBean> friendList = (List<UserBean>) request.getAttribute("friendList");
 	List<UserBean> requestList = (List<UserBean>) request.getAttribute("requestList");
-
+	String foundFriends = (String) request.getAttribute("FoundFriends");
+	String foundRequests = (String) request.getAttribute("FoundRequests");
 %>
 <!DOCTYPE html>
 <html>
@@ -58,7 +59,7 @@
   </div>
   </form>
     <!-- Friend list -->
-    <h2 class = "h2"><i>Your friends</i></h2>
+    <h2 class = "h2"><i><%=foundFriends %></i></h2>
     <ul class = "hs">
     <%
     for(i = 0; i < friendList.size(); i++){
@@ -87,7 +88,7 @@
     %>
 </ul>
     <!-- Friend requests list -->
-    <h2 class = "h2"><i>Your friend requests</i></h2>
+    <h2 class = "h2"><i><%=foundRequests %></i></h2>
     <ul class = "hs">
     <%
     for(i = 0; i < requestList.size(); i++){
