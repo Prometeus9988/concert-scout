@@ -29,12 +29,12 @@
                               <Label fx:id="nameLabel" prefHeight="69.0" prefWidth="922.0" style="-fx-font-size: 26; -fx-font-style: italic;" text="nome" />
                            </children>
                         </HBox>
-                        <Label style="-fx-font-size: 21; -fx-font-style: italic;" text="Suggested Events" />
+                        <Label fx:id="evLabel" style="-fx-font-size: 21; -fx-font-style: italic;" text="Suggested Events" />
                         <HBox fx:id="suggEvRow" prefHeight="250.0" spacing="20.0" />
                      </children></VBox>
                   <VBox fx:id="suggArtCol" layoutX="52.0" layoutY="411.0" prefHeight="300.0" prefWidth="1048.0" spacing="5.0">
                      <children>
-                        <Label style="-fx-font-size: 21; -fx-font-style: italic;" text="Suggested Artists" />
+                        <Label fx:id="arLabel" style="-fx-font-size: 21; -fx-font-style: italic;" text="Suggested Artists" />
                         <HBox fx:id="suggArtRow" prefHeight="240.0" spacing="20.0" />
                      </children>
                   </VBox>

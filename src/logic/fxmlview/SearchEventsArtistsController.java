@@ -28,6 +28,10 @@ public class SearchEventsArtistsController {
 	private HBox evRow;
 	@FXML
 	private VBox evCol;
+	@FXML
+	private Label eventLabel;
+	@FXML
+	private Label artLabel;
 
 	public void init(String searchString){
 
@@ -59,6 +63,7 @@ public class SearchEventsArtistsController {
 			musicEvents = btc.getSearchMusicEvent(searchString);
 		} catch (NoMusicEventFoundException e) {
 			musicEvents = new ArrayList<>();
+			this.eventLabel.setText(e.getMessage());
 		}
 		
 		List<ArtistBean> artists = null;
@@ -67,6 +72,7 @@ public class SearchEventsArtistsController {
 			artists = btc.getSearchArtist(searchString);
 		} catch (NoArtistFoundException e) {
 			artists = new ArrayList<>();
+			this.artLabel.setText(e.getMessage());
 		}
 		
 		int i;

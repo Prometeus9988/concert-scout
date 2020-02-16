@@ -34,6 +34,10 @@ public class HomepageUserController {
 	private VBox suggArtCol;
 	@FXML
 	private HBox suggArtRow;
+	@FXML
+	private Label evLabel;
+	@FXML
+	private Label arLabel;
 	
 	public void init(){
 		
@@ -73,13 +77,13 @@ public class HomepageUserController {
 		try {
 			musicEvents = btc.getSuggestedEvents(username);
 		} catch (NoMusicEventFoundException e) {
-			//change label with e.getMessage()
+			this.evLabel.setText(e.getMessage());
 		}
 		
 		try {
 			artist = btc.getSuggestedArtist(username);
 		} catch (NoArtistFoundException e) {
-			//change label with e.getMessage()
+			this.arLabel.setText(e.getMessage());
 		}
 		
 		int i;

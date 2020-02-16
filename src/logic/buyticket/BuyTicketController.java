@@ -32,7 +32,7 @@ public class BuyTicketController extends Controller{
 		List<MusicEvent> l = med.getSearchMusicEvent(searchString);
 		
 		if(l.isEmpty()) {
-			throw new NoMusicEventFoundException("No music events found with " + searchString);
+			throw new NoMusicEventFoundException("No music events found");
 		}
 		
 		return this.convertMusicEventList(l);
@@ -43,7 +43,7 @@ public class BuyTicketController extends Controller{
 
 		List<Artist> l = ad.getSearchArtist(searchString);
 		if(l.isEmpty()) {
-			throw new NoArtistFoundException("No artists found with " + searchString);
+			throw new NoArtistFoundException("No artists found");
 		}
 		return this.convertArtistList(l);
 	}
