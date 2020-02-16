@@ -1,6 +1,7 @@
 package logic.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
+import logic.exceptions.NoMusicEventFoundException;
 import logic.userevents.UserEventsController;
 
 @WebServlet("/YourEventsServlet")
@@ -30,11 +32,17 @@ public class YourEventsServlet extends HttpServlet{
 		RequestDispatcher rd = request.getRequestDispatcher("yourEvents.jsp");
 		UserEventsController ec = new UserEventsController();
 		session.setAttribute("origin", "YourEventsServlet");
+		List<MusicEventBean> musicEventList = new ArrayList<>();
 		
 		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 		String username = gu.getUsername();
 
-		List<MusicEventBean> musicEventList = ec.getUserEvents(username);
+		try {
+			musicEventList = ec.getUserEvents(username);
+			request.setAttribute("foundEvents", "Your Events");
+		} catch (NoMusicEventFoundException nme) {
+			request.setAttribute("foundEvents", nme.getMessage());
+		}
 		session.setAttribute("musicEventList", musicEventList);
 
 		try {

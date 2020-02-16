@@ -9,6 +9,7 @@
 	List <MusicEventBean> targetEvents = (List <MusicEventBean>)session.getAttribute("musicEventList");
 	boolean isFriend = (boolean) request.getAttribute("isFriend");
 	String who = (String) request.getAttribute("request");
+	String foundEvents = (String) request.getAttribute("foundEvents");
 	
 	if (!isFriend) {
 		if (who.equals("user"))
@@ -83,7 +84,7 @@
   }
   %>
   </form>
-  <h2><i><%=ub.getUsername() + " is going to:" %></i></h2>
+  <h2><i><%=foundEvents %></i></h2>
       <ul class = "hs">
     <%
     for(i = 0; i < targetEvents.size(); i++){

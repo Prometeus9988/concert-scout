@@ -1,6 +1,7 @@
 package logic.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,9 +17,8 @@ import javax.servlet.http.HttpSession;
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
 import logic.bean.UserBean;
+import logic.exceptions.NoMusicEventFoundException;
 import logic.friends.FriendsController;
-import logic.userevents.UserEventsController;
-
 
 @WebServlet("/FriendButtonServlet")
 public class FriendButtonServlet  extends HttpServlet{
@@ -37,23 +37,32 @@ public class FriendButtonServlet  extends HttpServlet{
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 		FriendsController fc = new FriendsController();
-		UserEventsController uc = new UserEventsController();
-		
+
 		if(request.getParameter("f") != null) {
+
 			UserBean ub = new UserBean();
 			ub.setUsername(request.getParameter("f"));
 			ub.setName(request.getParameter("name"));
 			ub.setSurname(request.getParameter("surname"));
 			ub.setProfilePicture(request.getParameter("profileP"));
-			List <MusicEventBean> targetEvents = uc.getUserEvents(ub.getUsername());
 			session.setAttribute(TARGET, ub);
+			List <MusicEventBean> targetEvents = new ArrayList<>();
+
+			try {
+				targetEvents = fc.getUserEvents(ub.getUsername());
+				request.setAttribute("foundEvents", ub.getUsername() + " is going to:");
+			} catch (NoMusicEventFoundException nme) {
+				request.setAttribute("foundEvents", nme.getMessage());
+			}
 			session.setAttribute("musicEventList", targetEvents);
 			boolean isFriend = fc.isFriend(gu, ub);
 			request.setAttribute(ISFRIEND, isFriend);
 			String who = fc.whoSentRequest(gu, ub);
 			request.setAttribute(REQUEST, who);
 			rd = request.getRequestDispatcher(USERDETAIL);
+
 		} else if(request.getParameter("friend") != null) {
+
 			UserBean ub = new UserBean();
 			ub.setUsername(request.getParameter(TARGET));
 			boolean isFriend = fc.isFriend(gu, ub);
@@ -70,7 +79,9 @@ public class FriendButtonServlet  extends HttpServlet{
 			request.setAttribute(REQUEST, fc.whoSentRequest(gu, ub));
 			request.setAttribute(ISFRIEND, fc.isFriend(gu, ub));
 			rd = request.getRequestDispatcher(USERDETAIL);
+
 		} else if (request.getParameter("decline") != null) {
+
 			UserBean ub = new UserBean();
 			ub.setUsername(request.getParameter(TARGET));
 			fc.declineRequest(gu, ub);
@@ -78,11 +89,12 @@ public class FriendButtonServlet  extends HttpServlet{
 			request.setAttribute(ISFRIEND, fc.isFriend(gu, ub));
 			rd = request.getRequestDispatcher(USERDETAIL);
 		}
-		
+
 		try {
 			rd.forward(request, response);
 		} catch(Exception e) {
 			logger.log(Level.WARNING, e.toString());
 		}
 	}
+
 }

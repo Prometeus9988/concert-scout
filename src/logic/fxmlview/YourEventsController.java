@@ -3,12 +3,20 @@ package logic.fxmlview;
 import javafx.scene.layout.VBox;
 import logic.utils.SessionUser;
 import logic.bean.GeneralUserBean;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import logic.userevents.UserEventsController;
 import logic.bean.MusicEventBean;
+import logic.exceptions.NoMusicEventFoundException;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class YourEventsController extends SingleListPage {
+	
+	@FXML
+	private Label eventLabel;
 
 	public void init() {
 
@@ -33,7 +41,13 @@ public class YourEventsController extends SingleListPage {
 
 		GeneralUserBean gu = SessionUser.getInstance().getSession();
 
-		List<MusicEventBean> musicEventList = ec.getUserEvents(gu.getUsername());
+		List<MusicEventBean> musicEventList = new ArrayList<>();
+		try {
+			musicEventList = ec.getUserEvents(gu.getUsername());
+			eventLabel.setText("Your Events");
+		} catch (NoMusicEventFoundException nme) {
+			eventLabel.setText(nme.getMessage());
+		}
 
 		int i;
 		int j = 0;

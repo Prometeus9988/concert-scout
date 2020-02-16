@@ -10,10 +10,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import logic.bean.UserBean;
+import logic.exceptions.NoMusicEventFoundException;
 import javafx.scene.control.Button;
-import logic.userevents.*;
 import logic.utils.SessionUser;
 import logic.bean.GeneralUserBean;
+
+import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.ScrollPane;
 import logic.friends.*; 
@@ -47,7 +49,6 @@ public class UserDetailsController {
 		
 		//init controller
 		UserGraphicChange ugc=UserGraphicChange.getInstance();
-		UserEventsController uc=new UserEventsController();
 		FriendsController fc=new FriendsController();
 		//init menuBar
 		ugc.menuBar(this.menuBar,"friends");
@@ -55,7 +56,6 @@ public class UserDetailsController {
 		//init labels
 		this.username.setText(ub.getUsername());
 		this.usrName.setText(ub.getName()+" "+ub.getSurname());
-		this.isGoing.setText(ub.getUsername()+" is going to:");
 		
 		//init buttons
 		GeneralUserBean gu=SessionUser.getInstance().getSession();
@@ -124,11 +124,7 @@ public class UserDetailsController {
 			this.btnAnchor.getChildren().add(btn2);
 			
 		}
-		
-		
-		
-		
-		
+
 		//init back button
 		ugc.backButton(this.backButton, from, searchString);
 		
@@ -154,14 +150,18 @@ public class UserDetailsController {
 		
 		
 		//events
-		List<MusicEventBean> targetEvents=uc.getUserEvents(ub.getUsername());
+		List<MusicEventBean> targetEvents = new ArrayList<>();
+		try {
+			targetEvents = fc.getUserEvents(ub.getUsername());
+			this.isGoing.setText(ub.getUsername()+" is going to:");
+		} catch (NoMusicEventFoundException nme) {
+			this.isGoing.setText(nme.getMessage());
+		}
 		int i;
 		
 		for(i=0;i<targetEvents.size();i++) {
 			ugc.eventPreview(this.evAnchor,targetEvents.get(i),from,searchString);
 		}
-		
-		
-		
+
 	}
 }

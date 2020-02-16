@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import logic.bean.GeneralUserBean;
+import logic.bean.MusicEventBean;
 import logic.bean.UserBean;
 import logic.dao.UserDao;
 import logic.entity.User;
 import logic.exceptions.NoFriendRequestException;
+import logic.exceptions.NoMusicEventFoundException;
+import logic.userevents.UserEventsController;
 import logic.exceptions.NoFriendException;
 
 public class FriendsController {
@@ -93,5 +96,15 @@ public class FriendsController {
 		
 		return lb;
 	}
+	
+	public List<MusicEventBean> getUserEvents(String username) throws NoMusicEventFoundException {
+		UserEventsController uc = new UserEventsController();
+		try {
+			return uc.getUserEvents(username);
+		} catch (NoMusicEventFoundException nme) {
+			throw new NoMusicEventFoundException(username + " is not attending any event");
+		}
+	}
+
 	
 }

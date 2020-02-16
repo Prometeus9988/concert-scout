@@ -5,6 +5,7 @@
 <%
 	int i;
 	List<MusicEventBean> musicEvents = (List<MusicEventBean>) session.getAttribute("musicEventList");
+	String foundEvents = (String) request.getAttribute("foundEvents");
 %>
 
 <!DOCTYPE html>
@@ -49,7 +50,7 @@
 
 <div class="splitBackground right">
   <div class="centered" style="margin-left:30px;">
-    <h2><i>Your Events</i></h2>
+    <h2><i><%=foundEvents %></i></h2>
   </div>
 
 <ul class = "hs">
