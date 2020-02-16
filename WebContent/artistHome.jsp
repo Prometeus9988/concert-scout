@@ -64,17 +64,17 @@
 <%
 GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 %>
-<h1>Welcome <%= gu.getUsername() %></h1>
+<h1><i>Welcome <%= gu.getUsername() %></i></h1>
 <!-- Per caricare immagine aggiungere enctype='multipart/form-data' -->
 <form action = "AddMusicEventServlet" method = "POST" id = "content" enctype='multipart/form-data'>
   <div class="form-group col-md-3 col-md-offset-3" style = "width:500px; border-width:2px; border-style:solid; border-color:#b0b0b0; border-radius: 10px;">
     <div class = "form.group"><br>
-    <label><%=resString %></label><br>
+    <label><i><%=resString %></i></label><br>
     <input type="text" class="form-control" name="name" placeholder="Name"><br>
     <input type="text" class="form-control" name="location" id = "location" placeholder="Location"><br>
     <input type="text" class="form-control" name="ticketone" placeholder="TicketOne Link"><br>
     <input type="date" class="form-control" name="date"><br>
-    <label for="avatar">Choose a cover picture:</label>
+    <label for="avatar"><i>Choose a cover picture:</i></label>
 	<input type="file" id="file" name="file" accept="image/png, image/jpeg"><br>
     <input name="add" type="submit" value="Create Music Event" class="btn btn-info buttonColor"><br>
 </div>

@@ -98,13 +98,16 @@ public class ButtonHandler  extends HttpServlet{
 	
 	//This method check if an Artist is present in the session before accessing the Data Base
 	private ArtistBean checkArtistPresence(List<?> l, String username) {
-		for(int i = 0; i < l.size(); i++) {
-			ArtistBean ab = (ArtistBean) l.get(i);
-			if(ab.getUsername().equals(username)){
-				return ab;
+		if(l != null) {
+			for(int i = 0; i < l.size(); i++) {
+				ArtistBean ab = (ArtistBean) l.get(i);
+				if(ab.getUsername().equals(username)){
+					return ab;
+				}
 			}
 		}
-		return null;
+			return null;
+		
 	}
 	
 }

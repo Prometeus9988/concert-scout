@@ -55,7 +55,6 @@
    <ul>    
     <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
     <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
-    <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
     <li><form action="FriendsServlet" method="POST"><input type="submit" class = "selected" value="Friends"></form></li>
     <li><form action="redirectPage.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
     <li><form action="YourEventsServlet" method="POST"><input type="submit" class = "notSelected" value="Your Events"></form></li>
@@ -65,13 +64,13 @@
 </div>
 
 <div class="splitBackground right">
-<img src = "<%="img/profilePictures/" + ub.getProfilePicture() %>" height = 334  width = 1252 style = "object-fit: cover;" >
-<div class="centered" style="margin-left:30px;">
+<img src = "<%="img/profilePictures/" + ub.getProfilePicture() %>" style = "position:absolute; top:0;" height = 334  width = 1252 style = "object-fit: cover;" >
+<div class="centered" style="margin-left:30px; margin-top: 350px;">
 <form action = "ButtonHandler" method = "POST">
 <input type="submit" class = "submit" name = "back" value = "back">
 </form>
-	<h1><%=ub.getUsername()%></h1>
-	<h2><%=ub.getName() + " " + ub.getSurname() %></h2>
+	<h1><i><%=ub.getUsername()%></i></h1>
+	<h2><i><%=ub.getName() + " " + ub.getSurname() %></i></h2>
   <form action = "FriendButtonServlet" method = "POST">
   <input type = "submit" name = "friend" value = "<%=fr%>">
   <input type = "hidden" name = "target" value = "<%=ub.getUsername() %>">
@@ -84,7 +83,7 @@
   }
   %>
   </form>
-  <h2><%=ub.getUsername() + " is going to:" %></h2>
+  <h2><i><%=ub.getUsername() + " is going to:" %></i></h2>
       <ul class = "hs">
     <%
     for(i = 0; i < targetEvents.size(); i++){

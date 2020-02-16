@@ -107,19 +107,19 @@
 <form action = "LoginServlet" method = "POST" enctype='multipart/form-data'>
   <div class="form-group col-md-3 col-md-offset-3" style = "width:500px; border-width:2px; border-style:solid; border-color:#b0b0b0; border-radius: 10px;">
     <div class = "form.group"><br>
-    <label><%=regMessage %></label><br>
+    <label><i><%=regMessage %></i></label><br>
     <input type="email" class="form-control" name="createEmail" placeholder="Email"><br>
     <input type="text" class="form-control" name="createUsername" placeholder="Username"><br>
     <input type="password" class="form-control" name="createPassword" placeholder="Password"><br>
 	<input type="text" class="form-control" name="bandName" id = "bandName" placeholder="Band Name" disabled><br>
 	<input type="text" class="form-control" name="firstName" id = "firstName" placeholder="First Name"><br>
 	<input type="text" class="form-control" name="lastName" id = "lastName" placeholder="Last Name"><br>
-	<label for="avatar">Choose a profile picture:</label>
+	<label for="avatar"><i>Choose a profile picture:</i></label>
 	<input type="file" name="file" accept="image/png, image/jpeg"><br>
 </div>
   <!-- Select type of user -->
 	<div>
-    <label>Type of user</label>
+    <label><i>Type of user</i></label>
     <select class="form-control" name="userType" id="userType" onchange="select()">
       <option>User</option>
       <option>Artist</option>

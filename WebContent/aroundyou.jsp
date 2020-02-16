@@ -53,13 +53,13 @@
 <div class="splitBackground right">
   <div class="centered" style="margin-left:30px;">
   
-  <h1>Select search range</h1>
+  <h1><i>Select search range</i></h1>
   <div style = "width: 50%;">
   <form action = "AroundYouServlet" method = POST id = "form">
   <input type = "hidden" name = "latitude" id = "latitude" value = 0>
   <input type = "hidden" name = "longitude" id = "longitude" value = 0>
   <input type="range" min="<%=mindist %>" max="<%=maxdist%>" value="<%=defrad %>" class="slider" name = "slider" id="slider">
-  <p>Maximum distance: <span id="preview"></span>km</p>
+  <p><i>Maximum distance: <span id="preview"></span>km</i></p>
   <button type="button" onclick = "getLocation()">Update</button>
   </form>
   

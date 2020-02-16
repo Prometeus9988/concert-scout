@@ -57,18 +57,18 @@ GeneralUserBean gu = (GeneralUserBean) session.getAttribute("user");
 </div>
 <div class="splitBackground right">
   <div class="centered">
- <h1>Welcome <%= gu.getUsername() %></h1>
+ <h1><i>Welcome <%= gu.getUsername() %></i></h1>
 <form action = "AddNewsServlet" method = "POST" enctype='multipart/form-data'>
   <div class="form-group col-md-3 col-md-offset-3" style = "width:500px; border-width:2px; border-style:solid; border-color:#b0b0b0; border-radius: 10px;">
     <div class = "form.group"><br>
-    <label><%=resString %></label><br>
+    <label><i><%=resString %></i></label><br>
 
     <!-- News text area -->
     <div class="input-group">
   		<textarea class="form-control" aria-label="With textarea" name="text" style="width:450px;"></textarea>
 	</div>
 	
-	<label for="avatar">Choose a picture(optional):</label>
+	<label for="avatar"><i>Choose a picture(optional):</i></label>
 	<input type="file" id="file" name="file" accept="image/png, image/jpeg"><br>
     <input name="add" type="submit" value="Post News" class="btn btn-info buttonColor"><br>
     

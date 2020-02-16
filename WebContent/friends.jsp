@@ -42,7 +42,6 @@
     <ul>
 <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
     <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
-    <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
     <li><form action="FriendsServlet" method="POST"><input type="submit" class = "selected" value="Friends"></form></li>
     <li><form action="redirectPage.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
     <li><form action="YourEventsServlet" method="POST"><input type="submit" class = "notSelected" value="Your Events"></form></li>
@@ -59,7 +58,7 @@
   </div>
   </form>
     <!-- Friend list -->
-    <h2 class = "h2">Your friends</h2>
+    <h2 class = "h2"><i>Your friends</i></h2>
     <ul class = "hs">
     <%
     for(i = 0; i < friendList.size(); i++){
@@ -88,7 +87,7 @@
     %>
 </ul>
     <!-- Friend requests list -->
-    <h2 class = "h2">Your friend requests</h2>
+    <h2 class = "h2"><i>Your friend requests</i></h2>
     <ul class = "hs">
     <%
     for(i = 0; i < requestList.size(); i++){

@@ -48,7 +48,6 @@
     
     <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
     <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "selected" value="News"></form></li>
-    <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
     <li><form action="FriendsServlet" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
     <li><form action="redirectPage.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
     <li><form action="YourEventsServlet" method="POST"><input type="submit" class = "notSelected" value="Your Events"></form></li>
@@ -60,7 +59,7 @@
 
 <div class="splitBackground right">
   <div class="centered" style="margin-left:30px;">
-    <h2>News</h2>
+    <h2><i>News</i></h2>
             <ul>
             <% 
             for(i = 0; i < nb.size(); i++){

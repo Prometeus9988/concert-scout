@@ -57,7 +57,6 @@
     <ul>
     <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
     <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
-    <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
     <li><form action="FriendsServlet" method="POST"><input type="submit" class = "selected" value="Friends"></form></li>
     <li><form action="redirectPage.jsp" method="POST"><input type="submit" class = "notSelected" value="Around you"></form></li>
     <li><form action="YourEventsServlet" method="POST"><input type="submit" class = "notSelected" value="Your Events"></form></li>
@@ -69,7 +68,7 @@
 <div class="splitBackground right">
   <div class="centered" style="margin-left:30px;">
 
-<h1>Search results for "<%=searchString %>"</h1>
+<h1><i>Search results for "<%=searchString %>"</i></h1>
    	<h1>Users</h1>
        <ul class = "hs">
     <%

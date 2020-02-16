@@ -82,7 +82,6 @@
     	%>
     <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
     <%} %>
-    <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
     <%
     if(origin.equals("FriendsServlet") || origin.equals("SearchUserServlet")) {
     	%>
@@ -117,12 +116,12 @@
 </div>
 
 <div class="splitBackground right">
-<img src = "<%="img/profilePictures/" + ab.getProfilePicture() %>" height = 334  width = 1252 style = "object-fit: cover;" >
-<div class="centered" style="margin-left:30px;">
+<img src = "<%="img/profilePictures/" + ab.getProfilePicture() %>" style = "position:absolute; top:0;" height = 334  width = 1252 style = "object-fit: cover;" >
+<div class="centered" style="margin-left:30px; margin-top: 350px;">
   <form action = "ButtonHandler" method = "POST">
 <input type="submit" class = "submit" name = "back" value = "back">
 </form>
-	<h1><%=ab.getBandName()%></h1>
+	<h1><i><%=ab.getBandName()%></i></h1>
   <%
   if(origin.equals("AdminMusicEventServlet") || role.equals("admin")){
   } else {

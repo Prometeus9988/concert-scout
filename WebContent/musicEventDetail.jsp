@@ -72,7 +72,6 @@
     	<li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
     <%} %>
     <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
-    <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
     <%
     if(origin.equals("FriendsServlet") || origin.equals("SearchUserServlet")) {
     	%>
@@ -108,17 +107,17 @@
 
 <div class="splitBackground right">
   <!-- Concert Cover -->
-  <img src="<%="img/concertPictures/" + meb.getCoverPath()%>" height = 334  width = 1252 style = "object-fit: cover;" >
-  <div class="centered" style="margin-left:30px;">
+  <img src="<%="img/concertPictures/" + meb.getCoverPath()%>" style = "position:absolute; top:0;" height = 334  width = 1252 style = "object-fit: cover;" >
+  <div class="centered" style="margin-left:30px; margin-top: 350px;">
   
 
 <form action = "ButtonHandler" method = "POST">
 <input type="submit" class = "submit" name = "back" value = "back">
 </form>
 
-<h1><%=meb.getName()%></h1>
-<h2><%=meb.getBandName()%></h2>
-<h3><%=meb.getLocation()%></h3>
+<h1><i><%=meb.getName()%></i></h1>
+<h2><i><%=meb.getBandName()%></i></h2>
+<h3><i><%=meb.getLocation()%></i></h3>
 <!-- Add participation -->
 <form action = "MusicEventServlet" method = "POST">
 
