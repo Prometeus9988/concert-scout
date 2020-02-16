@@ -23,6 +23,7 @@ import java.io.File;
 import javafx.stage.Stage;
 import java.io.FileInputStream;
 import javafx.beans.value.ObservableValue;
+import logic.exceptions.*;
 
 public class LoginViewController {
 	
@@ -81,41 +82,43 @@ public class LoginViewController {
 		gub.setPassword(this.passwordBox.getText());
 		
 		LoginController controller = new LoginController();
-    	GeneralUserBean gu=controller.login(gub);
-    	if(gu==null) {
-    		this.errorLabel1.setText("Wrong username");
-    		this.errorLabel2.setText("or password");
-    		this.usernameTextField.setText(null);
-    		this.passwordBox.setText(null);
-    	}
-    	else {
-    		String role=gu.getRole();
-    		
-    		//SET SESSION GENERAL USER
-    		SessionUser su=SessionUser.getInstance();
-    		su.setSession(gu);
-    		
-    		switch(role) {
-    		case "user":
-    			UserGraphicChange.getInstance().toHomepage(this.usernameTextField.getScene());    			
-    			break;
-    		case "artist":
-    			//set artist homepage controller
-    			ArtistGraphicChange.getInstance().toHomepage(this.usernameTextField.getScene());
-    			break;
-    		case "admin":
-    			//set admin controller
-    			AdminGraphicChange.getInstance().toHomepage(this.usernameTextField.getScene());
-    			break;
-    		default:
-    			break;
+		GeneralUserBean gu;
+		try {	
+    		gu=controller.login(gub);
+    		if(gu==null) {
+    			this.errorLabel1.setText("Wrong username");
+    			this.errorLabel2.setText("or password");
+    			this.usernameTextField.setText(null);
+    			this.passwordBox.setText(null);
+    		}else {
+        		String role=gu.getRole();
+        		
+        		//SET SESSION GENERAL USER
+        		SessionUser su=SessionUser.getInstance();
+        		su.setSession(gu);
+        		
+        		switch(role) {
+        		case "user":
+        			UserGraphicChange.getInstance().toHomepage(this.usernameTextField.getScene());    			
+        			break;
+        		case "artist":
+        			//set artist homepage controller
+        			ArtistGraphicChange.getInstance().toHomepage(this.usernameTextField.getScene());
+        			break;
+        		case "admin":
+        			//set admin controller
+        			AdminGraphicChange.getInstance().toHomepage(this.usernameTextField.getScene());
+        			break;
+        		default:
+        			break;
+        		}
     		}
-    		
-    		
-    		
+		}
+    	catch(LoginEmptyFieldException e) {
+    		this.errorLabel1.setText(e.getMessage());
     	}
+    }
     	
-	}
 	
 	@FXML
 	public void registerButtonAction(ActionEvent event) {

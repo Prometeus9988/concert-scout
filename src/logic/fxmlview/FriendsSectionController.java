@@ -10,7 +10,9 @@ import javafx.scene.layout.HBox;
 import java.util.List;
 import logic.friends.*;
 import logic.bean.UserBean;
-
+import javafx.scene.control.Label;
+import logic.exceptions.*;
+import java.util.ArrayList;
 
 public class FriendsSectionController {
 	
@@ -26,6 +28,10 @@ public class FriendsSectionController {
 	private VBox requestCol;
 	@FXML
 	private HBox requestsRow;
+	@FXML
+	private Label frLabel;
+	@FXML
+	private Label reqLabel;
 	
 	private static final String FRIENDS = "friends";
 	
@@ -41,8 +47,21 @@ public class FriendsSectionController {
 		//init controller
 		FriendsController fc=new FriendsController();
 		String username=SessionUser.getInstance().getSession().getUsername();
-		List<UserBean> friend=fc.getFriends(username);
-		List<UserBean> requests=fc.getRequests(username);
+		List<UserBean> friend=null;
+		List<UserBean> requests=null;
+		try {
+			friend=fc.getFriends(username);
+		}catch(NoFriendException e) {
+			friend=new ArrayList<>();
+			this.frLabel.setText(e.getMessage());
+		}
+		try {
+			requests=fc.getRequests(username);
+		}catch(NoFriendRequestException e) {
+			requests=new ArrayList<>();
+			this.reqLabel.setText(e.getMessage());
+		}
+		
 		
 		//scrollpane
 		ScrollPane friendsScroll = new ScrollPane(this.friendsRow);

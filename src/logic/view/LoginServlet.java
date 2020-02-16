@@ -23,7 +23,7 @@ import logic.bean.GeneralUserBean;
 import logic.bean.UserBean;
 import logic.login.LoginController;
 import logic.utils.RenameFile;
-
+import logic.exceptions.*;
 
 @WebServlet("/LoginServlet")
 @MultipartConfig
@@ -64,8 +64,11 @@ public class LoginServlet extends HttpServlet{
 		GeneralUserBean gu = new GeneralUserBean();
 		gu.setUsername(username);
 		gu.setPassword(password);
-		gu = controller.login(gu);
-		
+		try {
+			gu = controller.login(gu);
+		}catch(LoginEmptyFieldException e) {
+			//manage exception
+		}
 		if(gu == null) {
 			request.setAttribute("login", "notSuccessfull");
 			return request.getRequestDispatcher(INDEX);

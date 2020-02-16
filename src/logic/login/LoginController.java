@@ -7,11 +7,20 @@ import logic.dao.ArtistDao;
 import logic.dao.GeneralUserDao;
 import logic.dao.UserDao;
 import logic.entity.GeneralUser;
+import logic.exceptions.*;
 
 public class LoginController {
 
-	public GeneralUserBean login(GeneralUserBean userBean) {
+	public GeneralUserBean login(GeneralUserBean userBean) throws LoginEmptyFieldException {
 		GeneralUserDao gud = new GeneralUserDao();
+		
+		if(userBean.getUsername().equals("")) {
+			throw new LoginEmptyFieldException("Username necessary");
+		}
+		if(userBean.getPassword().equals("")) {
+			throw new LoginEmptyFieldException("Password necessary");
+		}
+		
 		GeneralUser result = gud.findUser(userBean.getUsername(), userBean.getPassword());
 		if (result == null)	{
 			return null;

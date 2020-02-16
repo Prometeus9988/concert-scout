@@ -23,12 +23,12 @@
                   <AnchorPane fx:id="searchBar" layoutX="52.0" layoutY="41.0" prefHeight="39.0" prefWidth="613.0" />
                   <VBox fx:id="friendsCol" layoutX="52.0" layoutY="94.0" prefHeight="300.0" prefWidth="1048.0" spacing="5.0">
                      <children>
-                        <Label style="-fx-font-size: 21; -fx-font-style: italic;" text="Your friends" />
+                        <Label fx:id="frLabel" style="-fx-font-size: 21; -fx-font-style: italic;" text="Your friends" />
                         <HBox fx:id="friendsRow" prefHeight="250.0" spacing="20.0" />
                      </children></VBox>
                   <VBox fx:id="requestCol" layoutX="52.0" layoutY="411.0" prefHeight="300.0" prefWidth="1048.0" spacing="5.0">
                      <children>
-                        <Label style="-fx-font-size: 21; -fx-font-style: italic;" text="Your friend requests" />
+                        <Label fx:id="reqLabel" style="-fx-font-size: 21; -fx-font-style: italic;" text="Your friend requests" />
                         <HBox fx:id="requestsRow" prefHeight="240.0" spacing="20.0" />
                      </children>
                   </VBox>
