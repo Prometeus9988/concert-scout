@@ -22,12 +22,12 @@
                <children>
                   <VBox fx:id="evCol" layoutX="52.0" layoutY="94.0" prefHeight="300.0" prefWidth="1048.0" spacing="5.0">
                      <children>
-                        <Label style="-fx-font-size: 21;" text="Music Events" />
+                        <Label style="-fx-font-size: 21; -fx-font-style: italic;" text="Music Events" />
                         <HBox fx:id="evRow" prefHeight="250.0" spacing="20.0" />
                      </children></VBox>
                   <VBox fx:id="artCol" layoutX="52.0" layoutY="411.0" prefHeight="300.0" prefWidth="1048.0" spacing="5.0">
                      <children>
-                        <Label style="-fx-font-size: 21;" text="Artists" />
+                        <Label style="-fx-font-size: 21; -fx-font-style: italic;" text="Artists" />
                         <HBox fx:id="artRow" prefHeight="240.0" spacing="20.0" />
                      </children>
                   </VBox>

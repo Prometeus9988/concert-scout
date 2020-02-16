@@ -28,17 +28,17 @@
                      <children>
                         <VBox fx:id="scroll" prefHeight="237.0" prefWidth="1011.0" spacing="20.0">
                            <children>
-                              <Label fx:id="conc" prefHeight="16.0" prefWidth="1144.0" text="concert name">
+                              <Label fx:id="conc" prefHeight="16.0" prefWidth="1144.0" style="-fx-font-style: italic;" text="concert name">
                                  <font>
                                     <Font size="33.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="arName" prefHeight="30.0" prefWidth="1160.0" text="artist name">
+                              <Label fx:id="arName" prefHeight="30.0" prefWidth="1160.0" style="-fx-font-style: italic;" text="artist name">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="loc" prefHeight="25.0" prefWidth="1146.0" text="location">
+                              <Label fx:id="loc" prefHeight="25.0" prefWidth="1146.0" style="-fx-font-style: italic;" text="location">
                                  <font>
                                     <Font size="25.0" />
                                  </font>

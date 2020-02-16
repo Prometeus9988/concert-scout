@@ -32,7 +32,7 @@
                      </children>
                   </HBox>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f5edf0" height="415.0" layoutX="263.0" layoutY="126.0" stroke="BLACK" strokeType="INSIDE" width="551.0" />
-                  <Label fx:id="headerLabel" layoutX="275.0" layoutY="138.0" style="-fx-font-weight: bold; -fx-font-size: 18;" text="Add Music Event">
+                  <Label fx:id="headerLabel" layoutX="275.0" layoutY="138.0" style="-fx-font-weight: bold; -fx-font-size: 18; -fx-font-style: italic;" text="Add Music Event">
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -47,7 +47,7 @@
                   </VBox>
                   <VBox layoutX="276.0" layoutY="405.0" prefHeight="87.0" prefWidth="525.0">
                      <children>
-                        <Label prefHeight="32.0" prefWidth="527.0" style="-fx-font-weight: bold; -fx-font-size: 13;" text="Choose a cover picture:" />
+                        <Label prefHeight="32.0" prefWidth="527.0" style="-fx-font-weight: bold; -fx-font-size: 13; -fx-font-style: italic;" text="Choose a cover picture:" />
                         <HBox prefHeight="53.0" prefWidth="448.0" spacing="10.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#selectImage" prefHeight="18.0" prefWidth="103.0" text="Select image" />

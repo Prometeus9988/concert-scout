@@ -24,7 +24,7 @@
                <children>
                   <ImageView fx:id="profileImage" fitHeight="349.0" fitWidth="2033.0" pickOnBounds="true" AnchorPane.bottomAnchor="473.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-33.0" AnchorPane.topAnchor="0.0" />
                   <AnchorPane fx:id="backButton" layoutX="13.0" layoutY="411.0" prefHeight="34.0" prefWidth="75.0" />
-                  <Label fx:id="artName" layoutX="14.0" layoutY="478.0" prefHeight="16.0" prefWidth="1144.0" text="artistName">
+                  <Label fx:id="artName" layoutX="14.0" layoutY="478.0" prefHeight="16.0" prefWidth="1144.0" style="-fx-font-style: italic;" text="artistName">
                      <font>
                         <Font size="27.0" />
                      </font>
