@@ -116,6 +116,7 @@ public class LoginViewController {
 		}
     	catch(LoginEmptyFieldException e) {
     		this.errorLabel1.setText(e.getMessage());
+    		this.errorLabel2.setText("");
     	}
     }
     	
@@ -217,13 +218,13 @@ public class LoginViewController {
 				bandNameField.setDisable(true);
 				firstNameField.setDisable(false);
 				lastNameField.setDisable(false);
-				bandNameField.setText(null);
+				bandNameField.setText("");
 			} else if (newValue.equals(ARTIST)) {
 				bandNameField.setDisable(false);
 				firstNameField.setDisable(true);
 				lastNameField.setDisable(true);
-				firstNameField.setText(null);
-				lastNameField.setText(null);
+				firstNameField.setText("");
+				lastNameField.setText("");
 			}
 		});
 		this.bandNameField.setDisable(true);

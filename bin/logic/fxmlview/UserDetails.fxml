@@ -30,18 +30,18 @@
                            <children>
                               <VBox prefHeight="194.0" prefWidth="1607.0">
                                  <children>
-                                    <Label fx:id="username" prefHeight="16.0" prefWidth="1144.0" style="-fx-font-style: italic;" text="username">
+                                    <Label fx:id="username" prefHeight="16.0" prefWidth="1144.0" style="-fx-font-style: italic; -fx-font-size: 33;" text="username">
                                        <font>
                                           <Font size="33.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="usrName" prefHeight="30.0" prefWidth="1160.0" style="-fx-font-style: italic;" text="name surname">
+                                    <Label fx:id="usrName" prefHeight="30.0" prefWidth="1160.0" style="-fx-font-style: italic; -fx-font-size: 25;" text="name surname">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
                                     </Label>
                                     <HBox fx:id="btnAnchor" prefHeight="35.0" prefWidth="1366.0" spacing="20.0" />
-                                    <Label fx:id="isGoing" prefHeight="25.0" prefWidth="1146.0" style="-fx-font-style: italic;" text="is going to">
+                                    <Label fx:id="isGoing" prefHeight="25.0" prefWidth="1146.0" style="-fx-font-style: italic; -fx-font-size: 25;" text="is going to">
                                        <font>
                                           <Font size="25.0" />
                                        </font>

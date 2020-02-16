@@ -5,6 +5,7 @@ import java.io.File;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -61,6 +62,7 @@ public abstract class EvDetailsController {
 		scrollBar.setFitToHeight(true);
 		scrollParent.getChildren().add(scrollBar);
 		scrollBar.setStyle("-fx-background-color: transparent; -fx-background:  #F5EDF0");
+		scrollBar.setHbarPolicy(ScrollBarPolicy.NEVER);
 	}
 
 }
