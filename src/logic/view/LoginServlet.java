@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet{
 	private static final Logger logger = Logger.getLogger(LoginServlet.class.getName());
 	private static final long serialVersionUID = 102831973239L;
 	private static final String INDEX = "index.jsp";
+	private static final String LOGIN = "login";
 	
 	public LoginServlet() {
 		super();
@@ -45,7 +46,7 @@ public class LoginServlet extends HttpServlet{
 
 		LoginController controller = new LoginController();
 		
-		if(request.getParameter("login") != null) {
+		if(request.getParameter(LOGIN) != null) {
 			rd = this.login(request, session, controller);
 		} else if(request.getParameter("register") != null) {
 			rd = this.register(request, controller);
@@ -68,7 +69,7 @@ public class LoginServlet extends HttpServlet{
 			gu = controller.login(gu);
 			
 			if(gu == null) {
-				request.setAttribute("login", "Wrong username of password");
+				request.setAttribute(LOGIN, "Wrong username of password");
 				return request.getRequestDispatcher(INDEX);
 			} else if(gu.getRole().equals("user")){
 				session.setAttribute("user", gu);
@@ -81,7 +82,7 @@ public class LoginServlet extends HttpServlet{
 				return request.getRequestDispatcher("AdminMusicEventServlet");
 			}
 		}catch(LoginEmptyFieldException e) {
-			request.setAttribute("login", e.getMessage());
+			request.setAttribute(LOGIN, e.getMessage());
 		}
 		
 		return request.getRequestDispatcher(INDEX);
