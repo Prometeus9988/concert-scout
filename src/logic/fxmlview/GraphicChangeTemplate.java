@@ -67,21 +67,24 @@ public abstract class GraphicChangeTemplate {
 		this.catcher(new GraphicChangeAction() {
 			@Override
 			public void act() throws IOException {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuBar.fxml"));
+				FXMLLoader loader;
 				switch (whoAmI) {
 				case USER:
+					loader = new FXMLLoader(getClass().getResource("MenuBar.fxml"));
 					MenuBarController mbc = new MenuBarController();
 					loader.setController(mbc);
 					pos.getChildren().add(loader.load());
 					mbc.init(sel);
 					break;
 				case ADMIN:
+					loader = new FXMLLoader(getClass().getResource("AdminMenuBar.fxml"));
 					AdminMenuBarController amc = new AdminMenuBarController();
 					loader.setController(amc);
 					pos.getChildren().add(loader.load());
 					amc.init(sel);
 					break;
 				case ARTIST:
+					loader = new FXMLLoader(getClass().getResource("ArtistMenuBar.fxml"));
 					ArtistMenuBarController ac = new ArtistMenuBarController();
 					loader.setController(ac);
 					pos.getChildren().add(loader.load());
