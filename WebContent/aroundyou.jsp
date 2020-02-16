@@ -41,7 +41,6 @@
     <ul>
     <li><form action="BuyTicketServlet" method="POST"><input type="submit" class = "notSelected" value="Home"></form></li>
     <li><form action="ReadNewsServlet" method="POST"><input type="submit" class = "notSelected" value="News"></form></li>
-    <li><form action="favorites.jsp" method="POST"><input type="submit" class = "notSelected" value="Favorites"></form></li>
     <li><form action="FriendsServlet" method="POST"><input type="submit" class = "notSelected" value="Friends"></form></li>
     <li><form action="redirectPage.jsp" method="POST"><input type="submit" class = "selected" value="Around you"></form></li>
     <li><form action="YourEventsServlet" method="POST"><input type="submit" class = "notSelected" value="Your Events"></form></li>
@@ -114,7 +113,7 @@ function showPosition(position) {
   	<form action="ButtonHandler" method="POST">
   	<input type="submit" name = "<%="a"%>" class = "btTxt astext" value = "<%= musicEvents.get(i).getBandName() %>">
   	<input type = "hidden" name = "artist" value = "<%= musicEvents.get(i).getArtistId() %>">
-  	<h6><%=musicEvents.get(i).getDistance() + "km from you" %></h6>
+  	<h6><i><%=musicEvents.get(i).getDistance() + "km from you" %></i></h6>
   	</form>
   	
 </div>
