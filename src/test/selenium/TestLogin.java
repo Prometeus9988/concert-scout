@@ -11,10 +11,14 @@ public class TestLogin {
 	
 	@Test
 	public void testSuccessfullLogin() {
+		
+	
+		if(System.getProperty("os.name").equals("Linux"))
 		//LINUX
 		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
+		else
 		//WINDOWS
-		//System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.get("http://localhost:8080/LIVEtheMUSIC/");
 		
