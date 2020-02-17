@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class TestLogin {
 	
-	private final String DRIVER_PROP="webdriver.chrome.driver";
+	private static final String DRIVER="webdriver.chrome.driver";
 	
 	@Test
 	public void testSuccessfullLogin() {
@@ -17,10 +17,10 @@ public class TestLogin {
 	
 		if(System.getProperty("os.name").equals("Linux")) {
 			//LINUX
-			System.setProperty(DRIVER_PROP, "drivers/chromedriver");
+			System.setProperty(DRIVER, "drivers/chromedriver");
 		}else {
 			//WINDOWS
-			System.setProperty(DRIVER_PROP, "Drivers/chromedriver.exe");
+			System.setProperty(DRIVER, "Drivers/chromedriver.exe");
 		}
 		WebDriver driver = new ChromeDriver();
 		driver.get("http://localhost:8080/LIVEtheMUSIC/");
@@ -42,10 +42,10 @@ public class TestLogin {
 		
 		if(System.getProperty("os.name").equals("Linux")) {
 			//LINUX
-			System.setProperty(DRIVER_PROP, "drivers/chromedriver");
+			System.setProperty(DRIVER, "drivers/chromedriver");
 		}else {
 			//WINDOWS
-			System.setProperty(DRIVER_PROP, "Drivers/chromedriver.exe");
+			System.setProperty(DRIVER, "Drivers/chromedriver.exe");
 		}
 		WebDriver driver = new ChromeDriver();
 		driver.get("http://localhost:8080/LIVEtheMUSIC/");
