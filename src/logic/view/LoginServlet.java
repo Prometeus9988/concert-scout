@@ -69,7 +69,7 @@ public class LoginServlet extends HttpServlet{
 			gu = controller.login(gu);
 			
 			if(gu == null) {
-				request.setAttribute(LOGIN, "Wrong username of password");
+				request.setAttribute(LOGIN, "Wrong username or password");
 				return request.getRequestDispatcher(INDEX);
 			} else if(gu.getRole().equals("user")){
 				session.setAttribute("user", gu);

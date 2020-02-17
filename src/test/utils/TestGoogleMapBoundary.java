@@ -15,7 +15,7 @@ public class TestGoogleMapBoundary {
 		List<Double> coordinates = new ArrayList<>();
 		List<Double> target = new ArrayList<>();
 		
-		//Coordinates of Rome
+		//Coordinates of Piazza di Spagna
 		target.add(41.9056798);
 		target.add(12.4822062);
 		
