@@ -1,11 +1,14 @@
 package test.utils;
 
+import org.json.simple.parser.ParseException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import logic.exceptions.LocationNotFoundException;
 import logic.utils.GoogleMapBoundary;
 
 public class TestGoogleMapBoundary {
@@ -26,5 +29,23 @@ public class TestGoogleMapBoundary {
 		}
 		
 		assertEquals(target, coordinates);
+	}
+	
+	@Test
+	public void testLocateAddressFail() {
+
+		boolean isFalse = false;
+		
+		try {
+			GoogleMapBoundary.locateAddress("aaaaaaaaaaaaaaaaaaaaaaaaaa");
+		} catch (IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			fail("Should not have thrown this exception");
+		} catch (LocationNotFoundException e) {
+			isFalse = true;
+		}
+		
+		
+		assertEquals(true, isFalse);
 	}
 }

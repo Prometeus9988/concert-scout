@@ -22,7 +22,7 @@ public class TestLogin {
 		}
 		WebDriver driver = new ChromeDriver();
 		driver.get("http://localhost:8080/LIVEtheMUSIC/");
-		
+
 		driver.findElement(By.xpath("//*[@id=\"username\"]")).sendKeys("testusername1");
 		driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("testusername1");
 		

@@ -37,7 +37,7 @@ public class LoginController {
 		UserDao ud = new UserDao();
 		return ud.createUser(ub.getUsername(), ub.getPassword(), ub.getName(), ub.getSurname(), ub.getProfilePicture(), ub.getEmail()); 
 	}
-	
+
 	public boolean createArtist(ArtistBean ab) {
 		ArtistDao ad = new ArtistDao();
 		return ad.createArtist(ab.getUsername(), ab.getPassword(), ab.getBandName(), ab.getProfilePicture(), ab.getEmail());

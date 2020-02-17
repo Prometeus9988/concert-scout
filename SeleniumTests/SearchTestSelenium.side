@@ -1,0 +1,134 @@
+{
+  "id": "0560d39f-6c0f-4c99-833a-12e7b0889389",
+  "version": "2.0",
+  "name": "LIVEtheMUSIC",
+  "url": "http://localhost:8080/LIVEtheMUSIC",
+  "tests": [{
+    "id": "7a410c84-3416-4c53-b1ed-b80127adc456",
+    "name": "Search",
+    "commands": [{
+      "id": "b0758a23-ea8a-4535-ac68-0691c1ae5898",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/LIVEtheMUSIC/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f4b5286f-7ced-486e-a28e-2b5e20ab75d1",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "550x692",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "828b2dde-2b5f-4e90-813e-69c96d9782ff",
+      "comment": "",
+      "command": "click",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5e574c72-0c5c-4aeb-9ec6-c260df90accd",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "testusername1"
+    }, {
+      "id": "99bbf61a-f026-4188-91f8-9cd0334886d4",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "testusername1"
+    }, {
+      "id": "d9342809-d1bd-46d7-828a-3f52f75bc735",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "794acfde-9d91-4e8e-b978-f2e842110ad6",
+      "comment": "",
+      "command": "click",
+      "target": "name=searchString",
+      "targets": [
+        ["name=searchString", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//input[@name='searchString']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ab319fd-9337-40a2-9085-7f7024cc3418",
+      "comment": "",
+      "command": "type",
+      "target": "name=searchString",
+      "targets": [
+        ["name=searchString", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//input[@name='searchString']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "queen"
+    }, {
+      "id": "a9b051bb-d119-4d20-8833-e7dd6ea5f3ab",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=searchString",
+      "targets": [
+        ["name=searchString", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//input[@name='searchString']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "4b12f02c-dd2b-451d-bf22-ad1df835dbdd",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=h3:nth-child(1) > i",
+      "targets": [
+        ["css=h3:nth-child(1) > i", "css:finder"],
+        ["xpath=//i", "xpath:position"],
+        ["xpath=//i[contains(.,'Search results for \"queen\"')]", "xpath:innerText"]
+      ],
+      "value": "Search results for \"queen\""
+    }]
+  }],
+  "suites": [{
+    "id": "141b96b5-6d08-4e73-962a-8c866f6f5f40",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:8080/", "http://localhost:8080/LIVEtheMUSIC"],
+  "plugins": []
+}
