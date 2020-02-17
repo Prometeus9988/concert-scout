@@ -1,0 +1,158 @@
+{
+  "id": "c8df1c16-d4fa-4d53-9ca7-19e1f518a939",
+  "version": "2.0",
+  "name": "AddNewsTest",
+  "url": "http://localhost:8080",
+  "tests": [{
+    "id": "5666b566-92cd-4b66-b7d5-1b7768ec61c7",
+    "name": "AddNewsTest",
+    "commands": [{
+      "id": "f9487dad-a391-4383-bc3b-7530edbee9ec",
+      "comment": "",
+      "command": "open",
+      "target": "/LIVEtheMUSIC/index.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "67ca6bde-8383-4504-8042-1f605bb603a9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x718",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e456c8fe-39ce-4c39-b6c5-1297dd1df782",
+      "comment": "",
+      "command": "click",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "be59845c-eaf2-4e6b-a96d-b0fdae1ba05d",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "artistTest"
+    }, {
+      "id": "4c37d7dc-b3dc-4382-be64-e668bccd2fb6",
+      "comment": "",
+      "command": "click",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "83abd303-045b-48cf-9e16-a0253b1dcf5f",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "artistTest"
+    }, {
+      "id": "858545f9-208a-40c8-a84c-dc916ae36009",
+      "comment": "",
+      "command": "click",
+      "target": "id=login",
+      "targets": [
+        ["id=login", "id"],
+        ["name=login", "name"],
+        ["css=#login", "css:finder"],
+        ["xpath=//input[@id='login']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c00bab6b-4b3d-4088-a8eb-82717b501d1e",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(2) .notSelected",
+      "targets": [
+        ["css=li:nth-child(2) .notSelected", "css:finder"],
+        ["xpath=//input[@value='Add News']", "xpath:attributes"],
+        ["xpath=//li[2]/form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "780b4cc6-cacc-49eb-856b-f4ee40482ecb",
+      "comment": "",
+      "command": "click",
+      "target": "name=text",
+      "targets": [
+        ["name=text", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//textarea[@name='text']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bfd223e2-d22c-449e-8950-552a094b26c9",
+      "comment": "",
+      "command": "type",
+      "target": "name=text",
+      "targets": [
+        ["name=text", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//textarea[@name='text']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "news test"
+    }, {
+      "id": "1e26fdce-284f-4b47-9ed3-a47bae0054e7",
+      "comment": "",
+      "command": "click",
+      "target": "name=add",
+      "targets": [
+        ["name=add", "name"],
+        ["css=.btn", "css:finder"],
+        ["xpath=//input[@name='add']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "737b49c1-4f06-42c7-90b3-4a27fcccabc6",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=label:nth-child(2) > i",
+      "targets": [
+        ["css=label:nth-child(2) > i", "css:finder"],
+        ["xpath=//label/i", "xpath:position"],
+        ["xpath=//i[contains(.,'News posted')]", "xpath:innerText"]
+      ],
+      "value": "News posted"
+    }]
+  }],
+  "suites": [{
+    "id": "4905423f-1d60-4476-8b4a-e106d0531cd5",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["5666b566-92cd-4b66-b7d5-1b7768ec61c7"]
+  }],
+  "urls": ["http://localhost:8080/"],
+  "plugins": []
+}
