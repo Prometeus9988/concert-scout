@@ -80,7 +80,7 @@ public class AddMusicEventController extends Controller{
 	}
 	
 	public void rejectMusicEvent(MusicEventBean meb) {
-		Path path = Paths.get(FileManager.EVENT);
+		Path path = Paths.get(FileManager.EVENT + File.separator + meb.getCoverPath());
 		try {
 			if(!meb.getCoverPath().equals("concert.jpg")) {
 				Files.delete(path);
