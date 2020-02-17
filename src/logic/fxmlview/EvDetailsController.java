@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.bean.MusicEventBean;
+import logic.utils.FileManager;
 
 public abstract class EvDetailsController {
 	
@@ -39,10 +40,7 @@ public abstract class EvDetailsController {
 	public abstract void init(MusicEventBean myEvent, String from, String searchString);
 	
 	protected void initImage(MusicEventBean myEvent) {
-		String path=System.getProperty("user.home")+ File.separator
-				+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-				+ "trunk" + File.separator + "WebContent" + File.separator + "img"
-				+ File.separator + "concertPictures" + File.separator + myEvent.getCoverPath();
+		String path = FileManager.EVENT + File.separator + myEvent.getCoverPath();
 			
 	File file = new File(path);
 	Image image = new Image(file.toURI().toString());

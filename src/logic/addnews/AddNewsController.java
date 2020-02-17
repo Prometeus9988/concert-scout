@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import logic.dao.NewsDao;
 import logic.exceptions.FieldTooLongException;
 import logic.readnews.ReadNewsController;
+import logic.utils.FileManager;
 import logic.bean.NewsBean;
 
 public class AddNewsController {
@@ -41,10 +42,7 @@ public class AddNewsController {
 	}
 	
 	public void rejectNews(NewsBean nb) {
-		Path path = Paths.get(System.getProperty("user.home") + File.separator
-				+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-				+ "trunk" + File.separator + "WebContent" + File.separator
-				+ "img" + File.separator + "newsPictures" + File.separator + nb.getPicturePath());
+		Path path = Paths.get(FileManager.NEWS + File.separator + nb.getPicturePath());
 		try {
 			if(!nb.getPicturePath().equals("")) {
 				Files.delete(path);

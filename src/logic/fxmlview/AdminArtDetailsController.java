@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import java.io.File;
 import logic.bean.ArtistBean;
+import logic.utils.FileManager;
 import javafx.scene.image.Image;
 
 public class AdminArtDetailsController extends ArtDetailsController{
@@ -37,18 +38,14 @@ public class AdminArtDetailsController extends ArtDetailsController{
 		ucg.backButton(this.backButton, from, searchString);
 		
 		//INIT IMAGE
-		String path=System.getProperty("user.home")+ File.separator
-						+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-						+ "trunk" + File.separator + "WebContent" + File.separator
-						+ "img" + File.separator + "profilePictures"+File.separator+myArtist.getProfilePicture();
+		String path = FileManager.PROFILE + File.separator + myArtist.getProfilePicture();
 				
 		File file = new File(path);
 		Image image = new Image(file.toURI().toString());
 		this.profileImage.setImage(image);
 		this.profileImage.setFitHeight(400);
 		this.profileImage.setFitWidth(1200);
-		
-		
+
 	}
-	
+
 }

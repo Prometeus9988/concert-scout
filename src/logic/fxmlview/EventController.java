@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import java.io.File;
 import logic.bean.MusicEventBean;
+import logic.utils.FileManager;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,10 +33,7 @@ public abstract class EventController {
 		this.myMusicEvent=ev;
 		this.from=from;
 		this.searchString=searchString;
-		String path=System.getProperty("user.home") + File.separator
-				+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-				+ "trunk" + File.separator + "WebContent" + File.separator
-				+ "img" + File.separator + "concertPictures" + File.separator+this.myMusicEvent.getCoverPath();
+		String path = FileManager.EVENT + File.separator + this.myMusicEvent.getCoverPath();
 
 		File file = new File(path);
 		Image image = new Image(file.toURI().toString());

@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import logic.bean.UserBean;
 import logic.exceptions.NoMusicEventFoundException;
 import javafx.scene.control.Button;
+import logic.utils.FileManager;
 import logic.utils.SessionUser;
 import logic.bean.GeneralUserBean;
 
@@ -129,10 +130,7 @@ public class UserDetailsController {
 		ugc.backButton(this.backButton, from, searchString);
 		
 		//INIT IMAGE
-				String path=System.getProperty("user.home")+ File.separator
-						+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-						+ "trunk" + File.separator + "WebContent" + File.separator
-						+ "img" + File.separator + "profilePictures"+File.separator+ub.getProfilePicture();
+				String path = FileManager.PROFILE + File.separator + ub.getProfilePicture();
 				
 				File file = new File(path);
 				Image image = new Image(file.toURI().toString());

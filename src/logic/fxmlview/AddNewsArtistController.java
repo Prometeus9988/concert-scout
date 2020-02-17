@@ -90,10 +90,7 @@ public class AddNewsArtistController {
 		}
 		
 		if(!fileName.equals("")&& result) {
-			String path = System.getProperty("user.home") + File.separator
-					+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-					+ "trunk" + File.separator + "WebContent" + File.separator
-					+ "img" + File.separator + "newsPictures";
+			String path = FileManager.NEWS;
 		    File file = new File(path, fileName);
 		    File newFile = new File(path, newFileName);
 		    try (InputStream input = new FileInputStream(this.imageFile)) {

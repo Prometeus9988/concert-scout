@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import java.io.File;
 
 import logic.bean.*;
+import logic.utils.FileManager;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,10 +37,7 @@ public class UserPrevController {
 		this.ucg=UserGraphicChange.getInstance();
 		this.myUser=ub;
 		
-		String path=System.getProperty("user.home")+ File.separator
-				+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-				+ "trunk" + File.separator + "WebContent" + File.separator
-				+ "img" + File.separator + "profilePictures"+File.separator+this.myUser.getProfilePicture();
+		String path = FileManager.PROFILE + File.separator + this.myUser.getProfilePicture();
 		
 		File file = new File(path);
 		Image image = new Image(file.toURI().toString());
@@ -49,10 +47,7 @@ public class UserPrevController {
 		this.imageBtn.setGraphic(iv3);
 		
 		this.usrBtn.setText(this.myUser.getUsername());
-		
-		
-		
+
 	}
-	
 
 }

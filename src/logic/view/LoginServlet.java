@@ -22,7 +22,7 @@ import logic.bean.ArtistBean;
 import logic.bean.GeneralUserBean;
 import logic.bean.UserBean;
 import logic.login.LoginController;
-import logic.utils.RenameFile;
+import logic.utils.FileManager;
 import logic.exceptions.*;
 
 @WebServlet("/LoginServlet")
@@ -110,7 +110,7 @@ public class LoginServlet extends HttpServlet{
 			fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 		}
 
-		newFileName = RenameFile.generateNewFileName(fileName, false, username);
+		newFileName = FileManager.generateNewFileName(fileName, false, username);
 		
 		regResult = this.create(userType, username, password, email, newFileName, controller, request);
 		
@@ -122,10 +122,7 @@ public class LoginServlet extends HttpServlet{
 			//File upload- if registration successfull loads the file in profilePictures
 			
 		    if(!fileName.equals("") && filePart != null) {
-		    	String path = System.getProperty("user.home") + File.separator
-						+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-						+ "trunk" + File.separator + "WebContent" + File.separator
-						+ "img" + File.separator + "profilePictures";
+		    	String path = FileManager.PROFILE;
 			    File file = new File(path, fileName);
 			    File newFile = new File(path, newFileName);
 			    try (InputStream input = filePart.getInputStream()) {

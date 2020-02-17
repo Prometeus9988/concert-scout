@@ -97,10 +97,7 @@ public class HomepageArtistController {
 		}
 		
 		if(!fileName.contentEquals("") && result) {
-			String path = System.getProperty("user.home") + File.separator
-					+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-					+ "trunk" + File.separator + "WebContent" + File.separator
-					+ "img" + File.separator + "concertPictures";
+			String path = FileManager.EVENT;
 		    File file = new File(path, fileName);
 		    File newFile = new File(path, newFileName);
 		    try (InputStream input = new FileInputStream(this.imageFile)) {

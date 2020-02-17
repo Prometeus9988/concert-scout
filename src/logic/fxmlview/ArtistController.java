@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import java.io.File;
 
 import logic.bean.*;
+import logic.utils.FileManager;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,10 +35,7 @@ public class ArtistController {
 		this.from=from;
 		this.searchString=searchString;
 		this.myArtist=ev;
-		String path=System.getProperty("user.home")+ File.separator
-				+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-				+ "trunk" + File.separator + "WebContent" + File.separator
-				+ "img" + File.separator + "profilePictures"+File.separator+this.myArtist.getProfilePicture();
+		String path = FileManager.PROFILE + File.separator + this.myArtist.getProfilePicture();
 		
 		File file = new File(path);
 		Image image = new Image(file.toURI().toString());
@@ -45,14 +43,9 @@ public class ArtistController {
 		iv3.setFitHeight(170);
         iv3.setFitWidth(110);
 		this.imageBtn.setGraphic(iv3);
-		
-		
-		
-		
-		
+
 		this.artBtn.setText(this.myArtist.getBandName());
-		
+
 	}
-		
-	
+
 }

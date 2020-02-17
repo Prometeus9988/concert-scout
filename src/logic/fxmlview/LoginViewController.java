@@ -17,6 +17,7 @@ import logic.bean.ArtistBean;
 import logic.bean.GeneralUserBean;
 import logic.bean.UserBean;
 import logic.login.*;
+import logic.utils.FileManager;
 import logic.utils.SessionUser;
 import javafx.stage.FileChooser;
 import java.io.File;
@@ -175,10 +176,7 @@ public class LoginViewController {
 		if(Boolean.TRUE.equals(regResult)) {
 			this.registerLabel.setText("Registration successfull");
 			if(this.imageFile!=null) {
-				String path = System.getProperty("user.home") + File.separator
-						+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-						+ "trunk" + File.separator + "WebContent" + File.separator
-						+ "img" + File.separator + "profilePictures";
+				String path = FileManager.PROFILE;
 			    File file = new File(path, fileName);
 			    File newFile = new File(path, newFileName);
 			    try (InputStream input = new FileInputStream(this.imageFile)) {

@@ -13,6 +13,7 @@ import java.io.File;
 
 import javafx.scene.shape.Circle;
 import logic.bean.*;
+import logic.utils.FileManager;
 
 
 
@@ -38,10 +39,7 @@ public abstract class NewsViewController {
 		final Circle clip = new Circle(30, 25, 25);
 		this.image.setClip(clip);
 
-		String path=System.getProperty("user.home") + File.separator
-				+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-				+ "trunk" + File.separator + "WebContent" + File.separator
-				+ "img" + File.separator + "profilePictures" + File.separator + this.myNews.getProfilePath();
+		String path = FileManager.PROFILE + File.separator + this.myNews.getProfilePath();
 
 		File file = new File(path);
 		Image img = new Image(file.toURI().toString());
@@ -52,10 +50,7 @@ public abstract class NewsViewController {
 
 		//INIT PICTURE IF IT EXISTS
 		if (!this.myNews.getPicturePath().equals("")) {
-			path=System.getProperty("user.home") + File.separator
-					+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-					+ "trunk" + File.separator + "WebContent" + File.separator
-					+ "img" + File.separator + "newsPictures" + File.separator + this.myNews.getPicturePath();
+			path = FileManager.NEWS + File.separator + this.myNews.getPicturePath();
 
 			file = new File(path);
 			img = new Image(file.toURI().toString());

@@ -21,7 +21,7 @@ import logic.addmusicevent.AddMusicEventController;
 import logic.bean.GeneralUserBean;
 import logic.bean.MusicEventBean;
 import logic.exceptions.DateException;
-import logic.utils.RenameFile;
+import logic.utils.FileManager;
 
 @MultipartConfig
 
@@ -57,7 +57,7 @@ public class AddMusicEventServlet extends HttpServlet{
 			fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 		}
 		
-		newFileName = RenameFile.generateNewFileName(fileName, true, gu.getUsername());
+		newFileName = FileManager.generateNewFileName(fileName, true, gu.getUsername());
 		
 		MusicEventBean meb = new MusicEventBean();
 		meb.setArtistId(gu.getUsername());
@@ -79,10 +79,7 @@ public class AddMusicEventServlet extends HttpServlet{
 		}
 		
 		if(!fileName.equals("") && result && filePart != null){
-			String path = System.getProperty("user.home") + File.separator
-					+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-					+ "trunk" + File.separator + "WebContent" + File.separator
-					+ "img" + File.separator + "concertPictures";
+			String path = FileManager.EVENT;
 		    File file = new File(path, fileName);
 		    File newFile = new File(path, newFileName);
 

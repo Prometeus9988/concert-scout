@@ -22,7 +22,7 @@ import logic.addnews.AddNewsController;
 import logic.bean.GeneralUserBean;
 import logic.bean.NewsBean;
 import logic.exceptions.FieldTooLongException;
-import logic.utils.RenameFile;
+import logic.utils.FileManager;
 
 @WebServlet("/AddNewsServlet")
 @MultipartConfig
@@ -57,7 +57,7 @@ public class AddNewsServlet extends HttpServlet{
 			fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 		}
 		
-		newFileName = RenameFile.generateNewFileName(fileName, true, gu.getUsername());
+		newFileName = FileManager.generateNewFileName(fileName, true, gu.getUsername());
 		
 		nb.setText(text);
 		nb.setArtistId(gu.getUsername());
@@ -77,10 +77,7 @@ public class AddNewsServlet extends HttpServlet{
 		}
 		
 		if(!fileName.equals("") && result && filePart != null){
-			String path = System.getProperty("user.home") + File.separator
-					+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-					+ "trunk" + File.separator + "WebContent" + File.separator
-					+ "img" + File.separator + "newsPictures";
+			String path = FileManager.NEWS;
 		    File file = new File(path, fileName);
 		    File newFile = new File(path, newFileName);
 		    try (InputStream input = filePart.getInputStream()) {

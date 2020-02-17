@@ -7,6 +7,7 @@ import logic.exceptions.DateException;
 import logic.exceptions.LocationNotFoundException;
 import logic.utils.Controller;
 import logic.utils.GoogleMapBoundary;
+import logic.utils.FileManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -79,10 +80,7 @@ public class AddMusicEventController extends Controller{
 	}
 	
 	public void rejectMusicEvent(MusicEventBean meb) {
-		Path path = Paths.get(System.getProperty("user.home") + File.separator
-				+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-				+ "trunk" + File.separator + "WebContent" + File.separator
-				+ "img" + File.separator + "concertPictures" + File.separator + meb.getCoverPath());
+		Path path = Paths.get(FileManager.EVENT);
 		try {
 			if(!meb.getCoverPath().equals("concert.jpg")) {
 				Files.delete(path);

@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import logic.utils.FileManager;
 import logic.utils.SessionUser;
 import java.io.File;
 import logic.bean.ArtistBean;
@@ -74,10 +75,7 @@ public class ArtDetailsController {
 		ucg.backButton(this.backButton, from, searchString);
 		
 		//INIT IMAGE
-		String path=System.getProperty("user.home")+ File.separator
-						+ "Desktop" + File.separator + "LIVEtheMUSIC" + File.separator
-						+ "trunk" + File.separator + "WebContent" + File.separator
-						+ "img" + File.separator + "profilePictures"+File.separator+this.myArtist.getProfilePicture();
+		String path = FileManager.PROFILE + File.separator + this.myArtist.getProfilePicture();
 				
 		File file = new File(path);
 		Image image = new Image(file.toURI().toString());
