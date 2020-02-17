@@ -39,7 +39,6 @@ public class TestGoogleMapBoundary {
 		try {
 			GoogleMapBoundary.locateAddress("aaaaaaaaaaaaaaaaaaaaaaaaaa");
 		} catch (IOException | ParseException e) {
-			// TODO Auto-generated catch block
 			fail("Should not have thrown this exception");
 		} catch (LocationNotFoundException e) {
 			isFalse = true;
