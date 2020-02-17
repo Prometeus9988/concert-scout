@@ -1,0 +1,158 @@
+{
+  "id": "bfbba26f-346d-4b1a-a5aa-bc695282e16c",
+  "version": "2.0",
+  "name": "TestValeriani",
+  "url": "http://localhost:8080",
+  "tests": [{
+    "id": "6e86cb4f-04ee-47c7-ab53-ee3092cc3c30",
+    "name": "TestValeriani",
+    "commands": [{
+      "id": "e6297c00-0112-4602-9065-95b9137135fd",
+      "comment": "",
+      "command": "open",
+      "target": "/LIVEtheMUSIC/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5f0240ba-d15a-42ad-a6d2-60b1f8a0a01c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x718",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "42a0f8f1-d5a9-4425-aa74-debc14b4cd0b",
+      "comment": "",
+      "command": "click",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d7cfe320-72a6-4e3e-baff-87f5e12b5cd8",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "testusername1"
+    }, {
+      "id": "431f20a5-600f-48e5-a083-ac6d5983dd8d",
+      "comment": "",
+      "command": "click",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "129489df-3aad-4326-8de1-eb0aa82063e0",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "testusername1"
+    }, {
+      "id": "9375e287-4012-46d8-9087-733be8c28b75",
+      "comment": "",
+      "command": "click",
+      "target": "id=login",
+      "targets": [
+        ["id=login", "id"],
+        ["name=login", "name"],
+        ["css=#login", "css:finder"],
+        ["xpath=//input[@id='login']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7afd9e07-57bf-4579-afbc-c80952d20152",
+      "comment": "",
+      "command": "click",
+      "target": "css=li:nth-child(3) .notSelected",
+      "targets": [
+        ["css=li:nth-child(3) .notSelected", "css:finder"],
+        ["xpath=//input[@value='Friends']", "xpath:attributes"],
+        ["xpath=//li[3]/form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b3042d6-056e-4460-9835-253c36d35257",
+      "comment": "",
+      "command": "click",
+      "target": "name=searchString",
+      "targets": [
+        ["name=searchString", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//input[@name='searchString']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b1fb1e8-6263-4580-9e54-136f348df6dd",
+      "comment": "",
+      "command": "type",
+      "target": "name=searchString",
+      "targets": [
+        ["name=searchString", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//input[@name='searchString']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "papageno"
+    }, {
+      "id": "54b0d8ce-bbfb-4f67-b8e1-1221c09120b4",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=searchString",
+      "targets": [
+        ["name=searchString", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//input[@name='searchString']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "0e9d72bb-71c9-4ef0-a4d8-340244d2dd34",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=h1:nth-child(1) > i",
+      "targets": [
+        ["css=h1:nth-child(1) > i", "css:finder"],
+        ["xpath=//i", "xpath:position"],
+        ["xpath=//i[contains(.,'Search results for \"papagheno\"')]", "xpath:innerText"]
+      ],
+      "value": "Search results for \"papageno\""
+    }]
+  }],
+  "suites": [{
+    "id": "461d1976-3aa4-4199-ae50-fcce3d070175",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["6e86cb4f-04ee-47c7-ab53-ee3092cc3c30"]
+  }],
+  "urls": ["http://localhost:8080/"],
+  "plugins": []
+}
