@@ -12,6 +12,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject; 
 import org.json.simple.parser.*;
 
+import logic.exceptions.LocationNotFoundException;
+
 public class GoogleMapBoundary {
 	
 	private static final String GOOGLEAPI = "";
@@ -20,7 +22,7 @@ public class GoogleMapBoundary {
 		
 	}
 	
-	public static List<Double> locateAddress(String address) throws IOException, ParseException{
+	public static List<Double> locateAddress(String address) throws IOException, ParseException, LocationNotFoundException{
 		String jsonString = "";
 		List<Double> coordinates = new ArrayList<>();
         StringBuilder str = new StringBuilder();
@@ -45,6 +47,11 @@ public class GoogleMapBoundary {
         //Get coordinates from JSON string
         JSONObject object = (JSONObject) parser.parse(jsonString);
         JSONArray resultsArray = (JSONArray) object.get("results");
+        
+        if(resultsArray.isEmpty()) {
+        	throw new LocationNotFoundException("The location " + address + " was not found");
+        }
+        
         JSONObject results = (JSONObject) resultsArray.get(0);
         JSONObject geometry = (JSONObject) results.get("geometry");
         JSONObject location = (JSONObject) geometry.get("location");

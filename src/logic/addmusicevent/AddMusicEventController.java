@@ -4,6 +4,7 @@ import logic.bean.MusicEventBean;
 import logic.dao.MusicEventDao;
 import logic.entity.MusicEvent;
 import logic.exceptions.DateException;
+import logic.exceptions.LocationNotFoundException;
 import logic.utils.Controller;
 import logic.utils.GoogleMapBoundary;
 
@@ -41,6 +42,10 @@ public class AddMusicEventController extends Controller{
 			return false;
 		} catch (org.json.simple.parser.ParseException pe) {
 			logger.log(Level.WARNING, pe.toString());
+			return false;
+		} catch (LocationNotFoundException e) {
+			//Maybe log to the view
+			logger.log(Level.WARNING, e.getMessage());
 			return false;
 		}
 
