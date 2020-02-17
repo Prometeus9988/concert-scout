@@ -13,6 +13,8 @@ import logic.bean.MusicEventBean;
 import logic.buyticket.BuyTicketController;
 import logic.entity.MusicEvent;
 import logic.utils.Controller;
+import logic.bean.ArtistBean;
+import logic.entity.Artist;
 
 public class TestController {
 	
@@ -47,6 +49,23 @@ public class TestController {
 		MusicEventBean meb2 = (MusicEventBean)method.invoke(new BuyTicketController(), me);
 
 		assertTrue(EqualsBuilder.reflectionEquals(meb1, meb2));
+	}
+	
+	@Test
+	public void artistBeanConverter() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+		ArtistBean attended=new ArtistBean();
+		//init ArtistBean
+		attended.setUsername(TEST);
+		attended.setBandName(TEST);
+		attended.setProfilePicture(TEST);
+		
+		Artist ar=new Artist(TEST,TEST,TEST);
+		
+		Method method=Controller.class.getDeclaredMethod("convert", Artist.class);
+		method.setAccessible(true);
+		ArtistBean output;
+		output=(ArtistBean)method.invoke(new BuyTicketController(), ar);
+		assertTrue(EqualsBuilder.reflectionEquals(attended,output));
 	}
 
 }
