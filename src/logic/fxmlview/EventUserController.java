@@ -2,7 +2,7 @@ package logic.fxmlview;
 
 import javafx.event.ActionEvent;
 import logic.bean.ArtistBean;
-import logic.buyticket.BuyTicketController;
+import logic.followartist.FollowArtistController;
 
 public class EventUserController extends EventController {
 
@@ -19,8 +19,8 @@ public class EventUserController extends EventController {
 
 	@Override
 	public void openArtist(ActionEvent e){
-		BuyTicketController btc = new BuyTicketController();
-		ArtistBean ab = btc.getArtist(this.myMusicEvent.getArtistId());
+		FollowArtistController fac = new FollowArtistController();
+		ArtistBean ab = fac.getArtist(this.myMusicEvent.getArtistId());
 		this.ugc.toArtistDetails(this.artBtn.getScene(), ab, this.from, this.searchString);
 	}
 

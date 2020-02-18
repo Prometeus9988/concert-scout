@@ -20,6 +20,7 @@ import logic.bean.MusicEventBean;
 import logic.buyticket.BuyTicketController;
 import logic.exceptions.NoArtistFoundException;
 import logic.exceptions.NoMusicEventFoundException;
+import logic.followartist.FollowArtistController;
 
 @WebServlet("/BuyTicketServlet")
 public class BuyTicketServlet extends HttpServlet{
@@ -33,6 +34,8 @@ public class BuyTicketServlet extends HttpServlet{
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 		BuyTicketController btc = new BuyTicketController();
+		FollowArtistController fac = new FollowArtistController();
+		
 		List<MusicEventBean> musicEvents = new ArrayList<>();
 		List<ArtistBean> artists = new ArrayList<>();
 		session.setAttribute("origin", "BuyTicketServlet");
@@ -48,7 +51,7 @@ public class BuyTicketServlet extends HttpServlet{
 		}
 		
 		try {
-			artists = btc.getSuggestedArtist(username);
+			artists = fac.getSuggestedArtist(username);
 			request.setAttribute("FoundArtists", "Suggested Artists");
 		} catch (NoArtistFoundException e) {
 			request.setAttribute("FoundArtists", e.getMessage());

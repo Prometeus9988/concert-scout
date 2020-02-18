@@ -14,6 +14,7 @@ import logic.bean.MusicEventBean;
 import logic.buyticket.*;
 import logic.exceptions.NoArtistFoundException;
 import logic.exceptions.NoMusicEventFoundException;
+import logic.followartist.FollowArtistController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +73,7 @@ public class HomepageUserController {
 		evScrollPane.setStyle("-fx-background-color:  transparent;-fx-background:  #F5EDF0");
 		
 		BuyTicketController btc = new BuyTicketController();
+		FollowArtistController fac = new FollowArtistController();
 		String username = gub.getUsername();
 		
 		try {
@@ -81,7 +83,7 @@ public class HomepageUserController {
 		}
 		
 		try {
-			artist = btc.getSuggestedArtist(username);
+			artist = fac.getSuggestedArtist(username);
 		} catch (NoArtistFoundException e) {
 			this.arLabel.setText(e.getMessage());
 		}

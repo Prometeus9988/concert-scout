@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import logic.buyticket.*;
 import logic.exceptions.NoArtistFoundException;
 import logic.exceptions.NoMusicEventFoundException;
+import logic.followartist.FollowArtistController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,7 @@ public class SearchEventsArtistsController {
 
 		//searched lists
 		BuyTicketController btc = new BuyTicketController();
+		FollowArtistController fac = new FollowArtistController();
 		List<MusicEventBean> musicEvents = null;
 		
 		try {
@@ -69,7 +71,7 @@ public class SearchEventsArtistsController {
 		List<ArtistBean> artists = null;
 		
 		try {
-			artists = btc.getSearchArtist(searchString);
+			artists = fac.getSearchArtist(searchString);
 		} catch (NoArtistFoundException e) {
 			artists = new ArrayList<>();
 			this.artLabel.setText(e.getMessage());

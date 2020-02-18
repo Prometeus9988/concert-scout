@@ -4,14 +4,14 @@ import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;
 import logic.bean.*;
-import logic.buyticket.BuyTicketController;
+import logic.followartist.FollowArtistController;
 
 public class NewsAdminController extends NewsViewController{
 
 	@FXML
 	public void openArtist(ActionEvent e) {
-		BuyTicketController btc = new BuyTicketController();
-		ArtistBean ab = btc.getArtist(this.myNews.getArtistId());
+		FollowArtistController fac = new FollowArtistController();
+		ArtistBean ab = fac.getArtist(this.myNews.getArtistId());
 		AdminGraphicChange.getInstance().toArtistDetails(this.newsText.getScene(), ab, "news", "");
 
 	}

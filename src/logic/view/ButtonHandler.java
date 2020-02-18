@@ -77,7 +77,6 @@ public class ButtonHandler  extends HttpServlet{
 	}
 	
 	private RequestDispatcher gotoArtistProfile(GeneralUserBean gu, HttpSession session, HttpServletRequest request) {
-		BuyTicketController btc = new BuyTicketController();
 		FollowArtistController fac = new FollowArtistController();
 		
 		String username = request.getParameter(ARTIST);
@@ -87,7 +86,7 @@ public class ButtonHandler  extends HttpServlet{
 		ArtistBean ab = this.checkArtistPresence(artistList, username);
 		
 		if(ab == null) {
-		 ab = btc.getArtist(username);
+		 ab = fac.getArtist(username);
 		}
 		
 		session.setAttribute(ARTIST, ab);
