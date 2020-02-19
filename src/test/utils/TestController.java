@@ -20,6 +20,9 @@ public class TestController {
 	
 	private static final String TEST = "test";
 
+	/*
+	 * Author: Lorenzo Valeriani
+	 */
 	@Test
 	public void testMusicEventBeanConvert() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
@@ -27,7 +30,7 @@ public class TestController {
 		coordinates.add(0.0);
 		coordinates.add(0.0);
 
-		// Build ad-hoc MusicEventBean
+		// Build ad hoc MusicEventBean
 		MusicEventBean meb1 = new MusicEventBean();
 		meb1.setId(42);
 		meb1.setArtistId(TEST);
@@ -51,6 +54,9 @@ public class TestController {
 		assertTrue(EqualsBuilder.reflectionEquals(meb1, meb2));
 	}
 	
+	/*
+	 * Author: Marco Ferri
+	 */
 	@Test
 	public void artistBeanConverter() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 		ArtistBean attended=new ArtistBean();

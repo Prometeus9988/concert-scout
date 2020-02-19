@@ -116,7 +116,7 @@
 </div>
 
 <div class="splitBackground right">
-<img src = "<%="img/profilePictures/" + ab.getProfilePicture() %>" style = "position:absolute; top:0;" height = 334  width = 1252 style = "object-fit: cover;" >
+<img src = "<%="img/profilePictures/" + ab.getProfilePicture() %>" style = "position:absolute; top:0; object-fit: cover;" height = 334  width = 1252>
 <div class="centered" style="margin-left:30px; margin-top: 350px;">
   <form action = "ButtonHandler" method = "POST">
 <input type="submit" class = "submit" name = "back" value = "back">

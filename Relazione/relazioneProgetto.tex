@@ -27,9 +27,9 @@
 \subsection{Aim of the document}
 The aim of this document is to present a description of “LIVE the MUSIC”. It will present the purpose and features of the system and what the system will do.
 \subsection{Overview of the defined system}
-This system allows the user to remain updated about music events in the area according to the user’s musical taste. It will present detailed information about the location and transportation methods. The service allows the user to discover new artists that s/he may like. The user will be able to know which of users’ friends will participate in a music event.
+This system allows the user to remain updated about music events in the area according to the user’s musical taste. It will present detailed information about the location and transportation methods. The service allows the user to discover new artists that s/he may like. The user will be able to know which music events their friends will attend.
 \subsection{Operational settings}
-“LIVE the MUSIC” should run on any Operating System and browser that supports the Java Environment. 
+“LIVE the MUSIC” should run on any Operating System and browser that supports the Java Environment (version 8 or higher). 
 \subsection{Related systems}
 Similar services are provided by TicketOne website and Virgin Radio application.
 TicketOne: 
@@ -37,67 +37,63 @@ The advantage of our system is that it suggests events based on friends’ parti
 Virgin Radio:
 Our system provides social features and the selection of musical events is not limited to rock events. One disadvantage of our system is that relies on artists to add music events to the service.
 \section{User Stories}
-\subsection{Donato?}
-\begin{itemize}
-\item As a user, I want a home section, so I can find a recommended event. 
-\item As a user, I want to search for music events.
-\item As a user, I want to visit a specific artist’s profile, so that I can find his news and events.
-\end{itemize}
 \subsection{Ferrarelli}
 \begin{itemize}
 \item As an artist, I want to create an artist’s profile, so that I can post news about me.
-\item As an artist, I want to add music events to the service, so that I can advertise hosted events.
-\item As a user, I want to see which of my friends are going to attend a music event, so I can join them.
+\item As an artist, I want to add music events to the service, so that I can advertise my events.
+\item As a user, I want to see which music event my friends are going to attend, so that I can join them.
 \end{itemize}
 \subsection{Ferri}
 \begin{itemize}
-\item As a user, I want to buy tickets, so I can search for the event only once.
-\item As a traveler, I want a map of the area where the music event takes place, so I can
-find bus stops or train stations. 
-\item As a user, I want a news section for the music event I go to, so I can stay updated.
+\item As a user, I want to add other users to my friend list, so that I can see their activities.
+\item As a traveler, I want a map of the area where the music event will take place, so that I can
+find bus stops or train stations.
+\item As a user, I want a news section for the artists I follow, so that I can stay updated.
+\end{itemize}
+\subsection{Valeriani}
+\begin{itemize}
+\item As an artist, I want to post news on the system, so that I can keep my followers updated.
+\item As a user, I want to reject a friend request, so that I can enhance my privacy.
+\item As a user, I want a list of suggested artists, so that I can discover new artists.
 \end{itemize}
 \section{Functional Requirements}
-\subsection{Donato}
-\begin{itemize}
-\item The system shall allow the user to add an artist to the list of followed artists.
-\item The system shall show to the users the music events of users’ favorite artists and the music events they might like.
-\item The system shall allow the user to add his participation to an event, selected by the user.
-\end{itemize}
 \subsection{Ferrarelli}
 \begin{itemize}
 \item The system shall provide a list of music events hosted in locations in a radius specified by the user.
-\item The system shall allow the user to add other users to the friend list.
-\item The system shall provide the list of attended music music events by the user.
+\item The system shall allow the user to add other users to their friend list.
+\item The system shall provide the list of music events attended by the user.
 \end{itemize}
 \subsection{Ferri}
 \begin{itemize}
-\item The system shall provide artists the insertion of a new event, selecting the date and the location of the music event.
-\item The system shall provide artists to add news about them on a news board inserting a message and an optional image.
-\item The system shall allow the user to remove the participation to an event, selected by the user.
+\item The system shall allow the artist to create a new music event, specifying its name, date and location.
+\item The system shall allow the user to view news of their followed artists.
+\item The system shall allow the user to remove the participation to a music event, selected by the user.
 \end{itemize}
-\subsection{Extra}
+\subsection{Valeriani}
 \begin{itemize}
-\item The system shall provide all users the view on-screen of user’s friends that take part in an event, selected by the user.
-\item The system shall allow users to view news about their followed artists.
-\item The system shall provide users links to TicketOne of the selected events.
-\item The system shall allow the users to search for music events, specifying location or artist’s name.
-\item The system shall provide a map of the music event in the area, highlighting means of transport.
-\item The system shall allow the artist to label an event as canceled or postponed.
-\item The system shall provide a list of events in a radius and/or time period specified by the user.
+\item The system shall allow the user to search for music events, specifying the artist’s name.
+\item The system shall allow the user to add an artist to the list of followed artists.
+\item The system shall provide the user with a list of suggested music events, based on their friends' participation.
+\end{itemize}
+\section{Dictionary}
+\begin{itemize}
+\item News section: list of news posted by followed artists.
+\item Follow: show the news posted by an artist on the user's news section.
+\end{itemize}
 \section{Use Case Diagram}
 \hspace*{-4cm}  
 \includegraphics[scale=0.7]{UseCaseFinal.jpg}
 \section{Storyboard}
-\includegraphics[scale=0.25]{Home.jpg}
-\includegraphics[scale=0.25]{Concert.jpg}
-\includegraphics[scale=0.25]{News.jpg}
-\includegraphics[scale=0.25]{AroundYou.jpg}
-\includegraphics[scale=0.25]{MyEvents.jpg}
-\includegraphics[scale=0.25]{Favorites.jpg}
-\includegraphics[scale=0.25]{Login.jpg}
-\includegraphics[scale=0.25]{AddEvent.jpg}
+\includegraphics[scale=0.75]{Home.jpg}
+\includegraphics[scale=0.75]{Concert.jpg}
+\includegraphics[scale=0.75]{News.jpg}
+\includegraphics[scale=0.75]{AroundYou.jpg}
+\includegraphics[scale=0.75]{MyEvents.jpg}
+\includegraphics[scale=0.75]{Favorites.jpg}
+\includegraphics[scale=0.275]{Login.jpg}
+\includegraphics[scale=0.75]{AddEvent.jpg}
 \section{Activity Diagram}
-\subsection{Donato}
+\subsection{Donato?}
 \includegraphics[scale=0.5]{ManageMusicEvent.png}
 \subsection{Ferrarelli}
 \includegraphics[scale=0.5]{hmwActivityDiagram.jpeg}
@@ -106,7 +102,14 @@ find bus stops or train stations.
 \includegraphics[scale=0.5]{addnews2.jpeg}
 \subsection{Extra}
 \includegraphics[scale=0.5]{logActivityDiagram.jpg}
+\section{Sequence Diagram}
+\subsection{Ferrarelli}
+\subsection{Ferri}
+\subsection{Valeriani}
+\section{State Diagram}
+\subsection{Ferrarelli}
+\subsection{Ferri}
+\subsection{Valeriani}
 \section{SonarCloud}
-\paragraph{SonarCloud link} https://sonarcloud.io/organizations/ferra-rally/projects
-\end{itemize}
+\paragraph{SonarCloud link} https://sonarcloud.io/dashboard?id=ferra-rally\_concert-scout
 \end{document}

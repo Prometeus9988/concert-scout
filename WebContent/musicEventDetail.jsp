@@ -107,7 +107,7 @@
 
 <div class="splitBackground right">
   <!-- Concert Cover -->
-  <img src="<%="img/concertPictures/" + meb.getCoverPath()%>" style = "position:absolute; top:0;" height = 334  width = 1252 style = "object-fit: cover;" >
+  <img src="<%="img/concertPictures/" + meb.getCoverPath()%>" style = "position:absolute; top:0; object-fit: cover;" height = 334  width = 1252>
   <div class="centered" style="margin-left:30px; margin-top: 350px;">
   
 

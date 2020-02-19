@@ -1,5 +1,7 @@
 package test.readnews;
-
+/*
+ * Author: Lorenzo Valeriani
+ */
 import static org.junit.Assert.assertEquals;
 
 import java.lang.reflect.InvocationTargetException;

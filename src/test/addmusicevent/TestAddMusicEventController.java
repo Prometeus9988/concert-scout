@@ -1,5 +1,7 @@
 package test.addmusicevent;
-
+/*
+ * Author: Daniele Ferrarelli
+ */
 import org.junit.Test;
 import static org.junit.Assert.*;
 

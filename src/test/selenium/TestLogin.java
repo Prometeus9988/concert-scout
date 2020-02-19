@@ -26,6 +26,9 @@ public class TestLogin {
 		return driver;
 	}
 	
+	/*
+	 * Author: Daniele Ferrarelli
+	 */
 	@Test
 	public void testSuccessfulLogin() {
 		
@@ -43,6 +46,9 @@ public class TestLogin {
 		assertEquals("Welcome testusername1", value);
 	}
 	
+	/*
+	 * Author: Marco Ferri
+	 */
 	@Test
 	public void testPasswordNecessaryLogin() {
 		
@@ -61,6 +67,9 @@ public class TestLogin {
 		
 	}
 	
+	/*
+	 * Author: Lorenzo Valeriani
+	 */
 	@Test
 	public void testUsernameNecessaryLogin() {
 

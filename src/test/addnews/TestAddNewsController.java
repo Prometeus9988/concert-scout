@@ -1,5 +1,7 @@
 package test.addnews;
-
+/*
+ * Author: Lorenzo Valeriani
+ */
 import org.junit.Test;
 
 import logic.addnews.AddNewsController;

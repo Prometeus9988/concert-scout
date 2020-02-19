@@ -1,4 +1,7 @@
 package test.login;
+/*
+ * Author: Marco Ferri
+ */
 
 import org.junit.Test;
 import static org.junit.Assert.*;
