@@ -112,7 +112,7 @@
   
 
 <form action = "ButtonHandler" method = "POST">
-<input type="submit" class = "submit" name = "back" value = "back">
+<input class="btn btn-info buttonColor" type="submit" class = "submit" name = "back" value = "back">
 </form>
 
 <h1><i><%=meb.getName()%></i></h1>
@@ -125,14 +125,14 @@
 <%
 	if(origin.equals("AdminMusicEventServlet")){
 		%>
-		<input type="submit" name = "accept" value = "Accept Event">	
-		<input type="submit" name = "reject" value = "Reject Event">		
+		<input class="btn btn-info buttonColor" type="submit" name = "accept" value = "Accept Event">	
+		<input class="btn btn-info buttonColor" type="submit" name = "reject" value = "Reject Event">		
 		<%
 	} else {
-		%><input type="submit" name = "addPart" value = "<%=part%>"><%
+		%><input class="btn btn-info buttonColor" type="submit" name = "addPart" value = "<%=part%>"><%
 	}
 %>
-<input type="submit" name = "goToTicketone" value = "TicketOne">
+<input class="btn btn-info buttonColor" type="submit" name = "goToTicketone" value = "TicketOne">
 </form>
 
 <div id="map"></div>

@@ -76,11 +76,11 @@
 				<%
     				if(role.equals("admin")){
     			%>
-    			<form action = "AcceptNewsServlet" method = POST>
+    			<form action = "AcceptNewsServlet" method = POST><br>
     			<input type = "hidden" name = "id" value = "<%= nb.get(i).getId() %>">
     			<input type = "hidden" name = "picture" value = "<%= nb.get(i).getPicturePath()%>">
-    			<input type = "submit" name = "acceptNews" value = "Accept News">
-    			<input type = "submit" name = "rejectNews" value = "Reject News">
+    			<input class="btn btn-info buttonColor" type = "submit" name = "acceptNews" value = "Accept News">
+    			<input class="btn btn-info buttonColor" type = "submit" name = "rejectNews" value = "Reject News">
     			</form>
     			<%
     				}

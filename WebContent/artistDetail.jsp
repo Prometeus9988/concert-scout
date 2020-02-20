@@ -119,7 +119,7 @@
 <img src = "<%="img/profilePictures/" + ab.getProfilePicture() %>" style = "position:absolute; top:0; object-fit: cover;" height = 334  width = 1252>
 <div class="centered" style="margin-left:30px; margin-top: 350px;">
   <form action = "ButtonHandler" method = "POST">
-<input type="submit" class = "submit" name = "back" value = "back">
+<input class="btn btn-info buttonColor" type="submit" class = "submit" name = "back" value = "back">
 </form>
 	<h1><i><%=ab.getBandName()%></i></h1>
   <%
@@ -127,7 +127,7 @@
   } else {
   %>
   <form action = "ButtonHandler" method = "POST">
-  <input type = "submit" name = "follow" value = "<%=foll%>">
+  <input class="btn btn-info buttonColor" type = "submit" name = "follow" value = "<%=foll%>">
   <input type = "hidden" name = "artist" value = "<%=ab.getUsername() %>">
   </form>
   <%} %>

@@ -28,7 +28,7 @@ public class FriendsController {
 		UserDao ud = new UserDao();
 		List<User> l = ud.getFriendRequests(username);
 		if(l.isEmpty()) {
-			throw new NoFriendRequestException("No friend's requests found :-(");
+			throw new NoFriendRequestException("No friend requests found :-(");
 		}
 		return this.convert(l);
 	}
