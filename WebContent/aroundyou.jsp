@@ -60,7 +60,7 @@
   <input type = "hidden" name = "longitude" id = "longitude" value = 0>
   <input type="range" min="<%=mindist %>" max="<%=maxdist%>" value="<%=defrad %>" class="slider" name = "slider" id="slider">
   <p><i>Maximum distance: <span id="preview"></span>km</i></p>
-  <button type="button" onclick = "getLocation()">Update</button>
+  <button class="btn btn-info buttonColor"  type="button" onclick = "getLocation()">Update</button>
   </form>
   
   <!-- Shows preview of the slider -->

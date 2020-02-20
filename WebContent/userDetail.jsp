@@ -68,17 +68,17 @@
 <img src = "<%="img/profilePictures/" + ub.getProfilePicture() %>" style = "position:absolute; top:0; object-fit: cover;" height = 334  width = 1252>
 <div class="centered" style="margin-left:30px; margin-top: 350px;">
 <form action = "ButtonHandler" method = "POST">
-<input type="submit" class = "submit" name = "back" value = "back">
+<input type="submit" class="btn btn-info buttonColor" name = "back" value = "back">
 </form>
 	<h1><i><%=ub.getUsername()%></i></h1>
 	<h2><i><%=ub.getName() + " " + ub.getSurname() %></i></h2>
   <form action = "FriendButtonServlet" method = "POST">
-  <input type = "submit" name = "friend" value = "<%=fr%>">
+  <input class="btn btn-info buttonColor" type = "submit" name = "friend" value = "<%=fr%>">
   <input type = "hidden" name = "target" value = "<%=ub.getUsername() %>">
   <%
   if (who.equals("target")) {
   %>
-  <input type = "submit" name = "decline" value = "Decline Friend Request">
+  <input class="btn btn-info buttonColor" type = "submit" name = "decline" value = "Decline Friend Request">
   <input type = "hidden" name = "target" value = "<%=ub.getUsername() %>">
   <%
   }
