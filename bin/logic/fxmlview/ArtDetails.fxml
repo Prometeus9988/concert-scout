@@ -29,7 +29,7 @@
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <Button fx:id="followBtn" layoutX="13.0" layoutY="532.0" mnemonicParsing="false" onAction="#followAction" prefHeight="34.0" prefWidth="112.0" text="Follow" />
+                  <Button fx:id="followBtn" layoutX="13.0" layoutY="532.0" mnemonicParsing="false" onAction="#followAction" prefHeight="34.0" prefWidth="112.0" style="-fx-background-color: #F5CB5C;" text="Follow" />
                </children>
             </AnchorPane>
          </items>

@@ -8,9 +8,9 @@
    <children>
       <HBox fx:id="buttons" prefHeight="40.0" prefWidth="1141.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#acceptAction" prefHeight="26.0" prefWidth="105.0" text="Accept Event" />
-            <Button mnemonicParsing="false" onAction="#rejectAction" text="Reject Event" />
-            <Button fx:id="tkButton" mnemonicParsing="false" onAction="#tkAction" text="TicketOne" />
+            <Button mnemonicParsing="false" onAction="#acceptAction" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #F5CB5C;" text="Accept Event" />
+            <Button mnemonicParsing="false" onAction="#rejectAction" style="-fx-background-color: #F5CB5C;" text="Reject Event" />
+            <Button fx:id="tkButton" mnemonicParsing="false" onAction="#tkAction" style="-fx-background-color: #F5CB5C;" text="TicketOne" />
          </children>
       </HBox>
    </children>

@@ -63,7 +63,10 @@ public class UserDetailsController {
 		boolean isFriend=fc.isFriend(gu, ub);
 		String who=fc.whoSentRequest(gu, ub);		
 		
+		String style="-fx-background-color:  #F5CB5C";
+		
 		Button btn1=new Button();
+		btn1.setStyle(style);
 		Button btn2=null;
 		
 		if(!isFriend) {
@@ -80,6 +83,7 @@ public class UserDetailsController {
 			}else if(who.equals("target")) {
 				btn1.setText("Accept Friend Request");
 				btn2=new Button("Decline Friend Request");
+				btn2.setStyle(style);
 				//set all behavoiurs
 				btn1.setOnAction(new EventHandler<ActionEvent>() {
 					@Override

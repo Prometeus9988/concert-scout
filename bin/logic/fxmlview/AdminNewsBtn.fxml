@@ -4,13 +4,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-
-<AnchorPane style="-fx-background-color: #F5EDF0;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane style="-fx-background-color: #F5EDF0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="26.0" prefWidth="247.0" spacing="10.0">
          <children>
-            <Button fx:id="acpBtn" mnemonicParsing="false" onAction="#acceptNews" text="Accept News" />
-            <Button fx:id="rejBtn" mnemonicParsing="false" onAction="#rejectNews" prefHeight="26.0" prefWidth="132.0" text="Reject News" />
+            <Button fx:id="acpBtn" mnemonicParsing="false" onAction="#acceptNews" style="-fx-background-color: #F5CB5C;" text="Accept News" />
+            <Button fx:id="rejBtn" mnemonicParsing="false" onAction="#rejectNews" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: #F5CB5C;" text="Reject News" />
          </children>
       </HBox>
    </children>

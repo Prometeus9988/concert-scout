@@ -5,6 +5,6 @@
 
 <AnchorPane prefHeight="0.0" prefWidth="63.0" style="-fx-background-color: #F5EDF0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="buttonBack" mnemonicParsing="false" onAction="#backAction" prefWidth="63.0" text="back" />
+      <Button fx:id="buttonBack" mnemonicParsing="false" onAction="#backAction" prefWidth="63.0" style="-fx-background-color: #F5CB5C;" text="back" />
    </children>
 </AnchorPane>

@@ -8,8 +8,8 @@
    <children>
       <HBox fx:id="buttons" prefHeight="40.0" prefWidth="1141.0" spacing="10.0">
          <children>
-            <Button fx:id="part" mnemonicParsing="false" onAction="#partAction" prefHeight="26.0" prefWidth="181.0" text="Remove Participation" />
-            <Button fx:id="tk" mnemonicParsing="false" onAction="#tkAction" text="TicketOne" />
+            <Button fx:id="part" mnemonicParsing="false" onAction="#partAction" prefHeight="26.0" prefWidth="181.0" style="-fx-background-color: #F5CB5C;" text="Remove Participation" />
+            <Button fx:id="tk" mnemonicParsing="false" onAction="#tkAction" style="-fx-background-color: #F5CB5C;" text="TicketOne" />
          </children>
       </HBox>
    </children>

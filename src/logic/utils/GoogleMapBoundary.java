@@ -16,7 +16,7 @@ import logic.exceptions.LocationNotFoundException;
 
 public class GoogleMapBoundary {
 	
-	private static final String GOOGLEAPI = "AIzaSyCeyYHoEVN_IsSxIXfj3q0txhiHfk299Ww";
+	private static final String GOOGLEAPI = "";
 	
 	private GoogleMapBoundary(){
 		
